@@ -52,7 +52,6 @@ matches:
       - Throw errors to avoid unexpected behavior.
       - Include error handling in all functions (e.g., try/catch).
       - Log meaningful errors where appropriate.
-      [[error_handling_instructions]]
 
       ## Testing
 
@@ -62,13 +61,8 @@ matches:
       - Follow the Arrange-Act-Assert pattern.
       - Structure tests to match the existing style.
       - Tests should be clear, precise, and broken into small parts.
-      [[testing_instructions]]
     form_fields:
       language_specifics_eg_arrow_function_asyncawait_etc:
-        multiline: true
-      error_handling_instructions:
-        multiline: true
-      testing_instructions:
         multiline: true
   - trigger: ':featurePlan'
     form: |+
