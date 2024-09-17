@@ -1,0 +1,33 @@
+{
+  "name": "ai-driven-dev-prompt",
+  "version": "0.0.1",
+  "description": "Prompts collection for AI-driven developers.",
+  "main": "index.js",
+  "jest": {
+    "testEnvironment": "node"
+  },
+  "scripts": {
+    "start": "node index.js",
+    "test": "jest",
+    "test:watch": "jest --watchAll",
+    "pre-commit": "./.husky/pre-commit"
+  },
+  "keywords": [
+    "espanso",
+    "developers",
+    "prompts",
+    "ai",
+    "gen-ai",
+    "ai-driven-dev"
+  ],
+  "author": "alexsoyes",
+  "dependencies": {
+    "markdown-it": "^14.0.0",
+    "yaml": "^2.3.4"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "prettier": "^3.2.4",
+    "husky": "^8.0.0"
+  }
+}

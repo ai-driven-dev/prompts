@@ -1,0 +1,6 @@
+[pr_description]
+publish_labels=false
+generate_ai_title=true
+
+[config]
+model="gpt-4o"

@@ -1,0 +1,44 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo "🚀 Testing, generating package, and upgrading version..."
+
+npm test
+
+npm start
+
+# Check if package.yml has changed since the last commit
+changed_files=$(git diff --name-only --cached && git diff --name-only)
+
+if echo "$changed_files" | grep -q "ai-driven-dev-prompts/package.yml"; then
+  echo "📦 Generating package..."
+
+  # Extract the version from manifest.yml
+  version=$(git show main:"ai-driven-dev-prompts/_manifest.yml" | grep 'version' | cut -d ' ' -f 2)
+
+  # Increment the version
+  version_parts=(${version//./ })
+  version_parts[2]=$((version_parts[2] + 1))
+  new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+
+  # Replace the version in _manifest.yml
+  sed -i "" "s/version: $version/version: $new_version/" "ai-driven-dev-prompts/_manifest.yml"
+
+  # Replace the version in package.json
+  sed -i "" "s/\"version\": \".*\"/\"version\": \"$new_version\"/" "package.json"
+
+  echo "🆙 Version $version upgraded to $new_version"
+
+  # Regenerate the package-lock.json
+  npm install
+else
+  echo "👀 No changes in package.yml"
+fi
+
+# package upgrade
+git add package-lock.json
+git add package.json
+# generated scripts from doc
+git add scripts/generated/
+# espanso directory
+git add ai-driven-dev-prompts/

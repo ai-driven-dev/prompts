@@ -1,0 +1,6 @@
+node_modules
+resources/images/.DS_Store
+
+# avoid indexing the resources/private/* content
+resources/private
+!resources/private/.gitkeep

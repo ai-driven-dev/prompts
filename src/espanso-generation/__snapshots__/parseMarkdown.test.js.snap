@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`parseMarkdown should accept trigger headings ending with (WIP) 1`] = `
+[
+  {
+    "choices": {},
+    "form": "I need you to help me think about the best way to implement this new functionality:
+[[new_functionality]]
+
+Please provide the best coding steps regarding my existing code.
+",
+    "trigger": "codeCodingHelpThinking",
+    "variables": [
+      "new_functionality",
+    ],
+  },
+  {
+    "choices": {},
+    "form": "I need you to improve the readability of the following code.
+
+Result should remain the same, but the code should be easier to read and understand.
+",
+    "trigger": "codeCodingImproveReadability",
+    "variables": [],
+  },
+  {
+    "choices": {},
+    "form": "Provide an example of the usage of this function, input and output.
+",
+    "trigger": "codeCodingProvideExampleUsage",
+    "variables": [],
+  },
+]
+`;
