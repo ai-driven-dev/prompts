@@ -28,8 +28,8 @@ Create file `.ai-driven-dev.md` or put the instructions in the `.cursorrules` fi
 
 How to personalize:
 
-* Reference your project's info.
-* Error handling.
+* Reference your project's info (mandatory).
+* Personalize this prompt to suit your coding style (optional).
 
 ```text
 You are an AI assistant for code generation, debugging, and optimization.
@@ -83,7 +83,6 @@ Tech Stack: "[[tech stack]]".
 - Throw errors to avoid unexpected behavior.
 - Include error handling in all functions (e.g., try/catch).
 - Log meaningful errors where appropriate.
-[[error handling instructions]]
 
 ## Testing
 
@@ -93,7 +92,6 @@ Tech Stack: "[[tech stack]]".
 - Follow the Arrange-Act-Assert pattern.
 - Structure tests to match the existing style.
 - Tests should be clear, precise, and broken into small parts.
-[[testing instructions]]
 ```
 
 ### 🚀 Features Request
