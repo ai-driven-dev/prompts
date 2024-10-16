@@ -10,8 +10,8 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
 - [🧑‍💻 Create a RAG with your project context](#-create-a-rag-with-your-project-context)
   - [Instruct AI to be a developer from your project `:rag`](#instruct-ai-to-be-a-developer-from-your-project-rag)
 - [🙋‍♂️ Feature request](#️-feature-request)
-  - [Generate user stories](#generate-user-stories)
-  - [Create a technical plan `:featurePlanConstruction`](#create-a-technical-plan-featureplanconstruction)
+  - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
+  - [Technical plan `:featurePlan`](#technical-plan-featureplan)
 - [🧪 Tests](#-tests)
   - [Check for test methods to implement](#check-for-test-methods-to-implement)
 - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
@@ -145,7 +145,7 @@ Tech Stack: "[[tech stack]]".
 
 ## 🙋‍♂️ Feature request
 
-### Generate user stories
+### Generate user stories `:featureUS`
 
 If you want to generate user-stories for your project, use this prompt.
 
@@ -193,55 +193,89 @@ User stories template:
 ```
 ````
 
-### Create a technical plan `:featurePlanConstruction`
+### Technical plan `:featurePlan`
 
-If you do have the user stories and want to create a technical plan for the feature, use this prompt.
+Feel free to remove part of the plan you are not using.
 
-````text
-Goal:
-Create a technical plan for that only feature.
+````markdown
+# Technical Plan to code my feature
 
-Rules:
-- Split the user-story into relevant sections.
-- Fill the template with the user-story details.
-  - Section: A feature's part grouped together because same goal. 
-  - Tasks: The code implementation to do (using my current tech stack).
-  - Action: The main action to do in 1 sentence.
-- Only wait for user approval before jumping to next process (see under).
+## Description
 
-How to proceed:
-1. Split the user-story into relevant sections.
-2. Once agreed,  propose to apply the plan for section 1 only.
-3. Once agreed, ,propose to apply the plan for section 2.
-4. Repeat until all sections are done.
+[[1 sentence summary of the feature.]]
 
-User-Story from specs (delimited by ---):
----
-[[The user story you aime to build]]
----
+## Behavior: User flow
 
-Template to use:
-```markdown
-# User-Story name
+The idea of the feature is:
 
-1 sentence summarize of the goal
+- Given the user...
+- When the user...
+- Then the user...
 
-## Section 1's name - a feature part
-
-### Tasks (code implementation)
+## Frontend Implementation (w/wo UI)
 
 - [ ] Action
 
-### UI - Only in there is UI to build
+## Backend Implementation (w/wo DB)
 
 - [ ] Action
 
-### Testing
+## Tests
 
-- [ ] Action
-...
-```
+- [ ] Describe
+  - [ ] It should...
+  - [ ] It should...
 ````
+
+<!-- markdownlint-disable MD033 -->
+<details>
+<summary>Example</summary>
+
+```markdown
+# Technical Plan to code my feature
+
+## Description
+
+I need to code a edit form to edit a suggestion.
+
+## Behavior: User flow
+
+The idea of the feature is:
+
+- Given the user is on the suggestions list page
+- When the user click the edit button of a suggestion
+- Then the user can see a dialog containing a form to edit the suggestion's name, description and version
+
+## Frontend Implementation (w/wo UI)
+
+- [ ] Create one button "Edit" per cell in not existing in @SuggestionLine.tsx
+- [ ] It will open a Dialog from @Dialog.tsx
+- [ ] Dialog contains a `<form>` with useFormState, create a new component "EditSuggestionForm" using example in @TipForm.tsx 
+  - [ ] `id` is passed as hidden field
+  - [ ] `id`, `name`, `description` and `version` are passed as Props
+  - [ ] Use "InputWithLabel" same way this is in @TipForm.tsx
+  - [ ] Dialog has a close button top right
+- [ ] Dialog has a unique submit button
+  - [ ] Display form errors if any at the bottom of the form
+  - [ ] On submit, call "createSuggestionAction" from useFormState
+
+## Backend Implementation (w/wo DB)
+
+- [ ] Create a form action similar to @createSuggestionAction.ts but for edition (name, description, version are editable)
+- [ ] In order to persist the save, you need to create a save in FireStore similar to @createSuggestion.ts but for edition
+- [ ] Create a new "SuggestionEditForm" type
+  - [ ] Pick id, name, description and version to "Suggestion" type in @Suggestion.ts , use that type in my form action
+
+## Tests
+
+- [ ] Describe "Suggestion Edition"
+  - [ ] It should edit an existing suggestion
+    - [ ] Test against createSuggestionAction method
+    - [ ] Mock deps using example from @newsletterAction.test.ts
+````
+
+</details>
+<!-- markdownlint-enable MD033 -->
 
 ## 🧪 Tests
 

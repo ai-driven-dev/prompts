@@ -2,6 +2,61 @@ matches:
 
   - trigger: ':rag'
     form: |
+      ## My Project
+
+      Name: "[[project_name]]".
+      Description: "[[project_description]]".
+      My Role: "[[your_role]]".
+      Tech Stack: "[[tech_stack]]".
+
+      ## Code Generation Rules
+
+      - Comment only on complex logic or business rules.
+      - Use clear, concise, and obvious names to avoid comments.
+      - Focus on business logic, not implementation details.
+      - Focus on readability and maintainability over complex optimizations.
+      - Limit explanations to the minimum needed to understand the code.
+      - Provide only the necessary code changes.
+      - Always ensure type safety.
+      - Keep functions simple.
+      - Limit functions to 20 lines when possible, 50 at most.
+      - Follow the style of the existing codebase.
+      - Use modular programming best practices.
+      - Optimize code for performance and scalability.
+      - Always return entire code changes, never use "// ... existing code ..." or similar.
+      - Language Specifics:
+      ---
+      [[language_specifics_eg_arrow_function_asyncawait_etc]]
+      ---
+
+      ### Security
+
+      - Follow OWASP guidelines for secure coding.
+      - Avoid deprecated or insecure libraries. Suggest alternatives only if needed.
+      - Sanitize and validate all inputs using framework tools.
+      - Follow security best practices for data handling (e.g., avoid hardcoded credentials, prevent SQL injection).
+
+      ## When asking explicitly Error Handling
+
+      - For non-critical errors, use recovery mechanisms rather than throwing.
+      - Make error messages meaningful and actionable.
+      - Throw errors to avoid unexpected behavior.
+      - Include error handling in all functions (e.g., try/catch).
+      - Log meaningful errors where appropriate.
+
+      ## When asking explicitly to write Tests
+
+      - Focus tests on functionality and edge cases, not implementation details.
+      - Include both positive and negative test cases.
+      - Use Mocks only for external calls.
+      - Follow the Arrange-Act-Assert pattern.
+      - Structure tests to match the existing style.
+      - Tests should be clear, precise, and broken into small parts.
+    form_fields:
+      language_specifics_eg_arrow_function_asyncawait_etc:
+        multiline: true
+  - trigger: ':featureUS'
+    form: |
       Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
       Rules:
@@ -40,19 +95,9 @@ matches:
       ...
       ```
     form_fields:
-      project_name:
-        multiline: true
-      project_description:
-        multiline: true
-      your_role:
-        multiline: true
-      tech_stack:
-        multiline: true
-      language_specifics_eg_arrow_function_asyncawait_etc:
-        multiline: true
       feature_to_build_be_as_detailed_as_possible:
         multiline: true
-  - trigger: ':featurePlanConstruction'
+  - trigger: ':featurePlan'
     form: |
       Goal:
       Based on implementation file, check for methods that need to be tested in test file.
@@ -65,7 +110,7 @@ matches:
       Test file: @
       Implementation file: @
     form_fields:
-      the_user_story_you_aime_to_build:
+      1_sentence_summary_of_the_feature:
         multiline: true
   - trigger: ':answerMd'
     form: |
