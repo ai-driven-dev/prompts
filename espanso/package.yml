@@ -1,93 +1,73 @@
 matches:
-  - trigger: ':configAI'
+
+  - trigger: ':rag'
     form: |
-      # AI-Driven Dev Assistant
-
-      You are an AI assistant for code generation, debugging, and optimization.
-
-      Identify potential performance bottlenecks and suggest improvements.
-
-      ## My Project
-
-      Name: "[[project_name]]".
-      Description: "[[project_description]]".
-      My Role: "[[role]]".
-      Tech Stack: "[[tech_stack]]".
-
-      ## AI Behavior
-
-      - Focus on readability and maintainability over complex optimizations.
-      - Limit explanations to the minimum needed to understand the code.
-      - Provide only the necessary code changes unless asked for full file changes.
-
-      ## Code Generation
-
-      - Always ensure type safety.
-      - Keep functions simple.
-      - Limit functions to 20 lines when possible, 50 at most.
-      - Follow the style of the existing codebase.
-      - Use modular programming best practices.
-      - Optimize code for performance and scalability.
-      - Language Specifics:
-      ---
-      [[language_specifics_eg_arrow_function_asyncawait_etc]]
-      ---
-
-      ## Documentation
-
-      - Minimize comments.
-      - Comment only on complex logic or business rules.
-      - Use clear, concise, and obvious names.
-      - Focus on business logic, not implementation details.
-
-      ## Security
-
-      - Follow OWASP guidelines for secure coding.
-      - Avoid deprecated or insecure libraries. Suggest alternatives only if needed.
-      - Sanitize and validate all inputs using framework tools.
-      - Follow security best practices for data handling (e.g., avoid hardcoded credentials, prevent SQL injection).
-
-      ## Error Handling
-
-      - For non-critical errors, use recovery mechanisms rather than throwing.
-      - Make error messages meaningful and actionable.
-      - Throw errors to avoid unexpected behavior.
-      - Include error handling in all functions (e.g., try/catch).
-      - Log meaningful errors where appropriate.
-
-      ## Testing
-
-      - Focus tests on functionality and edge cases, not implementation details.
-      - Include both positive and negative test cases.
-      - Use Mocks only for external calls.
-      - Follow the Arrange-Act-Assert pattern.
-      - Structure tests to match the existing style.
-      - Tests should be clear, precise, and broken into small parts.
-    form_fields:
-      language_specifics_eg_arrow_function_asyncawait_etc:
-        multiline: true
-  - trigger: ':featurePlan'
-    form: |+
-      Goal: Create a new plan for this feature to build.
+      Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
       Rules:
-      - Plan is in markdown format.
-      - Plan is in a single file.
-      - A section groups contains tasks with checkboxes.
-      - Each task is a short sentence describing the task to do in the project
-      - You must create a plan to build this feature based on the current codebase.
-      - The plan must be detailed and use by the developer to build or fix the feature.
+      - Do not generate anything yet.
+      - Ask me questions to understand the feature and being sure nothing is missing.
+      - Questions can include user roles, actions, and outcomes, as well as UI/UX details.
+      - Be accurate and really lean, use concise questions.
+      - Make user stories coherent and clear.
+      - Sort them by priority of code.
+      - When the user asks, write the user stories using the template under.
+      - Output the template in markdown.
 
-      Context: "[[what_we_are_building]]"
+      Requested Feature:
+      ```
+      [[feature_to_build_be_as_detailed_as_possible]]
+      ```
 
-      From those specifications, draw a plan grouping similar tasks together in sections:
-      ---
-      [[feature_name]]
-      ---
+      User stories template:
+      ```markdown
+      # Feature's name with Epic
 
-      Files to use:
+      ## "User Story 1"
 
+      **As a** [role]
+      **I want** [action]
+      **So that** [outcome]
+
+      * Acceptance Criteria:
+        * [ ] Given: ...
+        * [ ] When: ...
+        * [ ] Then: ...
+        * [ ] And: ...
+
+      ## "User Story 2"
+
+      ...
+      ```
     form_fields:
-      feature_name:
+      project_name:
         multiline: true
+      project_description:
+        multiline: true
+      your_role:
+        multiline: true
+      tech_stack:
+        multiline: true
+      language_specifics_eg_arrow_function_asyncawait_etc:
+        multiline: true
+      feature_to_build_be_as_detailed_as_possible:
+        multiline: true
+  - trigger: ':featurePlanConstruction'
+    form: |
+      Goal:
+      Based on implementation file, check for methods that need to be tested in test file.
+
+      Rules:
+      - List main part that need test in bullet points
+      - Group similar test in "describe" or similar
+      - Write test in "it should..." format
+
+      Test file: @
+      Implementation file: @
+    form_fields:
+      the_user_story_you_aime_to_build:
+        multiline: true
+  - trigger: ':answerMd'
+    form: |
+      Answer in markdown format on a text block.
 

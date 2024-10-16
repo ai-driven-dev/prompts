@@ -17,12 +17,7 @@ if (!fs.existsSync(newEspansoPrivateFolder)) {
 
 const PRIVATE_PROMPTS = ['./prompts/private/*'];
 const PUBLIC_PROMPTS = [
-  './resources/guide/*',
-  './resources/prompts/*',
-  './resources/prompts/_/*',
-  './resources/prompts/languages/*',
-  './resources/llm-instructions/*',
-  './contributing*',
+  './resources/agents/*',
   './README*',
 ];
 

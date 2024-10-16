@@ -1,84 +1,131 @@
 # AI-Driven Dev {Prompts}
 
-## What is this?
+This repository is the new `Prompts` repository for the AI-Driven Dev project.
+
+- [🚀 Use optimized dev prompts in you workflow](#-use-optimized-dev-prompts-in-you-workflow)
+  - [Install a text expander](#install-a-text-expander)
+  - [Get the latest prompt](#get-the-latest-prompt)
+- [✅ General GuideLines](#-general-guidelines)
+  - [The perfect Prompt Template](#the-perfect-prompt-template)
+- [🧑‍💻 Create a RAG with your project context](#-create-a-rag-with-your-project-context)
+  - [Instruct AI to be a developer from your project `:rag`](#instruct-ai-to-be-a-developer-from-your-project-rag)
+- [🙋‍♂️ Feature request](#️-feature-request)
+  - [Generate user stories](#generate-user-stories)
+  - [Create a technical plan `:featurePlanConstruction`](#create-a-technical-plan-featureplanconstruction)
+- [🧪 Tests](#-tests)
+  - [Check for test methods to implement](#check-for-test-methods-to-implement)
+- [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+  - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
+
+## 🚀 Use optimized dev prompts in you workflow
+
+Because better prompts leads to (way) better results.
 
 This is a collection of prompts that I use to generate images for my AI-Driven Dev project.
 
 <https://ai-driven-dev.com>
 
-## How to use
+### Install a text expander
 
 1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
 
 2. Then, install the package:
 
-  ```sh
-  espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
-  ```
+```sh
+espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
+```
 
 3. Launch the app any time you want to use the prompts.
 
-## Prompts
+### Get the latest prompt
 
-### 🛠️ AI personalized configuration `:configAI`
+Prompts are updated regularly but the AI-Driven Dev Community, use that command to get the latest upgraded prompts.
 
-Create file `.ai-driven-dev.md` or put the instructions in the `.cursorrules` file if using Cursor.
+```sh
+espanso package update ai-driven-dev-prompts
+```
 
-**You might not need to personalize this file.**
+## ✅ General GuideLines
 
-How to personalize:
+Those prompts will be used to personalize the AI based on your requirements.
 
-* Reference your project's info (mandatory).
-* Personalize this prompt to suit your coding style (optional).
+- It can be used in your IDE (e.g., GitHub Copilot, Cursor...)
+- It can be used as a Custom GPT
+
+### The perfect Prompt Template
+  
+```text
+Goal: [What you want to achieve with this prompt]
+
+Rules:
+- [Rule 1]
+- [Rule 2]
+- [Rule 3]
+
+Context:
+[[Describe the context of the prompt]]
+
+Input Example:
+[[Example of the input you have]]
+
+Output Example:
+[[Example of the output you want to get]]
+```
+
+## 🧑‍💻 Create a RAG with your project context
+
+You can personalize the AI responses to your project context.
+
+### Instruct AI to be a developer from your project `:rag`
+
+This code will teach the AI to answer as a developer from your project.
+
+- **Parameters**:
+  - project name
+  - project description
+  - your role
+  - tech stack
+  - language specifics
+- **Additional context**:
+  - Project Structure (in `tree`)
+  - Project Tech Stack (upload `package.json` and extract main stack)
 
 ```text
-# AI-Driven Dev Assistant
-
-You are an AI assistant for code generation, debugging, and optimization.
-
-Identify potential performance bottlenecks and suggest improvements.
-
 ## My Project
 
 Name: "[[project name]]".
 Description: "[[project description]]".
-My Role: "[[role]]".
+My Role: "[[your role]]".
 Tech Stack: "[[tech stack]]".
 
-## AI Behavior
+## Code Generation Rules
 
+- Comment only on complex logic or business rules.
+- Use clear, concise, and obvious names to avoid comments.
+- Focus on business logic, not implementation details.
 - Focus on readability and maintainability over complex optimizations.
 - Limit explanations to the minimum needed to understand the code.
-- Provide only the necessary code changes unless asked for full file changes.
-
-## Code Generation
-
+- Provide only the necessary code changes.
 - Always ensure type safety.
 - Keep functions simple.
 - Limit functions to 20 lines when possible, 50 at most.
 - Follow the style of the existing codebase.
 - Use modular programming best practices.
 - Optimize code for performance and scalability.
+- Always return entire code changes, never use "// ... existing code ..." or similar.
 - Language Specifics:
 ---
 [[language specifics, e.g.: arrow function, async/await, etc.]]
 ---
 
-## Documentation
-
-- Minimize comments.
-- Comment only on complex logic or business rules.
-- Use clear, concise, and obvious names.
-- Focus on business logic, not implementation details.
-
-## Security
+### Security
 
 - Follow OWASP guidelines for secure coding.
 - Avoid deprecated or insecure libraries. Suggest alternatives only if needed.
 - Sanitize and validate all inputs using framework tools.
 - Follow security best practices for data handling (e.g., avoid hardcoded credentials, prevent SQL injection).
 
-## Error Handling
+## When asking explicitly Error Handling
 
 - For non-critical errors, use recovery mechanisms rather than throwing.
 - Make error messages meaningful and actionable.
@@ -86,7 +133,7 @@ Tech Stack: "[[tech stack]]".
 - Include error handling in all functions (e.g., try/catch).
 - Log meaningful errors where appropriate.
 
-## Testing
+## When asking explicitly to write Tests
 
 - Focus tests on functionality and edge cases, not implementation details.
 - Include both positive and negative test cases.
@@ -96,28 +143,127 @@ Tech Stack: "[[tech stack]]".
 - Tests should be clear, precise, and broken into small parts.
 ```
 
-### 🚀 Features Request
+## 🙋‍♂️ Feature request
 
-#### Plan construction `:featurePlan`
+### Generate user stories
 
-```text
-Goal: Create a new plan for this feature to build.
+If you want to generate user-stories for your project, use this prompt.
+
+**Parameters**:
+
+- Feature to build, be as detailed as possible
+
+````text
+Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
 Rules:
-- Plan is in markdown format.
-- Plan is in a single file.
-- A section groups contains tasks with checkboxes.
-- Each task is a short sentence describing the task to do in the project
-- You must create a plan to build this feature based on the current codebase.
-- The plan must be detailed and use by the developer to build or fix the feature.
+- Do not generate anything yet.
+- Ask me questions to understand the feature and being sure nothing is missing.
+- Questions can include user roles, actions, and outcomes, as well as UI/UX details.
+- Be accurate and really lean, use concise questions.
+- Make user stories coherent and clear.
+- Sort them by priority of code.
+- When the user asks, write the user stories using the template under.
+- Output the template in markdown.
 
-Context: "[[what we are building]]"
+Requested Feature:
+```
+[[Feature to build, be as detailed as possible]]
+```
 
-From those specifications, draw a plan grouping similar tasks together in sections:
+User stories template:
+```markdown
+# Feature's name with Epic
+
+## "User Story 1"
+
+**As a** [role]
+**I want** [action]
+**So that** [outcome]
+
+* Acceptance Criteria:
+  * [ ] Given: ...
+  * [ ] When: ...
+  * [ ] Then: ...
+  * [ ] And: ...
+
+## "User Story 2"
+
+...
+```
+````
+
+### Create a technical plan `:featurePlanConstruction`
+
+If you do have the user stories and want to create a technical plan for the feature, use this prompt.
+
+````text
+Goal:
+Create a technical plan for that only feature.
+
+Rules:
+- Split the user-story into relevant sections.
+- Fill the template with the user-story details.
+  - Section: A feature's part grouped together because same goal. 
+  - Tasks: The code implementation to do (using my current tech stack).
+  - Action: The main action to do in 1 sentence.
+- Only wait for user approval before jumping to next process (see under).
+
+How to proceed:
+1. Split the user-story into relevant sections.
+2. Once agreed,  propose to apply the plan for section 1 only.
+3. Once agreed, ,propose to apply the plan for section 2.
+4. Repeat until all sections are done.
+
+User-Story from specs (delimited by ---):
 ---
-[[feature name]]
+[[The user story you aime to build]]
 ---
 
-Files to use:
+Template to use:
+```markdown
+# User-Story name
 
+1 sentence summarize of the goal
+
+## Section 1's name - a feature part
+
+### Tasks (code implementation)
+
+- [ ] Action
+
+### UI - Only in there is UI to build
+
+- [ ] Action
+
+### Testing
+
+- [ ] Action
+...
+```
+````
+
+## 🧪 Tests
+
+### Check for test methods to implement
+
+```text
+Goal:
+Based on implementation file, check for methods that need to be tested in test file.
+
+Rules:
+- List main part that need test in bullet points
+- Group similar test in "describe" or similar
+- Write test in "it should..." format
+
+Test file: @
+Implementation file: @
+```
+
+## ⚡️ Zero Shot Prompts
+
+### Answer in markdown `:answerMd`
+
+```text
+Answer in markdown format on a text block.
 ```
