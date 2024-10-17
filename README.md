@@ -232,6 +232,7 @@ The idea of the feature is:
 <summary>Example</summary>
 
 ```markdown
+
 # Technical Plan to code my feature
 
 ## Description
@@ -249,6 +250,7 @@ The idea of the feature is:
 ## Frontend Implementation (w/wo UI)
 
 - [ ] Create one button "Edit" per cell in not existing in @SuggestionLine.tsx
+  - [ ] Remove everything related to "isEditing" and state management, submit functions, just display table
 - [ ] It will open a Dialog from @Dialog.tsx
 - [ ] Dialog contains a `<form>` with useFormState, create a new component "EditSuggestionForm" using example in @TipForm.tsx 
   - [ ] `id` is passed as hidden field
@@ -257,7 +259,7 @@ The idea of the feature is:
   - [ ] Dialog has a close button top right
 - [ ] Dialog has a unique submit button
   - [ ] Display form errors if any at the bottom of the form
-  - [ ] On submit, call "createSuggestionAction" from useFormState
+  - [ ] On submit, call  "createSuggestionAction" from useFormState
 
 ## Backend Implementation (w/wo DB)
 
@@ -270,8 +272,9 @@ The idea of the feature is:
 
 - [ ] Describe "Suggestion Edition"
   - [ ] It should edit an existing suggestion
-    - [ ] Test against createSuggestionAction method
-    - [ ] Mock deps using example from @newsletterAction.test.ts
+    - [ ] Test against @createSuggestionAction.ts  method
+    - [ ] Mock deps using example from @newsletterAction.test.ts 
+    - [ ] Mock next/* calls like "revalidatePath"
 ````
 
 </details>
