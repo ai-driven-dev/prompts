@@ -63,13 +63,19 @@ Rules:
 - [Rule 3]
 
 Context:
+<context>
 [[Describe the context of the prompt]]
+</context>
 
 Input Example:
+<inputExample>
 [[Example of the input you have]]
+</inputExample>
 
 Output Example:
+<outputExample>
 [[Example of the output you want to get]]
+</outputExample>
 ```
 
 ## 🧑‍💻 Create a RAG with your project context
