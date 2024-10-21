@@ -114,9 +114,7 @@ Tech Stack: "[[tech stack]]".
 - Optimize code for performance and scalability.
 - Always return entire code changes, never use "// ... existing code ..." or similar.
 - Language Specifics:
----
 [[language specifics, e.g.: arrow function, async/await, etc.]]
----
 
 ### Security
 
@@ -166,10 +164,10 @@ Rules:
 - When the user asks, write the user stories using the template under.
 - Output the template in markdown.
 
-Requested Feature:
-```
+Requirements:
+<requirements>
 [[Feature to build, be as detailed as possible]]
-```
+</requirements>
 
 User stories template:
 ```markdown
@@ -225,6 +223,13 @@ The idea of the feature is:
 - [ ] Describe
   - [ ] It should...
   - [ ] It should...
+
+## Requirements from Product Owner
+
+Here are the original requirements from the Product Owner:
+<requirements>
+optional if you made a "perfect" plan
+</requirements>
 ````
 
 <!-- markdownlint-disable MD033 -->
