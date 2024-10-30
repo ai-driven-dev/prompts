@@ -201,7 +201,7 @@ User stories template:
 
 Feel free to remove part of the plan you are not using.
 
-````markdown
+```markdown
 # Technical Plan to code my feature
 
 ## Description
@@ -236,7 +236,7 @@ Here are the original requirements from the Product Owner:
 <requirements>
 optional if you made a "perfect" plan
 </requirements>
-````
+```
 
 <!-- markdownlint-disable MD033 -->
 <details>
