@@ -13,7 +13,7 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
   - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
   - [Technical plan `:featurePlan`](#technical-plan-featureplan)
 - [🧪 Tests](#-tests)
-  - [Check for test methods to implement](#check-for-test-methods-to-implement)
+  - [Check for test methods to implement `:testAdd`](#check-for-test-methods-to-implement-testadd)
 - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
   - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
 
@@ -293,7 +293,7 @@ The idea of the feature is:
 
 ## 🧪 Tests
 
-### Check for test methods to implement
+### Check for test methods to implement `:testAdd`
 
 ```text
 Goal:

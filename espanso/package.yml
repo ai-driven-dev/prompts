@@ -97,6 +97,54 @@ matches:
         multiline: true
   - trigger: ':featurePlan'
     form: |
+
+      # Technical Plan to code my feature
+
+      ## Description
+
+      I need to code a edit form to edit a suggestion.
+
+      ## Behavior: User flow
+
+      The idea of the feature is:
+
+      - Given the user is on the suggestions list page
+      - When the user click the edit button of a suggestion
+      - Then the user can see a dialog containing a form to edit the suggestion's name, description and version
+
+      ## Frontend Implementation (w/wo UI)
+
+      - [ ] Create one button "Edit" per cell in not existing in @SuggestionLine.tsx
+        - [ ] Remove everything related to "isEditing" and state management, submit functions, just display table
+      - [ ] It will open a Dialog from @Dialog.tsx
+      - [ ] Dialog contains a `<form>` with useFormState, create a new component "EditSuggestionForm" using example in @TipForm.tsx 
+        - [ ] `id` is passed as hidden field
+        - [ ] `id`, `name`, `description` and `version` are passed as Props
+        - [ ] Use "InputWithLabel" same way this is in @TipForm.tsx
+        - [ ] Dialog has a close button top right
+      - [ ] Dialog has a unique submit button
+        - [ ] Display form errors if any at the bottom of the form
+        - [ ] On submit, call  "createSuggestionAction" from useFormState
+
+      ## Backend Implementation (w/wo DB)
+
+      - [ ] Create a form action similar to @createSuggestionAction.ts but for edition (name, description, version are editable)
+      - [ ] In order to persist the save, you need to create a save in FireStore similar to @createSuggestion.ts but for edition
+      - [ ] Create a new "SuggestionEditForm" type
+        - [ ] Pick id, name, description and version to "Suggestion" type in @Suggestion.ts , use that type in my form action
+
+      ## Tests
+
+      - [ ] Describe "Suggestion Edition"
+        - [ ] It should edit an existing suggestion
+          - [ ] Test against @createSuggestionAction.ts  method
+          - [ ] Mock deps using example from @newsletterAction.test.ts 
+          - [ ] Mock next/* calls like "revalidatePath"
+    form_fields:
+      1_sentence_summary_of_the_feature:
+        multiline: true
+  - trigger: ':testAdd'
+    form: |
       Goal:
       Based on implementation file, check for methods that need to be tested in test file.
 
@@ -107,9 +155,6 @@ matches:
 
       Test file: @
       Implementation file: @
-    form_fields:
-      1_sentence_summary_of_the_feature:
-        multiline: true
   - trigger: ':answerMd'
     form: |
       Answer in markdown format on a text block.
