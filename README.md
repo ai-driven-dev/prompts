@@ -6,7 +6,7 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
   - [Install a text expander](#install-a-text-expander)
   - [Get the latest prompt](#get-the-latest-prompt)
 - [✅ General GuideLines](#-general-guidelines)
-  - [The perfect Prompt Template](#the-perfect-prompt-template)
+  - [The perfect Prompt Template `:codePrompt`](#the-perfect-prompt-template-codeprompt)
 - [🧑‍💻 Create a RAG with your project context](#-create-a-rag-with-your-project-context)
   - [Instruct AI to be a developer from your project `:rag`](#instruct-ai-to-be-a-developer-from-your-project-rag)
 - [🙋‍♂️ Feature request](#️-feature-request)
@@ -52,7 +52,11 @@ Those prompts will be used to personalize the AI based on your requirements.
 - It can be used in your IDE (e.g., GitHub Copilot, Cursor...)
 - It can be used as a Custom GPT
 
-### The perfect Prompt Template
+### The perfect Prompt Template `:codePrompt`
+
+1. Use the `:codePrompt` template to get started.
+2. "Goal", "Rules", and "Context" are mandatory.
+3. "Examples" are optional but highly recommended.
   
 ```text
 Goal: [What you want to achieve with this prompt]
@@ -313,5 +317,6 @@ Implementation file: @
 ### Answer in markdown `:answerMd`
 
 ```text
-Answer in markdown format on a text block.
+Answer in markdown format on a text block. 
+For code blocks that contain markdown or other backticks, use 4 backticks. 
 ```

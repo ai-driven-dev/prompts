@@ -18,6 +18,7 @@ function parseMarkdown(markdownText) {
   const tokens = mdParser.parse(markdownText, {});
   let triggerKey = "";
   let triggers = {};
+  let foundFence = false;
 
   for (let i = 0; i < tokens.length; i++) {
     const token = tokens[i];
@@ -36,11 +37,13 @@ function parseMarkdown(markdownText) {
             variables: [],
             choices: {},
           };
+          foundFence = false; // Reset foundFence for the new trigger
         }
       }
     }
 
-    if (token.type === 'fence' && triggerKey) {
+    if (token.type === 'fence' && triggerKey && !foundFence) {
+      foundFence = true; // Mark that we found the first fence for this trigger
       let newContentWithReplacedVars = token.content;
       const variableMatches = token.content.match(/\[\[(.*?)\]\]/g);
       if (variableMatches) {

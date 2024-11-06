@@ -1,5 +1,35 @@
 matches:
 
+  - trigger: ':codePrompt'
+    form: |
+      Goal: [What you want to achieve with this prompt]
+
+      Rules:
+      - [Rule 1]
+      - [Rule 2]
+      - [Rule 3]
+
+      Context:
+      <context>
+      [[describe_the_context_of_the_prompt]]
+      </context>
+
+      Input Example:
+      <inputExample>
+      [[example_of_the_input_you_have]]
+      </inputExample>
+
+      Output Example:
+      <outputExample>
+      [[example_of_the_output_you_want_to_get]]
+      </outputExample>
+    form_fields:
+      describe_the_context_of_the_prompt:
+        multiline: true
+      example_of_the_input_you_have:
+        multiline: true
+      example_of_the_output_you_want_to_get:
+        multiline: true
   - trigger: ':rag'
     form: |
       ## My Project
@@ -97,49 +127,40 @@ matches:
         multiline: true
   - trigger: ':featurePlan'
     form: |
-
       # Technical Plan to code my feature
 
       ## Description
 
-      I need to code a edit form to edit a suggestion.
+      [[1_sentence_summary_of_the_feature]]
 
       ## Behavior: User flow
 
       The idea of the feature is:
 
-      - Given the user is on the suggestions list page
-      - When the user click the edit button of a suggestion
-      - Then the user can see a dialog containing a form to edit the suggestion's name, description and version
+      - Given the user...
+      - When the user...
+      - Then the user...
 
       ## Frontend Implementation (w/wo UI)
 
-      - [ ] Create one button "Edit" per cell in not existing in @SuggestionLine.tsx
-        - [ ] Remove everything related to "isEditing" and state management, submit functions, just display table
-      - [ ] It will open a Dialog from @Dialog.tsx
-      - [ ] Dialog contains a `<form>` with useFormState, create a new component "EditSuggestionForm" using example in @TipForm.tsx 
-        - [ ] `id` is passed as hidden field
-        - [ ] `id`, `name`, `description` and `version` are passed as Props
-        - [ ] Use "InputWithLabel" same way this is in @TipForm.tsx
-        - [ ] Dialog has a close button top right
-      - [ ] Dialog has a unique submit button
-        - [ ] Display form errors if any at the bottom of the form
-        - [ ] On submit, call  "createSuggestionAction" from useFormState
+      - [ ] Action
 
       ## Backend Implementation (w/wo DB)
 
-      - [ ] Create a form action similar to @createSuggestionAction.ts but for edition (name, description, version are editable)
-      - [ ] In order to persist the save, you need to create a save in FireStore similar to @createSuggestion.ts but for edition
-      - [ ] Create a new "SuggestionEditForm" type
-        - [ ] Pick id, name, description and version to "Suggestion" type in @Suggestion.ts , use that type in my form action
+      - [ ] Action
 
       ## Tests
 
-      - [ ] Describe "Suggestion Edition"
-        - [ ] It should edit an existing suggestion
-          - [ ] Test against @createSuggestionAction.ts  method
-          - [ ] Mock deps using example from @newsletterAction.test.ts 
-          - [ ] Mock next/* calls like "revalidatePath"
+      - [ ] Describe
+        - [ ] It should...
+        - [ ] It should...
+
+      ## Requirements from Product Owner
+
+      Here are the original requirements from the Product Owner:
+      <requirements>
+      optional if you made a "perfect" plan
+      </requirements>
     form_fields:
       1_sentence_summary_of_the_feature:
         multiline: true
@@ -157,5 +178,6 @@ matches:
       Implementation file: @
   - trigger: ':answerMd'
     form: |
-      Answer in markdown format on a text block.
+      Answer in markdown format on a text block. 
+      For code blocks that contain markdown or other backticks, use 4 backticks. 
 
