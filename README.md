@@ -59,12 +59,12 @@ Those prompts will be used to personalize the AI based on your requirements.
 3. "Examples" are optional but highly recommended.
   
 ```text
-Goal: [What you want to achieve with this prompt]
+Goal: "[[What you want to achieve with this prompt]]"
 
 Rules:
-- [Rule 1]
-- [Rule 2]
-- [Rule 3]
+- "[[Rule 1]]"
+- "[[Rule 2]]"
+- "[[Rule 3]]"
 
 Context:
 <context>

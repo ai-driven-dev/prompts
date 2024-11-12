@@ -1,13 +1,15 @@
 matches:
 
+
+
   - trigger: ':codePrompt'
     form: |
-      Goal: [What you want to achieve with this prompt]
+      Goal: "[[what_you_want_to_achieve_with_this_prompt]]"
 
       Rules:
-      - [Rule 1]
-      - [Rule 2]
-      - [Rule 3]
+      - "[[rule_1]]"
+      - "[[rule_2]]"
+      - "[[rule_3]]"
 
       Context:
       <context>

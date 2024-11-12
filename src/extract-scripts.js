@@ -3,9 +3,9 @@ const fs = require('fs');
 const bashCodeBlockRegex = /```bash\n((?:[^\n]*\n)*?# source: .+?)\n*?```/gm;
 
 /**
- * Extracts the scripts from the given file path and write those in files.
+ * Extracts the scripts from the given file path and writes them to files.
  *
- * @param {string} filePath
+ * @param {string} filePath - The path to the markdown file containing the scripts.
  * @returns {void}
  */
 function extractScripts(filePath) {
@@ -25,11 +25,10 @@ function extractScripts(filePath) {
 }
 
 /**
- * Extract scripts content from markdown.
+ * Extracts scripts content from markdown.
  *
- * @param {string} fileContent
- *
- * @returns {string[]}
+ * @param {string} fileContent - The content of the markdown file.
+ * @returns {string[]} An array of script contents extracted from the markdown file.
  */
 function getScriptsContent(fileContent) {
   const scripts = [];

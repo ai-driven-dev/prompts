@@ -52,6 +52,12 @@ extractScriptsFromMarkdownToFiles(PUBLIC_PROMPTS);
 
 console.log('✅ Script finished.');
 
+/**
+ * Generates the content for Espanso configuration from the given directories.
+ *
+ * @param {string[]} directories - An array of directories containing markdown files.
+ * @returns {string} The generated YAML content for Espanso.
+ */
 function getPromptsContentForEspanso(directories) {
   console.log('🔄 Generating prompts content for Espanso...');
   const header = 'matches:\n';
@@ -68,6 +74,12 @@ function getPromptsContentForEspanso(directories) {
   return yamlContent;
 }
 
+/**
+ * Generates the prompts for a given markdown file.
+ *
+ * @param {string} filePath - The path to the markdown file.
+ * @returns {string} The generated YAML content for the markdown file.
+ */
 function getPrompts(filePath) {
   console.log(`🔄 Generating prompts for file "${filePath}"`);
   const markdownText = fs.readFileSync(filePath, 'utf8');
@@ -75,6 +87,12 @@ function getPrompts(filePath) {
   return generateYaml(espansoConfig).split('\n').slice(1).join('\n') + '\n';
 }
 
+/**
+ * Extracts scripts from markdown files in the given directories and writes them to files.
+ *
+ * @param {string[]} directories - An array of directories containing markdown files.
+ * @returns {void}
+ */
 function extractScriptsFromMarkdownToFiles(directories) {
   console.log('🔄 Extracting scripts from markdown files...');
   for (const promptDirectory of directories) {
