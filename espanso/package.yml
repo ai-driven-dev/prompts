@@ -11,6 +11,11 @@ matches:
       - "[[rule_2]]"
       - "[[rule_3]]"
 
+      Steps (optional):
+      - "[[step_1]]"
+      - "[[step_2]]"
+      - "[[step_3]]"
+
       Context:
       <context>
       [[describe_the_context_of_the_prompt]]
@@ -32,7 +37,7 @@ matches:
         multiline: true
       example_of_the_output_you_want_to_get:
         multiline: true
-  - trigger: ':rag'
+  - trigger: ':ragProject'
     form: |
       ## My Project
 
@@ -85,6 +90,37 @@ matches:
     form_fields:
       language_specifics_eg_arrow_function_asyncawait_etc:
         multiline: true
+  - trigger: ':ragReview'
+    form: |
+      Your task is to analyze the provided code snippet and suggest improvements to optimize its performance.
+
+      Identify areas where the code can be made more efficient, faster, or less resource-intensive.
+
+      Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code’s performance.
+
+      The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
+
+      When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
+
+      Please wait for the user to provide the code snippet before proceeding with the audit, and ensure that your suggestions are clear and well-explained.
+
+      Rules:
+      - Reduce complexity.
+      - Improve readability.
+      - Enhance performance.
+      - Merge similar functions into one.
+      - Remove redundant code.
+
+      Steps:
+      1. Explain what the code is doing (in very concise bullet points).
+      2. List those points, then give detailed explanations of the impact and propose specific recommendations for optimizing the code (formatted as bullet points).
+        - identified performances issues
+        - identified readability issues
+        - identified maintainability issues
+      3. Rewrite full code snippets with your improvements.
+      4. At the end of the audit, please ask me if I want to repeat the audit from step 2. with this time, the newly generated code, until you get a "no" or you reach a maximum of 3 iterations, or you are satisfied with the result.
+  - trigger: ':ragArchitecture'
+    form: "As a software architect, you are tasked with conducting a comprehensive audit of a project structure. \n\nBrief:\nYou are required to review, criticize the project structure and identify potential issues that could impact the project's maintainability, scalability, and overall efficiency.\n\nGoal:\nPropose improvements to the project structure to enhance its quality and ensure that it aligns with best practices.\nFeat every issue regarding the \"Project\" info and its tech stack.\n\nRules:\n- Empty files or folders.\n- Duplicate files.\n- Large files.\n- Overly nested folders.\n- Overloaded folders.\n- Inefficient project structure.\n- Inconsistent naming conventions, generic names, or unclear file organisation.\n- Files in the wrong directory.\n- Use architecture best practices.\n- Find inconsistencies and risks.\n- Propose actions to improve existing architecture.\n\nTasks:\n1. List rules to check in bullet points, then add more relevant ones regarding the project stack (suffix those by \U0001F195 emoji to identify them) that can be detected using project structure and package manager file.\n2. List every potential issue in the project structure.\n3. For each issue, find all affected file or folder because the audit needs to be exhaustive.\n4. Do not provide issue if there is no recommendation to solve it.\n6. Only answer using \"Tasks\" and \"Template\" sections.\n\nTemplate:\n\"\"\"\n# Architecture Audit\n\n* Main technologies used in list.\n* Description of the project.\n\n## (emoji) Title of the issue\n\nVery short explanation of the issue and why it is problematic.\n\n* List of every affected files or folders.\n  * ...\n* Explanation of the issue.\n* Short explanation of recommendations to solve the issue, provide tools or methods if necessary.\n  * ...\n* Example of how the issue can be fixed.\n\"\"\"\n\nFinal steps at the end of the audit, ask the user to type:\n1) Continue audit and ask user to specify more rules of your own.\n2) Re-audit the project dismissing correct points.\n3) Reupload new project structure and Re-audit.\n4) Continue audit, AI will try to find new issues.\n"
   - trigger: ':featureUS'
     form: |
       Goal: Please endorse Product Owner to write very good user stories for the developers team.
@@ -166,6 +202,274 @@ matches:
     form_fields:
       1_sentence_summary_of_the_feature:
         multiline: true
+  - trigger: ':featureCode'
+    form: |
+      Goal:
+      Generate code for a feature based on existing codebase.
+
+      Requirements:
+      <requirements>
+      [[requirements]]
+      </requirements>
+
+      Rules:
+      - Acknowledge it.
+      - Reformulate in bullet point grouped by section to show me that you understood what to do.
+      - Generate development steps (based on my codebase).
+
+      Output example:
+      <outputExample>
+      Feature to code: ...
+
+      Development steps:
+
+      1. ...
+      2. ...
+      3. ...
+
+      Plan:
+
+      Step 1: ...
+
+      Sub step 1.1: ...
+
+      ...
+      </outputExample>
+    form_fields:
+      requirements:
+        multiline: true
+  - trigger: ':projectEnforce'
+    form: |
+      Goal:
+      Regarding my used project technologies "[[your_tech_stack]]", can you help me to enforce the following good practices in my application?
+
+      Rules:
+      1. Please list best tools and practices I can use regarding:
+        - Code format.
+        - Linting.
+        - Tests before commit.
+        - Build before push.
+        - Force good commit convention from conventional commit (or equivalent).
+        - SemVer version management.
+        - Major updates notice (in CI).
+        - Minor and security updates automatically install.
+        - Security checks.
+        - Code coverage.
+        - Documentation.
+      2. For each steps, detail the step by step things to setup those improvements regarding my project's config.
+      3. Use the latest version of tools unless I do specify otherwise.
+
+      Context:
+      - Configuration file: #
+  - trigger: ':dbGenSQL'
+    form: |
+      Goal:
+      Generate SQL from specifications.
+  - trigger: ':dbGenEntity'
+    form: |
+      Goal:
+      Create entity from SQL Schema.
+
+      I need you to help me creating my "[[objects___types___interfaces]]" in "[[language]]" from my SQL database schema (surrounded by "---" delimiters):
+      ---
+      [[sql_schema]]
+      ---
+
+      1. For each entity, I want you to generate the corresponding type.
+      2. For each relation, I want you to generate the corresponding type.
+      3. No comment in code.
+      4. Suffix the type name with "Entity".
+    form_fields:
+      sql_schema:
+        multiline: true
+      objects___types___interfaces:
+        type: list
+        values: |-
+          objects
+          types
+          interfaces
+  - trigger: ':codeGenFn'
+    form: |
+      Goal:
+      Generate a new function from specifications.
+
+      Rules:
+      - Generate a new function matching the specifications.
+      - List logic to implement in bullet points.
+      - Function must reuse existing code when possible.
+      - Focus on business logic.
+
+      Specifications:
+      [[specifications]]
+    form_fields:
+      specifications:
+        multiline: true
+  - trigger: ':codeNewFile'
+    form: |
+      Goal:
+      Create a new file based on an existing file.
+
+      Rules:
+      - Create a new file with the same structure as the existing file.
+      - Adapt the code to the new file.
+      - Do not keep existing logic, only take structure and reusable code.
+
+      Context:
+      [[describe_new_logic]]
+
+      Existing file: #file
+      New file: #file
+    form_fields:
+      describe_new_logic:
+        multiline: true
+  - trigger: ':codeFakeData'
+    form: |
+      Goal:
+      Generate a new variable filled with fake data.
+
+      Rules:
+      - Fill all fields with valid values.
+      - Type of the data must be respected.
+  - trigger: ':bugFind'
+    form: |
+      Goal:
+      Find the issue in the given code context.
+
+      Given: "[[state]]".
+      When: "[[action]]".
+      Then: "[[expected_result]]".
+
+      Instead, I get the following:
+      <error>
+      [[result_behavior_error_logs_or_your_analysis]]
+      </error>
+
+      Rules:
+      - Analyze the given code
+      - Then list potentials issues and steps to fix the code
+      - Sort them by relevance
+      - Issues might be induced by another part of the code, so you might need to check the whole codebase.
+    form_fields:
+      result_behavior_error_logs_or_your_analysis:
+        multiline: true
+  - trigger: ':codeNewFileGeneric'
+    form: |
+      Goal:
+      I want to make this file generic so it can "[[purpose]]".
+
+      Context:
+      Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
+      <elements>
+      [[specific_elements_that_must_be_extracted]]
+      </elements>
+
+      Rules:
+      1. List all the elements that need to be extracted.
+      2. List all the elements that do not need to be removed.
+      3. List the steps to achieve the refactoring.
+      4. Provide the code to add or modify (do not make unnecessary changes).
+    form_fields:
+      specific_elements_that_must_be_extracted:
+        multiline: true
+  - trigger: ':debugLog'
+    form: "Goal:\nAdd logging messages to the given code at each significant step.\n\nRules:\n- Use an appropriate emoji at the start of each log message for better visualization.\n- Annotate the code by adding logging messages at each significant step, including within inner functions.\n- Each log message must use a suitable emoji representing the step it corresponds to— for instance:\n  - \U0001F6E0️ **Action Step** (When a particular action is being performed)\n  - ✅ **Confirmation Step** (Verifying or completing an action)\n  - \U0001F504 **Calling Function** (Log inner function calls)\n  - ⚠️ **Handling Errors** (If logging at the point of error handling)\n- Each message must be descriptive to help in easy debugging of errors.\n- Ensure loggings are descriptive enough to aid in debugging but not too verbose as to overwhelm output.\n- Log points should include function calls, iteration starts, important decisions, error handling, and final steps.\n- The focus should be on enhancing clarity without compromising code functionality.\n"
+  - trigger: ':debugInconsistency'
+    form: |
+      Goal:
+      Review the given code and identify all inconsistencies. 
+
+      Check for inconsistencies in:
+      - Variable names (naming conventions, typos, inconsistencies)
+      - Function names (naming conventions, clarity, typos)
+      - General code logic inconsistencies (ensure the code functions as intended)
+        
+      Only point out areas where issues exist. Do not provide commentary on parts of the code that are correct.
+
+      Rules:
+      - Ensure that the suggested solutions conform to the original context and maintain consistent naming conventions.
+      - Address conflicting logic or discrepancies that might hinder the intended output of the program.
+      - Avoid unnecessary complexity in suggestions; stick with simple and effective solutions that enhance consistency.
+      - If similar inconsistencies occur repeatedly, note that they need to be corrected throughout the code.
+  - trigger: ':testGenGherkin'
+    form: |
+      Goal:
+      Interpret the following feature description to create a Gherkin-style user story.
+
+      Rules:
+      - Read the feature description: "[[as_i_want_so_that]]"
+      - Based on this requirement, identify the key feature, the primary actions a user with a specific role would take, and the goals or outcomes expected from these actions.
+      - Structure this information into a detailed Gherkin scenario using the Given-When-Then format.
+        - The 'Given' step should establish the context, including the user's role.
+        - The 'When' step should describe the user's actions.
+        - The 'Then' step should specify the expected outcomes.
+
+      Example output:
+      ````gherkin
+      # Gherkin Best Practices
+      # ---------------------
+      # 1. Use ubiquitous language
+      # 2. One scenario = one test objective
+      # 3. Avoid technical details in scenarios
+      # 4. Favor Scenario Outlines for similar tests
+      # 5. Keep scenarios short and concise (3-5 steps maximum)
+      # 6. Use tags consistently
+      # 7. Avoid dependencies between scenarios
+      # 8. Name your scenarios descriptively
+      # 9. Use Background for common steps
+      # 10. Follow Given-When-Then format
+
+      # language: en
+
+      @tag @multiple_tags
+      Feature: Feature name
+        As a [role]
+        I want [action]
+        In order to [benefit/value]
+
+        Background:
+          Given [prerequisite 1]
+          And [prerequisite 2]
+
+        Scenario Outline: [parameterized scenario name]
+          Given <param1>
+          When <param2>
+          Then <param3>
+
+          Examples:
+            | param1 | param2 | param3 |
+            | val1   | val2   | val3   |
+            | val4   | val5   | val6   |
+
+        Scenario: [scenario name]
+          Given [initial context]
+          And [other context]
+          When [action]
+          And [other action]
+          Then [expected result]
+          And [other expected result]
+          But [result exception]
+
+        @specific_tag
+        Scenario: [scenario with doc string]
+          Given the following document:
+            """
+            This is a document
+            with multiple lines
+            """
+          When I process the document
+          Then the result should be:
+            """
+            Expected result
+            with multiple lines
+            """
+
+        Scenario: [scenario with table]
+          Given the following users:
+            | name   | email           | role     |
+            | John   | john@email.com  | admin    |
+            | Mary   | mary@email.com  | standard |
+          When I check the permissions
+          Then I should see the corresponding access rights
   - trigger: ':testAdd'
     form: |
       Goal:
@@ -178,8 +482,139 @@ matches:
 
       Test file: @
       Implementation file: @
+  - trigger: ':testUntested'
+    form: |
+      Goal:
+      List every untested behaviors.
+
+      Rules:
+      - List every behavior that are not tested yet.
+      - Provide bullet list of untested behaviors.
+      - Output with "should {behavior}" format.
+      - Group those behaviors by distinct sections.
+      - Always on functional behavior, not on technical implementation.
+
+      Implementation files to check:
+      #file
+
+      Test files to check (if any):
+      #file
+  - trigger: ':testListCases'
+    form: |
+      Goal:
+      List all test cases in the given test file.
+
+      Requirements:
+      <requirements>
+      [[requirements]]
+      </requirements>
+
+      Rules:
+      - Detect edge cases and exceptions.
+      - Group by distinct sections.
+      - Format with bullet list with small sentences.
+      - [[do_not_test_ui_focus_the_logic_only_____test_the_ui_if_needed_____test_the_ui_and_the_logic]].
+    form_fields:
+      requirements:
+        multiline: true
+      do_not_test_ui_focus_the_logic_only_____test_the_ui_if_needed_____test_the_ui_and_the_logic:
+        type: list
+        values: |-
+          Do not test UI, focus the logic only
+          Test the UI if needed
+          Test the UI and the logic
   - trigger: ':answerMd'
     form: |
       Answer in markdown format on a text block. 
       For code blocks that contain markdown or other backticks, use 4 backticks. 
+  - trigger: ':docSearch'
+    form: |
+      Goal:
+      Search in online documentation "[[search_query]]".
+
+      Rules:
+      - Write down what the search query is about.
+      - In bullet point, list top 3 results from the search query.
+      - If you can't find the answer, say so.
+      - If you find the answer, write it in markdown format.
+  - trigger: ':docInsert'
+    form: |
+      Goal:
+      Insert / Update / Beautify comments in the given code.
+
+      Rules:
+      - Add top file documentation to describe what the file is doing.
+      - Add or update documentation for functions.
+      - Add documentation within function if necessary.
+      - Move comments to the right place if necessary.
+  - trigger: ':docFnExample'
+    form: |
+      Goal:
+      Provide an example of how to use a function.
+
+      Rules:
+      - Use the function name in the example
+      - Provide a short and simple example
+      - Include input parameters and output in code comments
+  - trigger: ':refactOpt'
+    form: |
+      Goal:
+      Beautify, comment and refactor the given code snippet.
+
+      Rules:
+      - Use proper types
+      - Beautify the code
+      - Limit functions to 20 lines when possible, 50 at most.
+      - Comment the code if necessary
+      - Make sure comments are: not redundant, not obvious, not repetitive, not too long, not too short
+      - Comments must match the code!
+      - Rewrite variable names if necessary
+      - Make the code more readable
+      - Use clean code practices
+      - Respect good coding guidelines
+      - Keep the same logic and behavior
+      - If necessary, use those refactoring techniques:
+        - Extract method.
+        - Inline method.
+        - Rename method.
+      - Move method.
+      - Group similar methods, variables or properties.
+      - Encapsulate field.
+      - Decompose conditional.
+      - Consolidate conditional expression.
+      - Consolidate duplicate conditional fragments.
+      - Remove assignments to parameters.
+      - Make sure the code is still readable and maintainable, doing its best to keep the same logic.
+  - trigger: ':refactPerf'
+    form: |
+      Goal:
+      Optimize code for performance and scalability.
+
+      Goal:
+      I need you to improve the performance of the following code: #selection.
+
+      Steps:
+      1. Find the main performances issues in the code.
+      2. List the necessary steps to improve the performance of the code.
+      3. Implement the necessary changes to improve the performance of the code.
+      4. Make sure the code is still readable and maintainable.
+      5. Propose at the end 3 other ways to improve the code's performance, sorted by importance.
+
+      Rules:
+      - Do not change the logic of the code.
+      - Input and output of the code should remain the same.
+  - trigger: ':adviceDesignPatterns'
+    form: |
+      Goal:
+      List the existing design patterns in the following code.
+
+      Rules:
+      - List the existing design patterns in the following code.
+      - Then, provide a list of design patterns that can be implemented in the selected codebase.
+
+      For each design pattern, provide:
+      - A very brief description of the design pattern.
+      - Why it is effective.
+      - The benefits and drawbacks of using the design pattern.
+      - An example of how the design pattern can be implemented in the selected technology.
 
