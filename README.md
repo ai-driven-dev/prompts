@@ -7,6 +7,7 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
 
 - [🚀 Use optimized dev prompts in you workflow](#-use-optimized-dev-prompts-in-you-workflow)
   - [Install a text expander](#install-a-text-expander)
+  - [How-to use prompts library](#how-to-use-prompts-library)
   - [Get the latest prompt](#get-the-latest-prompt)
 - [✅ General GuideLines](#-general-guidelines)
   - [The perfect Prompt Template `:codePrompt`](#the-perfect-prompt-template-codeprompt)
@@ -74,6 +75,12 @@ espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts
 ```
 
 3. Launch the app any time you want to use the prompts.
+
+### How-to use prompts library
+
+When you need a prompt, type `:promptName` OR press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
+
+![espanso usage](docs/espanso.gif)
 
 ### Get the latest prompt
 
