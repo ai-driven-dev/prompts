@@ -517,20 +517,29 @@ Context:
 
 ```text
 Goal:
-Generate SQL from specifications.
+Generate SQL schema from specifications.
+
+Rules:
+- Generate the full SQL schema, with the tables, the columns, the relations between the tables and the constraints.
+
+Specifications:
+<specifications>
+[[Entity list and relations between entities]]
+</specifications>
 ```
 
 ### Create entity from SQL Schema `:dbGenEntity`
 
 ```text
 Goal:
-Create entity from SQL Schema.
+Create entities from SQL Schema generating "[[objects|types|interfaces]]".
 
-I need you to help me creating my "[[objects|types|interfaces]]" in "[[language]]" from my SQL database schema (surrounded by "---" delimiters):
----
+SQL Schema:
+<sqlSchema>
 [[SQL schema]]
----
+</sqlSchema>
 
+Rules:
 1. For each entity, I want you to generate the corresponding type.
 2. For each relation, I want you to generate the corresponding type.
 3. No comment in code.
@@ -552,7 +561,9 @@ Rules:
 - Focus on business logic.
 
 Specifications:
+<specifications>
 [[Specifications]]
+</specifications>
 ```
 
 ### Create new file based on existing file `:codeNewFile`
@@ -567,7 +578,9 @@ Rules:
 - Do not keep existing logic, only take structure and reusable code.
 
 Context:
+<context>
 [[Describe new logic]]
+</context>
 
 Existing file: #file
 New file: #file

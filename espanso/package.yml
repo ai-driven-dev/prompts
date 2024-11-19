@@ -264,17 +264,29 @@ matches:
   - trigger: ':dbGenSQL'
     form: |
       Goal:
-      Generate SQL from specifications.
+      Generate SQL schema from specifications.
+
+      Rules:
+      - Generate the full SQL schema, with the tables, the columns, the relations between the tables and the constraints.
+
+      Specifications:
+      <specifications>
+      [[entity_list_and_relations_between_entities]]
+      </specifications>
+    form_fields:
+      entity_list_and_relations_between_entities:
+        multiline: true
   - trigger: ':dbGenEntity'
     form: |
       Goal:
-      Create entity from SQL Schema.
+      Create entities from SQL Schema generating "[[objects___types___interfaces]]".
 
-      I need you to help me creating my "[[objects___types___interfaces]]" in "[[language]]" from my SQL database schema (surrounded by "---" delimiters):
-      ---
+      SQL Schema:
+      <sqlSchema>
       [[sql_schema]]
-      ---
+      </sqlSchema>
 
+      Rules:
       1. For each entity, I want you to generate the corresponding type.
       2. For each relation, I want you to generate the corresponding type.
       3. No comment in code.
@@ -300,7 +312,9 @@ matches:
       - Focus on business logic.
 
       Specifications:
+      <specifications>
       [[specifications]]
+      </specifications>
     form_fields:
       specifications:
         multiline: true
@@ -315,7 +329,9 @@ matches:
       - Do not keep existing logic, only take structure and reusable code.
 
       Context:
+      <context>
       [[describe_new_logic]]
+      </context>
 
       Existing file: #file
       New file: #file
