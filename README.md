@@ -52,7 +52,7 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
   - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
 - [🧙 Senior Advice](#-senior-advice)
   - [Code Review (WIP)](#code-review-wip)
-  - [Project Architecture](#project-architecture)
+  - [Project Architecture (WIP)](#project-architecture-wip)
   - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
 
 ## 🚀 Use optimized dev prompts in you workflow
@@ -936,7 +936,7 @@ Rules:
 
 ### Code Review (WIP)
 
-### Project Architecture
+### Project Architecture (WIP)
 
 - Stack
 - Folder structure
