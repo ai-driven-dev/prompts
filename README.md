@@ -5,11 +5,48 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
 > **Warning**
 > This repository is under heavy development.
 
-- [🚀 Use optimized dev prompts in you workflow](#-use-optimized-dev-prompts-in-you-workflow)
-  - [Install a text expander](#install-a-text-expander)
-  - [How-to use prompts library](#how-to-use-prompts-library)
-  - [Get the latest prompt](#get-the-latest-prompt)
-- [✅ General GuideLines](#-general-guidelines)
+## 🚀 Use optimized developer prompts in your workflow
+
+Because better prompts leads to (way) better results.
+
+This is a collection of prompts that I use to generate images for my AI-Driven Dev project.
+
+<https://ai-driven-dev.com>
+
+### 1) Install the text expander
+
+1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
+
+2. Then, install the package:
+
+```sh
+espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
+```
+
+3. Launch the app any time you want to use the prompts.
+
+### 2) How-to use the prompts library
+
+When you need a prompt, type `:promptName` OR press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
+
+![espanso usage](docs/espanso.gif)
+
+### 3) Get the latest prompts (update)
+
+Prompts are updated regularly by the AI-Driven Dev Community, use this command to get the latest upgraded prompts.
+
+```sh
+espanso package update ai-driven-dev-prompts
+```
+
+## 🔥 Available prompts
+
+- [🚀 Use optimized developer prompts in your workflow](#-use-optimized-developer-prompts-in-your-workflow)
+  - [1) Install the text expander](#1-install-the-text-expander)
+  - [2) How-to use the prompts library](#2-how-to-use-the-prompts-library)
+  - [3) Get the latest prompts (update)](#3-get-the-latest-prompts-update)
+- [🔥 Available prompts](#-available-prompts)
+- [✅ General Guidelines](#-general-guidelines)
   - [The perfect Prompt Template `:codePrompt`](#the-perfect-prompt-template-codeprompt)
 - [🧑‍💻 RAG (Retrieval Augmented Generation)](#-rag-retrieval-augmented-generation)
   - [Instruct AI to be a developer from your project `:ragProject`](#instruct-ai-to-be-a-developer-from-your-project-ragproject)
@@ -56,43 +93,9 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
   - [Project Architecture (WIP)](#project-architecture-wip)
   - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
 
-## 🚀 Use optimized dev prompts in you workflow
+## ✅ General Guidelines
 
-Because better prompts leads to (way) better results.
-
-This is a collection of prompts that I use to generate images for my AI-Driven Dev project.
-
-<https://ai-driven-dev.com>
-
-### Install a text expander
-
-1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
-
-2. Then, install the package:
-
-```sh
-espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
-```
-
-3. Launch the app any time you want to use the prompts.
-
-### How-to use prompts library
-
-When you need a prompt, type `:promptName` OR press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
-
-![espanso usage](docs/espanso.gif)
-
-### Get the latest prompt
-
-Prompts are updated regularly but the AI-Driven Dev Community, use that command to get the latest upgraded prompts.
-
-```sh
-espanso package update ai-driven-dev-prompts
-```
-
-## ✅ General GuideLines
-
-Those prompts will be used to personalize the AI based on your requirements.
+Those prompts can be used to personalize AI based on your requirements.
 
 - It can be used in your IDE (e.g., GitHub Copilot, Cursor...)
 - It can be used as a Custom GPT
