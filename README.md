@@ -98,8 +98,8 @@ espanso package update ai-driven-dev-prompts
     - [Milestones `:pmGenerateMilestones`](#milestones-pmgeneratemilestones)
     - [User-stories (US) `:pmGenerateUS`](#user-stories-us-pmgenerateus)
     - [Gherkin `:pmGenerateGherkin`](#gherkin-pmgenerategherkin)
-- [Template](#template)
-  - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
+  - [Template](#template)
+    - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
 
 ## ✅ General Guidelines
 
@@ -1117,9 +1117,9 @@ The description is: "[[As... I want... So that...]]"
   - The 'Then' step should specify the expected outcomes.
 ```
 
-## Template
+### Template
 
-### Ticket `:pmTemplateTicket`
+#### Ticket `:pmTemplateTicket`
 
 A simple ticket template generation from your project's task.
 
