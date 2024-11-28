@@ -76,6 +76,7 @@ espanso package update ai-driven-dev-prompts
   - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
   - [List test cases `:testListCases`](#list-test-cases-testlistcases)
 - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+  - [Answer in French `:answerFr`](#answer-in-french-answerfr)
   - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
 - [📚 Documentation](#-documentation)
   - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
@@ -157,10 +158,10 @@ If you want to generate user-stories for your project, use this prompt.
 Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
 Rules:
-- Do not generate anything yet.
+- Do not generate code.
 - Ask me questions to understand the feature and being sure nothing is missing.
-- Questions can include user roles, actions, and outcomes, as well as UI/UX details.
-- Be accurate and really lean, use concise questions.
+- Be accurate and lean, concise questions, minimum words.
+- Group questions by section of 3 questions minimum.
 - Make user stories coherent and clear.
 - Sort them by priority of code.
 - When the user asks, write the user stories using the template under.
@@ -170,6 +171,10 @@ Requirements:
 <requirements>
 [[Feature to build, be as detailed as possible]]
 </requirements>
+
+Steps:
+1. Ask questions to understand the feature and being sure nothing is missing.
+2. Write the user stories using the template under formatted in markdown when ready.
 
 User stories template:
 ```markdown
@@ -701,6 +706,12 @@ Rules:
 ```
 
 ## ⚡️ Zero Shot Prompts
+
+### Answer in French `:answerFr`
+
+```text
+For all answers, answer in French.
+```
 
 ### Answer in markdown `:answerMd`
 

@@ -42,10 +42,10 @@ matches:
       Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
       Rules:
-      - Do not generate anything yet.
+      - Do not generate code.
       - Ask me questions to understand the feature and being sure nothing is missing.
-      - Questions can include user roles, actions, and outcomes, as well as UI/UX details.
-      - Be accurate and really lean, use concise questions.
+      - Be accurate and lean, concise questions, minimum words.
+      - Group questions by section of 3 questions minimum.
       - Make user stories coherent and clear.
       - Sort them by priority of code.
       - When the user asks, write the user stories using the template under.
@@ -55,6 +55,10 @@ matches:
       <requirements>
       [[feature_to_build_be_as_detailed_as_possible]]
       </requirements>
+
+      Steps:
+      1. Ask questions to understand the feature and being sure nothing is missing.
+      2. Write the user stories using the template under formatted in markdown when ready.
 
       User stories template:
       ```markdown
@@ -455,6 +459,9 @@ matches:
           Do not test UI, focus the logic only
           Test the UI if needed
           Test the UI and the logic
+  - trigger: ':answerFr'
+    form: |
+      For all answers, answer in French.
   - trigger: ':answerMd'
     form: |
       Answer in markdown format on a text block. 
