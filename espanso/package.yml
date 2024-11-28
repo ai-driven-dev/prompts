@@ -6,7 +6,11 @@ matches:
       Name: "[[project_name]]".
       Description: "[[project_description]]".
       My Role: "[[your_role]]".
-      Tech Stack: "[[tech_stack]]".
+      My Tech: "[[tech_stack]]".
+
+      Context in knowledge:
+      - Project Structure in file "project-structure.txt"
+      - Project Tech Stack in file "package.json"
 
       ## Code Generation Rules
 
