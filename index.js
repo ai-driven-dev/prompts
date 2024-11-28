@@ -17,7 +17,7 @@ if (!fs.existsSync(newEspansoPrivateFolder)) {
 
 const PRIVATE_PROMPTS = ['./prompts/private/*'];
 const PUBLIC_PROMPTS = [
-  './../instructions/*.md',
+  './../instructions/README*',
   './resources/agents/*',
   './README*',
 ];
