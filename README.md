@@ -76,6 +76,7 @@ espanso package update ai-driven-dev-prompts
   - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
   - [List test cases `:testListCases`](#list-test-cases-testlistcases)
 - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+  - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
   - [Answer in French `:answerFr`](#answer-in-french-answerfr)
   - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
 - [📚 Documentation](#-documentation)
@@ -706,6 +707,12 @@ Rules:
 ```
 
 ## ⚡️ Zero Shot Prompts
+
+### Clean prompt `:promptClean`
+
+```text
+Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+```
 
 ### Answer in French `:answerFr`
 

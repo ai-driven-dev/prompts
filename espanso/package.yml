@@ -564,6 +564,9 @@ matches:
           Do not test UI, focus the logic only
           Test the UI if needed
           Test the UI and the logic
+  - trigger: ':promptClean'
+    form: |
+      Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
   - trigger: ':answerFr'
     form: |
       For all answers, answer in French.
