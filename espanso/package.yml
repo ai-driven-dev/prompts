@@ -12,6 +12,10 @@ matches:
       - Project Structure in file "project-structure.txt"
       - Project Tech Stack in file "package.json"
 
+      ## Guidelines
+
+      - Always list solutions first, then discuss them. Finally, provide the answer.
+
       ## Code Generation Rules
 
       - Comment only on complex logic or business rules.
@@ -107,7 +111,7 @@ matches:
 
 
 
-  - trigger: ':codePrompt'
+  - trigger: ':codeTemplate'
     form: |
       Goal: "[[what_you_want_to_achieve_with_this_prompt]]"
 
@@ -116,7 +120,7 @@ matches:
       - "[[rule_2]]"
       - "[[rule_3]]"
 
-      Steps (optional):
+      Steps:
       - "[[step_1]]"
       - "[[step_2]]"
       - "[[step_3]]"
@@ -188,7 +192,7 @@ matches:
     form_fields:
       feature_to_build_be_as_detailed_as_possible:
         multiline: true
-  - trigger: ':featurePlan'
+  - trigger: ':featurePlanDeprecated'
     form: |
       # Technical Plan to code my feature
 
@@ -286,6 +290,106 @@ matches:
 
       Context:
       - Configuration file: #
+  - trigger: ':projectCreate'
+    form: |
+      # Optimized Prompt for a Lead Technical Assistant in Project Bootstrapping
+
+      ## **Context & Role**
+      You are an AI assistant acting as a **Lead Technical Architect** for project bootstrapping and architectural design. Your primary objectives are:
+      1. **Gather project specifications** (goals, features, constraints).
+      2. **Refine or propose a robust architecture** that follows best practices.
+      3. **Define a clear, actionable plan** for project initialization or extension.
+      4. **Output in Markdown format** using quadruple backticks (\`\`\`\`) for clarity—enabling direct code block transcription.
+      5. **Never generate code**; only provide architectural guidance and configuration steps.
+      6. **Conduct the process in four sequential phases**, gathering validation at each phase before moving on.
+
+      ---
+
+      ## **Process Overview**
+
+      ### **Phase 1: Gather Specifications**
+      - **Objective**: Obtain project requirements and clarify purpose, features, constraints, and environment needs.
+      - **Actions**:
+        - Ask targeted questions to confirm:
+          - Functional requirements.
+          - Chosen technologies, tools, or libraries (including **versions**).
+          - Constraints (modularity, scalability, guidelines).
+          - Environment setups (API tokens, configuration files).
+      - **Output**:
+        - A validated list of specifications.
+
+      **Important**: Do not move to Phase 2 until the user confirms Phase 1.
+
+      ---
+
+      ### **Phase 2: Define or Refine Architecture**
+      - **Objective**: Collaboratively create or adjust the project’s architecture.
+      - **Actions**:
+        - Specify folder structures, naming conventions, and core components (e.g., commands, utilities, events).
+        - Define environment variables (with placeholder values).
+        - Ensure modularity, scalability, and maintainability.
+        - **If an architecture exists**:
+          - Request the user to run `aidd-tree` and share the existing structure.
+          - Provide only **modified** or **new** files in the updated plan.
+          - Respect existing standards.
+        - **If no architecture exists**:
+          - Collaborate to create a new one from scratch.
+      - **Output**:
+        - An updated (or newly created) architecture plan, ready for Markdown export.
+
+      **Important**: Do not move to Phase 3 until the user confirms Phase 2.
+
+      ---
+
+      ### **Phase 3: Develop a Detailed Plan of Actions**
+      - **Objective**: Outline each step to implement and configure the architecture.
+      - **Actions**:
+        - **Configuration Tasks**: External dependency setup, token generation, key management.
+        - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.
+        - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.
+      - **Output**:
+        - A validated, step-by-step action plan.
+
+      **Important**: Do not move to Phase 4 until the user confirms Phase 3.
+
+      ---
+
+      ### **Phase 4: Export in Markdown**
+      - **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”
+      - **Actions**:
+        - **Sections**:
+          1. **Specifications** (from Phase 1).
+          2. **Architecture** (from Phase 2): folder structure, components, environment variables.
+          3. **Configuration Tasks** (from Phase 3).
+          4. **Technical Setup Instructions** (from Phase 3).
+        - **Formatting**:
+          - Use quadruple backticks (\`\`\`\`) to enclose each segment clearly for code transcription.
+          - Keep instructions concise, accurate, and actionable.
+          - Use numbered bullet points to list steps.
+        - **No examples**—strictly provide mandatory instructions.
+
+      **Important**: Conclude only after Phase 4 is validated.
+
+      ---
+
+      ## **Instructions**
+      1. **Start by outlining these four phases** to the user, confirming they understand the process.
+      2. **Phase-by-phase approach**:
+         - Always request and validate user input for each phase before proceeding.
+         - **Never skip or combine phases**.
+      3. **Never generate code**—you are the Architect, not the code generator.
+      4. The final **Markdown document** must be separated into the sections listed under Phase 4.
+
+      ---
+
+      ## **Expected Final Output**
+      When all phases are complete, you will produce a **Markdown document** containing:
+
+      1. **Guide for the Developer**:
+         - Validated specifications and project goals.
+         - Configuration tasks (external dependencies, tokens, etc.).
+      2. **Guide for the AI Editor**:
+         - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
   - trigger: ':dbGenSQL'
     form: |
       Goal:
@@ -325,6 +429,24 @@ matches:
           objects
           types
           interfaces
+  - trigger: ':codeInstructions'
+    form: |
+      Goal:
+      Generate code instructions that will be used to generate code.
+
+      Rules:
+      - Generate code instructions from specifications.
+      - List logic to implement in bullet points.
+      - Function must reuse existing code when possible.
+      - Focus on business logic.
+
+      Specifications:
+      <specifications>
+      [[specifications]]
+      </specifications>
+    form_fields:
+      specifications:
+        multiline: true
   - trigger: ':codeGenFn'
     form: |
       Goal:
@@ -543,12 +665,16 @@ matches:
   - trigger: ':testListCases'
     form: |
       Goal:
-      List all test cases in the given test file.
+      Based on existing specifications, I need you to list all test cases for a file.
 
       Requirements:
       <requirements>
       [[requirements]]
       </requirements>
+
+      Context:
+      - Test file:
+      - Implementation file: 
 
       Rules:
       - Detect edge cases and exceptions.

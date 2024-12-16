@@ -41,67 +41,70 @@ espanso package update ai-driven-dev-prompts
 
 ## 🔥 Available prompts
 
-- [🚀 Use optimized developer prompts in your workflow](#-use-optimized-developer-prompts-in-your-workflow)
-  - [1) Install the text expander](#1-install-the-text-expander)
-  - [2) How-to use the prompts library](#2-how-to-use-the-prompts-library)
-  - [3) Get the latest prompts (update)](#3-get-the-latest-prompts-update)
-- [🔥 Available prompts](#-available-prompts)
-- [✅ General Guidelines](#-general-guidelines)
-  - [The perfect Prompt Template `:codePrompt`](#the-perfect-prompt-template-codeprompt)
-- [🙋‍♂️ Feature request](#️-feature-request)
-  - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-  - [Technical plan `:featurePlan`](#technical-plan-featureplan)
-  - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
-- [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
-  - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
-- [💽 Database](#-database)
-  - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
-  - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
-- [🚀 Code Generation](#-code-generation)
-  - [Generate new function from specifications `:codeGenFn`](#generate-new-function-from-specifications-codegenfn)
-  - [Create new file based on existing file `:codeNewFile`](#create-new-file-based-on-existing-file-codenewfile)
-  - [Fake data `:codeFakeData`](#fake-data-codefakedata)
-- [🏞️ Generate code from image](#️-generate-code-from-image)
-  - [Extract details from image and match components (WIP)](#extract-details-from-image-and-match-components-wip)
-- [💉 Bug Fixing](#-bug-fixing)
-  - [Find the issue `:bugFind`](#find-the-issue-bugfind)
-  - [Create new generic file `:codeNewFileGeneric`](#create-new-generic-file-codenewfilegeneric)
-- [🐛 Debugging](#-debugging)
-  - [Write log `:debugLog`](#write-log-debuglog)
-  - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
-- [🧪 Tests](#-tests)
-  - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
-  - [Check for test methods to implement `:testAdd`](#check-for-test-methods-to-implement-testadd)
-  - [Create new test based on existing test (WIP)](#create-new-test-based-on-existing-test-wip)
-  - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
-  - [List test cases `:testListCases`](#list-test-cases-testlistcases)
-- [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-  - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
-  - [Answer in French `:answerFr`](#answer-in-french-answerfr)
-  - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
-- [📚 Documentation](#-documentation)
-  - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
-  - [Insert / Update / Beautify comments `:docInsert`](#insert--update--beautify-comments-docinsert)
-  - [Provide example to use a function `:docFnExample`](#provide-example-to-use-a-function-docfnexample)
-- [🔄 Refactoring](#-refactoring)
-  - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
-  - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
-- [🧙 Senior Advice](#-senior-advice)
-  - [Code Review (WIP)](#code-review-wip)
-  - [Project Architecture (WIP)](#project-architecture-wip)
-  - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
-- [🧑‍🍳 Project Management](#-project-management)
-  - [Specification writing](#specification-writing)
-    - [Start a new specification document `:pmSpecsStart`](#start-a-new-specification-document-pmspecsstart)
-    - [Continue to fill the document `:pmSpecsContinue`](#continue-to-fill-the-document-pmspecscontinue)
-  - [Selection](#selection)
-    - [Choose a tech stack `:pmSelectionTech`](#choose-a-tech-stack-pmselectiontech)
-  - [Generate](#generate)
-    - [Milestones `:pmGenerateMilestones`](#milestones-pmgeneratemilestones)
-    - [User-stories (US) `:pmGenerateUS`](#user-stories-us-pmgenerateus)
-    - [Gherkin `:pmGenerateGherkin`](#gherkin-pmgenerategherkin)
-  - [Template](#template)
-    - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
+- [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
+  - [🚀 Use optimized developer prompts in your workflow](#-use-optimized-developer-prompts-in-your-workflow)
+    - [1) Install the text expander](#1-install-the-text-expander)
+    - [2) How-to use the prompts library](#2-how-to-use-the-prompts-library)
+    - [3) Get the latest prompts (update)](#3-get-the-latest-prompts-update)
+  - [🔥 Available prompts](#-available-prompts)
+  - [✅ General Guidelines](#-general-guidelines)
+    - [The ideal Prompt Template `:codeTemplate`](#the-ideal-prompt-template-codetemplate)
+  - [🙋‍♂️ Feature request](#️-feature-request)
+    - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
+    - [Technical plan `:featurePlanDeprecated` (deprecated)](#technical-plan-featureplandeprecated-deprecated)
+    - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
+  - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
+    - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
+    - [Create a project from scratch `:projectCreate`](#create-a-project-from-scratch-projectcreate)
+  - [💽 Database](#-database)
+    - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
+    - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
+  - [🚀 Code Generation](#-code-generation)
+  - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
+    - [Generate new function from specifications `:codeGenFn`](#generate-new-function-from-specifications-codegenfn)
+    - [Create new file based on existing file `:codeNewFile`](#create-new-file-based-on-existing-file-codenewfile)
+    - [Fake data `:codeFakeData`](#fake-data-codefakedata)
+  - [🏞️ Generate code from image](#️-generate-code-from-image)
+    - [Extract details from image and match components (WIP)](#extract-details-from-image-and-match-components-wip)
+  - [💉 Bug Fixing](#-bug-fixing)
+    - [Find the issue `:bugFind`](#find-the-issue-bugfind)
+    - [Create new generic file `:codeNewFileGeneric`](#create-new-generic-file-codenewfilegeneric)
+  - [🐛 Debugging](#-debugging)
+    - [Write log `:debugLog`](#write-log-debuglog)
+    - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
+  - [🧪 Tests](#-tests)
+    - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
+    - [Check for test methods to implement `:testAdd`](#check-for-test-methods-to-implement-testadd)
+    - [Create new test based on existing test (WIP)](#create-new-test-based-on-existing-test-wip)
+    - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
+    - [List test cases `:testListCases`](#list-test-cases-testlistcases)
+  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+    - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
+    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
+    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
+  - [📚 Documentation](#-documentation)
+    - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
+    - [Insert / Update / Beautify comments `:docInsert`](#insert--update--beautify-comments-docinsert)
+    - [Provide example to use a function `:docFnExample`](#provide-example-to-use-a-function-docfnexample)
+  - [🔄 Refactoring](#-refactoring)
+    - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
+    - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
+  - [🧙 Senior Advice](#-senior-advice)
+    - [Code Review (WIP)](#code-review-wip)
+    - [Project Architecture (WIP)](#project-architecture-wip)
+    - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
+  - [🧑‍🍳 Project Management](#-project-management)
+    - [Specification writing](#specification-writing)
+      - [Start a new specification document `:pmSpecsStart`](#start-a-new-specification-document-pmspecsstart)
+      - [Continue to fill the document `:pmSpecsContinue`](#continue-to-fill-the-document-pmspecscontinue)
+    - [Selection](#selection)
+      - [Choose a tech stack `:pmSelectionTech`](#choose-a-tech-stack-pmselectiontech)
+    - [Generate](#generate)
+      - [Milestones `:pmGenerateMilestones`](#milestones-pmgeneratemilestones)
+      - [User-stories (US) `:pmGenerateUS`](#user-stories-us-pmgenerateus)
+      - [Gherkin `:pmGenerateGherkin`](#gherkin-pmgenerategherkin)
+    - [Template](#template)
+      - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
 
 ## ✅ General Guidelines
 
@@ -110,12 +113,22 @@ Those prompts can be used to personalize AI based on your requirements.
 - It can be used in your IDE (e.g., GitHub Copilot, Cursor...)
 - It should be used as a Custom GPT like [this](https://github.com/ai-driven-dev/instructions)
 
-### The perfect Prompt Template `:codePrompt`
+### The ideal Prompt Template `:codeTemplate`
 
-1. Use the `:codePrompt` template to get started.
-2. "Goal", "Rules", and "Context" are mandatory.
-3. "Examples" are optional but highly recommended.
-  
+Most of the time, you just need to structure a prompt - to make it better.
+
+1. Use the `:codeTemplate` template to get started.
+2. **Mandatory** fields:
+   - `Goal`: What you want to achieve
+   - `Rules`: Guidelines and constraints to follow
+   - `Context`: Background information or environment details
+3. *Optional* but recommended:
+   - `Steps`: Detailed procedure to follow
+   - `Input Example`: Sample input to demonstrate usage
+   - `Output Example`: Expected output format
+
+Note: `Context` and `Example` can be a link to a file, or a code snippet.
+
 ```text
 Goal: "[[What you want to achieve with this prompt]]"
 
@@ -124,7 +137,7 @@ Rules:
 - "[[Rule 2]]"
 - "[[Rule 3]]"
 
-Steps (optional):
+Steps:
 - "[[Step 1]]"
 - "[[Step 2]]"
 - "[[Step 3]]"
@@ -199,7 +212,11 @@ User stories template:
 ```
 ````
 
-### Technical plan `:featurePlan`
+<!-- markdownlint-enable MD033 -->
+<details>
+<summary><h3>Technical plan `:featurePlanDeprecated` (deprecated)</h3></summary>
+
+### Technical plan `:featurePlanDeprecated` (deprecated)
 
 Feel free to remove part of the plan you are not using.
 
@@ -291,6 +308,8 @@ The idea of the feature is:
 ````
 
 </details>
+
+</details>
 <!-- markdownlint-enable MD033 -->
 
 ### Generate code for a feature `:featureCode`
@@ -366,6 +385,113 @@ Context:
 - Configuration file: #
 ```
 
+### Create a project from scratch `:projectCreate`
+
+````text
+# Optimized Prompt for a Lead Technical Assistant in Project Bootstrapping
+
+## **Context & Role**
+You are an AI assistant acting as a **Lead Technical Architect** for project bootstrapping and architectural design. Your primary objectives are:
+1. **Gather project specifications** (goals, features, constraints).
+2. **Refine or propose a robust architecture** that follows best practices.
+3. **Define a clear, actionable plan** for project initialization or extension.
+4. **Output in Markdown format** using quadruple backticks (\`\`\`\`) for clarity—enabling direct code block transcription.
+5. **Never generate code**; only provide architectural guidance and configuration steps.
+6. **Conduct the process in four sequential phases**, gathering validation at each phase before moving on.
+
+---
+
+## **Process Overview**
+
+### **Phase 1: Gather Specifications**
+- **Objective**: Obtain project requirements and clarify purpose, features, constraints, and environment needs.
+- **Actions**:
+  - Ask targeted questions to confirm:
+    - Functional requirements.
+    - Chosen technologies, tools, or libraries (including **versions**).
+    - Constraints (modularity, scalability, guidelines).
+    - Environment setups (API tokens, configuration files).
+- **Output**:
+  - A validated list of specifications.
+
+**Important**: Do not move to Phase 2 until the user confirms Phase 1.
+
+---
+
+### **Phase 2: Define or Refine Architecture**
+- **Objective**: Collaboratively create or adjust the project’s architecture.
+- **Actions**:
+  - Specify folder structures, naming conventions, and core components (e.g., commands, utilities, events).
+  - Define environment variables (with placeholder values).
+  - Ensure modularity, scalability, and maintainability.
+  - **If an architecture exists**:
+    - Request the user to run `aidd-tree` and share the existing structure.
+    - Provide only **modified** or **new** files in the updated plan.
+    - Respect existing standards.
+  - **If no architecture exists**:
+    - Collaborate to create a new one from scratch.
+- **Output**:
+  - An updated (or newly created) architecture plan, ready for Markdown export.
+
+**Important**: Do not move to Phase 3 until the user confirms Phase 2.
+
+---
+
+### **Phase 3: Develop a Detailed Plan of Actions**
+- **Objective**: Outline each step to implement and configure the architecture.
+- **Actions**:
+  - **Configuration Tasks**: External dependency setup, token generation, key management.
+  - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.
+  - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.
+- **Output**:
+  - A validated, step-by-step action plan.
+
+**Important**: Do not move to Phase 4 until the user confirms Phase 3.
+
+---
+
+### **Phase 4: Export in Markdown**
+- **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”
+- **Actions**:
+  - **Sections**:
+    1. **Specifications** (from Phase 1).
+    2. **Architecture** (from Phase 2): folder structure, components, environment variables.
+    3. **Configuration Tasks** (from Phase 3).
+    4. **Technical Setup Instructions** (from Phase 3).
+  - **Formatting**:
+    - Use quadruple backticks (\`\`\`\`) to enclose each segment clearly for code transcription.
+    - Keep instructions concise, accurate, and actionable.
+    - Use numbered bullet points to list steps.
+  - **No examples**—strictly provide mandatory instructions.
+
+**Important**: Conclude only after Phase 4 is validated.
+
+---
+
+## **Instructions**
+1. **Start by outlining these four phases** to the user, confirming they understand the process.
+2. **Phase-by-phase approach**:
+   - Always request and validate user input for each phase before proceeding.
+   - **Never skip or combine phases**.
+3. **Never generate code**—you are the Architect, not the code generator.
+4. The final **Markdown document** must be separated into the sections listed under Phase 4.
+
+---
+
+## **Expected Final Output**
+When all phases are complete, you will produce a **Markdown document** containing:
+
+1. **Guide for the Developer**:
+   - Validated specifications and project goals.
+   - Configuration tasks (external dependencies, tokens, etc.).
+2. **Guide for the AI Editor**:
+   - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
+````
+
+- [ ] Split configuration intructions (that requires steps into a ui, generate a token etc) and coding / implementation instructions (block text markdown)
+- [ ] Merger ça et la creation: user-stories / technical plan
+- [ ] Testing phase 5
+
 ## 💽 Database
 
 ### Generate SQL from specifications `:dbGenSQL`
@@ -402,6 +528,24 @@ Rules:
 ```
 
 ## 🚀 Code Generation
+
+## Prompt to generate code instructions `:codeInstructions`
+
+```text
+Goal:
+Generate code instructions that will be used to generate code.
+
+Rules:
+- Generate code instructions from specifications.
+- List logic to implement in bullet points.
+- Function must reuse existing code when possible.
+- Focus on business logic.
+
+Specifications:
+<specifications>
+[[Specifications]]
+</specifications>
+```
 
 ### Generate new function from specifications `:codeGenFn`
 
@@ -692,12 +836,16 @@ Test files to check (if any):
 
 ```text
 Goal:
-List all test cases in the given test file.
+Based on existing specifications, I need you to list all test cases for a file.
 
 Requirements:
 <requirements>
 [[requirements]]
 </requirements>
+
+Context:
+- Test file:
+- Implementation file: 
 
 Rules:
 - Detect edge cases and exceptions.
