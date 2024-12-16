@@ -532,19 +532,32 @@ Rules:
 ## Prompt to generate code instructions `:codeInstructions`
 
 ```text
-Goal:
-Generate code instructions that will be used to generate code.
+# One-Shot Prompt: Architect → Editor Code Instructions
 
-Rules:
-- Generate code instructions from specifications.
-- List logic to implement in bullet points.
-- Function must reuse existing code when possible.
-- Focus on business logic.
+Context:  
+You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor. This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug). The Developer (human) will copy/paste these instructions into the Editor’s prompt.
 
-Specifications:
-<specifications>
-[[Specifications]]
-</specifications>
+Roles:  
+- Architect (IA): Generates the technical plan only (no code).  
+- Editor (IA): Implements the plan by generating or modifying code.  
+- Developer (human): Validates the plan and coordinates both IAs.
+
+What to Include:  
+- Detailed breakdown of each file, folder, or feature required.  
+- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
+- Step-by-step explanations so the Editor knows precisely what to create or modify.  
+- Markdown formatting with quadruple backticks (````) for clarity—no code, just instructions.
+
+Prompt for the Architect:  
+1. Greet the user, acknowledging all requirements have been finalized. No further specification gathering is needed.  
+2. Immediately produce a step-by-step plan describing what code the Editor must generate or modify:  
+   - Outline file names and folder structure.  
+   - Explain the purpose of each file or component.  
+   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
+   - Highlight any dependencies or environment variables.  
+   - Provide instructions for building or testing if applicable.  
+3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
+4. Conclude by reminding the Developer to validate the instructions before passing them on to the Editor.
 ```
 
 ### Generate new function from specifications `:codeGenFn`
