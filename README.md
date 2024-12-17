@@ -51,7 +51,6 @@ espanso package update ai-driven-dev-prompts
     - [The ideal Prompt Template `:codeTemplate`](#the-ideal-prompt-template-codetemplate)
   - [🙋‍♂️ Feature request](#️-feature-request)
     - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-    - [Technical plan `:featurePlanDeprecated` (deprecated)](#technical-plan-featureplandeprecated-deprecated)
     - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
   - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
     - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
@@ -60,7 +59,7 @@ espanso package update ai-driven-dev-prompts
     - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
     - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
   - [🚀 Code Generation](#-code-generation)
-  - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
+    - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
     - [Generate new function from specifications `:codeGenFn`](#generate-new-function-from-specifications-codegenfn)
     - [Create new file based on existing file `:codeNewFile`](#create-new-file-based-on-existing-file-codenewfile)
     - [Fake data `:codeFakeData`](#fake-data-codefakedata)
@@ -211,106 +210,6 @@ User stories template:
 ...
 ```
 ````
-
-<!-- markdownlint-enable MD033 -->
-<details>
-<summary><h3>Technical plan `:featurePlanDeprecated` (deprecated)</h3></summary>
-
-### Technical plan `:featurePlanDeprecated` (deprecated)
-
-Feel free to remove part of the plan you are not using.
-
-```markdown
-# Technical Plan to code my feature
-
-## Description
-
-[[1 sentence summary of the feature.]]
-
-## Behavior: User flow
-
-The idea of the feature is:
-
-- Given the user...
-- When the user...
-- Then the user...
-
-## Frontend Implementation (w/wo UI)
-
-- [ ] Action
-
-## Backend Implementation (w/wo DB)
-
-- [ ] Action
-
-## Tests
-
-- [ ] Describe
-  - [ ] It should...
-  - [ ] It should...
-
-## Requirements from Product Owner
-
-Here are the original requirements from the Product Owner:
-<requirements>
-optional if you made a "perfect" plan
-</requirements>
-```
-
-<!-- markdownlint-disable MD033 -->
-<details>
-<summary>Example</summary>
-
-````markdown
-
-# Technical Plan to code my feature
-
-## Description
-
-I need to code a edit form to edit a suggestion.
-
-## Behavior: User flow
-
-The idea of the feature is:
-
-- Given the user is on the suggestions list page
-- When the user click the edit button of a suggestion
-- Then the user can see a dialog containing a form to edit the suggestion's name, description and version
-
-## Frontend Implementation (w/wo UI)
-
-- [ ] Create one button "Edit" per cell in not existing in @SuggestionLine.tsx
-  - [ ] Remove everything related to "isEditing" and state management, submit functions, just display table
-- [ ] It will open a Dialog from @Dialog.tsx
-- [ ] Dialog contains a `<form>` with useFormState, create a new component "EditSuggestionForm" using example in @TipForm.tsx 
-  - [ ] `id` is passed as hidden field
-  - [ ] `id`, `name`, `description` and `version` are passed as Props
-  - [ ] Use "InputWithLabel" same way this is in @TipForm.tsx
-  - [ ] Dialog has a close button top right
-- [ ] Dialog has a unique submit button
-  - [ ] Display form errors if any at the bottom of the form
-  - [ ] On submit, call  "createSuggestionAction" from useFormState
-
-## Backend Implementation (w/wo DB)
-
-- [ ] Create a form action similar to @createSuggestionAction.ts but for edition (name, description, version are editable)
-- [ ] In order to persist the save, you need to create a save in FireStore similar to @createSuggestion.ts but for edition
-- [ ] Create a new "SuggestionEditForm" type
-  - [ ] Pick id, name, description and version to "Suggestion" type in @Suggestion.ts , use that type in my form action
-
-## Tests
-
-- [ ] Describe "Suggestion Edition"
-  - [ ] It should edit an existing suggestion
-    - [ ] Test against @createSuggestionAction.ts  method
-    - [ ] Mock deps using example from @newsletterAction.test.ts 
-    - [ ] Mock next/* calls like "revalidatePath"
-````
-
-</details>
-
-</details>
-<!-- markdownlint-enable MD033 -->
 
 ### Generate code for a feature `:featureCode`
 
@@ -529,10 +428,12 @@ Rules:
 
 ## 🚀 Code Generation
 
-## Prompt to generate code instructions `:codeInstructions`
+### Prompt to generate code instructions `:codeInstructions`
+
+- A mettre dans le RAG
 
 ```text
-# One-Shot Prompt: Architect → Editor Code Instructions
+Goal: [[What you want to achieve with this prompt]]
 
 Context:  
 You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor. This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug). The Developer (human) will copy/paste these instructions into the Editor’s prompt.
@@ -548,8 +449,8 @@ What to Include:
 - Step-by-step explanations so the Editor knows precisely what to create or modify.  
 - Markdown formatting with quadruple backticks (````) for clarity—no code, just instructions.
 
-Prompt for the Architect:  
-1. Greet the user, acknowledging all requirements have been finalized. No further specification gathering is needed.  
+Prompt for the Architect (write a "technical plan" only, no code):
+1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
 2. Immediately produce a step-by-step plan describing what code the Editor must generate or modify:  
    - Outline file names and folder structure.  
    - Explain the purpose of each file or component.  
