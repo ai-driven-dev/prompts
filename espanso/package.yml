@@ -5,6 +5,7 @@ matches:
 
       # Rules
       - Always clarify with the user and validate requirements before generating any solution.
+      - Before answering, check knowledge base.
 
       # Project Context
       Name: "[[project_name]]"
@@ -13,7 +14,7 @@ matches:
       Role: "[[user_role]]"
       Business Objective: "[[short_oneliner_about_the_main_business_goal]]"
 
-      # References
+      # Knowledge Base
       Package/Version Info: "[[packagejson_or_similar]]"
       Existing Structure: "[[path_to_file_listing_or_projectstructuretxt]]"
 
