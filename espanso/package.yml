@@ -7,15 +7,15 @@ matches:
       - Always clarify with the user and validate requirements before generating any solution.
 
       # Project Context
-      Name: [[project_name]]  
-      Description: [[project_description]]  
-      Tech Stack: [[tech_stack]]  
-      Role: [[user_role]]  
-      Business Objective: [[short_oneliner_about_the_main_business_goal]]
+      Name: "[[project_name]]"
+      Description: "[[project_description]]"
+      Tech Stack: "[[tech_stack]]"
+      Role: "[[user_role]]"
+      Business Objective: "[[short_oneliner_about_the_main_business_goal]]"
 
       # References
-      Package/Version Info: [[packagejson_or_similar]]  
-      Existing Structure: [[path_to_file_listing_or_projectstructuretxt]]
+      Package/Version Info: "[[packagejson_or_similar]]"
+      Existing Structure: "[[path_to_file_listing_or_projectstructuretxt]]"
 
       # Global Guidelines
       Clean Architecture & DDD:  
@@ -40,21 +40,6 @@ matches:
       - Prefer functions under 20 lines.  
       - Provide the complete code with no placeholders.
       - Do not add commentary unless absolutely necessary.
-    form_fields:
-      project_name:
-        multiline: true
-      project_description:
-        multiline: true
-      tech_stack:
-        multiline: true
-      user_role:
-        multiline: true
-      short_oneliner_about_the_main_business_goal:
-        multiline: true
-      packagejson_or_similar:
-        multiline: true
-      path_to_file_listing_or_projectstructuretxt:
-        multiline: true
   - trigger: ':instructCodeReviewer'
     form: |
       Your task is to analyze the provided code snippet and suggest improvements to optimize its performance.
@@ -105,52 +90,25 @@ matches:
       # Personalized Information for ChatGPT
 
       ## About Me
-      - Name & Age: [[alex_31yo]]
-      - Sex: [[male]]
-      - Location: [[montpellier_france]]
-      - Weight & Height: [[78kg_186cm]]
-      - Personality: [[rigorous_resultsdriven_like_to_improve_enjoy_learning]]
+      - Name & Age: "[[alex_31yo]]"
+      - Sex: "[[male]]"
+      - Location: "[[montpellier_france]]"
+      - Weight & Height: "[[78kg_186cm]]"
+      - Personality: "[[rigorous_resultsdriven_like_to_improve_enjoy_learning]]"
 
       ## Professional Profile
-      - Current Job/Position: [[senior_developer_and_entrepreneur]]
-      - Past Experience: [[12_years_in_fullstack_development]]
+      - Current Job/Position: "[[senior_developer_and_entrepreneur]]"
+      - Past Experience: "[[12_years_in_fullstack_development]]"
 
       ## Lifestyle & Routine
-      - Passions & Hobbies: [[coding_ai_fitness_nutrition_entrepreneurship_reading_self_improvement]]
-      - Daily Routine: [[morning_routine_6am_meditation_reading_stretching_coding_workout_healthy_meals_intermittent_fasting]]
-      - Likes/Dislikes: [[productivity_challenge_better_human_procrastination_negativity]]
-      - Allergies/Diet: [[ibs_glutenfree_dairyfree_low_fodmap]]
+      - Passions & Hobbies: "[[coding_ai_fitness_nutrition_entrepreneurship_reading_self_improvement]]"
+      - Daily Routine: "[[morning_routine_6am_meditation_reading_stretching_coding_workout_healthy_meals_intermittent_fasting]]"
+      - Likes/Dislikes: "[[productivity_challenge_better_human_procrastination_negativity]]"
+      - Allergies/Diet: "[[ibs_glutenfree_dairyfree_low_fodmap]]"
 
       ## Goals
-      - Professional: [[creating_best_french_ai_coding_community_with_course_number_1_aidriven_developers_in_france]]
-      - Personal: [[better_focus_more_energy_more_muscle_less_fat_more_knowledge_more_money_more_impact]]
-    form_fields:
-      alex_31yo:
-        multiline: true
-      male:
-        multiline: true
-      montpellier_france:
-        multiline: true
-      78kg_186cm:
-        multiline: true
-      rigorous_resultsdriven_like_to_improve_enjoy_learning:
-        multiline: true
-      senior_developer_and_entrepreneur:
-        multiline: true
-      12_years_in_fullstack_development:
-        multiline: true
-      coding_ai_fitness_nutrition_entrepreneurship_reading_self_improvement:
-        multiline: true
-      morning_routine_6am_meditation_reading_stretching_coding_workout_healthy_meals_intermittent_fasting:
-        multiline: true
-      productivity_challenge_better_human_procrastination_negativity:
-        multiline: true
-      ibs_glutenfree_dairyfree_low_fodmap:
-        multiline: true
-      creating_best_french_ai_coding_community_with_course_number_1_aidriven_developers_in_france:
-        multiline: true
-      better_focus_more_energy_more_muscle_less_fat_more_knowledge_more_money_more_impact:
-        multiline: true
+      - Professional: "[[creating_best_french_ai_coding_community_with_course_number_1_aidriven_developers_in_france]]"
+      - Personal: "[[better_focus_more_energy_more_muscle_less_fat_more_knowledge_more_money_more_impact]]"
   - trigger: ':instructResponses'
     form: |
       # Prompt Optimization for Attention Difficulties
