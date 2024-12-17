@@ -430,13 +430,16 @@ Rules:
 
 ### Prompt to generate code instructions `:codeInstructions`
 
-- A mettre dans le RAG
-
 ```text
-Goal: [[What you want to achieve with this prompt]]
+Goal:
+<goal>
+[[What you want to achieve with this prompt]]
+</goal>
 
 Context:  
-You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor. This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug). The Developer (human) will copy/paste these instructions into the Editor’s prompt.
+You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor.
+This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
+The Developer (human) will copy/paste these instructions into the Editor’s prompt.
 
 Roles:  
 - Architect (IA): Generates the technical plan only (no code).  

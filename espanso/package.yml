@@ -481,10 +481,15 @@ matches:
           interfaces
   - trigger: ':codeInstructions'
     form: |
-      Goal: [[what_you_want_to_achieve_with_this_prompt]]
+      Goal:
+      <goal>
+      [[what_you_want_to_achieve_with_this_prompt]]
+      </goal>
 
       Context:  
-      You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor. This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug). The Developer (human) will copy/paste these instructions into the Editor’s prompt.
+      You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor.
+      This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
+      The Developer (human) will copy/paste these instructions into the Editor’s prompt.
 
       Roles:  
       - Architect (IA): Generates the technical plan only (no code).  
