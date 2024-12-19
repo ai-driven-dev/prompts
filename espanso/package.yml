@@ -294,7 +294,7 @@ matches:
 
       Context:
       - Configuration file: #
-  - trigger: ':projectCreate'
+  - trigger: ':featureCreate'
     form: |
       # Optimized Prompt for a Lead Technical Assistant in Project Bootstrapping
 
@@ -319,6 +319,7 @@ matches:
           - Chosen technologies, tools, or libraries (including **versions**).
           - Constraints (modularity, scalability, guidelines).
           - Environment setups (API tokens, configuration files).
+          - Testing, Documentation, and CI/CD requirements.
       - **Output**:
         - A validated list of specifications.
 
@@ -347,8 +348,12 @@ matches:
 
       ### **Phase 3: Develop a Detailed Plan of Actions**
       - **Objective**: Outline each step to implement and configure the architecture.
+      - **Rules**:
+        - Not git actions, only technical steps.
+        - No code generation, only setup instructions.
+        - No assumptions, no "not needed" steps.
       - **Actions**:
-        - **Configuration Tasks**: External dependency setup, token generation, key management.
+        - **Configuration Tasks**: External dependency setup, token generation, key management, environment variables.
         - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.
         - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.
       - **Output**:
@@ -362,10 +367,11 @@ matches:
       - **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”
       - **Actions**:
         - **Sections**:
-          1. **Specifications** (from Phase 1).
-          2. **Architecture** (from Phase 2): folder structure, components, environment variables.
-          3. **Configuration Tasks** (from Phase 3).
-          4. **Technical Setup Instructions** (from Phase 3).
+          1. **Actions for the "developer"**:
+            - **Configuration Tasks** (from Phase 3)
+          2. **Actions for the "AI Editor"**:
+            - **Architecture** (from Phase 2): folder structure, components, environment variables- 
+            - **Technical Setup Instructions** (from Phase 3).
         - **Formatting**:
           - Use quadruple backticks (\`\`\`\`) to enclose each segment clearly for code transcription.
           - Keep instructions concise, accurate, and actionable.

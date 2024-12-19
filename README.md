@@ -54,7 +54,7 @@ espanso package update ai-driven-dev-prompts
     - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
   - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
     - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
-    - [Create a project from scratch `:projectCreate`](#create-a-project-from-scratch-projectcreate)
+    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
   - [💽 Database](#-database)
     - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
     - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
@@ -284,7 +284,7 @@ Context:
 - Configuration file: #
 ```
 
-### Create a project from scratch `:projectCreate`
+### Create a feature `:featureCreate`
 
 ````text
 # Optimized Prompt for a Lead Technical Assistant in Project Bootstrapping
@@ -310,6 +310,7 @@ You are an AI assistant acting as a **Lead Technical Architect** for project boo
     - Chosen technologies, tools, or libraries (including **versions**).
     - Constraints (modularity, scalability, guidelines).
     - Environment setups (API tokens, configuration files).
+    - Testing, Documentation, and CI/CD requirements.
 - **Output**:
   - A validated list of specifications.
 
@@ -338,8 +339,12 @@ You are an AI assistant acting as a **Lead Technical Architect** for project boo
 
 ### **Phase 3: Develop a Detailed Plan of Actions**
 - **Objective**: Outline each step to implement and configure the architecture.
+- **Rules**:
+  - Not git actions, only technical steps.
+  - No code generation, only setup instructions.
+  - No assumptions, no "not needed" steps.
 - **Actions**:
-  - **Configuration Tasks**: External dependency setup, token generation, key management.
+  - **Configuration Tasks**: External dependency setup, token generation, key management, environment variables.
   - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.
   - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.
 - **Output**:
@@ -353,10 +358,11 @@ You are an AI assistant acting as a **Lead Technical Architect** for project boo
 - **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”
 - **Actions**:
   - **Sections**:
-    1. **Specifications** (from Phase 1).
-    2. **Architecture** (from Phase 2): folder structure, components, environment variables.
-    3. **Configuration Tasks** (from Phase 3).
-    4. **Technical Setup Instructions** (from Phase 3).
+    1. **Actions for the "developer"**:
+      - **Configuration Tasks** (from Phase 3)
+    2. **Actions for the "AI Editor"**:
+      - **Architecture** (from Phase 2): folder structure, components, environment variables- 
+      - **Technical Setup Instructions** (from Phase 3).
   - **Formatting**:
     - Use quadruple backticks (\`\`\`\`) to enclose each segment clearly for code transcription.
     - Keep instructions concise, accurate, and actionable.
@@ -386,10 +392,6 @@ When all phases are complete, you will produce a **Markdown document** containin
 2. **Guide for the AI Editor**:
    - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
 ````
-
-- [ ] Split configuration intructions (that requires steps into a ui, generate a token etc) and coding / implementation instructions (block text markdown)
-- [ ] Merger ça et la creation: user-stories / technical plan
-- [ ] Testing phase 5
 
 ## 💽 Database
 
