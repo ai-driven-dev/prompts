@@ -62,12 +62,12 @@ espanso package update ai-driven-dev-prompts
     - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
     - [Generate new function from specifications `:codeGenFn`](#generate-new-function-from-specifications-codegenfn)
     - [Create new file based on existing file `:codeNewFile`](#create-new-file-based-on-existing-file-codenewfile)
+    - [Create new generic file `:codeNewFileGeneric`](#create-new-generic-file-codenewfilegeneric)
     - [Fake data `:codeFakeData`](#fake-data-codefakedata)
   - [🏞️ Generate code from image](#️-generate-code-from-image)
     - [Extract details from image and match components (WIP)](#extract-details-from-image-and-match-components-wip)
   - [💉 Bug Fixing](#-bug-fixing)
     - [Find the issue `:bugFind`](#find-the-issue-bugfind)
-    - [Create new generic file `:codeNewFileGeneric`](#create-new-generic-file-codenewfilegeneric)
   - [🐛 Debugging](#-debugging)
     - [Write log `:debugLog`](#write-log-debuglog)
     - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
@@ -504,6 +504,25 @@ Existing file: #file
 New file: #file
 ```
 
+### Create new generic file `:codeNewFileGeneric`
+
+```text
+Goal:
+I want to make this file generic so it can "[[purpose]]".
+
+Context:
+Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
+<elements>
+[[specific elements that must be extracted]]
+</elements>
+
+Rules:
+1. List all the elements that need to be extracted.
+2. List all the elements that do not need to be removed.
+3. List the steps to achieve the refactoring.
+4. Provide the code to add or modify (do not make unnecessary changes).
+```
+
 ### Fake data `:codeFakeData`
 
 ```text
@@ -566,25 +585,6 @@ Rules:
 - Then list potentials issues and steps to fix the code
 - Sort them by relevance
 - Issues might be induced by another part of the code, so you might need to check the whole codebase.
-```
-
-### Create new generic file `:codeNewFileGeneric`
-
-```text
-Goal:
-I want to make this file generic so it can "[[purpose]]".
-
-Context:
-Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
-<elements>
-[[specific elements that must be extracted]]
-</elements>
-
-Rules:
-1. List all the elements that need to be extracted.
-2. List all the elements that do not need to be removed.
-3. List the steps to achieve the refactoring.
-4. Provide the code to add or modify (do not make unnecessary changes).
 ```
 
 ## 🐛 Debugging

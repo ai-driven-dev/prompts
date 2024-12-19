@@ -513,6 +513,25 @@ matches:
     form_fields:
       describe_new_logic:
         multiline: true
+  - trigger: ':codeNewFileGeneric'
+    form: |
+      Goal:
+      I want to make this file generic so it can "[[purpose]]".
+
+      Context:
+      Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
+      <elements>
+      [[specific_elements_that_must_be_extracted]]
+      </elements>
+
+      Rules:
+      1. List all the elements that need to be extracted.
+      2. List all the elements that do not need to be removed.
+      3. List the steps to achieve the refactoring.
+      4. Provide the code to add or modify (do not make unnecessary changes).
+    form_fields:
+      specific_elements_that_must_be_extracted:
+        multiline: true
   - trigger: ':codeFakeData'
     form: |
       Goal:
@@ -542,25 +561,6 @@ matches:
       - Issues might be induced by another part of the code, so you might need to check the whole codebase.
     form_fields:
       result_behavior_error_logs_or_your_analysis:
-        multiline: true
-  - trigger: ':codeNewFileGeneric'
-    form: |
-      Goal:
-      I want to make this file generic so it can "[[purpose]]".
-
-      Context:
-      Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
-      <elements>
-      [[specific_elements_that_must_be_extracted]]
-      </elements>
-
-      Rules:
-      1. List all the elements that need to be extracted.
-      2. List all the elements that do not need to be removed.
-      3. List the steps to achieve the refactoring.
-      4. Provide the code to add or modify (do not make unnecessary changes).
-    form_fields:
-      specific_elements_that_must_be_extracted:
         multiline: true
   - trigger: ':debugLog'
     form: "Goal:\nAdd logging messages to the given code at each significant step.\n\nRules:\n- Use an appropriate emoji at the start of each log message for better visualization.\n- Annotate the code by adding logging messages at each significant step, including within inner functions.\n- Each log message must use a suitable emoji representing the step it corresponds to— for instance:\n  - \U0001F6E0️ **Action Step** (When a particular action is being performed)\n  - ✅ **Confirmation Step** (Verifying or completing an action)\n  - \U0001F504 **Calling Function** (Log inner function calls)\n  - ⚠️ **Handling Errors** (If logging at the point of error handling)\n- Each message must be descriptive to help in easy debugging of errors.\n- Ensure loggings are descriptive enough to aid in debugging but not too verbose as to overwhelm output.\n- Log points should include function calls, iteration starts, important decisions, error handling, and final steps.\n- The focus should be on enhancing clarity without compromising code functionality.\n"
