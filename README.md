@@ -7,11 +7,7 @@ This repository is the new `Prompts` repository for the AI-Driven Dev project.
 
 ## 🚀 Use optimized developer prompts in your workflow
 
-Because better prompts leads to (way) better results.
-
-This is a collection of prompts that I use to generate images for my AI-Driven Dev project.
-
-<https://ai-driven-dev.com>
+Because better prompts lead to (way) better results when **coding with AI**!
 
 ### 1) Install the text expander
 
@@ -77,10 +73,6 @@ espanso package update ai-driven-dev-prompts
     - [Create new test based on existing test (WIP)](#create-new-test-based-on-existing-test-wip)
     - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
     - [List test cases `:testListCases`](#list-test-cases-testlistcases)
-  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-    - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
-    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
-    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
   - [📚 Documentation](#-documentation)
     - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
     - [Insert / Update / Beautify comments `:docInsert`](#insert--update--beautify-comments-docinsert)
@@ -104,6 +96,12 @@ espanso package update ai-driven-dev-prompts
       - [Gherkin `:pmGenerateGherkin`](#gherkin-pmgenerategherkin)
     - [Template](#template)
       - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
+  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+    - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
+    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
+    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
+    - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
+    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
 
 ## ✅ General Guidelines
 
@@ -811,27 +809,6 @@ Rules:
 - [[Do not test UI, focus the logic only | Test the UI if needed | Test the UI and the logic]].
 ```
 
-## ⚡️ Zero Shot Prompts
-
-### Clean prompt `:promptClean`
-
-```text
-Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
-```
-
-### Answer in French `:answerFr`
-
-```text
-For all answers, answer in French.
-```
-
-### Answer in markdown `:answerMd`
-
-```text
-Answer in markdown format on a text block. 
-For code blocks that contain markdown or other backticks, use 4 backticks. 
-```
-
 ## 📚 Documentation
 
 ### Search in online documentation `:docSearch`
@@ -1255,4 +1232,52 @@ Rules:
 - Keep only the feature scope and focus only on the sub-steps, do not think about side tasks or parent ones.
 - Add a simple test feature list explanation with checkboxes as well.
 - Do not hesitate to add notes regarding important aspect of what you wrote.
+```
+
+## ⚡️ Zero Shot Prompts
+
+### Clean prompt `:promptClean`
+
+```text
+Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+```
+
+### Answer in French `:answerFr`
+
+```text
+For all answers, answer in French.
+```
+
+### Answer in markdown `:answerMd`
+
+```text
+Answer in markdown format on a text block. 
+For code blocks that contain markdown or other backticks, use 4 backticks. 
+```
+
+### Check knowledge base before answering `:checkKB`
+
+```text
+Before answering, check the knowledge base to better understand my request.
+
+Then:
+- Summarize briefly the knowledge you found.
+- Annonce the next steps you will take.
+- Ask for confirmation before proceeding.
+```
+
+### Evaluate Answer `:evaluate`
+
+```text
+Thank you. Now:
+
+1) Evaluate your own work. List all its strength and flaws.
+
+2) Give it a mark between 0 and 20. Justify your mark with an argumentative paragraph.
+
+3) Give yourself a list of suggestions that will make the mark 20. Number each suggestion.
+
+4) Rewrite your work by following recommendations from point 3). Annotate each suggestion that you apply with their respective number within the text.
+
+5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
 ```

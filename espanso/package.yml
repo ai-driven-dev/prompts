@@ -616,16 +616,6 @@ matches:
           Do not test UI, focus the logic only
           Test the UI if needed
           Test the UI and the logic
-  - trigger: ':promptClean'
-    form: |
-      Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
-  - trigger: ':answerFr'
-    form: |
-      For all answers, answer in French.
-  - trigger: ':answerMd'
-    form: |
-      Answer in markdown format on a text block. 
-      For code blocks that contain markdown or other backticks, use 4 backticks. 
   - trigger: ':docSearch'
     form: |
       Goal:
@@ -979,4 +969,35 @@ matches:
       - Keep only the feature scope and focus only on the sub-steps, do not think about side tasks or parent ones.
       - Add a simple test feature list explanation with checkboxes as well.
       - Do not hesitate to add notes regarding important aspect of what you wrote.
+  - trigger: ':promptClean'
+    form: |
+      Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+  - trigger: ':answerFr'
+    form: |
+      For all answers, answer in French.
+  - trigger: ':answerMd'
+    form: |
+      Answer in markdown format on a text block. 
+      For code blocks that contain markdown or other backticks, use 4 backticks. 
+  - trigger: ':checkKB'
+    form: |
+      Before answering, check the knowledge base to better understand my request.
+
+      Then:
+      - Summarize briefly the knowledge you found.
+      - Annonce the next steps you will take.
+      - Ask for confirmation before proceeding.
+  - trigger: ':evaluate'
+    form: |
+      Thank you. Now:
+
+      1) Evaluate your own work. List all its strength and flaws.
+
+      2) Give it a mark between 0 and 20. Justify your mark with an argumentative paragraph.
+
+      3) Give yourself a list of suggestions that will make the mark 20. Number each suggestion.
+
+      4) Rewrite your work by following recommendations from point 3). Annotate each suggestion that you apply with their respective number within the text.
+
+      5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
 
