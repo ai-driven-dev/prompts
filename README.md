@@ -102,6 +102,7 @@ espanso package update ai-driven-dev-prompts
     - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
     - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
     - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
+    - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
 
 ## ✅ General Guidelines
 
@@ -1281,3 +1282,49 @@ Thank you. Now:
 
 5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
 ```
+
+### Restart a new chat / conversation `:restart`
+
+````markdown
+# New Prompt: Relaunching a Complex Conversation
+
+## **Summary of Key Takeaways**
+We discussed [sujet principal] and explored [specific areas]. The main goal was to [objective]. Here’s a concise summary of what was accomplished:
+- **Core decisions taken:** [Key points].
+- **Challenges remaining:** [Brief overview of unresolved issues].
+- **Next priorities:** [Clear and actionable next steps].
+
+---
+
+## **Decisions Taken**
+1. **[Decision 1]:** [What and why].  
+2. **[Decision 2]:** [What and why].  
+3. **[Decision 3]:** [What and why].  
+
+---
+
+## **Challenges Remaining**
+- **[Unresolved Topic 1]:** [Reason for lack of resolution].  
+- **[Unresolved Topic 2]:** [Reason for lack of resolution].  
+
+---
+
+## **Exclusions**
+1. **[Excluded Point 1]:** [Reason].  
+2. **[Excluded Point 2]:** [Reason].  
+
+---
+
+## **Next Steps (Quick Reference)**
+- **[Step 1]:** [Brief and actionable description].  
+- **[Step 2]:** [Brief and actionable description].  
+- **[Step 3]:** [Brief and actionable description].  
+
+---
+
+## **Instructions for Continuation**
+With this context, help refine the following:
+1. [Specific refinement needed].  
+2. [Second area for improvement].  
+3. [Additional question to explore].  
+````
