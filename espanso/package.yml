@@ -1043,4 +1043,7 @@ matches:
       1. [Specific refinement needed].  
       2. [Second area for improvement].  
       3. [Additional question to explore].  
+  - trigger: ':osxBrew'
+    form: |
+      brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 

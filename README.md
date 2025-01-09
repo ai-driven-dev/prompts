@@ -103,6 +103,8 @@ espanso package update ai-driven-dev-prompts
     - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
     - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
     - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
+    - [OSX](#osx)
+      - [Check for Homebrew `:osxBrew`](#check-for-homebrew-osxbrew)
 
 ## ✅ General Guidelines
 
@@ -1328,3 +1330,11 @@ With this context, help refine the following:
 2. [Second area for improvement].  
 3. [Additional question to explore].  
 ````
+
+### OSX
+
+#### Check for Homebrew `:osxBrew`
+
+```text
+brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
+```
