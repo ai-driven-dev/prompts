@@ -189,7 +189,10 @@ Please answer in user's language from previous conversation's messages.
 
 ---
 
-**Prompt to Optimize**: *(Insert your initial prompt here)*
+**Prompt to Optimize**: 
+<prompt>
+[[Your prompt]]
+</prompt>
 
 **Required Response Format**:  
 1. **Identified Weaknesses**  

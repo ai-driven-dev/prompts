@@ -237,13 +237,19 @@ matches:
 
       ---
 
-      **Prompt to Optimize**: *(Insert your initial prompt here)*
+      **Prompt to Optimize**: 
+      <prompt>
+      [[your_prompt]]
+      </prompt>
 
       **Required Response Format**:  
       1. **Identified Weaknesses**  
       2. **Suggested Improvements**  
       3. **Optimized Prompt**  
       4. **Validation**
+    form_fields:
+      your_prompt:
+        multiline: true
   - trigger: ':featureUS'
     form: |
       Goal: Please endorse Product Owner to write very good user stories for the developers team.
