@@ -1,15 +1,69 @@
 # AI-Driven Dev {Prompts}
 
-This repository is the new `Prompts` repository for the AI-Driven Dev project.
+A collection of prompts for software engineers to generate code faster with better quality. ❤️
 
-> **Warning**
-> This repository is under heavy development.
+- [🚀 Invoke the prompt from EVERYWHERE](#-invoke-the-prompt-from-everywhere)
+  - [1) Install our prompt library](#1-install-our-prompt-library)
+  - [2) How-to use a prompt?](#2-how-to-use-a-prompt)
+  - [3) Up-to-date prompts with updates](#3-up-to-date-prompts-with-updates)
+- [✅ General Guidelines](#-general-guidelines)
+  - [Contribution](#contribution)
+  - [Template `:codeTemplate`](#template-codetemplate)
+  - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
+- [🙋‍♂️ Feature request](#️-feature-request)
+  - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
+  - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
+  - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
+- [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
+  - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
+- [💽 Database](#-database)
+  - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
+  - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
+- [🚀 Code Generation](#-code-generation)
+  - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
+  - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
+- [🏞️ Generate code from image](#️-generate-code-from-image)
+  - [Extract details from image and match components](#extract-details-from-image-and-match-components)
+- [💉 Bug Fixing](#-bug-fixing)
+  - [Find the issue `:bugFind`](#find-the-issue-bugfind)
+- [🐛 Debugging](#-debugging)
+  - [Write log `:debugLog`](#write-log-debuglog)
+  - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
+- [🧪 Tests](#-tests)
+  - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
+  - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
+- [📚 Documentation](#-documentation)
+  - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
+  - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
+- [🔄 Refactoring](#-refactoring)
+  - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
+  - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
+  - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
+- [🧙 Senior Advice](#-senior-advice)
+  - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
+- [🧑‍🍳 Project Management](#-project-management)
+  - [Write specifications document `:pmSpecs`](#write-specifications-document-pmspecs)
+  - [Choose a tech stack `:pmTechStack`](#choose-a-tech-stack-pmtechstack)
+  - [Generate Milestones `:pmGenerateMilestones`](#generate-milestones-pmgeneratemilestones)
+  - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
+- [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+  - [Assert text `:assert`](#assert-text-assert)
+  - [Answer in French `:answerFr`](#answer-in-french-answerfr)
+  - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
+  - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
+  - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
+  - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
+  - [OSX](#osx)
+    - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
 
-## 🚀 Use optimized developer prompts in your workflow
+## 🚀 Invoke the prompt from EVERYWHERE
 
-Because better prompts lead to (way) better results when **coding with AI**!
+To code faster with AI, you need:
 
-### 1) Install the text expander
+1. Good prompts
+2. To be able to user them everywhere, from ChatGPT to Chrome.
+
+### 1) Install our prompt library
 
 1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
 
@@ -21,13 +75,13 @@ espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts
 
 3. Launch the app any time you want to use the prompts.
 
-### 2) How-to use the prompts library
+### 2) How-to use a prompt?
 
-When you need a prompt, type `:promptName` OR press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
+When you need a prompt, press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
 
 ![espanso usage](docs/espanso.gif)
 
-### 3) Get the latest prompts (update)
+### 3) Up-to-date prompts with updates
 
 Prompts are updated regularly by the AI-Driven Dev Community, use this command to get the latest upgraded prompts.
 
@@ -35,85 +89,15 @@ Prompts are updated regularly by the AI-Driven Dev Community, use this command t
 espanso package update ai-driven-dev-prompts
 ```
 
-## 🔥 Available prompts
-
-- [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
-  - [🚀 Use optimized developer prompts in your workflow](#-use-optimized-developer-prompts-in-your-workflow)
-    - [1) Install the text expander](#1-install-the-text-expander)
-    - [2) How-to use the prompts library](#2-how-to-use-the-prompts-library)
-    - [3) Get the latest prompts (update)](#3-get-the-latest-prompts-update)
-  - [🔥 Available prompts](#-available-prompts)
-  - [✅ General Guidelines](#-general-guidelines)
-    - [The ideal Prompt Template `:codeTemplate`](#the-ideal-prompt-template-codetemplate)
-  - [🙋‍♂️ Feature request](#️-feature-request)
-    - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-    - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
-    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
-  - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
-    - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
-  - [💽 Database](#-database)
-    - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
-    - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
-  - [🚀 Code Generation](#-code-generation)
-    - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
-    - [Generate new function from specifications `:codeGenFn`](#generate-new-function-from-specifications-codegenfn)
-    - [Create new file based on existing file `:codeNewFile`](#create-new-file-based-on-existing-file-codenewfile)
-    - [Create new generic file `:codeNewFileGeneric`](#create-new-generic-file-codenewfilegeneric)
-    - [Fake data `:codeFakeData`](#fake-data-codefakedata)
-  - [🏞️ Generate code from image](#️-generate-code-from-image)
-    - [Extract details from image and match components (WIP)](#extract-details-from-image-and-match-components-wip)
-  - [💉 Bug Fixing](#-bug-fixing)
-    - [Find the issue `:bugFind`](#find-the-issue-bugfind)
-  - [🐛 Debugging](#-debugging)
-    - [Write log `:debugLog`](#write-log-debuglog)
-    - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
-  - [🧪 Tests](#-tests)
-    - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
-    - [Check for test methods to implement `:testAdd`](#check-for-test-methods-to-implement-testadd)
-    - [Create new test based on existing test (WIP)](#create-new-test-based-on-existing-test-wip)
-    - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
-    - [List test cases `:testListCases`](#list-test-cases-testlistcases)
-  - [📚 Documentation](#-documentation)
-    - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
-    - [Insert / Update / Beautify comments `:docInsert`](#insert--update--beautify-comments-docinsert)
-    - [Provide example to use a function `:docFnExample`](#provide-example-to-use-a-function-docfnexample)
-  - [🔄 Refactoring](#-refactoring)
-    - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
-    - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
-  - [🧙 Senior Advice](#-senior-advice)
-    - [Code Review (WIP)](#code-review-wip)
-    - [Project Architecture (WIP)](#project-architecture-wip)
-    - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
-  - [🧑‍🍳 Project Management](#-project-management)
-    - [Specification writing](#specification-writing)
-      - [Start a new specification document `:pmSpecsStart`](#start-a-new-specification-document-pmspecsstart)
-      - [Continue to fill the document `:pmSpecsContinue`](#continue-to-fill-the-document-pmspecscontinue)
-    - [Selection](#selection)
-      - [Choose a tech stack `:pmSelectionTech`](#choose-a-tech-stack-pmselectiontech)
-    - [Generate](#generate)
-      - [Milestones `:pmGenerateMilestones`](#milestones-pmgeneratemilestones)
-      - [User-stories (US) `:pmGenerateUS`](#user-stories-us-pmgenerateus)
-      - [Gherkin `:pmGenerateGherkin`](#gherkin-pmgenerategherkin)
-    - [Template](#template)
-      - [Ticket `:pmTemplateTicket`](#ticket-pmtemplateticket)
-  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-    - [Clean prompt `:promptClean`](#clean-prompt-promptclean)
-    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
-    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
-    - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
-    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
-    - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
-    - [OSX](#osx)
-      - [Check for Homebrew `:osxBrew`](#check-for-homebrew-osxbrew)
-
 ## ✅ General Guidelines
 
 Those prompts can be used to personalize AI based on your requirements.
 
-- It can be used in your IDE (e.g., GitHub Copilot, Cursor...)
-- It should be used as a Custom GPT like [this](https://github.com/ai-driven-dev/instructions)
+### Contribution
 
-### The ideal Prompt Template `:codeTemplate`
+Please share your prompts or fix those here using a pull-request.
+
+### Template `:codeTemplate`
 
 Most of the time, you just need to structure a prompt - to make it better.
 
@@ -156,6 +140,61 @@ Output Example:
 <outputExample>
 [[Example of the output you want to get]]
 </outputExample>
+```
+
+### Optimize your prompts `:promptOpt`
+
+```text
+# Step 1: Context and Role
+You are an **expert in Prompt Engineering**.  
+Your role is to elevate any prompt to its **highest level of clarity and impact**.
+
+# Step 2: Prompt Analysis
+1. **Read and analyze** the initial prompt.  
+   - Identify the **context**, the **desired role**, the **goal**, and potential **gaps**.
+
+# Step 3: Diagnosing Weaknesses
+1. **Diagnose** any flaws in the prompt.  
+   - Use **concise bullet points** to describe improvements.
+
+# Step 4: High-Level Improvements
+1. **Suggest** concise, powerful enhancements:  
+   - Base your advice on the **10 essential principles**, **10 practical tips**, an **ideal structure**, and **10 advanced secrets**.
+
+# Step 5: Rewrite the Prompt
+1. **Respect the original intent**.  
+2. **Add constraints** (length, tone, format) if needed.  
+3. **Simplify language** or **clarify style** where necessary.
+
+# Step 6: Provide the Final Version
+1. Present it under the title **“Optimized Prompt”**.  
+2. Keep the final text **under 200 words**.
+
+# Step 7: Validation
+1. **Ask** if the new version meets the user’s original goal.  
+2. [Applying Suggestion #2] **Invite confirmation** after each step if needed.
+
+# Additional Constraints (Optional)
+- Use **short sentences**.  
+- Provide **only minimal examples** if strictly necessary.
+
+# Example of an Advanced Technique
+[Applying Suggestion #4]  
+- **Reference Prior Responses**: “Based on your previous solution regarding X…”  
+
+# Step 8: Stylistic Consistency
+[Applying Suggestion #5]  
+- Use consistent **Markdown headings** and bullet points throughout.
+
+---
+
+**Prompt to Optimize**: *(Insert your initial prompt here)*
+
+**Required Response Format**:  
+1. **Identified Weaknesses**  
+2. **Suggested Improvements**  
+3. **Optimized Prompt**  
+4. **Validation**
 ```
 
 ## 🙋‍♂️ Feature request
@@ -471,11 +510,11 @@ Rules:
 
 ### Prompt to generate code instructions `:codeInstructions`
 
+To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
+
 ```text
 Goal:
-<goal>
 [[What you want to achieve with this prompt]]
-</goal>
 
 Context:  
 You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor.
@@ -491,7 +530,7 @@ What to Include:
 - Detailed breakdown of each file, folder, or feature required.  
 - Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
 - Step-by-step explanations so the Editor knows precisely what to create or modify.  
-- Markdown formatting with quadruple backticks (````) for clarity—no code, just instructions.
+- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
 
 Prompt for the Architect (write a "technical plan" only, no code):
 1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
@@ -501,68 +540,15 @@ Prompt for the Architect (write a "technical plan" only, no code):
    - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
    - Highlight any dependencies or environment variables.  
    - Provide instructions for building or testing if applicable.  
+   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
 3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
 4. Conclude by reminding the Developer to validate the instructions before passing them on to the Editor.
+
+Important:
+Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
 ```
 
-### Generate new function from specifications `:codeGenFn`
-
-```text
-Goal:
-Generate a new function from specifications.
-
-Rules:
-- Generate a new function matching the specifications.
-- List logic to implement in bullet points.
-- Function must reuse existing code when possible.
-- Focus on business logic.
-
-Specifications:
-<specifications>
-[[Specifications]]
-</specifications>
-```
-
-### Create new file based on existing file `:codeNewFile`
-
-```text
-Goal:
-Create a new file based on an existing file.
-
-Rules:
-- Create a new file with the same structure as the existing file.
-- Adapt the code to the new file.
-- Do not keep existing logic, only take structure and reusable code.
-
-Context:
-<context>
-[[Describe new logic]]
-</context>
-
-Existing file: #file
-New file: #file
-```
-
-### Create new generic file `:codeNewFileGeneric`
-
-```text
-Goal:
-I want to make this file generic so it can "[[purpose]]".
-
-Context:
-Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
-<elements>
-[[specific elements that must be extracted]]
-</elements>
-
-Rules:
-1. List all the elements that need to be extracted.
-2. List all the elements that do not need to be removed.
-3. List the steps to achieve the refactoring.
-4. Provide the code to add or modify (do not make unnecessary changes).
-```
-
-### Fake data `:codeFakeData`
+### Generate fake data `:codeFake`
 
 ```text
 Goal:
@@ -575,7 +561,7 @@ Rules:
 
 ## 🏞️ Generate code from image
 
-### Extract details from image and match components (WIP)
+### Extract details from image and match components
 
 ```text
 Goal:
@@ -583,9 +569,9 @@ Extract details from image and match components in the codebase.
 
 Steps:
 1. Analyze the image, then extract information about the image.
-  - Then, match the information with the components in the codebase.
-  - Match every info with a component in the codebase in a bullet point list.
-2. Identify: simple text, changing state and actions that must be handled by functions.
+  - Match the information with the components in the codebase.
+  - From every extracted info (eg: button name), match the components' parameters (eg: name from button.tsx)
+2. Identify: changing state and actions that must be handled by functions.
   - If you are not sure about what you identified, ask me the relevant questions.
   - Then, continue with the next step.
 3. Bind actions from the image with existing functions in the codebase.
@@ -597,8 +583,8 @@ Steps:
   - Create local components if necessary.
 
 Context:
-- Component folder: #
-- Feature folder: #
+- Component folder: @
+- Feature folder: @
 - Image is attached.
 ```
 
@@ -619,10 +605,12 @@ Instead, I get the following:
 [[Result, behavior, error logs... or your analysis]]
 </error>
 
-Rules:
-- Analyze the given code
-- Then list potentials issues and steps to fix the code
-- Sort them by relevance
+Steps:
+1. Analyze the given code
+2. Then list potentials issues and steps to fix the code
+3. Sort them by relevance
+
+Notes:
 - Issues might be induced by another part of the code, so you might need to check the whole codebase.
 ```
 
@@ -753,23 +741,6 @@ Feature: Feature name
     Then I should see the corresponding access rights
 ````
 
-### Check for test methods to implement `:testAdd`
-
-```text
-Goal:
-Based on implementation file, check for methods that need to be tested in test file.
-
-Rules:
-- List main part that need test in bullet points
-- Group similar test in "describe" or similar
-- Write test in "it should..." format
-
-Test file: @
-Implementation file: @
-```
-
-### Create new test based on existing test (WIP)
-
 ### List untested functions `:testUntested`
 
 ```text
@@ -790,28 +761,6 @@ Test files to check (if any):
 #file
 ```
 
-### List test cases `:testListCases`
-
-```text
-Goal:
-Based on existing specifications, I need you to list all test cases for a file.
-
-Requirements:
-<requirements>
-[[requirements]]
-</requirements>
-
-Context:
-- Test file:
-- Implementation file: 
-
-Rules:
-- Detect edge cases and exceptions.
-- Group by distinct sections.
-- Format with bullet list with small sentences.
-- [[Do not test UI, focus the logic only | Test the UI if needed | Test the UI and the logic]].
-```
-
 ## 📚 Documentation
 
 ### Search in online documentation `:docSearch`
@@ -827,32 +776,39 @@ Rules:
 - If you find the answer, write it in markdown format.
 ```
 
-### Insert / Update / Beautify comments `:docInsert`
+### Upgrade comments `:docComments`
 
 ```text
 Goal:
 Insert / Update / Beautify comments in the given code.
 
 Rules:
-- Add top file documentation to describe what the file is doing.
-- Add or update documentation for functions.
-- Add documentation within function if necessary.
-- Move comments to the right place if necessary.
-```
-
-### Provide example to use a function `:docFnExample`
-
-```text
-Goal:
-Provide an example of how to use a function.
-
-Rules:
-- Use the function name in the example
-- Provide a short and simple example
-- Include input parameters and output in code comments
+- Add top file documentation to describe what the file is doing only if whole file is provided.
+- Provide a usage example in functions' doc
+- Include input parameters and output in code comments ONLY if code is not type-safe
+- For inline comments, only comment it code is technically complexe
 ```
 
 ## 🔄 Refactoring
+
+### Create new generic file `:refactGeneric`
+
+```text
+Goal:
+I want to make this file generic so it can "[[purpose]]".
+
+Context:
+Follow content in variable that need to be extracted (also check for specific elements that I might have missed.):
+<elements>
+[[specific elements that must be extracted]]
+</elements>
+
+Rules:
+1. List all the elements that need to be extracted.
+2. List all the elements that do not need to be removed.
+3. List the steps to achieve the refactoring.
+4. Provide the code to add or modify (do not make unnecessary changes).
+```
 
 ### Optimize this code snippet `:refactOpt`
 
@@ -909,15 +865,6 @@ Rules:
 
 ## 🧙 Senior Advice
 
-### Code Review (WIP)
-
-### Project Architecture (WIP)
-
-- Stack
-- Folder structure
-- Tech stack
-- Architecture
-
 ### Design Patterns `:adviceDesignPatterns`
 
 ```text
@@ -937,13 +884,11 @@ For each design pattern, provide:
 
 ## 🧑‍🍳 Project Management
 
-### Specification writing
-
-#### Start a new specification document `:pmSpecsStart`
+### Write specifications document `:pmSpecs`
 
 Create a brand new specification document to help you kickstart your project.
 
-```text
+````text
 We will discuss my project together, and I need you to provide valuable suggestions for it.
 
 This template always refers to "the template" whenever I talk to you about "a template."
@@ -954,9 +899,10 @@ For example, I may ask you to "update the template with the specifications we ju
 
 Is this clear to you?
 
-This Markdown template, which you will update each time I request, is outlined here, surrounded by "---":
+This Markdown template, which you will update each time I request, is outlined here:
 
----
+<markdownTemplate>
+```markdown
 Reusable Project Specification Template
 
 # Initial Conceptualization (Adaptable)
@@ -1059,7 +1005,8 @@ Reusable Project Specification Template
 ### Communication Channels: [Platforms for project updates and discussions]
 ### Update Frequency: [Regular intervals for communication]
 ### Feedback Management: [System for gathering and addressing feedback]
----
+```
+</markdownTemplate>
 
 For the first answer, shortly explain in 1 sentence to the user what we are doing here.
 
@@ -1079,16 +1026,10 @@ Follow these steps:
 7. After each section, offer a summary of what's been added and ask if they’d like to see it.
 
 To begin, ask the user: "Tell me about your project."
-```
 
-#### Continue to fill the document `:pmSpecsContinue`
+### When answering user:
 
-Once you start chatting, you can continue the discussion to better fill the specification document.
-
-```text
-Perfect!
-
-Now, I want you to go through the template I gave you because we need to fill it together.
+I want you to go through the template I gave you because we need to fill it together.
 
 1. **Template Structure**:
    - The template is formatted in Markdown. It contains main sections with titles in the format `# Title` and subsections as `## Subtitle`.
@@ -1117,11 +1058,9 @@ Now, I want you to go through the template I gave you because we need to fill it
 
 7. **Displaying Completed Sections**:
    - If the user wants to jump to the next section, fully display the completed portion of the template.
-```
+````
 
-### Selection
-
-#### Choose a tech stack `:pmSelectionTech`
+### Choose a tech stack `:pmTechStack`
 
 Choose the right tech is hard, an AI can help you find the best tech stack for your project, sorting advantages and drawbacks.
 
@@ -1173,9 +1112,7 @@ Project Needs:
 Afterward, please justify your choices in relation to my project requirements.
 ```
 
-### Generate
-
-#### Milestones `:pmGenerateMilestones`
+### Generate Milestones `:pmGenerateMilestones`
 
 Generate the milestones for your project.
 
@@ -1192,37 +1129,7 @@ Development is scheduled to start in the "[[Second week of January]]".
 Please generate a table with the following columns: Task, Estimated Start Date, Estimated End Date. Use the date format "09 Jan. - 10 Feb.," starting each milestone on a Monday and ending on a Friday.
 ```
 
-#### User-stories (US) `:pmGenerateUS`
-
-Generate a list of user-stories based on the project specifications.
-
-```text
-Based on these specifications, I need user stories for the developer to follow when implementing the code.
-
-Using our wireframes and documentation, please generate a comprehensive list of user stories for this project.
-
-For each milestone we define, create a set of user stories that will capture all essential details.
-```
-
-#### Gherkin `:pmGenerateGherkin`
-
-Generate a Gherkin-style user story based on a feature description.
-
-```text
-Please interpret the following feature description to create a Gherkin-style user story.
-
-The description is: "[[As... I want... So that...]]"
-
-- Based on this description, identify the key feature, the primary actions a user with a specific role would take, and the goals or outcomes expected from these actions.
-- Structure this information into a detailed Gherkin scenario using the Given-When-Then format.
-  - The 'Given' step should establish the context, including the user's role.
-  - The 'When' step should describe the user's actions.
-  - The 'Then' step should specify the expected outcomes.
-```
-
-### Template
-
-#### Ticket `:pmTemplateTicket`
+### Generate a tech ticket `:pmTicket`
 
 A simple ticket template generation from your project's task.
 
@@ -1239,10 +1146,12 @@ Rules:
 
 ## ⚡️ Zero Shot Prompts
 
-### Clean prompt `:promptClean`
+### Assert text `:assert`
 
 ```text
 Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+
+Keep original language.
 ```
 
 ### Answer in French `:answerFr`
@@ -1259,6 +1168,8 @@ For code blocks that contain markdown or other backticks, use 4 backticks.
 ```
 
 ### Check knowledge base before answering `:checkKB`
+
+Discuss with the AI... then write this prompt.
 
 ```text
 Before answering, check the knowledge base to better understand my request.
@@ -1333,7 +1244,7 @@ With this context, help refine the following:
 
 ### OSX
 
-#### Check for Homebrew `:osxBrew`
+#### Homebrew updates `:osxBrew`
 
 ```text
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
