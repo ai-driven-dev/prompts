@@ -2,59 +2,60 @@
 
 A collection of prompts for software engineers to generate code faster with better quality. ❤️
 
-- [🚀 Invoke the prompt from EVERYWHERE](#-invoke-the-prompt-from-everywhere)
-  - [1) Install our prompt library](#1-install-our-prompt-library)
-  - [2) How-to use a prompt?](#2-how-to-use-a-prompt)
-  - [3) Up-to-date prompts with updates](#3-up-to-date-prompts-with-updates)
-- [✅ General Guidelines](#-general-guidelines)
-  - [Contribution](#contribution)
-  - [Template `:codeTemplate`](#template-codetemplate)
-  - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
-- [🙋‍♂️ Feature request](#️-feature-request)
-  - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-  - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
-  - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
-- [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
-  - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
-- [💽 Database](#-database)
-  - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
-  - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
-- [🚀 Code Generation](#-code-generation)
-  - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
-  - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
-- [🏞️ Generate code from image](#️-generate-code-from-image)
-  - [Extract details from image and match components](#extract-details-from-image-and-match-components)
-- [💉 Bug Fixing](#-bug-fixing)
-  - [Find the issue `:bugFind`](#find-the-issue-bugfind)
-- [🐛 Debugging](#-debugging)
-  - [Write log `:debugLog`](#write-log-debuglog)
-  - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
-- [🧪 Tests](#-tests)
-  - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
-  - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
-- [📚 Documentation](#-documentation)
-  - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
-  - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
-- [🔄 Refactoring](#-refactoring)
-  - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
-  - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
-  - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
-- [🧙 Senior Advice](#-senior-advice)
-  - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
-- [🧑‍🍳 Project Management](#-project-management)
-  - [Write specifications document `:pmSpecs`](#write-specifications-document-pmspecs)
-  - [Choose a tech stack `:pmTechStack`](#choose-a-tech-stack-pmtechstack)
-  - [Generate Milestones `:pmGenerateMilestones`](#generate-milestones-pmgeneratemilestones)
-  - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
-- [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-  - [Assert text `:assert`](#assert-text-assert)
-  - [Answer in French `:answerFr`](#answer-in-french-answerfr)
-  - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
-  - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
-  - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
-  - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
-  - [OSX](#osx)
-    - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
+- [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
+  - [🚀 Invoke the prompt from EVERYWHERE](#-invoke-the-prompt-from-everywhere)
+    - [1) Install our prompt library](#1-install-our-prompt-library)
+    - [2) How-to use a prompt?](#2-how-to-use-a-prompt)
+    - [3) Up-to-date prompts with updates](#3-up-to-date-prompts-with-updates)
+  - [✅ General Guidelines](#-general-guidelines)
+    - [Contribution](#contribution)
+    - [Template `:codeTemplate`](#template-codetemplate)
+    - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
+  - [🙋‍♂️ Feature request](#️-feature-request)
+    - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
+    - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
+    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
+  - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
+    - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
+  - [💽 Database](#-database)
+    - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
+    - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
+  - [🚀 Code Generation](#-code-generation)
+    - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
+    - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
+  - [🏞️ Generate code from image](#️-generate-code-from-image)
+    - [Extract details from image and match components](#extract-details-from-image-and-match-components)
+  - [💉 Bug Fixing](#-bug-fixing)
+    - [Find the issue `:bugFind`](#find-the-issue-bugfind)
+  - [🐛 Debugging](#-debugging)
+    - [Write log `:debugLog`](#write-log-debuglog)
+    - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
+  - [🧪 Tests](#-tests)
+    - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
+    - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
+  - [📚 Documentation](#-documentation)
+    - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
+    - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
+  - [🔄 Refactoring](#-refactoring)
+    - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
+    - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
+    - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
+  - [🧙 Senior Advice](#-senior-advice)
+    - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
+  - [🧑‍🍳 Project Management](#-project-management)
+    - [Write specifications document `:pmSpecs`](#write-specifications-document-pmspecs)
+    - [Choose a tech stack `:pmTechStack`](#choose-a-tech-stack-pmtechstack)
+    - [Generate Milestones `:pmGenerateMilestones`](#generate-milestones-pmgeneratemilestones)
+    - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
+  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
+    - [Assert text `:assert`](#assert-text-assert)
+    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
+    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
+    - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
+    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
+    - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
+    - [OSX](#osx)
+      - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
 
 ## 🚀 Invoke the prompt from EVERYWHERE
 
@@ -145,60 +146,40 @@ Output Example:
 ### Optimize your prompts `:promptOpt`
 
 ```text
-# Step 1: Context and Role
-You are an **expert in Prompt Engineering**.  
+You are an **elite Prompt Engineer**.  
+Your job is to transform any "**shitty**" prompt into a **masterclass**.  
 Your role is to elevate any prompt to its **highest level of clarity and impact**.
-Please answer in user's language from previous conversation's messages.
 
-# Step 2: Prompt Analysis
-1. **Read and analyze** the initial prompt.  
+1. **Read** the prompt carefully and identify major weaknesses.  
    - Identify the **context**, the **desired role**, the **goal**, and potential **gaps**.
+   - Find inconsistencies, ambiguities, duplications or missing details.
+2. **Explain** those weaknesses clearly.  
+  - Use **bullet points** for each issue.
+3. **Suggest** concise, high-impact improvements.  
+  - Use **bullet points** for each improvement.
+4. **Rewrite** a final version that is clear, focused, and achieves the goal.
 
-# Step 3: Diagnosing Weaknesses
-1. **Diagnose** any flaws in the prompt.  
-   - Use **concise bullet points** to describe improvements.
+**Rules**:  
+- Keep examples minimal.  
+- Maintain or clarify original intent.  
+- Answer in user's language.
+- Respect the original intent.
+- Simplify language** or **clarify style where necessary.
+- Add constraints** (length, tone, format) if needed.
+- Use clear and short sentences.
+- Use actions verbs.
 
-# Step 4: High-Level Improvements
-1. **Suggest** concise, powerful enhancements:  
-   - Base your advice on the **10 essential principles**, **10 practical tips**, an **ideal structure**, and **10 advanced secrets**.
+**Output Format**:  
+1. **Weaknesses**  
+2. **Suggested Improvements**  
+3. **Masterclass Prompt**  
 
-# Step 5: Rewrite the Prompt
-1. **Respect the original intent**.  
-2. **Add constraints** (length, tone, format) if needed.  
-3. **Simplify language** or **clarify style** where necessary.
+Reply with your final result in block text formatted markdown surrounded by 4 backticks, and confirm if further help is needed.
 
-# Step 6: Provide the Final Version
-1. Present it under the title **“Optimized Prompt”**.  
-2. Keep the final text **under 200 words**.
-
-# Step 7: Validation
-1. **Ask** if the new version meets the user’s original goal.  
-2. [Applying Suggestion #2] **Invite confirmation** after each step if needed.
-
-# Additional Constraints (Optional)
-- Use **short sentences**.  
-- Provide **only minimal examples** if strictly necessary.
-
-# Example of an Advanced Technique
-[Applying Suggestion #4]  
-- **Reference Prior Responses**: “Based on your previous solution regarding X…”  
-
-# Step 8: Stylistic Consistency
-[Applying Suggestion #5]  
-- Use consistent **Markdown headings** and bullet points throughout.
-
----
-
-**Prompt to Optimize**: 
+**My original Prompt that needs to be improved**:
 <prompt>
 [[Your prompt]]
 </prompt>
-
-**Required Response Format**:  
-1. **Identified Weaknesses**  
-2. **Suggested Improvements**  
-3. **Optimized Prompt**  
-4. **Validation**
 ```
 
 ## 🙋‍♂️ Feature request

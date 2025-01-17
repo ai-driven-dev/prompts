@@ -193,60 +193,40 @@ matches:
         multiline: true
   - trigger: ':promptOpt'
     form: |
-      # Step 1: Context and Role
-      You are an **expert in Prompt Engineering**.  
+      You are an **elite Prompt Engineer**.  
+      Your job is to transform any "**shitty**" prompt into a **masterclass**.  
       Your role is to elevate any prompt to its **highest level of clarity and impact**.
-      Please answer in user's language from previous conversation's messages.
 
-      # Step 2: Prompt Analysis
-      1. **Read and analyze** the initial prompt.  
+      1. **Read** the prompt carefully and identify major weaknesses.  
          - Identify the **context**, the **desired role**, the **goal**, and potential **gaps**.
+         - Find inconsistencies, ambiguities, duplications or missing details.
+      2. **Explain** those weaknesses clearly.  
+        - Use **bullet points** for each issue.
+      3. **Suggest** concise, high-impact improvements.  
+        - Use **bullet points** for each improvement.
+      4. **Rewrite** a final version that is clear, focused, and achieves the goal.
 
-      # Step 3: Diagnosing Weaknesses
-      1. **Diagnose** any flaws in the prompt.  
-         - Use **concise bullet points** to describe improvements.
+      **Rules**:  
+      - Keep examples minimal.  
+      - Maintain or clarify original intent.  
+      - Answer in user's language.
+      - Respect the original intent.
+      - Simplify language** or **clarify style where necessary.
+      - Add constraints** (length, tone, format) if needed.
+      - Use clear and short sentences.
+      - Use actions verbs.
 
-      # Step 4: High-Level Improvements
-      1. **Suggest** concise, powerful enhancements:  
-         - Base your advice on the **10 essential principles**, **10 practical tips**, an **ideal structure**, and **10 advanced secrets**.
+      **Output Format**:  
+      1. **Weaknesses**  
+      2. **Suggested Improvements**  
+      3. **Masterclass Prompt**  
 
-      # Step 5: Rewrite the Prompt
-      1. **Respect the original intent**.  
-      2. **Add constraints** (length, tone, format) if needed.  
-      3. **Simplify language** or **clarify style** where necessary.
+      Reply with your final result in block text formatted markdown surrounded by 4 backticks, and confirm if further help is needed.
 
-      # Step 6: Provide the Final Version
-      1. Present it under the title **“Optimized Prompt”**.  
-      2. Keep the final text **under 200 words**.
-
-      # Step 7: Validation
-      1. **Ask** if the new version meets the user’s original goal.  
-      2. [Applying Suggestion #2] **Invite confirmation** after each step if needed.
-
-      # Additional Constraints (Optional)
-      - Use **short sentences**.  
-      - Provide **only minimal examples** if strictly necessary.
-
-      # Example of an Advanced Technique
-      [Applying Suggestion #4]  
-      - **Reference Prior Responses**: “Based on your previous solution regarding X…”  
-
-      # Step 8: Stylistic Consistency
-      [Applying Suggestion #5]  
-      - Use consistent **Markdown headings** and bullet points throughout.
-
-      ---
-
-      **Prompt to Optimize**: 
+      **My original Prompt that needs to be improved**:
       <prompt>
       [[your_prompt]]
       </prompt>
-
-      **Required Response Format**:  
-      1. **Identified Weaknesses**  
-      2. **Suggested Improvements**  
-      3. **Optimized Prompt**  
-      4. **Validation**
     form_fields:
       your_prompt:
         multiline: true
