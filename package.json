@@ -1,6 +1,6 @@
 {
   "name": "ai-driven-dev-prompt",
-  "version": "0.0.35",
+  "version": "0.0.36",
   "description": "Prompts collection for AI-driven developers.",
   "main": "index.js",
   "jest": {

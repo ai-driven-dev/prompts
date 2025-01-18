@@ -41,6 +41,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
     - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
   - [🧙 Senior Advice](#-senior-advice)
+    - [Architecture `:adviceArchitecture`](#architecture-advicearchitecture)
     - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
   - [🧑‍🍳 Project Management](#-project-management)
     - [Write specifications document `:pmSpecs`](#write-specifications-document-pmspecs)
@@ -849,6 +850,64 @@ Rules:
 ```
 
 ## 🧙 Senior Advice
+
+### Architecture `:adviceArchitecture`
+
+````markdown
+As a software architect, you are tasked with conducting a comprehensive audit of a project structure. 
+
+Brief:
+You are required to review, criticize the project structure and identify potential issues that could impact the project's maintainability, scalability, and overall efficiency.
+
+Goal:
+Propose improvements to the project structure to enhance its quality and ensure that it aligns with best practices.
+Feat every issue regarding the "Project" info and its tech stack.
+
+Rules:
+- Empty files or folders.
+- Duplicate files.
+- Large files.
+- Overly nested folders.
+- Overloaded folders.
+- Inefficient project structure.
+- Inconsistent naming conventions, generic names, or unclear file organisation.
+- Files in the wrong directory.
+- Use architecture best practices.
+- Find inconsistencies and risks.
+- Propose actions to improve existing architecture.
+
+Tasks:
+1. List rules to check in bullet points, then add more relevant ones regarding the project stack (suffix those by 🆕 emoji to identify them) that can be detected using project structure and package manager file.
+2. List every potential issue in the project structure.
+3. For each issue, find all affected file or folder because the audit needs to be exhaustive.
+4. Do not provide issue if there is no recommendation to solve it.
+6. Only answer using "Tasks" and "Template" sections.
+
+Template:
+"""
+# Architecture Audit
+
+* Main technologies used in list.
+* Description of the project.
+
+## (emoji) Title of the issue
+
+Very short explanation of the issue and why it is problematic.
+
+* List of every affected files or folders.
+  * ...
+* Explanation of the issue.
+* Short explanation of recommendations to solve the issue, provide tools or methods if necessary.
+  * ...
+* Example of how the issue can be fixed.
+"""
+
+Final steps at the end of the audit, ask the user to type:
+1) Continue audit and ask user to specify more rules of your own.
+2) Re-audit the project dismissing correct points.
+3) Reupload new project structure and Re-audit.
+4) Continue audit, AI will try to find new issues.
+````
 
 ### Design Patterns `:adviceDesignPatterns`
 
