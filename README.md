@@ -659,7 +659,7 @@ Rules:
   - The 'Then' step should specify the expected outcomes.
 
 Example output:
-````gherkin
+```gherkin
 # Gherkin Best Practices
 # ---------------------
 # 1. Use ubiquitous language
@@ -725,6 +725,7 @@ Feature: Feature name
       | Mary   | mary@email.com  | standard |
     When I check the permissions
     Then I should see the corresponding access rights
+```
 ````
 
 ### List untested functions `:testUntested`

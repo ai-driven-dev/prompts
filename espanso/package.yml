@@ -112,6 +112,9 @@ matches:
         - Break down ideas into clear, scannable lists.  
         - Group related points under concise headings.  
 
+      - **Summarize Request**
+        - "Summarize the request before starting to ensure understanding, use bullet points.
+        
       - **One Idea per Sentence**  
         - Prevent confusion and over-explanation.  
         - Let the user easily latch onto each concept.  
@@ -463,7 +466,7 @@ matches:
         - The 'Then' step should specify the expected outcomes.
 
       Example output:
-      ````gherkin
+      ```gherkin
       # Gherkin Best Practices
       # ---------------------
       # 1. Use ubiquitous language
@@ -529,6 +532,7 @@ matches:
             | Mary   | mary@email.com  | standard |
           When I check the permissions
           Then I should see the corresponding access rights
+      ```
   - trigger: ':testUntested'
     form: |
       Goal:
