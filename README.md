@@ -13,15 +13,15 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
   - [🙋‍♂️ Feature request](#️-feature-request)
     - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-    - [Generate code for a feature `:featureCode`](#generate-code-for-a-feature-featurecode)
     - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
+    - [Generate coding instructions from a feature `:featureInstructions`](#generate-coding-instructions-from-a-feature-featureinstructions)
+    - [Generate code for a small feature `:featureSmallCode`](#generate-code-for-a-small-feature-featuresmallcode)
   - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
     - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
   - [💽 Database](#-database)
     - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
     - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
   - [🚀 Code Generation](#-code-generation)
-    - [Prompt to generate code instructions `:codeInstructions`](#prompt-to-generate-code-instructions-codeinstructions)
     - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
   - [🏞️ Generate code from image](#️-generate-code-from-image)
     - [Extract details from image and match components](#extract-details-from-image-and-match-components)
@@ -41,6 +41,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
     - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
   - [🧙 Senior Advice](#-senior-advice)
+    - [Code Reviewer `:adviceReview`](#code-reviewer-advicereview)
     - [Architecture `:adviceArchitecture`](#architecture-advicearchitecture)
     - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
   - [🧑‍🍳 Project Management](#-project-management)
@@ -116,9 +117,9 @@ Most of the time, you just need to structure a prompt - to make it better.
 Note: `Context` and `Example` can be a link to a file, or a code snippet.
 
 ```text
-Goal: "[[What you want to achieve with this prompt]]"
+**Goal**: "[[What you want to achieve with this prompt]]"
 
-Rules:
+**Rules**:
 - "[[Rule 1]]"
 - "[[Rule 2]]"
 - "[[Rule 3]]"
@@ -128,7 +129,7 @@ Steps:
 - "[[Step 2]]"
 - "[[Step 3]]"
 
-Context:
+**Context**:
 <context>
 [[Describe the context of the prompt]]
 </context>
@@ -237,70 +238,13 @@ User stories template:
 ```
 ````
 
-### Generate code for a feature `:featureCode`
-
-**Parameters**:
-
-- Requirements: Can be the user stories or the technical plan.
-
-```text
-Goal:
-Generate code for a feature based on existing codebase.
-
-Requirements:
-<requirements>
-[[Requirements]]
-</requirements>
-
-Rules:
-- Acknowledge it.
-- Reformulate in bullet point grouped by section to show me that you understood what to do.
-- Generate development steps (based on my codebase).
-
-Output example:
-<outputExample>
-Feature to code: ...
-
-Development steps:
-
-1. ...
-2. ...
-3. ...
-
-Plan:
-
-Step 1: ...
-
-Sub step 1.1: ...
-
-...
-</outputExample>
-```
-
 ### Create a feature `:featureCreate`
 
 ````text
-# Instructions to build a new feature
+Goal:
+Build a new, existing or not, feature in our project.
 
-## Roles
-
-- "AI Architect": You, the AI Assistant, acting as a Lead Technical Architect that help the developer building the feature with best effort.
-- "Developer": Me, the user that is prompting you. I will act as a bridge between the "AI Architect" and the "AI Editor", we will build the feature together.
-- "AI Editor": The AI that will do the technical stuff, like coding, refactoring, etc.
-
-## Context
-As the "AI Architect", your primary objectives are:
-
-1. **Gather project specifications** (goals, features, constraints).
-2. **Refine or propose a robust architecture** that follows best practices.
-3. **Define a clear, actionable plan** for project initialization or extension.
-5. **Never generate code**; only provide architectural guidance and configuration steps.
-  5.1 You can present configuration files in code blocks. Avoid any examples of code such as functions—this is strictly prohibited.  
-6. **Conduct the process in four sequential phases**, gathering validation at each phase before moving on.
-7. **Answer with the user's language**, if the user answers in French, use french.
-
-## **Introduction**
-
+Rules:
 - We proceed in **4 phases** (Specifications, Architecture, Action Plan, Final Export).
 - On 1st prompt, print 4 main phases with this one single line formatted as: "Phase's title : Objective".
 - Start directly with Phase 1.  
@@ -328,15 +272,15 @@ As the "AI Architect", your primary objectives are:
 ---
 
 ### Phase 2: 🧱 Define or Refine Architecture
-- **Objective**: Collaboratively create or adjust the project’s architecture.
+- **Objective**: Collaboratively create or adjust the project's architecture.
 - **Actions**:
   - Specify folder structures, naming conventions, and core components (e.g., commands, utilities, events).
   - Define environment variables (with placeholder values).
   - Ensure modularity, scalability, and maintainability.
   - Check in the knowledge base if an architecture already exists. Then:
    - If you do have one, confirm with the user, confirm first it is up-to-date.
-   - If you don’t know it, ask the user to provide it.  
-   - If it doesn’t exist, the user will let you know.  
+   - If you don't know it, ask the user to provide it.  
+   - If it doesn't exist, the user will let you know.  
   - An updated (or newly created) architecture plan, ready for Markdown export.
   - If architecture already exists, only print affected files/folders (already existing or to be created).
 
@@ -424,6 +368,86 @@ When all phases are complete, you will produce a **Markdown document** containin
    - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
 ````
 
+### Generate coding instructions from a feature `:featureInstructions`
+
+To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
+
+```text
+Goal:
+[[What you want to achieve with this prompt]]
+
+Context:
+You (the "AI Architect") have already gathered all user requirements and must produce a single, detailed plan for the "AI Editor".
+This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
+The Developer (human) will copy/paste these instructions into the "AI Editor"'s prompt.
+
+Roles:  
+- AI Architect: Generates the technical plan only (no code).  
+- AI Editor: Implements the plan by generating or modifying code.  
+- Developer (me): Validates the plan and coordinates both IAs.
+
+What to Include:  
+- Detailed breakdown of each file, folder, or feature required.  
+- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
+- Step-by-step explanations so the AI Editor knows precisely what to create or modify.  
+- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
+
+Prompt for the "AI Architect“ (write a "technical plan" only, no code):
+1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
+2. Immediately produce a step-by-step plan describing what code the AI Editor must generate or modify:  
+   - Outline file names and folder structure.  
+   - Explain the purpose of each file or component.  
+   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
+   - Highlight any dependencies or environment variables.  
+   - Provide instructions for building or testing if applicable.  
+   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
+3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
+4. Conclude by reminding the Developer to validate the instructions before passing them on to the AI Editor.
+
+Important:
+Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
+```
+
+### Generate code for a small feature `:featureSmallCode`
+
+**Parameters**:
+
+- Requirements: Can be the user stories or the technical plan.
+
+```text
+Goal:
+Generate code for a feature based on existing codebase.
+
+Requirements:
+<requirements>
+[[Requirements]]
+</requirements>
+
+Rules:
+- Acknowledge it.
+- Reformulate in bullet point grouped by section to show me that you understood what to do.
+- Generate development steps (based on my codebase).
+
+Output example:
+<outputExample>
+Feature to code: ...
+
+Development steps:
+
+1. ...
+2. ...
+3. ...
+
+Plan:
+
+Step 1: ...
+
+Sub step 1.1: ...
+
+...
+</outputExample>
+```
+
 ## ⚗️ Project Setup / Bootstrap
 
 ### Enforce good practices `:projectEnforce`
@@ -493,46 +517,6 @@ Rules:
 ```
 
 ## 🚀 Code Generation
-
-### Prompt to generate code instructions `:codeInstructions`
-
-To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
-
-```text
-Goal:
-[[What you want to achieve with this prompt]]
-
-Context:  
-You (the Architect) have already gathered all user requirements and must produce a single, detailed plan for the Editor.
-This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
-The Developer (human) will copy/paste these instructions into the Editor’s prompt.
-
-Roles:  
-- Architect (IA): Generates the technical plan only (no code).  
-- Editor (IA): Implements the plan by generating or modifying code.  
-- Developer (human): Validates the plan and coordinates both IAs.
-
-What to Include:  
-- Detailed breakdown of each file, folder, or feature required.  
-- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
-- Step-by-step explanations so the Editor knows precisely what to create or modify.  
-- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
-
-Prompt for the Architect (write a "technical plan" only, no code):
-1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
-2. Immediately produce a step-by-step plan describing what code the Editor must generate or modify:  
-   - Outline file names and folder structure.  
-   - Explain the purpose of each file or component.  
-   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
-   - Highlight any dependencies or environment variables.  
-   - Provide instructions for building or testing if applicable.  
-   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
-3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
-4. Conclude by reminding the Developer to validate the instructions before passing them on to the Editor.
-
-Important:
-Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
-```
 
 ### Generate fake data `:codeFake`
 
@@ -852,6 +836,38 @@ Rules:
 
 ## 🧙 Senior Advice
 
+### Code Reviewer `:adviceReview`
+
+```text
+Role:
+Your task is to analyze the provided code snippet and suggest improvements to optimize its performance.
+
+Goal:
+Identify areas where the code can be made more efficient, faster, or less resource-intensive.
+
+Rules:
+- Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance.
+- The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
+- When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
+- Please wait for the user to provide the code snippet before proceeding with the audit, and ensure that your suggestions are clear and well-explained.
+
+Constraints:
+- Reduce complexity.
+- Improve readability.
+- Enhance performance.
+- Merge similar functions into one.
+- Remove redundant code.
+
+Steps:
+1. Explain what the code is doing (in very concise bullet points).
+2. List those points, then give detailed explanations of the impact and propose specific recommendations for optimizing the code (formatted as bullet points).
+  - identified performances issues
+  - identified readability issues
+  - identified maintainability issues
+3. Rewrite full code snippets with your improvements.
+4. At the end of the audit, please ask me if I want to repeat the audit from step 2. with this time, the newly generated code, until you get a "no" or you reach a maximum of 3 iterations, or you are satisfied with the result.
+```
+
 ### Architecture `:adviceArchitecture`
 
 ````markdown
@@ -1034,7 +1050,7 @@ You are an **interactive project specification assistant**. Your role is to help
     - Then export it to markdown so he can update its based document.
 - First, ask the user if some documents already exists.
   - If so, ask for him to upload them. then, once processed, go through the template to improve his document.
-  - If not, let’s begin. Tell me about your project so we can start filling out the first section: Initial Conceptualization.
+  - If not, let's begin. Tell me about your project so we can start filling out the first section: Initial Conceptualization.
 ````
 
 ### Choose a tech stack `:pmTechStack`
@@ -1179,7 +1195,7 @@ Thank you. Now:
 # New Prompt: Relaunching a Complex Conversation
 
 ## **Summary of Key Takeaways**
-We discussed [sujet principal] and explored [specific areas]. The main goal was to [objective]. Here’s a concise summary of what was accomplished:
+We discussed [sujet principal] and explored [specific areas]. The main goal was to [objective]. Here's a concise summary of what was accomplished:
 - **Core decisions taken:** [Key points].
 - **Challenges remaining:** [Brief overview of unresolved issues].
 - **Next priorities:** [Clear and actionable next steps].
