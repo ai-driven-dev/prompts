@@ -531,7 +531,7 @@ Rules:
 
 ## 🏞️ Generate code from image
 
-### Extract details from image and match components
+### Extract details from image and match components `:imageExtractDetails`
 
 ```text
 Goal:
