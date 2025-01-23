@@ -25,23 +25,30 @@ jobs:
           apt-get install -y jq
 
       - name: Extract & Increment Version (SemVer)
+        shell: bash
         run: |
-          # Extraire la version actuelle du package.json
-          version=$(jq -r '.version' package.json)
-
-          # Incrémentation du PATCH uniquement
-          IFS='.' read -r -a version_parts <<< "$version"
-          version_parts[2]=$((version_parts[2] + 1))
-          new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
-
-          # Mise à jour dans package.json
-          jq --arg v "$new_version" '.version = $v' package.json > tmp.json && mv tmp.json package.json
-
-          # Mise à jour de _manifest.yml avec la même version
-          sed -i "s/version: $version/version: $new_version/" espanso/_manifest.yml
-
+          # Get current version from package.json
+          current_version=$(jq -r '.version' package.json)
+          
+          # Split version into array
+          major=$(echo "$current_version" | cut -d. -f1)
+          minor=$(echo "$current_version" | cut -d. -f2)
+          patch=$(echo "$current_version" | cut -d. -f3)
+          
+          # Increment patch version
+          new_patch=$((patch + 1))
+          new_version="$major.$minor.$new_patch"
+          
+          # Update package.json
+          jq --arg version "$new_version" '.version = $version' package.json > tmp.json
+          mv tmp.json package.json
+          
+          # Update _manifest.yml
+          sed -i "s/version: $current_version/version: $new_version/" espanso/_manifest.yml
+          
+          # Export for other steps
           echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
-          echo "Version bumped to $new_version"
+          echo "Version bumped from $current_version to $new_version"
 
       - name: Generate Changelog (Commits since last tag)
         run: |
