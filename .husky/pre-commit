@@ -4,32 +4,3 @@
 echo "🚀 Testing, generating package, and upgrading version..."
 
 npm test
-
-npm start
-
-echo "📦 Generating package..."
-
-# Extract the version from manifest.yml
-version=$(git show main:"espanso/_manifest.yml" | grep 'version' | cut -d ' ' -f 2)
-
-# Increment the version
-version_parts=(${version//./ })
-version_parts[2]=$((version_parts[2] + 1))
-new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
-
-# Replace the version in _manifest.yml
-sed -i "" "s/version: $version/version: $new_version/" "espanso/_manifest.yml"
-
-# Replace the version in package.json
-sed -i "" "s/\"version\": \".*\"/\"version\": \"$new_version\"/" "package.json"
-
-echo "🆙 Version $version upgraded to $new_version"
-
-# Regenerate the package-lock.json
-npm install
-
-# package upgrade
-git add package-lock.json
-git add package.json
-# espanso directory
-git add espanso/
