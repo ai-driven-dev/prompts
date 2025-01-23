@@ -22,11 +22,6 @@ jobs:
           apt-get install -y jq git
           npm install
 
-      - name: Install jq
-        run: |
-          apt-get update
-          apt-get install -y jq
-
       - name: Extract & Increment Version (SemVer)
         shell: bash
         run: |
