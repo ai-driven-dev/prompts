@@ -1,0 +1,79 @@
+name: Release Version
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:  # Permet de lancer manuellement
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Extract & Increment Version (SemVer)
+        run: |
+          # Extraire la version actuelle du package.json
+          version=$(jq -r '.version' package.json)
+
+          # Incrémentation du PATCH uniquement
+          IFS='.' read -r -a version_parts <<< "$version"
+          version_parts[2]=$((version_parts[2] + 1))
+          new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+
+          # Mise à jour dans package.json
+          jq --arg v "$new_version" '.version = $v' package.json > tmp.json && mv tmp.json package.json
+
+          # Mise à jour de _manifest.yml avec la même version
+          sed -i "s/version: $version/version: $new_version/" espanso/_manifest.yml
+
+          echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
+          echo "Version bumped to $new_version"
+
+      - name: Generate Changelog (Commits since last tag)
+        run: |
+          last_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
+          echo "Last tag: $last_tag"
+          
+          changelog=$(git log --pretty=format:"- %s" "$last_tag"..HEAD)
+          
+          if [ -z "$changelog" ]; then
+            changelog="No significant changes."
+          fi
+
+          echo "$changelog" > changelog.txt
+          echo "Changelog:"
+          cat changelog.txt
+
+          echo "CHANGELOG=$(cat changelog.txt)" >> $GITHUB_ENV
+
+      - name: Commit & Push Version Bump
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add package.json espanso/_manifest.yml
+          git commit -m "🔖 Bump version to ${{ env.NEW_VERSION }}"
+          git push origin main
+
+      - name: Create Git Tag
+        run: |
+          git tag "v${{ env.NEW_VERSION }}"
+          git push origin "v${{ env.NEW_VERSION }}"
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: "v${{ env.NEW_VERSION }}"
+          name: "Release v${{ env.NEW_VERSION }}"
+          body: |
+            ## 🚀 Release v${{ env.NEW_VERSION }}
+            **Changelog:**
+            ${{ env.CHANGELOG }}
+          draft: false
+          prerelease: false

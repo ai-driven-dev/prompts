@@ -7,33 +7,26 @@ npm test
 
 npm start
 
-# Check if package.yml has changed since the last commit
-changed_files=$(git diff --name-only --cached && git diff --name-only)
+echo "📦 Generating package..."
 
-if echo "$changed_files" | grep -q "espanso/package.yml"; then
-  echo "📦 Generating package..."
+# Extract the version from manifest.yml
+version=$(git show main:"espanso/_manifest.yml" | grep 'version' | cut -d ' ' -f 2)
 
-  # Extract the version from manifest.yml
-  version=$(git show main:"espanso/_manifest.yml" | grep 'version' | cut -d ' ' -f 2)
+# Increment the version
+version_parts=(${version//./ })
+version_parts[2]=$((version_parts[2] + 1))
+new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
 
-  # Increment the version
-  version_parts=(${version//./ })
-  version_parts[2]=$((version_parts[2] + 1))
-  new_version="${version_parts[0]}.${version_parts[1]}.${version_parts[2]}"
+# Replace the version in _manifest.yml
+sed -i "" "s/version: $version/version: $new_version/" "espanso/_manifest.yml"
 
-  # Replace the version in _manifest.yml
-  sed -i "" "s/version: $version/version: $new_version/" "espanso/_manifest.yml"
+# Replace the version in package.json
+sed -i "" "s/\"version\": \".*\"/\"version\": \"$new_version\"/" "package.json"
 
-  # Replace the version in package.json
-  sed -i "" "s/\"version\": \".*\"/\"version\": \"$new_version\"/" "package.json"
+echo "🆙 Version $version upgraded to $new_version"
 
-  echo "🆙 Version $version upgraded to $new_version"
-
-  # Regenerate the package-lock.json
-  npm install
-else
-  echo "👀 No changes in package.yml"
-fi
+# Regenerate the package-lock.json
+npm install
 
 # package upgrade
 git add package-lock.json
