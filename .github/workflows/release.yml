@@ -10,7 +10,7 @@ jobs:
   release:
     runs-on: ubuntu-22.04  # Toujours requis pour exécuter le job
     container:
-      image: node:20-slim  # Image légère de Node.js 20
+      image: node:20  # Image complète de Node.js 20
 
     steps:
       - name: Checkout repository
@@ -18,11 +18,6 @@ jobs:
 
       - name: Install dependencies
         run: npm install
-
-      - name: Install jq
-        run: |
-          apt-get update
-          apt-get install -y jq
 
       - name: Extract & Increment Version (SemVer)
         shell: bash
