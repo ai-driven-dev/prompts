@@ -8,7 +8,9 @@ on:
 
 jobs:
   release:
-    runs-on: node:20-bullseye
+    runs-on: ubuntu-22.04 
+    container:
+      image: node:20-bullseye
 
     steps:
       - name: Checkout repository
