@@ -24,7 +24,7 @@ A collection of prompts for software engineers to generate code faster with bett
   - [🚀 Code Generation](#-code-generation)
     - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
   - [🏞️ Generate code from image](#️-generate-code-from-image)
-    - [Extract details from image and match components](#extract-details-from-image-and-match-components)
+    - [Extract details from image and match components `:imageExtractDetails`](#extract-details-from-image-and-match-components-imageextractdetails)
   - [💉 Bug Fixing](#-bug-fixing)
     - [Find the issue `:bugFind`](#find-the-issue-bugfind)
   - [🐛 Debugging](#-debugging)
@@ -52,6 +52,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
   - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
     - [Assert text `:assert`](#assert-text-assert)
+    - [Markdown merge `:mdMerge`](#markdown-merge-mdmerge)
     - [Answer in French `:answerFr`](#answer-in-french-answerfr)
     - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
     - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
@@ -1183,6 +1184,12 @@ Rules:
 Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
 
 Keep original language.
+```
+
+### Markdown merge `:mdMerge`
+
+```text
+find . -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | xargs -0 cat > all.md
 ```
 
 ### Answer in French `:answerFr`

@@ -268,6 +268,30 @@ matches:
       Rules:
       - Fill all fields with valid values.
       - Type of the data must be respected.
+  - trigger: ':imageExtractDetails'
+    form: |
+      Goal:
+      Extract details from image and match components in the codebase.
+
+      Steps:
+      1. Analyze the image, then extract information about the image.
+        - Match the information with the components in the codebase.
+        - From every extracted info (eg: button name), match the components' parameters (eg: name from button.tsx)
+      2. Identify: changing state and actions that must be handled by functions.
+        - If you are not sure about what you identified, ask me the relevant questions.
+        - Then, continue with the next step.
+      3. Bind actions from the image with existing functions in the codebase.
+        - Use feature folder.
+      4. Generate code from the information extracted.
+        - Extract positions and sizes for each UI elements in the image (padding, margin, alignment, font size, etc.)
+        - Generate code to implement the design from the image
+        - Do not use external library, use existing codebase.
+        - Create local components if necessary.
+
+      Context:
+      - Component folder: @
+      - Feature folder: @
+      - Image is attached.
   - trigger: ':bugFind'
     form: |
       Goal:
@@ -650,6 +674,9 @@ matches:
       Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
 
       Keep original language.
+  - trigger: ':mdMerge'
+    form: |
+      find . -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | xargs -0 cat > all.md
   - trigger: ':answerFr'
     form: |
       For all answers, answer in French.
