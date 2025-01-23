@@ -37,6 +37,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
     - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
   - [🔄 Refactoring](#-refactoring)
+    - [Add comments to the selected code `:refactComment`](#add-comments-to-the-selected-code-refactcomment)
     - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
     - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
     - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
@@ -762,6 +763,37 @@ Rules:
 
 ## 🔄 Refactoring
 
+### Add comments to the selected code `:refactComment`
+
+```text
+# Goal
+Add comments to the code to enhance readability, but only focusing on complex logic or technically challenging parts.
+
+# Steps
+1. **Identify Complex Logic**: Review each section of the code to determine if the logic is nontrivial or could benefit from an explanation.
+2. **Explain Technical Challenges**: For technically hard-to-understand components, provide detailed comments to clarify how the code works. 
+3. **Avoid Unnecessary Comments**: Do not add comments for self-explanatory code or for describing typed function parameters.
+
+# Output Format
+Code with comments added directly above or next to complex logic or technically challenging parts.
+
+# Rules
+- Make sure EVERY EXISTING AND NEWLY ADDED comments are matching the code. If NOT, comment with a "⚠️".
+- Focus on clarity and precision in the comments.
+- Ensure comments enhance understanding without cluttering the code.
+- Preserve existing formatting and style of the code wherever possible.
+- DO NOT comment obvious code sections or simple logic, remember we are senior developers.
+
+# Consider
+1. Code quality and adherence to best practices
+2. Potential bugs or edge cases
+3. Performance optimizations
+4. Readability and maintainability
+5. Any security concerns
+
+Suggest improvements and explain your reasoning for each suggestion.
+```
+
 ### Create new generic file `:refactGeneric`
 
 ```text
@@ -840,32 +872,32 @@ Rules:
 
 ```text
 Role:
-Your task is to analyze the provided code snippet and suggest improvements to optimize its performance.
+Your task is to make a very good code review, analyze the provided code and suggest improvements to make it cleaner, bug free.
 
 Goal:
-Identify areas where the code can be made more efficient, faster, or less resource-intensive.
-
-Rules:
-- Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance.
-- The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
-- When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
-- Please wait for the user to provide the code snippet before proceeding with the audit, and ensure that your suggestions are clear and well-explained.
+Identify areas where the code can be made more efficient, faster, less buggy or less resource-intensive.
 
 Constraints:
-- Reduce complexity.
+- The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
+- When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
+- Ensure that your suggestions are clear and well-explained.
+- Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance.
+
+Detection rules:
+- Performance issues
+- Security breaches
+- Optimization (refactoring, simplification)
 - Improve readability.
-- Enhance performance.
 - Merge similar functions into one.
 - Remove redundant code.
+- Match comments with code.
+- Missing good practices.
 
 Steps:
-1. Explain what the code is doing (in very concise bullet points).
-2. List those points, then give detailed explanations of the impact and propose specific recommendations for optimizing the code (formatted as bullet points).
-  - identified performances issues
-  - identified readability issues
-  - identified maintainability issues
-3. Rewrite full code snippets with your improvements.
-4. At the end of the audit, please ask me if I want to repeat the audit from step 2. with this time, the newly generated code, until you get a "no" or you reach a maximum of 3 iterations, or you are satisfied with the result.
+1. Explain what the code is doing in one short sentence.
+2. Analyze the code and use detection rules to find issues (print those in short bullet points)
+3. Propose improvements to the code.
+4. Wait for the user approval before changing any code, just provide suggestions.
 ```
 
 ### Architecture `:adviceArchitecture`
@@ -950,14 +982,14 @@ For each design pattern, provide:
 Create a brand new specification document to help you kickstart your project.
 
 ````text
-You are an **interactive project specification assistant**. Your role is to help me build and refine a complete, well-organized project specification document.  
+Act as an **interactive project specification assistant**, help me build and refine a complete, well-organized project specification document.  
 
-### Objectives:
+## Objectives:
 - Guide me through filling out a Markdown-based template step-by-step.
 - Organize input logically, even if provided out of order.
 - Ensure completeness and high-quality detail in every section.
 
-### Instructions for Interaction:
+## Instructions for Interaction:
 1. **Start the Process**  
    - Begin by asking, "Tell me about your project."
    - Provide an overview of the main sections in the template (use only headings from the Markdown).
@@ -983,7 +1015,7 @@ You are an **interactive project specification assistant**. Your role is to help
       - Never skip anything, provide the full details of the section.
       - Output format in text block surrounded by 4 backticks.
 
-### Markdown Template Overview:
+## Markdown Template Overview:
 <template>
 ```markdown
 # Project Specification Template
@@ -1036,11 +1068,13 @@ You are an **interactive project specification assistant**. Your role is to help
 ```
 </template>
 
-### Important rules:
+## Important rules:
 - If the user is talking about a subject from an existing section but not the current one, ask them to wait because this will be treated afterwards.
 - If this user puts a subject that is not in the template, put it at the end of the template and ask the user if they want to add it.
+- When filling document, reformulate the user's answers to make them more concise and clear, use bullet points when necessary, remember that people that will read this document must be aware of every details.
+- At the end of the section, ask the user if everything is correct and if he wants to add something?
 
-### Let's start:
+## Let's start:
 - After first message, clarify with the user what we are going to do here:
   - Output the plan
   - Tell him we are going to:
@@ -1050,6 +1084,10 @@ You are an **interactive project specification assistant**. Your role is to help
     - Then export it to markdown so he can update its based document.
 - First, ask the user if some documents already exists.
   - If so, ask for him to upload them. then, once processed, go through the template to improve his document.
+    - The document is supposed to help you "pre-filled" the section, but you must ALWAYS validate it with the user.
+    - This document might not be complete or up-to-date, be careful.
+    - Ask the user for more details after pre-filling the section, ask questions to go deeper.
+    - For each question you ask, if you already have the answer, ask the user if it is still valid in parenthesis, but keep you original questions too.
   - If not, let's begin. Tell me about your project so we can start filling out the first section: Initial Conceptualization.
 ````
 
