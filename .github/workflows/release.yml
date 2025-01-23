@@ -8,19 +8,23 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-22.04  # Toujours requis pour exécuter le job
-    container:
-      image: node:20-slim  # Image légère de Node.js 20
+    runs-on: ubuntu-22.04
+    permissions:
+      contents: write  # Needed for creating commits, tags, and releases
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          fetch-depth: 0  # Fetch all history for all tags and branches
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
 
       - name: Install dependencies
-        run: |
-          apt-get update
-          apt-get install -y jq git
-          npm install
+        run: npm install
 
       - name: Extract & Increment Version (SemVer)
         shell: bash
@@ -63,7 +67,9 @@ jobs:
           echo "Changelog:"
           cat changelog.txt
 
-          echo "CHANGELOG=$(cat changelog.txt)" >> $GITHUB_ENV
+          echo "CHANGELOG<<EOF" >> $GITHUB_ENV
+          cat changelog.txt >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
       - name: Commit & Push Version Bump
         run: |
@@ -71,7 +77,7 @@ jobs:
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
           git add package.json espanso/_manifest.yml
           git commit -m "🔖 Bump version to ${{ env.NEW_VERSION }}"
-          git push origin main
+          git push
 
       - name: Create Git Tag
         run: |
