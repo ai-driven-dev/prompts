@@ -8,9 +8,7 @@ on:
 
 jobs:
   release:
-    runs-on: ubuntu-22.04  # Toujours requis pour exécuter le job
-    container:
-      image: node:20-slim  # Image légère de Node.js 20
+    runs-on: node:20-bullseye
 
     steps:
       - name: Checkout repository
