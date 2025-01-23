@@ -54,10 +54,15 @@ jobs:
 
       - name: Generate Changelog (Commits since last tag)
         run: |
-          last_tag=$(git describe --tags --abbrev=0 || echo "v0.0.0")
-          echo "Last tag: $last_tag"
-          
-          changelog=$(git log --pretty=format:"- %s" "$last_tag"..HEAD)
+          # Try to get the last tag, if it fails, get all commits
+          if ! last_tag=$(git describe --tags --abbrev=0 2>/dev/null); then
+            echo "No previous tags found - this is the first release"
+            last_tag=$(git rev-list --max-parents=0 HEAD)  # Get the first commit
+            changelog=$(git log --pretty=format:"- %s")
+          else
+            echo "Last tag: $last_tag"
+            changelog=$(git log --pretty=format:"- %s" "$last_tag"..HEAD)
+          fi
           
           if [ -z "$changelog" ]; then
             changelog="No significant changes."
