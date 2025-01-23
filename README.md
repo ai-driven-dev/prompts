@@ -34,6 +34,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
     - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
   - [📚 Documentation](#-documentation)
+    - [Generate mermaid charts `:docMermaid`](#generate-mermaid-charts-docmermaid)
     - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
     - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
   - [🔄 Refactoring](#-refactoring)
@@ -736,6 +737,38 @@ Test files to check (if any):
 
 ## 📚 Documentation
 
+### Generate mermaid charts `:docMermaid`
+
+> Note : You can preview your diagrams here: <https://mermaid.live/edit#>
+
+```text
+## **Goal**  
+Generate a **Mermaid diagram** from **Markdown content**, ensuring clarity, structure, and best practices.  
+
+## **Rules**  
+- Extract relevant structure and convert it into a valid Mermaid diagram.  
+- Generate chart in: `"sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline"`.  
+- Output **only the Mermaid diagram**, inside Markdown code blocks.  
+- Ensure **valid Mermaid syntax**, compatible with the latest version.  
+
+## **Constraints**  
+✅ **Clarity & Readability**  
+- Use **short, clear node names** and align logically (**left-to-right / top-to-bottom**).  
+- Minimize **line crossings**, add **annotations (`-- "label" -->`)**, and use **icons/emojis** if relevant.  
+
+✅ **Structure & Style**  
+- Group elements with **subgraphs**, add **titles** when needed.  
+- Define **consistent styles** with `classDef` (colors, borders, shapes).  
+- Use **distinct node shapes** (`ellipse`, `rounded`, `hexagon`) and **bold strokes (`stroke-width`)**.  
+
+✅ **Optimization & Compatibility**  
+- Avoid `linkStyle` if it causes issues.  
+- Ensure diagrams are **responsive** and tested on the **latest Mermaid version**.  
+
+✅ **Interactivity (Optional)**  
+- Enable **clickable nodes** (`click nodeX "URL" "Tooltip"`) for navigation.  
+```
+
 ### Search in online documentation `:docSearch`
 
 ```text
@@ -1189,7 +1222,7 @@ Keep original language.
 ### Markdown merge `:mdMerge`
 
 ```text
-find . -type f \( -name "*.md" -o -name "*.mdx" \) -print0 | xargs -0 cat > all.md
+find . -type f \( -name "*.md" -o -name "*.mdx" \) -not -name "all.md" -print0 | xargs -0 cat > all.md
 ```
 
 ### Answer in French `:answerFr`
