@@ -17,6 +17,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate coding instructions from a feature `:featureInstructions`](#generate-coding-instructions-from-a-feature-featureinstructions)
     - [Generate code for a small feature `:featureSmallCode`](#generate-code-for-a-small-feature-featuresmallcode)
   - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
+    - [Bootstrap a new project `:projectBootstrap`](#bootstrap-a-new-project-projectbootstrap)
     - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
   - [💽 Database](#-database)
     - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
@@ -164,13 +165,16 @@ Your role is to elevate any prompt to its **highest level of clarity and impact*
   - Use **bullet points** for each improvement.
 4. **Rewrite** a final version that is clear, focused, and achieves the goal.
 
+**Important**:
+- Do not be lazy, ALWAYS return the full prompt.
+
 **Rules**:  
 - Keep examples minimal.  
-- Maintain or clarify original intent.  
+- Maintain or clarify original intent.
 - Answer in user's language.
 - Respect the original intent.
-- Simplify language** or **clarify style where necessary.
-- Add constraints** (length, tone, format) if needed.
+- Simplify language or clarify style where necessary.
+- Add constraints (length, tone, format) if needed.
 - Use clear and short sentences.
 - Use actions verbs.
 - Use this structured output: goal, roles, context, rules, steps (recommends), (optional) input and output examples.
@@ -453,35 +457,273 @@ Sub step 1.1: ...
 
 ## ⚗️ Project Setup / Bootstrap
 
+### Bootstrap a new project `:projectBootstrap`
+
+````markdown
+## Goal  
+Your objective is to **guide the software engineer through a structured decision-making process**, validating each step, resolving contradictions, and providing a **final architecture summary** with a **detailed folder structure**.
+
+## Role & Context
+- **Context:** The user provides a project description. You must analyze, question, and refine the architecture step by step.  
+- **Output Format:** **Structured text** in **Markdown** (with clearly labeled sections).  
+
+## Rules  
+- **Check the existing knowledge database file** before proceeding.  
+- **Analyze** the project thoroughly.  
+- **Break down** the architecture into key sections.  
+- **Ask only necessary questions** (adaptive, not excessive).
+- **Focus** only on the current section, DO NOT ASK QUESTIONS that will be asked later in the process.
+- **Validate** each choices the user makes to be sure this is relevant.
+- **No implementation details** in you answer, focus on making the best choices.
+
+## Steps to follow
+1. Extract documents info (if any).
+2. Detail the user the big steps we will do (only the titles).
+3. Then, go the the first section.
+
+### Section Processing
+
+This is very **IMPORTANT**, you must follow this process to ensure the best result.
+
+- Fill the section with the user, ask questions to understand the feature and the constraints.
+- If the user have no more questions:
+  - Make a quick summary,
+  - Analyze this answer to find any irrelevant information,
+  - Strictly ask the user "Are you sure we go the next section?"
+    - HE MUST SAY "YES"
+- Then, export every given information into a markdown text block surrounded by 4 backticks.
+- After, go to the next section.
+
+---
+
+## Process (Sections to fill)
+
+### 1. Needs & Constraints Verification
+- Retrieve any available **project description** from existing documents in knowledge database.
+- Prefill any **known details** (e.g., application type, primary features, target users).  
+- Ask only for **missing or unclear details**:  
+  - What is the **goal of the project**?  
+  - What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system)  
+  - What are the **main features and functionalities**?  
+  - Who are the **target users**? (e.g., general public, enterprise clients, internal employees)  
+  - Are there **any external integrations** required? (e.g., third-party APIs, payment gateways, authentication providers)  
+---
+
+### 2. Hosting & Deployment
+- Retrieve any **predefined hosting/deployment choices** from existing documents.  
+- Ask only for missing details:  
+  - Where will the project be hosted? (e.g., cloud, on-prem, hybrid)  
+  - Is **orchestration** needed? (e.g., Kubernetes vs. serverless)  
+  - How should CI/CD be structured?  
+  - **Which Infrastructure as Code (IaC) tool should be used?** (e.g., Terraform, AWS CDK, Pulumi)  
+  - Expected **scale and traffic volume**?
+
+---
+
+### 3. Back-End Design
+- Retrieve any **predefined back-end choices** (e.g., framework, programming language, design patterns) from existing documents.  
+- Ask only for missing details:  
+  - Which **back-end framework** should be used? (e.g., NestJS, FastAPI, Spring Boot)  
+  - Should we apply **Domain-Driven Design (DDD)**?  
+  - How should database access be organized? (e.g., ORM, Repository Pattern)  
+  - Are there any **scalability concerns** (e.g., horizontal scaling, multi-threading needs)?  
+
+---
+
+### 4. Front-End Design
+- Retrieve any **predefined front-end technology stack** (e.g., React, Vue, Angular) from existing documents.  
+- Ask only for missing details:  
+  - What **front-end framework** should be used? (e.g., React, Vue, Angular)?  
+  - Should the application be **Single Page Application (SPA), Server-Side Rendered (SSR), or hybrid**?  
+  - What **styling approach** should be used? (e.g., CSS-in-JS, SCSS, Tailwind)?  
+  - How should state management be handled? (e.g., Redux, Zustand, Vuex)?  
+
+---
+
+### 5. Data & Database Management
+- Retrieve any **predefined database selections** (SQL vs. NoSQL, specific database engines) from existing documents.  
+- Ask only for missing details:  
+  - Should we use **SQL or NoSQL**? Why?  
+  - What **database engine** should be used? (e.g., PostgreSQL, MySQL, MongoDB, DynamoDB)?  
+  - How should **schema versioning & migrations** be handled? (e.g., Liquibase, Flyway, Prisma)?  
+  - Should multi-tenancy be supported?  
+  - How should we ensure **performance optimization**? (e.g., indexing, caching, partitioning)?  
+  - What are the **consistency requirements**? (e.g., eventual vs. strong consistency)?  
+  - Is there any **search engine** to use? (e.g., Elasticsearch, OpenSearch, Meilisearch)
+
+---
+
+### 6. Event & Asynchronous Flow Management
+- Retrieve any **predefined event-driven architecture decisions** (e.g., message brokers, event sourcing) from existing documents.  
+- Ask only for missing details:  
+  - Do we need **asynchronous processing**? If so, for what use cases?  
+  - What **event mechanisms** should be used? (e.g., Kafka, RabbitMQ, WebSockets, AWS SQS)?  
+  - Should **event sourcing or CQRS** be implemented?  
+  - How should **message delivery guarantees** be handled? (e.g., retries, dead-letter queues, idempotency)?  
+
+---
+
+### **7. Folder Structure & Project Organization**  
+- Retrieve any **existing folder structure standards or conventions** from previous documents.  
+- Ask only for missing details:  
+  - What **project organization pattern** should be followed? (e.g., modular monolith, feature-based, domain-based)?  
+  - How should **backend services** be structured? (e.g., clean architecture, hexagonal architecture, microservices)?  
+  - How should **frontend components** be organized? (e.g., feature-based, atomic design, MVC)?  
+  - What is the **preferred structure for configuration, environment files, and secrets**?  
+````
+
 ### Enforce good practices `:projectEnforce`
 
-**Parameters**:
+Parameters :
 
-- Tech stack: "React, TypeScript..."
-- Configuration file: "package.json, tsconfig.json..."
+- Project structure
+- Tech stack
+- Tech docs (architecture, design patterns, etc.)
 
 ```text
-Goal:
-Regarding my used project technologies "[[your tech stack]]", can you help me to enforce the following good practices in my application?
+## Goal  
+Assist in setting up best practices for a newly created project through **step-by-step validation** and implementation. Each phase must be validated before proceeding to the next.
 
-Rules:
-1. Please list best tools and practices I can use regarding:
-  - Code format.
-  - Linting.
-  - Tests before commit.
-  - Build before push.
-  - Force good commit convention from conventional commit (or equivalent).
-  - SemVer version management.
-  - Major updates notice (in CI).
-  - Minor and security updates automatically install.
-  - Security checks.
-  - Code coverage.
-  - Documentation.
-2. For each steps, detail the step by step things to setup those improvements regarding my project's config.
-3. Use the latest version of tools unless I do specify otherwise.
+## Roles  
+You are a DevOps and software engineering expert. Guide the user in selecting, validating, and implementing best practices with automation.
 
-Context:
-- Configuration file: #
+## Process & Validation Steps  
+
+### 1️⃣ Understanding the Project  
+- Clarify project type, technologies, versions, and architecture.
+- Identify constraints (legacy dependencies, CI/CD tools).  
+- Confirm understanding before proceeding.  
+
+User must **explicitly validate** this step before moving forward.  
+
+---
+
+### 2️⃣ Selecting Best Practices & Tools  
+For each category, propose the **top three** tools based on industry standards. Explain **pros and cons**, mention if a tool covers multiple needs, and guide the user in making an informed choice.  
+
+Each section is **validated independently** before proceeding to the next.  
+
+#### Code Quality & Standards  
+- **Format:** Propose three formatting tools (e.g., Prettier, Black, clang-format).  
+- **Linting:** Suggest three linters based on the tech stack (e.g., ESLint, Flake8, Pylint).  
+- **Commit Convention:** Recommend tools to enforce structured commits (e.g., Commitlint, Conventional Commits, Husky).  
+
+#### Versioning & Release Management  
+- **Semantic Versioning (SemVer):** Present three versioning strategies or tools.  
+- **Changelog Generation:** Suggest three tools (e.g., standard-version, semantic-release, Keep a Changelog).  
+- **Tagging Releases:** Recommend three solutions for automated tagging.  
+
+#### CI/CD & Automation  
+- **Pre-commit hooks:** List three tools for pre-commit checks (e.g., Husky, Lefthook, pre-commit).  
+- **Pre-merge validation:** Provide three CI solutions ensuring validation before merging (e.g., GitHub Actions, GitLab CI, CircleCI).  
+- **CI/CD Pipeline:** Offer three robust CI/CD solutions that fit the project stack.  
+
+#### Security & Monitoring  
+- **Security Audits:** Recommend three tools for dependency and runtime security (e.g., Snyk, OWASP Dependency Check, Trivy).  
+- **Code Coverage:** Suggest three tools for tracking test coverage (e.g., Codecov, Jest, Pytest-cov).  
+
+#### Documentation & Collaboration  
+- **API Documentation:** Recommend three documentation generators (e.g., Swagger, Redoc, Typedoc).  
+- **Project Documentation:** Offer three solutions for maintaining structured documentation (e.g., Docusaurus, MkDocs, Notion).  
+
+User **must select tools** for each sub-section before proceeding.  
+
+---
+
+### 3️⃣ Step-by-Step Setup for Each Approved Tool  
+Each tool is implemented **one by one** with detailed instructions. The implementation of a tool **must be validated** before moving to the next.
+
+- **Installation:** Provide the exact commands.  
+- **Configuration:** Detail how to set up required configuration files.  
+- **CI/CD Integration:** Specify how to integrate the tool into automated workflows.  
+- **Best Practices:** Explain usage guidelines and potential issues.  
+- **Validation:** Ensure the setup is functional before moving to the next tool.  
+
+User must **confirm completion** of each tool’s setup before proceeding to another tool.  
+
+---
+
+### 4️⃣ Optional Enhancements  
+User decides which enhancements to implement. Each selected enhancement follows the **same step-by-step process** as mandatory tools.  
+
+#### Code Quality & Standards  
+- Dead code detection.  
+- Unused dependency detection.  
+
+#### Versioning & Release Management  
+- Automated package publishing.  
+- Lockfile maintenance.  
+
+#### CI/CD & Automation  
+- Multi-environment deployments.  
+- Rollback strategy.  
+- Automatic branch cleanup.  
+
+#### Security & Monitoring  
+- Secret scanning.  
+- Container security scanning.  
+- License compliance checks.  
+
+#### Documentation & Collaboration  
+- Architecture documentation.  
+- Automated diagram generation.  
+
+Each selected enhancement is **fully implemented before moving to another**.  
+
+---
+
+## Output Format  
+1. **Phase 1: Understanding the project** → Confirm details before proceeding.  
+2. **Phase 2: Selecting best practices & tools** → Validate tool choices **per category** before proceeding.  
+3. **Phase 3: Setup per tool** → Implement and validate **one tool at a time**.  
+4. **Phase 4: Optional enhancements** → Implement only if approved, using the same process.  
+
+---
+
+## Rules  
+- Never skip a step.  
+- User must **validate each phase** before proceeding.  
+- Each section is **fully completed** before moving to the next.  
+- Each tool is **implemented and validated one by one**.  
+- Provide **top three** tools per sub-section with pros and cons.  
+- Each instruction is in Markdown, structured for clarity.  
+- Adapt recommendations to user expertise.  
+
+This ensures a structured, interactive, and high-quality project setup.
+
+
+---
+
+### 8 Sécurité et Performance  
+**Objectif** : Assurer la protection des données et optimiser les performances du système.  
+
+**Actions** :  
+1. Mettre en place les bonnes pratiques de sécurité.  
+2. Sécuriser l’accès aux données et aux API.  
+3. Optimiser la gestion des performances.  
+
+**Questions clés** :  
+- Doit-on utiliser des libs de validation ? (Joi, Zod, etc.)
+- Quels mécanismes d’**authentification et d’autorisation** doivent être mis en place ? (OAuth2, JWT)  
+- Y a-t-il des **données sensibles** nécessitant un chiffrement ?  
+- Comment optimiser la **latence et les requêtes** ?  
+- Quels mécanismes de **caching** utiliser ? (Redis, CDN, HTTP/2)  
+
+---
+
+### 9 Observabilité et Maintenance  
+**Objectif** : Assurer le suivi et la maintenabilité du projet.  
+
+**Actions** :  
+1. Mettre en place un monitoring efficace.  
+2. Définir une gestion des logs et alertes.  
+3. Planifier l’évolution et la maintenance.  
+
+**Questions clés** :  
+- Quels outils de **logging et monitoring** doivent être intégrés ?  
+- Comment gérer les **alertes et incidents** ?  
+- Comment assurer des **mises à jour sans downtime** ?  
+
 ```
 
 ## 💽 Database
@@ -754,7 +996,7 @@ Generate a **Mermaid diagram** from **Markdown content**, ensuring clarity, stru
 ## **Constraints**  
 ✅ **Clarity & Readability**  
 - Use **short, clear node names** and align logically (**left-to-right / top-to-bottom**).  
-- Minimize **line crossings**, add **annotations (`-- "label" -->`)**, and use **icons/emojis** if relevant.  
+- Minimize **line crossings**, add **annotations (`-- "label" -->`)**, **and** use **icons/emojis** if relevant.  
 
 ✅ **Structure & Style**  
 - Group elements with **subgraphs**, add **titles** when needed.  
@@ -1222,7 +1464,17 @@ Keep original language.
 ### Markdown merge `:mdMerge`
 
 ```text
-find . -type f \( -name "*.md" -o -name "*.mdx" \) -not -name "all.md" -print0 | xargs -0 cat > all.md
+find . -type f \( \
+    -name "*.md" -o \
+    -name "*.mdx" \
+  \) \
+  -not -name "all.md" \
+  -print0 | \
+  sort -z -r | \
+  while IFS= read -r -d '' file; do 
+    echo -e "\n---\nFile: $file\n---\n"
+    cat "$file"
+  done > all.md
 ```
 
 ### Answer in French `:answerFr`
