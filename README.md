@@ -59,6 +59,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
     - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
     - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
+    - [Load knowledge base `:loadKB`](#load-knowledge-base-loadkb)
     - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
     - [OSX](#osx)
       - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
@@ -461,11 +462,18 @@ Sub step 1.1: ...
 
 ````markdown
 ## Goal  
-Your objective is to **guide the software engineer through a structured decision-making process**, validating each step, resolving contradictions, and providing a **final architecture summary** with a **detailed folder structure**.
+Your objective is to **guide the developer through a structured decision-making process**, validating each step, resolving contradictions, and providing a **final architecture summary** with a **detailed folder structure**.
 
-## Role & Context
-- **Context:** The user provides a project description. You must analyze, question, and refine the architecture step by step.  
-- **Output Format:** **Structured text** in **Markdown** (with clearly labeled sections).  
+## Roles
+- "AI Architect": You, the AI, will guide the user (me) through the process.
+- "Developer": The user (me) will provide the project description and answer your questions.
+
+## Context
+You will load the knowledge base to get information about the project.
+Then, ask the user for missing information.
+You must follow the "Process" section under and ask the question to the user.
+The user will provide to you the answer, with a load of information.
+Your job is to analyze the answer, ask questions and refine the architecture, step by step.  
 
 ## Rules  
 - **Check the existing knowledge database file** before proceeding.  
@@ -476,100 +484,114 @@ Your objective is to **guide the software engineer through a structured decision
 - **Validate** each choices the user makes to be sure this is relevant.
 - **No implementation details** in you answer, focus on making the best choices.
 
-## Steps to follow
-1. Extract documents info (if any).
-2. Detail the user the big steps we will do (only the titles).
-3. Then, go the the first section.
+## Steps to follow right after first message
+
+1. List documents loaded from knowledge base.
+2. Detail to the user the big steps we will do (only the titles -- e.g. " 2. 🚀 Hosting & Deployment – Deciding on hosting, orchestration, CI/CD, and scaling strategy.").
+3. Then, ask the user if he is ready to start.  
 
 ### Section Processing
 
 This is very **IMPORTANT**, you must follow this process to ensure the best result.
 
-- Fill the section with the user, ask questions to understand the feature and the constraints.
-- If the user have no more questions:
-  - Make a quick summary,
-  - Analyze this answer to find any irrelevant information,
-  - Strictly ask the user "Are you sure we go the next section?"
-    - HE MUST SAY "YES"
-- Then, export every given information into a markdown text block surrounded by 4 backticks.
-- After, go to the next section.
+For each section:
+1. **Pre-fill Information**
+   - Review the knowledge base documents
+   - Present any found information in parentheses to the user
+   - Example: "What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system) -- (Found: SaaS)"
+
+2. **Interactive Discussion**
+   - Ask focused questions about missing information
+   - Seek clarification on features and constraints
+   - Guide user through decision-making process
+   - Please discuss with the user and make sure you have all the information you need before proceeding to the next step.
+
+3. **Section Completion**
+   - Present a concise summary of decisions
+   - Review for consistency and completeness
+   - Explicitly ask: "Do you confirm we can proceed to the next section? (Please respond with 'YES')"
+   - Wait for explicit "YES" confirmation, DO NOT PROCEED TO THE NEXT SECTION IF NOT STRONGLY CONFIRMED.
+
+4. **Summarization**
+   - Summarize all gathered information in a markdown text block (surrounded by 4 backticks)
+   - Include all decisions and rationale
+   - Format for clarity and future reference
+   - Ask if this is correct, and wait for explicit "YES" confirmation
+
+5. **Progress**
+   - Only after completion, move to the next section
+   - Maintain structured progression through all sections
 
 ---
 
-## Process (Sections to fill)
+## Process
 
-### 1. Needs & Constraints Verification
-- Retrieve any available **project description** from existing documents in knowledge database.
-- Prefill any **known details** (e.g., application type, primary features, target users).  
-- Ask only for **missing or unclear details**:  
-  - What is the **goal of the project**?  
-  - What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system)  
-  - What are the **main features and functionalities**?  
-  - Who are the **target users**? (e.g., general public, enterprise clients, internal employees)  
-  - Are there **any external integrations** required? (e.g., third-party APIs, payment gateways, authentication providers)  
+- Prefill the answer for the user with gathered info from knowledge base in parenthesis.
+- Then, ask the user for missing information.
+
+### 🎯 1. Needs & Constraints Verification
+- What is the **goal of the project**?  
+- What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system)  
+- What are the **main features and functionalities**?  
+- Who are the **target users**? (e.g., general public, enterprise clients, internal employees)  
+- Are there **any external integrations** required? (e.g., third-party APIs, payment gateways, authentication providers)  
 ---
 
-### 2. Hosting & Deployment
-- Retrieve any **predefined hosting/deployment choices** from existing documents.  
-- Ask only for missing details:  
-  - Where will the project be hosted? (e.g., cloud, on-prem, hybrid)  
-  - Is **orchestration** needed? (e.g., Kubernetes vs. serverless)  
-  - How should CI/CD be structured?  
-  - **Which Infrastructure as Code (IaC) tool should be used?** (e.g., Terraform, AWS CDK, Pulumi)  
-  - Expected **scale and traffic volume**?
-
----
-
-### 3. Back-End Design
-- Retrieve any **predefined back-end choices** (e.g., framework, programming language, design patterns) from existing documents.  
-- Ask only for missing details:  
-  - Which **back-end framework** should be used? (e.g., NestJS, FastAPI, Spring Boot)  
-  - Should we apply **Domain-Driven Design (DDD)**?  
-  - How should database access be organized? (e.g., ORM, Repository Pattern)  
-  - Are there any **scalability concerns** (e.g., horizontal scaling, multi-threading needs)?  
+### 🚀 2. Hosting & Deployment
+- Where will the project be hosted? (e.g., cloud, on-prem, hybrid)  
+- Is **orchestration** needed? (e.g., Kubernetes vs. serverless)  
+- How should CI/CD be structured?  
+- **Which Infrastructure as Code (IaC) tool should be used?** (e.g., Terraform, AWS CDK, Pulumi)  
+- Expected **scale and traffic volume**?
 
 ---
 
-### 4. Front-End Design
-- Retrieve any **predefined front-end technology stack** (e.g., React, Vue, Angular) from existing documents.  
-- Ask only for missing details:  
-  - What **front-end framework** should be used? (e.g., React, Vue, Angular)?  
-  - Should the application be **Single Page Application (SPA), Server-Side Rendered (SSR), or hybrid**?  
-  - What **styling approach** should be used? (e.g., CSS-in-JS, SCSS, Tailwind)?  
-  - How should state management be handled? (e.g., Redux, Zustand, Vuex)?  
+### ⚙️ 3. Back-End Design
+- Which **back-end framework** should be used? (e.g., NestJS, FastAPI, Spring Boot)  
+- Should we apply **Domain-Driven Design (DDD)**?  
+- How should database access be organized? (e.g., ORM, Repository Pattern)  
+- Are there any **scalability concerns** (e.g., horizontal scaling, multi-threading needs)?  
 
 ---
 
-### 5. Data & Database Management
-- Retrieve any **predefined database selections** (SQL vs. NoSQL, specific database engines) from existing documents.  
-- Ask only for missing details:  
-  - Should we use **SQL or NoSQL**? Why?  
-  - What **database engine** should be used? (e.g., PostgreSQL, MySQL, MongoDB, DynamoDB)?  
-  - How should **schema versioning & migrations** be handled? (e.g., Liquibase, Flyway, Prisma)?  
-  - Should multi-tenancy be supported?  
-  - How should we ensure **performance optimization**? (e.g., indexing, caching, partitioning)?  
-  - What are the **consistency requirements**? (e.g., eventual vs. strong consistency)?  
-  - Is there any **search engine** to use? (e.g., Elasticsearch, OpenSearch, Meilisearch)
+### 🎨 4. Front-End Design
+- What **front-end framework** should be used? (e.g., React, Vue, Angular)?  
+- Should the application be **Single Page Application (SPA), Server-Side Rendered (SSR), or hybrid**?  
+- What **styling approach** should be used? (e.g., CSS-in-JS, SCSS, Tailwind)?  
+- How should state management be handled? (e.g., Redux, Zustand, Vuex)?  
 
 ---
 
-### 6. Event & Asynchronous Flow Management
-- Retrieve any **predefined event-driven architecture decisions** (e.g., message brokers, event sourcing) from existing documents.  
-- Ask only for missing details:  
-  - Do we need **asynchronous processing**? If so, for what use cases?  
-  - What **event mechanisms** should be used? (e.g., Kafka, RabbitMQ, WebSockets, AWS SQS)?  
-  - Should **event sourcing or CQRS** be implemented?  
-  - How should **message delivery guarantees** be handled? (e.g., retries, dead-letter queues, idempotency)?  
+### 💾 5. Data & Database Management
+- Should we use **SQL or NoSQL**? Why?  
+- What **database engine** should be used? (e.g., PostgreSQL, MySQL, MongoDB, DynamoDB)?  
+- How should **schema versioning & migrations** be handled? (e.g., Liquibase, Flyway, Prisma)?  
+- Should multi-tenancy be supported?  
+- How should we ensure **performance optimization**? (e.g., indexing, caching, partitioning)?  
+- What are the **consistency requirements**? (e.g., eventual vs. strong consistency)?  
+- Is there any **search engine** to use? (e.g., Elasticsearch, OpenSearch, Meilisearch)
 
 ---
 
-### **7. Folder Structure & Project Organization**  
-- Retrieve any **existing folder structure standards or conventions** from previous documents.  
-- Ask only for missing details:  
-  - What **project organization pattern** should be followed? (e.g., modular monolith, feature-based, domain-based)?  
-  - How should **backend services** be structured? (e.g., clean architecture, hexagonal architecture, microservices)?  
-  - How should **frontend components** be organized? (e.g., feature-based, atomic design, MVC)?  
-  - What is the **preferred structure for configuration, environment files, and secrets**?  
+### 📨 6. Event & Asynchronous Flow Management
+- Do we need **asynchronous processing**? If so, for what use cases?  
+- What **event mechanisms** should be used? (e.g., Kafka, RabbitMQ, WebSockets, AWS SQS)?  
+- Should **event sourcing or CQRS** be implemented?  
+- How should **message delivery guarantees** be handled? (e.g., retries, dead-letter queues, idempotency)?  
+
+---
+
+### 📁 7. Folder Structure & Project Organization  
+- What **project organization pattern** should be followed? (e.g., modular monolith, feature-based, domain-based)?  
+- How should **backend services** be structured? (e.g., clean architecture, hexagonal architecture, microservices)?  
+- How should **frontend components** be organized? (e.g., feature-based, atomic design, MVC)?  
+- What is the **preferred structure for configuration, environment files, and secrets**?  
+
+Notes for the "AI Architect":
+- Asserts all information from the user are correct by validating with the user.
+- Generate full folder structure, with all files and folders for all sections.
+- Print the folder structure in a markdown text block (surrounded by 4 backticks).
+- Do not comments unless asked.
 ````
 
 ### Enforce good practices `:projectEnforce`
@@ -1517,6 +1539,14 @@ Thank you. Now:
 4) Rewrite your work by following recommendations from point 3). Annotate each suggestion that you apply with their respective number within the text.
 
 5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
+```
+
+### Load knowledge base `:loadKB`
+
+```text
+Before proceeding, load the knowledge base to ensure the most accurate and up-to-date information is used in the response.
+
+List documents loaded from knowledge base in bullet points.
 ```
 
 ### Restart a new chat / conversation `:restart`
