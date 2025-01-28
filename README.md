@@ -125,7 +125,7 @@ Most of the time, you just need to structure a prompt - to make it better.
 
 Note: `Context` and `Example` can be a link to a file, or a code snippet.
 
-```text
+```markdown
 **Goal**: "[[What you want to achieve with this prompt]]"
 
 **Rules**:
@@ -156,7 +156,7 @@ Output Example:
 
 ### Optimize your prompts `:promptOpt`
 
-```text
+```markdown
 You are an **elite Prompt Engineer**.  
 Your job is to transform any "**shitty**" prompt into a **masterclass**.  
 Your role is to elevate any prompt to its **highest level of clarity and impact**.
@@ -210,7 +210,7 @@ If you want to generate user-stories for your project, use this prompt.
 
 - Feature to build, be as detailed as possible
 
-````text
+````markdown
 Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
 Rules:
@@ -256,7 +256,7 @@ User stories template:
 
 ### Create a feature `:featureCreate`
 
-````text
+````markdown
 Goal:
 Build a new, existing or not, feature in our project.
 
@@ -388,7 +388,7 @@ When all phases are complete, you will produce a **Markdown document** containin
 
 To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
 
-```text
+```markdown
 Goal:
 [[What you want to achieve with this prompt]]
 
@@ -430,7 +430,7 @@ Before answering the user, make sure the plan is doable. If not, ask the user to
 
 - Requirements: Can be the user stories or the technical plan.
 
-```text
+```markdown
 Goal:
 Generate code for a feature based on existing codebase.
 
@@ -628,7 +628,7 @@ Notes for the "AI Architect":
 
 **Prompt** :
 
-```text
+```markdown
 ## Goal  
 Assist in setting up best practices for a newly created project through **step-by-step validation** and implementation. Each phase must be validated before proceeding to the next.
 
@@ -747,7 +747,7 @@ This ensures a structured, interactive, and high-quality project setup.
 
 ### Generate SQL from specifications `:dbGenSQL`
 
-```text
+```markdown
 Goal:
 Generate SQL schema from specifications.
 
@@ -762,7 +762,7 @@ Specifications:
 
 ### Create entity from SQL Schema `:dbGenEntity`
 
-```text
+```markdown
 Goal:
 Create entities from SQL Schema generating "[[objects|types|interfaces]]".
 
@@ -782,7 +782,7 @@ Rules:
 
 ### Generate fake data `:codeFake`
 
-```text
+```markdown
 Goal:
 Generate a new variable filled with fake data.
 
@@ -795,7 +795,7 @@ Rules:
 
 ### Extract details from image and match components `:imageExtractDetails`
 
-```text
+```markdown
 Goal:
 Extract details from image and match components in the codebase.
 
@@ -824,7 +824,7 @@ Context:
 
 ### Find the issue `:bugFind`
 
-```text
+```markdown
 Goal:
 Find the issue in the given code context.
 
@@ -850,7 +850,7 @@ Notes:
 
 ### Write log `:debugLog`
 
-```text
+```markdown
 Goal:
 Add logging messages to the given code at each significant step.
 
@@ -870,7 +870,7 @@ Rules:
 
 ### Detect inconsistencies `:debugInconsistency`
 
-```text
+```markdown
 Goal:
 Review the given code and identify all inconsistencies. 
 
@@ -892,7 +892,7 @@ Rules:
 
 ### Generate Gherkin `:testGenGherkin`
 
-````text
+````markdown
 Goal:
 Interpret the following feature description to create a Gherkin-style user story.
 
@@ -976,7 +976,7 @@ Feature: Feature name
 
 ### List untested functions `:testUntested`
 
-```text
+```markdown
 Goal:
 List every untested behaviors.
 
@@ -1094,7 +1094,7 @@ Ressources from the current project you might need:
 
 > Note : You can preview your diagrams here: <https://mermaid.live/edit#>
 
-```text
+```markdown
 ## **Goal**  
 Generate a **Mermaid diagram** from **Markdown content**, ensuring clarity, structure, and best practices.  
 
@@ -1124,7 +1124,7 @@ Generate a **Mermaid diagram** from **Markdown content**, ensuring clarity, stru
 
 ### Search in online documentation `:docSearch`
 
-```text
+```markdown
 Goal:
 Search in online documentation "[[search query]]".
 
@@ -1137,7 +1137,7 @@ Rules:
 
 ### Upgrade comments `:docComments`
 
-```text
+```markdown
 Goal:
 Insert / Update / Beautify comments in the given code.
 
@@ -1152,7 +1152,7 @@ Rules:
 
 ### Add comments to the selected code `:refactComment`
 
-```text
+```markdown
 # Goal
 Add comments to the code to enhance readability, but only focusing on complex logic or technically challenging parts.
 
@@ -1183,7 +1183,7 @@ Suggest improvements and explain your reasoning for each suggestion.
 
 ### Create new generic file `:refactGeneric`
 
-```text
+```markdown
 Goal:
 I want to make this file generic so it can "[[purpose]]".
 
@@ -1202,7 +1202,7 @@ Rules:
 
 ### Optimize this code snippet `:refactOpt`
 
-```text
+```markdown
 Goal:
 Beautify, comment and refactor the given code snippet.
 
@@ -1234,7 +1234,7 @@ Rules:
 
 ### Optimize code performance `:refactPerf`
 
-```text
+```markdown
 Goal:
 Optimize code for performance and scalability.
 
@@ -1257,7 +1257,7 @@ Rules:
 
 ### Code Reviewer `:adviceReview`
 
-```text
+```markdown
 Role:
 Your task is to make a very good code review, analyze the provided code and suggest improvements to make it cleaner, bug free.
 
@@ -1347,7 +1347,7 @@ Final steps at the end of the audit, ask the user to type:
 
 ### Design Patterns `:adviceDesignPatterns`
 
-```text
+```markdown
 Goal:
 List the existing design patterns in the following code.
 
@@ -1368,7 +1368,7 @@ For each design pattern, provide:
 
 Create a brand new specification document to help you kickstart your project.
 
-````text
+````markdown
 Act as an **interactive project specification assistant**, help me build and refine a complete, well-organized project specification document.  
 
 ## Objectives:
@@ -1482,7 +1482,7 @@ Act as an **interactive project specification assistant**, help me build and ref
 
 Choose the right tech is hard, an AI can help you find the best tech stack for your project, sorting advantages and drawbacks.
 
-```text
+```markdown
 Regarding the technology project I am planning and specifying, I need guidance on selecting the right tools and frameworks.
 I have a team of developers (which may consist of just one developer) ready to work on this, and they are open to learning new technologies if needed.
 Please base your answers on the template we filled out together.
@@ -1534,7 +1534,7 @@ Afterward, please justify your choices in relation to my project requirements.
 
 Generate the milestones for your project.
 
-```text
+```markdown
 Define the key milestones for the project; we aim for short release cycles and sprints to support quick iteration.
 
 Once milestones are defined, estimate the development timeline for each one.
@@ -1551,7 +1551,7 @@ Please generate a table with the following columns: Task, Estimated Start Date, 
 
 A simple ticket template generation from your project's task.
 
-```text
+```markdown
 Regarding this task or sub-stack "[[task_or_sub_stack]]".
 
 Create ticket for developer with detailed steps of what to do with checkboxes:
@@ -1566,7 +1566,7 @@ Rules:
 
 ### Markdown merge `:mdMerge`
 
-```text
+```bash
 find . -type f \( \
     -name "*.md" -o \
     -name "*.mdx" \
@@ -1584,20 +1584,20 @@ find . -type f \( \
 
 ### Answer in French `:answerFr`
 
-```text
+```markdown
 For all answers, answer in French.
 ```
 
 ### Answer in markdown `:answerMd`
 
-```text
+```markdown
 Answer in markdown format on a text block. 
 For code blocks that contain markdown or other backticks, use 4 backticks. 
 ```
 
 ### Load knowledge base `:loadKB`
 
-```text
+```markdown
 Before proceeding, load the knowledge base to ensure the most accurate and up-to-date information is used in the response.
 
 List documents loaded from knowledge base in bullet points.
@@ -1605,7 +1605,7 @@ List documents loaded from knowledge base in bullet points.
 
 ### Evaluate Answer `:evaluate`
 
-```text
+```markdown
 Thank you. Now:
 
 1) Evaluate your own work. List all its strength and flaws.
@@ -1679,7 +1679,7 @@ With this context, help refine the following:
 
 ### Assert text `:quickRephrase`
 
-```text
+```markdown
 Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
 
 Keep original language.
@@ -1687,7 +1687,7 @@ Keep original language.
 
 ### Rephrase for concision `:rephrase`
 
-```text
+```markdown
 ## Goal  
 Rephrase the given text in "[[language]]" while maintaining its original meaning and intent.
 
@@ -1717,7 +1717,7 @@ Rephrase the given text in "[[language]]" while maintaining its original meaning
 
 ### Focus on benefits `:focusBenefits`
 
-```text
+```markdown
 ## Goal  
 Rewrite the given text to emphasize **benefits, outcomes, and advantages** using persuasive copywriting techniques.  
 
@@ -1752,6 +1752,6 @@ Act as a **conversion-focused copywriter**. Use compelling language that capture
 
 #### Homebrew updates `:osxBrew`
 
-```text
+```markdown
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 ```
