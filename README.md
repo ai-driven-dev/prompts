@@ -35,6 +35,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
     - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
   - [📚 Documentation](#-documentation)
+    - [Generate instructions (aka technical plan) `:docInstructions`](#generate-instructions-aka-technical-plan-docinstructions)
     - [Generate mermaid charts `:docMermaid`](#generate-mermaid-charts-docmermaid)
     - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
     - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
@@ -53,14 +54,17 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate Milestones `:pmGenerateMilestones`](#generate-milestones-pmgeneratemilestones)
     - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
   - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-    - [Assert text `:assert`](#assert-text-assert)
     - [Markdown merge `:mdMerge`](#markdown-merge-mdmerge)
+  - [🗣️ Chat and Conversation](#️-chat-and-conversation)
     - [Answer in French `:answerFr`](#answer-in-french-answerfr)
     - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
-    - [Check knowledge base before answering `:checkKB`](#check-knowledge-base-before-answering-checkkb)
-    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
     - [Load knowledge base `:loadKB`](#load-knowledge-base-loadkb)
+    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
     - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
+  - [📝 Writing and content](#-writing-and-content)
+    - [Assert text `:quickRephrase`](#assert-text-quickrephrase)
+    - [Rephrase for concision `:rephrase`](#rephrase-for-concision-rephrase)
+    - [Focus on benefits `:focusBenefits`](#focus-on-benefits-focusbenefits)
     - [OSX](#osx)
       - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
 
@@ -170,6 +174,10 @@ Your role is to elevate any prompt to its **highest level of clarity and impact*
 - Do not be lazy, ALWAYS return the full prompt.
 
 **Rules**:  
+- Make sentences very short and impactful.
+- Be clear and concise.
+- Minimum markdown formatting.
+- Avoid emojis.
 - Keep examples minimal.  
 - Maintain or clarify original intent.
 - Answer in user's language.
@@ -487,7 +495,7 @@ Your job is to analyze the answer, ask questions and refine the architecture, st
 ## Steps to follow right after first message
 
 1. List documents loaded from knowledge base.
-2. Detail to the user the big steps we will do (only the titles -- e.g. " 2. 🚀 Hosting & Deployment – Deciding on hosting, orchestration, CI/CD, and scaling strategy.").
+2. Detail to the user the big steps we will do (only the titles -- e.g. " 2. 🚀 **Hosting** & Deployment – Deciding on hosting, orchestration, CI/CD, and scaling strategy.").
 3. Then, ask the user if he is ready to start.  
 
 ### Section Processing
@@ -1001,6 +1009,100 @@ Test files to check (if any):
 
 ## 📚 Documentation
 
+### Generate instructions (aka technical plan) `:docInstructions`
+
+Useful to create markdown spec files constraints to be used in the AI Editor.
+
+````markdown
+Goal:
+As the "AI Architect", generate a structured Markdown "instruction" document that will serve as an instruction file for the "AI Editor".
+
+Context: 
+- The "AI Editor" will use this document to generate code or instructions for the "developer".
+- The "developer" will discuss with you, the "AI Architect", to refine the instructions before proceeding.
+
+Rules:
+- Do not generate scripts or code, only instructions for the "AI Editor"
+- Example must be in their dedicated section
+- Instruction template must be filled with the user's input very carefully
+- CLI instructions must be **Explicitly** discussed with the "developer", it needs to be perfectly valid to be run in one try without any error. Please valide with the user.
+
+Steps:
+1. Gather information from the user to fill the instruction template.
+  2. Ask questions UNTIL the user say it is enough.
+3. Agree with the developer on "global steps".
+4. Fill the instruction template and output it in a markdown formatted text block surrounded by 4 backticks.
+  - Go section by section, ask for refinement and validation from the user.
+  - When providing URLs, ask the user to check it himself.
+  - Precisely describe steps the the "AI Editor" must follow.
+5. User must explicitly validate the section before moving to the next one by saying "YES".
+
+// Check CLI
+
+Instruction template to fill:
+- Keep explanations minimal and direct
+- Use headings (H1, H2, H3) for clear hierarchy
+- Prioritize bullet points over paragraphs
+- Use this template:
+```markdown
+<instructionTemplate>
+# Instruction: {{title}}
+
+## Rules 
+
+- CLI and other example must be verified before using (iteration might be needed)
+- Every steps MUST be completed and validated before moving to the next one
+
+## Goal
+
+{{goal}}
+
+### Global steps 
+
+1. {{step1}}
+2. ...
+
+## Guidelines
+
+### Requirements
+
+- {{requirement1}}
+- ...
+
+### Constraints
+
+#### {{constraint1}}
+
+- {{constraint1-explanation}}
+- ...
+
+## Steps
+
+### {{step1}}
+
+- Online documentation: [link](https://example.com)
+- Goal: {{goal}}
+- Steps:
+  1. {{step1}}
+  2. {{step2}}
+- Expected output: {{output}}
+- Example (if any): {{example}}
+
+## Verifications
+
+1. {{verification1}}
+2. ...
+
+## Ressources
+
+Ressources from the current project you might need:
+
+- "{{ressource-name.md}}"
+- ...
+</instructionTemplate>
+```
+````
+
 ### Generate mermaid charts `:docMermaid`
 
 > Note : You can preview your diagrams here: <https://mermaid.live/edit#>
@@ -1475,14 +1577,6 @@ Rules:
 
 ## ⚡️ Zero Shot Prompts
 
-### Assert text `:assert`
-
-```text
-Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
-
-Keep original language.
-```
-
 ### Markdown merge `:mdMerge`
 
 ```text
@@ -1499,6 +1593,8 @@ find . -type f \( \
   done > all.md
 ```
 
+## 🗣️ Chat and Conversation
+
 ### Answer in French `:answerFr`
 
 ```text
@@ -1512,17 +1608,12 @@ Answer in markdown format on a text block.
 For code blocks that contain markdown or other backticks, use 4 backticks. 
 ```
 
-### Check knowledge base before answering `:checkKB`
-
-Discuss with the AI... then write this prompt.
+### Load knowledge base `:loadKB`
 
 ```text
-Before answering, check the knowledge base to better understand my request.
+Before proceeding, load the knowledge base to ensure the most accurate and up-to-date information is used in the response.
 
-Then:
-- Summarize briefly the knowledge you found.
-- Annonce the next steps you will take.
-- Ask for confirmation before proceeding.
+List documents loaded from knowledge base in bullet points.
 ```
 
 ### Evaluate Answer `:evaluate`
@@ -1541,19 +1632,20 @@ Thank you. Now:
 5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
 ```
 
-### Load knowledge base `:loadKB`
-
-```text
-Before proceeding, load the knowledge base to ensure the most accurate and up-to-date information is used in the response.
-
-List documents loaded from knowledge base in bullet points.
-```
-
 ### Restart a new chat / conversation `:restart`
 
 ````markdown
-# New Prompt: Relaunching a Complex Conversation
+Goal:
+Relaunching a Complex Conversation
 
+Context:
+- This will help us start a new conversation from scratch with a new LLM model.
+- This is useful when the current conversation is too complex or has diverged from the main topic.
+- Please summarize everything we discussed so far.
+- Export the final summary in markdown formatted text block surrounded by 4 backticks.
+
+Template to use:
+```markdown
 ## **Summary of Key Takeaways**
 We discussed [sujet principal] and explored [specific areas]. The main goal was to [objective]. Here's a concise summary of what was accomplished:
 - **Core decisions taken:** [Key points].
@@ -1593,7 +1685,81 @@ With this context, help refine the following:
 1. [Specific refinement needed].  
 2. [Second area for improvement].  
 3. [Additional question to explore].  
+```
 ````
+
+## 📝 Writing and content
+
+### Assert text `:quickRephrase`
+
+```text
+Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+
+Keep original language.
+```
+
+### Rephrase for concision `:rephrase`
+
+```text
+## Goal  
+Rephrase the given text in "[[language]]" while maintaining its original meaning and intent.
+
+## Rules  
+- Concise & Clear: Remove unnecessary words but keep full clarity.  
+- Direct & Blunt: Avoid sugarcoating or softening the message.  
+- Essential Only: Keep the key points; cut out fluff.  
+- Same Structure: Match the original format (sentences, lists, paragraphs).  
+- Tone Preservation: Maintain the same tone (formal, informal, persuasive, etc.).  
+- Preserved all code blocks, commands, and URLs
+
+## Steps  
+1. **Analyze the text**: Identify core meaning and intent.  
+2. **Remove excess**: Cut unnecessary words while keeping clarity.  
+3. **Rephrase efficiently**: Use direct, impactful wording.  
+4. **Match tone**: Keep the same formality and emotional weight.  
+
+## Example  
+**Input**: "In light of recent developments, it has become increasingly apparent that we need to reconsider our approach."  
+**Output**: "Recent developments show we must rethink our approach."  
+
+## Given text
+<textToRephrase>
+[[Given text]]
+</textToRephrase>
+```
+
+### Focus on benefits `:focusBenefits`
+
+```text
+## Goal  
+Rewrite the given text to emphasize **benefits, outcomes, and advantages** using persuasive copywriting techniques.  
+
+## Role  
+Act as a **conversion-focused copywriter**. Use compelling language that captures attention and drives action.  
+
+## Rules  
+- Use same tone.
+- Highlight what the user gains, not just features.  
+- Use clear, results-driven wording.  
+– Match tone and vocabulary.  
+– Remove unnecessary words, maximize clarity.  
+- Use Proven Copywriting Model AIDA (Attention, Interest, Desire, Action)**
+– Default method.  
+- No emojis or special characters.
+- Make sentences smaller and more readable.
+
+## Steps  
+1. Extract Key Benefits : Identify how the product or service improves the user’s life.  
+2. Reframe for Impact : Rewrite the text with a stronger benefit-first focus.  
+3. Use Persuasive Wording : Make the benefits clear, urgent, and emotionally compelling.  
+4. Ensure Readability : Keep sentences short and structured for easy scanning.  
+5. Output : Markdown formatted in a text block with 4 backticks.
+
+## Text to Optimize  
+<text>  
+[[Insert text here]]  
+</text>  
+```
 
 ### OSX
 
