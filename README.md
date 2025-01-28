@@ -589,7 +589,23 @@ For each section:
 
 ---
 
-### 📁 7. Folder Structure & Project Organization  
+### 7 8. Security & Performance  
+- Should we use **validation libraries**? (e.g., Joi, Zod)  
+- What **authentication and authorization mechanisms** should be implemented? (e.g., OAuth2, JWT)  
+- Are there **sensitive data** requiring encryption?  
+- How can we optimize **latency and queries**?  
+- What **caching mechanisms** should be used? (e.g., Redis, CDN, HTTP/2)  
+
+---
+
+### 📊 8. Observability & Maintenance  
+- What **logging and monitoring tools** should be integrated?  
+- How should **alerts and incidents** be managed?  
+- How can we ensure **zero-downtime updates**?  
+
+---
+
+### 📁 9. Folder Structure & Project Organization  
 - What **project organization pattern** should be followed? (e.g., modular monolith, feature-based, domain-based)?  
 - How should **backend services** be structured? (e.g., clean architecture, hexagonal architecture, microservices)?  
 - How should **frontend components** be organized? (e.g., feature-based, atomic design, MVC)?  
@@ -604,11 +620,13 @@ Notes for the "AI Architect":
 
 ### Enforce good practices `:projectEnforce`
 
-Parameters :
+**Parameters needed** :
 
 - Project structure
 - Tech stack
 - Tech docs (architecture, design patterns, etc.)
+
+**Prompt** :
 
 ```text
 ## Goal  
@@ -655,6 +673,9 @@ Each section is **validated independently** before proceeding to the next.
 #### Documentation & Collaboration  
 - **API Documentation:** Recommend three documentation generators (e.g., Swagger, Redoc, Typedoc).  
 - **Project Documentation:** Offer three solutions for maintaining structured documentation (e.g., Docusaurus, MkDocs, Notion).  
+
+### Code Review 
+- **Code Review Tools:** Recommend three tools for code review (e.g., GitHub Copilot, Code Rabbit, PR-Agent...)
 
 User **must select tools** for each sub-section before proceeding.  
 
@@ -720,40 +741,6 @@ Each selected enhancement is **fully implemented before moving to another**.
 - Adapt recommendations to user expertise.  
 
 This ensures a structured, interactive, and high-quality project setup.
-
-
----
-
-### 8 Sécurité et Performance  
-**Objectif** : Assurer la protection des données et optimiser les performances du système.  
-
-**Actions** :  
-1. Mettre en place les bonnes pratiques de sécurité.  
-2. Sécuriser l’accès aux données et aux API.  
-3. Optimiser la gestion des performances.  
-
-**Questions clés** :  
-- Doit-on utiliser des libs de validation ? (Joi, Zod, etc.)
-- Quels mécanismes d’**authentification et d’autorisation** doivent être mis en place ? (OAuth2, JWT)  
-- Y a-t-il des **données sensibles** nécessitant un chiffrement ?  
-- Comment optimiser la **latence et les requêtes** ?  
-- Quels mécanismes de **caching** utiliser ? (Redis, CDN, HTTP/2)  
-
----
-
-### 9 Observabilité et Maintenance  
-**Objectif** : Assurer le suivi et la maintenabilité du projet.  
-
-**Actions** :  
-1. Mettre en place un monitoring efficace.  
-2. Définir une gestion des logs et alertes.  
-3. Planifier l’évolution et la maintenance.  
-
-**Questions clés** :  
-- Quels outils de **logging et monitoring** doivent être intégrés ?  
-- Comment gérer les **alertes et incidents** ?  
-- Comment assurer des **mises à jour sans downtime** ?  
-
 ```
 
 ## 💽 Database
@@ -1050,7 +1037,7 @@ Instruction template to fill:
 
 ## Rules 
 
-- CLI and other example must be verified before using (iteration might be needed)
+- Examples (including CLI) are just examples, they must be verified before using (iteration might be needed)
 - Every steps MUST be completed and validated before moving to the next one
 
 ## Goal
