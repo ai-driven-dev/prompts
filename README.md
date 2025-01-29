@@ -65,6 +65,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Assert text `:quickRephrase`](#assert-text-quickrephrase)
     - [Rephrase for concision `:rephrase`](#rephrase-for-concision-rephrase)
     - [Focus on benefits `:focusBenefits`](#focus-on-benefits-focusbenefits)
+      - [Summarize](#summarize)
     - [OSX](#osx)
       - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
 
@@ -647,54 +648,60 @@ User must **explicitly validate** this step before moving forward.
 ---
 
 ### 2️⃣ Selecting Best Practices & Tools  
-For each category, propose the **top three** tools based on industry standards. Explain **pros and cons**, mention if a tool covers multiple needs, and guide the user in making an informed choice.  
 
-Each section is **validated independently** before proceeding to the next.  
+Each tool is implemented **one by one** with detailed instructions.
+The implementation of a tool **must be validated** before moving to the next.
 
-#### Code Quality & Standards  
-- **Format:** Propose three formatting tools (e.g., Prettier, Black, clang-format).  
-- **Linting:** Suggest three linters based on the tech stack (e.g., ESLint, Flake8, Pylint).  
-- **Commit Convention:** Recommend tools to enforce structured commits (e.g., Commitlint, Conventional Commits, Husky).  
-
-#### Versioning & Release Management  
-- **Semantic Versioning (SemVer):** Present three versioning strategies or tools.  
-- **Changelog Generation:** Suggest three tools (e.g., standard-version, semantic-release, Keep a Changelog).  
-- **Tagging Releases:** Recommend three solutions for automated tagging.  
-
-#### CI/CD & Automation  
-- **Pre-commit hooks:** List three tools for pre-commit checks (e.g., Husky, Lefthook, pre-commit).  
-- **Pre-merge validation:** Provide three CI solutions ensuring validation before merging (e.g., GitHub Actions, GitLab CI, CircleCI).  
-- **CI/CD Pipeline:** Offer three robust CI/CD solutions that fit the project stack.  
-
-#### Security & Monitoring  
-- **Security Audits:** Recommend three tools for dependency and runtime security (e.g., Snyk, OWASP Dependency Check, Trivy).  
-- **Code Coverage:** Suggest three tools for tracking test coverage (e.g., Codecov, Jest, Pytest-cov).  
-
-#### Documentation & Collaboration  
-- **API Documentation:** Recommend three documentation generators (e.g., Swagger, Redoc, Typedoc).  
-- **Project Documentation:** Offer three solutions for maintaining structured documentation (e.g., Docusaurus, MkDocs, Notion).  
-
-### Code Review 
-- **Code Review Tools:** Recommend three tools for code review (e.g., GitHub Copilot, Code Rabbit, PR-Agent...)
-
-User **must select tools** for each sub-section before proceeding.  
-
----
-
-### 3️⃣ Step-by-Step Setup for Each Approved Tool  
-Each tool is implemented **one by one** with detailed instructions. The implementation of a tool **must be validated** before moving to the next.
-
+Rules:
 - **Installation:** Provide the exact commands.  
 - **Configuration:** Detail how to set up required configuration files.  
-- **CI/CD Integration:** Specify how to integrate the tool into automated workflows.  
 - **Best Practices:** Explain usage guidelines and potential issues.  
-- **Validation:** Ensure the setup is functional before moving to the next tool.  
+- **Validation:** Ensure the setup is functional before moving to the next tool. 
 
-User must **confirm completion** of each tool’s setup before proceeding to another tool.  
+Steps: 
+1. For each category, propose the **top 5** tools based on industry standards based on the developer's stack.
+2. Explain **pros and cons** in a table, mention if a tool covers multiple needs, and guide the user in making an informed choice.  
+3. Each section MUST BE **validated independently** before going to the next. Example: On start, treat "Code Quality & Standards" with section "Format" only, then pass to "Linting", "Commit Convention" etc.
+4. Finally, ask the user "Do you confirm the tools selected for each section?". He must say "YES" to processed.
+5. Once validated: **IMPORTANT** - Summarize all gathered information in a markdown text block (surrounded by 4 backticks)
+  - Translate in english.
+  - Include all decisions, rationale and chosen implementation
+  - Include configuration files, setup steps, and integration guidelines
+  - Format for clarity and future reference
+6. Ask if this is correct, and wait for explicit "YES" confirmation
+
+#### 🔍 1. Code Quality & Standards  
+- **Format:** Propose formatting tools
+- **Linting:** Suggest linters based on the tech stack
+- **Commit Convention:** Recommend tools to enforce structured commits
+
+#### 📦 2. Versioning & Release Management  
+- **Semantic Versioning (SemVer):** Present versioning strategies or tools.  
+- **Changelog Generation:** Suggest tools.
+- **Tagging Releases:** Recommend solutions for automated tagging.  
+
+#### 🚀 3. CI/CD & Automation  
+- **Pre-commit hooks:** List tools for pre-commit checks.  
+- **Pre-merge validation:** Provide CI solutions ensuring validation before merging.  
+- **CI/CD Pipeline:** Offer robust CI/CD solutions that fit the project stack.  
+- **Container Tool**: Recommend containerization tools.
+
+#### 🔒 4. Security & Monitoring  
+- **Security Audits:** Recommend tools for dependency and runtime security.  
+- **Code Coverage:** Suggest tools for tracking test coverage.  
+- **Dependencies update**: Offer solutions for automated dependency updates.
+
+#### 📚 5. Documentation & Collaboration  
+- **API Documentation:** Recommend documentation generators.  
+- **Project Documentation:** Offer solutions for maintaining structured documentation.  
+
+#### 👥 6. Code Review 
+- **Code Review:** Recommend tools for code review.
+- **AI Code Review:** Recommend tools for code review that use AI.  
 
 ---
 
-### 4️⃣ Optional Enhancements  
+### 3️⃣ Optional Enhancements  
 User decides which enhancements to implement. Each selected enhancement follows the **same step-by-step process** as mandatory tools.  
 
 #### Code Quality & Standards  
@@ -726,19 +733,7 @@ Each selected enhancement is **fully implemented before moving to another**.
 ## Output Format  
 1. **Phase 1: Understanding the project** → Confirm details before proceeding.  
 2. **Phase 2: Selecting best practices & tools** → Validate tool choices **per category** before proceeding.  
-3. **Phase 3: Setup per tool** → Implement and validate **one tool at a time**.  
-4. **Phase 4: Optional enhancements** → Implement only if approved, using the same process.  
-
----
-
-## Rules  
-- Never skip a step.  
-- User must **validate each phase** before proceeding.  
-- Each section is **fully completed** before moving to the next.  
-- Each tool is **implemented and validated one by one**.  
-- Provide **top three** tools per sub-section with pros and cons.  
-- Each instruction is in Markdown, structured for clarity.  
-- Adapt recommendations to user expertise.  
+3. **Phase 3: Optional enhancements** → Implement only if approved, using the same process.  
 
 This ensures a structured, interactive, and high-quality project setup.
 ```
@@ -1001,93 +996,120 @@ Test files to check (if any):
 Useful to create markdown spec files constraints to be used in the AI Editor.
 
 ````markdown
-Goal:
-As the "AI Architect", generate a structured Markdown "instruction" document that will serve as an instruction file for the "AI Editor".
+# Goal
+You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
 
-Context: 
-- The "AI Editor" will use this document to generate code or instructions for the "developer".
-- The "developer" will discuss with you, the "AI Architect", to refine the instructions before proceeding.
+# Roles & Responsibilities
+- **AI Architect (You)** → Helps structure the instructions.  
+- **Developer** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
+- **AI Editor** → Uses the instructions to generate code.  
 
-Rules:
-- Do not generate scripts or code, only instructions for the "AI Editor"
-- Example must be in their dedicated section
-- Instruction template must be filled with the user's input very carefully
-- CLI instructions must be **Explicitly** discussed with the "developer", it needs to be perfectly valid to be run in one try without any error. Please valide with the user.
+# Rules
+- **Do NOT generate scripts or code**—only structured instructions.  
+- **All examples must be in a dedicated section** for clarity.  
+- **Every CLI command must be explicitly validated** before including it.  
+- **Instructions must be fully refined before passing them to the AI Editor.**  
+- **Explicit user confirmation is required at each step.**  
 
-Steps:
-1. Gather information from the user to fill the instruction template.
-  2. Ask questions UNTIL the user say it is enough.
-3. Agree with the developer on "global steps".
-4. Fill the instruction template and output it in a markdown formatted text block surrounded by 4 backticks.
-  - Go section by section, ask for refinement and validation from the user.
-  - When providing URLs, ask the user to check it himself.
-  - Precisely describe steps the the "AI Editor" must follow.
-5. User must explicitly validate the section before moving to the next one by saying "YES".
+# Section Processing
 
-// Check CLI
+For each section:
 
-Instruction template to fill:
-- Keep explanations minimal and direct
-- Use headings (H1, H2, H3) for clear hierarchy
-- Prioritize bullet points over paragraphs
-- Use this template:
+### **1. Define the Feature**
+1. Ask: **"Which feature should we build today? ☀️"**  
+
+### **2. Validation Loop**
+1. **Exploration Loop**  
+   - Ask the Developer three **progressive follow-up questions** to collect essential details.  
+2. **Explicit Validation Request**  
+   - Ask: **"Once you're ready to proceed, only type 'GO'. Otherwise, I will ask three more questions to refine the details."**  
+3. **Loop Until Confirmation**  
+   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
+   - **Repeat the cycle** until explicit validation is received.  
+4. **Exit Condition**  
+   - When the user types **"Go"**, proceed to the next step.  
+
+### **3. Structure the Plan**
+1. **Generate a bullet-point list** outlining the major steps required.  
+2. **User Confirmation:**  
+   - Ask: **"Do you agree with this plan? (YES/NO)"**  
+   - If **NO** → Adjust until confirmed.  
+
+### **4. Fill the Instruction Template**
+1. **Complete all sections** methodically using **concise bullet points**.  
+2. **Ensure URLs, commands, and references are verified.**  
+3. **User Confirmation:**  
+   - Ask: **"Is the template correct? (YES/NO)"**  
+   - If **NO** → Refine and repeat.  
+
+### **5. AI Architect Review**
+1. Independently check for:  
+   - **Completeness** → Are all key details covered?  
+   - **Correctness** → Are dependencies, versions, and steps accurate?  
+   - **Clarity** → Is the instruction unambiguous?  
+2. **Propose improvements in bullet points.**  
+3. **User Confirmation:**  
+   - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
+   - If **NO** → Keep as is.  
+   - If **YES** → Apply the changes.  
+
+### **6. Final Developer Validation**
+- Ask: **"Is this final and ready for execution? (YES/NO)"**  
+- If **NO** → Iterate until fully approved.  
+
+---
+
+# **Instruction Template**
+- Use **Markdown headings** (`#`, `##`, `###`) for structure.  
+- Use **bullet points** instead of paragraphs.  
+- **Replace placeholders** (`{{variables}}`) with actual user inputs.  
+- **Sections must not be removed**—additional sections can be added if necessary.  
+
 ```markdown
-<instructionTemplate>
 # Instruction: {{title}}
 
-## Rules 
-
-- Examples (including CLI) are just examples, they must be verified before using (iteration might be needed)
-- Every steps MUST be completed and validated before moving to the next one
+## Rules
+- Examples (including CLI) **must be verified** before execution.  
+- **Every step MUST be completed and validated** before proceeding.  
 
 ## Goal
-
 {{goal}}
 
-### Global steps 
+### Global Steps  
+1. {{step1}}  
+2. ...  
 
-1. {{step1}}
-2. ...
+## Guidelines  
 
-## Guidelines
+### Requirements  
+- {{requirement1}}  
+- ...  
 
-### Requirements
+### Constraints  
 
-- {{requirement1}}
-- ...
+#### {{constraint1}}  
+- {{constraint1-explanation}}  
+- ...  
 
-### Constraints
+## Steps  
 
-#### {{constraint1}}
+### {{step1}}  
+- Online documentation: [link]({{markdown_link}})  
+- Goal: {{goal}}  
+- Steps:  
+  1. {{step1}}  
+  2. {{step2}}  
+- Expected output: {{output}}  
+- Example (if any): {{example}}  
 
-- {{constraint1-explanation}}
-- ...
+## Verifications  
+- Ensure the **goal is achieved optimally**.  
+- Check that **nothing is buggy, missing, or incorrect**.  
 
-## Steps
-
-### {{step1}}
-
-- Online documentation: [link](https://example.com)
-- Goal: {{goal}}
-- Steps:
-  1. {{step1}}
-  2. {{step2}}
-- Expected output: {{output}}
-- Example (if any): {{example}}
-
-## Verifications
-
-1. {{verification1}}
-2. ...
-
-## Ressources
-
-Ressources from the current project you might need:
-
-- "{{ressource-name.md}}"
-- ...
-</instructionTemplate>
+1. {{verification1}}  
+2. ...  
 ```
+
 ````
 
 ### Generate mermaid charts `:docMermaid`
@@ -1748,10 +1770,25 @@ Act as a **conversion-focused copywriter**. Use compelling language that capture
 </text>  
 ```
 
+#### Summarize
+
+```markdown
+Goal:
+Please summarize everything you just said.
+
+Rules:
+- Keep it concise.
+- Include all key points.
+- Provide configuration if necessary.
+
+Output:
+- Format output in a markdown text block surrounded by 4 backticks.
+```
+
 ### OSX
 
 #### Homebrew updates `:osxBrew`
 
-```markdown
+```shell
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 ```
