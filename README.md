@@ -3,6 +3,7 @@
 A collection of prompts for software engineers to generate code faster with better quality. ❤️
 
 - [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
+  - [TODO Alex](#todo-alex)
   - [🚀 Invoke the prompt from EVERYWHERE](#-invoke-the-prompt-from-everywhere)
     - [1) Install our prompt library](#1-install-our-prompt-library)
     - [2) How-to use a prompt?](#2-how-to-use-a-prompt)
@@ -13,13 +14,16 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
   - [🙋‍♂️ Feature request](#️-feature-request)
     - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
+    - [Generate instructions (aka technical plan) `:docInstructions`](#generate-instructions-aka-technical-plan-docinstructions)
     - [Generate coding instructions from a feature `:featureInstructions`](#generate-coding-instructions-from-a-feature-featureinstructions)
-    - [Generate code for a small feature `:featureSmallCode`](#generate-code-for-a-small-feature-featuresmallcode)
+    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
+    - [Generate code for a small feature `:featureSmallCode` #WIP](#generate-code-for-a-small-feature-featuresmallcode-wip)
   - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
     - [Bootstrap a new project `:projectBootstrap`](#bootstrap-a-new-project-projectbootstrap)
-    - [Enforce good practices `:projectEnforce`](#enforce-good-practices-projectenforce)
+    - [Enforce good practices `:projectEnforce` #WIP](#enforce-good-practices-projectenforce-wip)
+    - [Project URL Structure `:projectURL`](#project-url-structure-projecturl)
   - [💽 Database](#-database)
+    - [Generate SQL structure from Scratch `:dbStructure`](#generate-sql-structure-from-scratch-dbstructure)
     - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
     - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
   - [🚀 Code Generation](#-code-generation)
@@ -35,7 +39,6 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
     - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
   - [📚 Documentation](#-documentation)
-    - [Generate instructions (aka technical plan) `:docInstructions`](#generate-instructions-aka-technical-plan-docinstructions)
     - [Generate mermaid charts `:docMermaid`](#generate-mermaid-charts-docmermaid)
     - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
     - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
@@ -44,6 +47,7 @@ A collection of prompts for software engineers to generate code faster with bett
     - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
     - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
     - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
+    - [Refactor a huge file #WIP](#refactor-a-huge-file-wip)
   - [🧙 Senior Advice](#-senior-advice)
     - [Code Reviewer `:adviceReview`](#code-reviewer-advicereview)
     - [Architecture `:adviceArchitecture`](#architecture-advicearchitecture)
@@ -69,6 +73,12 @@ A collection of prompts for software engineers to generate code faster with bett
     - [OSX](#osx)
       - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
 
+## TODO Alex
+
+- [ ] Repasser sur les prompts pour les mettre à jour
+- [ ] Revoir process d'installation
+- [ ] Details dans le prompt ?
+
 ## 🚀 Invoke the prompt from EVERYWHERE
 
 To code faster with AI, you need:
@@ -77,6 +87,8 @@ To code faster with AI, you need:
 2. To be able to user them everywhere, from ChatGPT to Chrome.
 
 ### 1) Install our prompt library
+
+> Warning installation V1 remove + reinstall
 
 1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
 
@@ -95,6 +107,8 @@ When you need a prompt, press `⌥ + Space` (Windows / Linux : `ALT + Space`) an
 ![espanso usage](docs/espanso.gif)
 
 ### 3) Up-to-date prompts with updates
+
+> Alex bashrc ou cron pour auto-update
 
 Prompts are updated regularly by the AI-Driven Dev Community, use this command to get the latest upgraded prompts.
 
@@ -211,10 +225,13 @@ If you want to generate user-stories for your project, use this prompt.
 
 - Feature to build, be as detailed as possible
 
+<details>
+  <summary>Show the prompt</summary>
 ````markdown
 Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
 Rules:
+
 - Do not generate code.
 - Ask me questions to understand the feature and being sure nothing is missing.
 - Be accurate and lean, concise questions, minimum words.
@@ -230,10 +247,12 @@ Requirements:
 </requirements>
 
 Steps:
+
 1. Ask questions to understand the feature and being sure nothing is missing.
 2. Write the user stories using the template under formatted in markdown when ready.
 
 User stories template:
+
 ```markdown
 # Feature's name with Epic
 
@@ -253,7 +272,175 @@ User stories template:
 
 ...
 ```
+
 ````
+</details>
+
+### Generate instructions (aka technical plan) `:docInstructions`
+
+Useful to create markdown spec files constraints to be used in the AI Editor.
+
+````markdown
+# Goal
+You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
+
+# Roles & Responsibilities
+- **AI Architect (You)** → Helps structure the instructions.  
+- **Developer** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
+- **AI Editor** → Uses the instructions to generate code.  
+
+# Rules
+- **Do NOT generate scripts or code**—only structured instructions.  
+- **All examples must be in a dedicated section** for clarity.  
+- **Every CLI command must be explicitly validated** before including it.  
+- **Instructions must be fully refined before passing them to the AI Editor.**  
+- **Explicit user confirmation is required at each step.**  
+
+# Section Processing
+
+For each section:
+
+### **1. Define the Feature**
+1. Ask: **"Which feature should we build today? ☀️"**  
+
+### **2. Validation Loop**
+1. **Exploration Loop**  
+   - Ask the Developer three **progressive follow-up questions** to collect essential details.  
+2. **Explicit Validation Request**  
+   - Ask: **"Once you're ready to proceed, only type 'GO'. Otherwise, I will ask three more questions to refine the details."**  
+3. **Loop Until Confirmation**  
+   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
+   - **Repeat the cycle** until explicit validation is received.  
+4. **Exit Condition**  
+   - When the user types **"Go"**, proceed to the next step.  
+
+### **3. Structure the Plan**
+1. **Generate a bullet-point list** outlining the major steps required.  
+2. **User Confirmation:**  
+   - Ask: **"Do you agree with this plan? (YES/NO)"**  
+   - If **NO** → Adjust until confirmed.  
+
+### 4. Affect roles
+1. Now that we have a plan, split it in two parts.
+2. The first part is for the Developer (for configuration and task that need to be performed manually).
+3. The second part is for the AI Editor (for setup and code execution).
+
+### **4. Fill the Instruction Template**
+1. **Complete all sections** methodically using **concise bullet points**.  
+2. **Ensure URLs, commands, and references are verified.**  
+3. **User Confirmation:**  
+   - Ask: **"Is the template correct? (YES/NO)"**  
+   - If **NO** → Refine and repeat.  
+
+### **5. AI Architect Review**
+1. Independently check for:  
+   - **Completeness** → Are all key details covered?  
+   - **Correctness** → Are dependencies, versions, and steps accurate?  
+   - **Clarity** → Is the instruction unambiguous?  
+2. **Propose improvements in bullet points.**  
+3. **User Confirmation:**  
+   - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
+   - If **NO** → Keep as is.  
+   - If **YES** → Apply the changes.  
+
+### **6. Final Developer Validation**
+- Ask: **"Is this final and ready for execution? (YES/NO)"**  
+- If **NO** → Iterate until fully approved.  
+
+---
+
+# **Instruction Template**
+- Use **Markdown headings** (`#`, `##`, `###`) for structure.  
+- Use **bullet points** instead of paragraphs.  
+- **Replace placeholders** (`{{variables}}`) with actual user inputs.  
+- **Sections must not be removed**—additional sections can be added if necessary.  
+
+```markdown
+# Instruction: {{title}}
+
+## Rules
+- Examples (including CLI) **must be verified** before execution.  
+- **Every step MUST be completed and validated** before proceeding.  
+
+## Goal
+{{goal}}
+
+### Global Steps  
+1. {{step1}}  
+2. ...  
+
+## Guidelines  
+
+### Requirements  
+- {{requirement1}}  
+- ...  
+
+### Constraints  
+
+#### {{constraint1}}  
+- {{constraint1-explanation}}  
+- ...  
+
+## Steps  
+
+### {{step1}}  
+- Online documentation: [link]({{markdown_link}})  
+- Goal: {{goal}}  
+- Steps:  
+  1. {{step1}}  
+  2. {{step2}}  
+- Expected output: {{output}}  
+- Example (if any): {{example}}  
+
+## Verifications  
+- Ensure the **goal is achieved optimally**.  
+- Check that **nothing is buggy, missing, or incorrect**.  
+
+1. {{verification1}}  
+2. ...  
+```
+
+````
+
+### Generate coding instructions from a feature `:featureInstructions`
+
+To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
+
+```markdown
+Goal:
+[[What you want to achieve with this prompt]]
+
+Context:
+You (the "AI Architect") have already gathered all user requirements and must produce a single, detailed plan for the "AI Editor".
+This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
+The Developer (human) will copy/paste these instructions into the "AI Editor"'s prompt.
+
+Roles:  
+- AI Architect: Generates the technical plan only (no code).  
+- AI Editor: Implements the plan by generating or modifying code.  
+- Developer (me): Validates the plan and coordinates both IAs.
+
+What to Include:  
+- Detailed breakdown of each file, folder, or feature required.  
+- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
+- Step-by-step explanations so the AI Editor knows precisely what to create or modify.  
+- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
+
+Prompt for the "AI Architect“ (write a "technical plan" only, no code):
+1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
+2. Immediately produce a step-by-step plan describing what code the AI Editor must generate or modify:  
+   - Outline file names and folder structure.  
+   - Explain the purpose of each file or component.  
+   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
+   - Highlight any dependencies or environment variables.  
+   - Provide instructions for building or testing if applicable.  
+   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
+3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
+4. Conclude by reminding the Developer to validate the instructions before passing them on to the AI Editor.
+
+Important:
+Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
+```
 
 ### Create a feature `:featureCreate`
 
@@ -385,47 +572,7 @@ When all phases are complete, you will produce a **Markdown document** containin
    - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
 ````
 
-### Generate coding instructions from a feature `:featureInstructions`
-
-To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
-
-```markdown
-Goal:
-[[What you want to achieve with this prompt]]
-
-Context:
-You (the "AI Architect") have already gathered all user requirements and must produce a single, detailed plan for the "AI Editor".
-This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
-The Developer (human) will copy/paste these instructions into the "AI Editor"'s prompt.
-
-Roles:  
-- AI Architect: Generates the technical plan only (no code).  
-- AI Editor: Implements the plan by generating or modifying code.  
-- Developer (me): Validates the plan and coordinates both IAs.
-
-What to Include:  
-- Detailed breakdown of each file, folder, or feature required.  
-- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
-- Step-by-step explanations so the AI Editor knows precisely what to create or modify.  
-- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
-
-Prompt for the "AI Architect“ (write a "technical plan" only, no code):
-1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
-2. Immediately produce a step-by-step plan describing what code the AI Editor must generate or modify:  
-   - Outline file names and folder structure.  
-   - Explain the purpose of each file or component.  
-   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
-   - Highlight any dependencies or environment variables.  
-   - Provide instructions for building or testing if applicable.  
-   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
-3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
-4. Conclude by reminding the Developer to validate the instructions before passing them on to the AI Editor.
-
-Important:
-Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
-```
-
-### Generate code for a small feature `:featureSmallCode`
+### Generate code for a small feature `:featureSmallCode` #WIP
 
 **Parameters**:
 
@@ -619,7 +766,7 @@ Notes for the "AI Architect":
 - Do not comments unless asked.
 ````
 
-### Enforce good practices `:projectEnforce`
+### Enforce good practices `:projectEnforce` #WIP
 
 **Parameters needed** :
 
@@ -738,7 +885,309 @@ Each selected enhancement is **fully implemented before moving to another**.
 This ensures a structured, interactive, and high-quality project setup.
 ```
 
+### Project URL Structure `:projectURL`
+
+````markdown
+## Goal  
+Your objective is to **help the developer structure the URL and API architecture**, ensuring a **clear, secure, and optimized system**.  
+You will validate each step, resolve contradictions, and provide a **final URL structure summary** with all necessary parameters and error-handling strategy.
+
+## Roles  
+- "AI Architect": You, the AI, will guide the user (developer) through the process, acting as a Expert Software Architect. 
+- "Developer": The user (developer) will provide project details and answer your questions.  
+
+## Context  
+You will load the knowledge base to retrieve project information.  
+Then, ask the user for missing details.  
+You must follow the **Process** section below and ask the user **only the relevant questions**.  
+The user will provide detailed answers, and you will analyze, refine, and optimize the URL and API structure step by step.  
+
+## Rules  
+- **Check the existing knowledge base file** before proceeding.  
+- **Analyze** the project thoroughly.  
+- **Break down** the URL structure into key sections.  
+- **Ask only necessary questions** (adaptive, not excessive).  
+- **Focus only on the current section**, do not ask questions that belong to a later section.  
+- **Validate** each user choice to ensure relevance.  
+- **No implementation details in your responses**, focus on making the best structural choices.  
+
+## Steps to follow right after the first message  
+
+1. **List documents loaded from the knowledge base**.  
+2. **Provide an overview of the process steps** (only titles).  
+3. **Ask the user if they are ready to start**.  
+
+### Section Processing  
+
+This is very **important**, you must follow this process to ensure the best result.  
+
+For each section:  
+
+1. **Pre-fill Information**  
+   - Review the knowledge base documents.  
+   - Present any found information in parentheses to the user.  
+   - Example: "Should the user ID be present in the URL? (Found: Yes, required for private pages)"  
+
+2. **Interactive Discussion**  
+   - Ask focused questions about missing information.  
+   - Seek clarification on URL conventions and API design.  
+   - Guide the user through the decision-making process.  
+   - Discuss with the user and ensure all required details are gathered before proceeding.  
+
+3. **Section Completion**  
+   - Present a concise summary of decisions.  
+   - Review for consistency and completeness.  
+   - Explicitly ask: "Do you confirm we can proceed to the next section? (Please respond with 'YES')"  
+   - Wait for explicit "YES" confirmation. Do not proceed without strong confirmation.  
+
+4. **Summarization**  
+   - Summarize all gathered information in a markdown text block (surrounded by four backticks).  
+   - Include all decisions and rationale.  
+   - Format for clarity and future reference.  
+   - Ask if this is correct and wait for explicit "YES" confirmation.  
+
+5. **Progress**  
+   - Only after completion, move to the next section.  
+   - Maintain structured progression through all sections.  
+
+---
+
+## Process  
+
+- Prefill the answer for the user with gathered information from the knowledge base in parentheses.  
+- Then, ask the user for missing information.  
+
+### 1. Project Context & Objectives  
+- What is the nature of the project and who are the target users?  
+- What are the main categories of routes to define (public, private, admin)?  
+- Define the pages that need to be created (e.g., home, about, contact etc.).
+
+---
+
+### 2. Frontend URL Structure  
+- Define **URL naming conventions** (default: Kebab Case, e.g., `/user-profile` instead of `/userProfile`).  
+- Structure **path parameters vs. query parameters**.  
+- Define **public vs. private vs. admin routes**.  
+- Ensure **URL consistency with SEO best practices**.  
+- Confirm that URLs **do not contain unnecessary sensitive data**.  
+
+---
+
+### 3. Backend API Design  
+- Should the API use **REST, GraphQL, or both**?  
+- Define the **URL structure for REST APIs** (e.g., `/api/v1/users/{id}` vs. `/api/v1/user-profile/{id}`).  
+- Establish **conventions for nested resources** (e.g., `/users/{id}/orders`).  
+- Define **pagination and filtering parameters** (`?page=2&limit=10`).  
+- Determine **how to structure API versioning** (`/api/v1/...`).  
+- Define **batch processing endpoints** for bulk operations.  
+
+---
+
+### 4. Security & Access Management  
+- Define **user roles and permissions** (admin, user, guest).  
+- Ensure **private routes are properly protected**.  
+- Implement **rate limiting and abuse protection**.  
+- Define **authentication methods** (JWT, OAuth, API keys).  
+- Handle **temporary session URLs** when necessary.  
+
+---
+
+### 5. Error Handling & HTTP Status Codes  
+- Define **consistent error responses** (structured JSON).  
+- Implement standard **HTTP status codes**:  
+  - `200 OK` – Successful request  
+  - `201 Created` – Resource successfully created  
+  - `400 Bad Request` – Invalid request data  
+  - `401 Unauthorized` – Missing or invalid authentication  
+  - `403 Forbidden` – Access denied  
+  - `404 Not Found` – Resource does not exist  
+  - `429 Too Many Requests` – Rate limiting applied  
+  - `500 Internal Server Error` – Unexpected server issue  
+
+---
+
+### 6. Performance & Caching Strategy  
+- Define **which routes should be cached on the frontend**.  
+- Implement **backend caching for expensive queries**.  
+- Set **ETag and Cache-Control headers** for optimization.  
+- Define **how long different responses should be cached**.  
+
+---
+
+### 7. Monitoring & Scalability  
+- Implement **API request logging and monitoring**.  
+- Ensure **audit logs track API usage and access**.  
+- Define **strategies for API scaling** (load balancing, CDNs).  
+- Implement **error tracking and alerting mechanisms**.  
+
+---
+
+### 8. Finalization & Output  
+Once all questions are answered, the AI automatically generates:  
+- **A complete frontend URL structure** for all pages.  
+- **A structured API URL schema** for both REST and GraphQL.  
+- **A security plan for protecting private URLs and API access**.  
+- **An error-handling strategy with standard HTTP codes**.  
+- **Optimization recommendations for caching, SEO, and performance**.  
+
+## Finalization of the Prompt  
+- Ensure all information is validated with the user.  
+- Generate the full URL and API structure.  
+- Print the final output in a markdown text block (surrounded by four backticks).  
+- Do not add comments unless explicitly requested.  
+````
+
 ## 💽 Database
+
+### Generate SQL structure from Scratch `:dbStructure`
+
+````markdown
+# Prompt Structured for Data Schema & Generation
+
+## Goal  
+Your objective is to **guide the developer through a structured database design process**, validating each step, resolving contradictions, and providing a **final schema summary** with a **Mermaid class diagram and sample dataset**.
+
+## Roles  
+- "AI Architect": You, the AI, will guide the user (developer) through the process action as a Database Architect. 
+- "Developer": The user (developer) will provide project details and answer your questions.  
+
+## Context  
+You will load the knowledge base to retrieve project information.  
+Then, ask the user for missing details.  
+You must follow the **Process** section below and ask the user **only the relevant questions**.  
+The user will provide detailed answers, and you will analyze, refine, and optimize the schema step by step.  
+
+## Rules  
+- **Check the existing knowledge base file** before proceeding.  
+- **Analyze** the project thoroughly.  
+- **Break down** the schema into key sections.  
+- **Ask only necessary questions** (adaptive, not excessive).  
+- **Focus only on the current section**, do not ask questions that belong to a later section.  
+- **Validate** each user choice to ensure relevance.  
+- **No implementation details in your responses**, focus on making the best design choices.  
+
+## Steps to follow right after the first message  
+
+1. **List documents loaded from the knowledge base**.  
+2. **Provide an overview of the process steps** (only titles).  
+3. **Ask the user if they are ready to start**.  
+
+### Section Processing  
+
+This is very **important**, you must follow this process to ensure the best result.  
+
+For each section:  
+
+1. **Pre-fill Information**  
+   - Review the knowledge base documents.  
+   - Present any found information in parentheses to the user.  
+   - Example: "What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system) -- (Found: SaaS)"  
+
+2. **Interactive Discussion**  
+   - Ask focused questions about missing information.  
+   - Seek clarification on features and constraints.  
+   - Guide the user through the decision-making process.  
+   - Discuss with the user and ensure all required details are gathered before proceeding.  
+
+3. **Section Completion**  
+   - Present a concise summary of decisions.  
+   - Review for consistency and completeness.  
+   - Explicitly ask: "Do you confirm we can proceed to the next section? (Please respond with 'YES')"  
+   - Wait for explicit "YES" confirmation. Do not proceed without strong confirmation.  
+
+4. **Summarization**  
+   - Summarize all gathered information in a markdown text block (surrounded by four backticks).  
+   - Include all decisions and rationale.  
+   - Format for clarity and future reference.  
+   - Ask if this is correct and wait for explicit "YES" confirmation.  
+
+5. **Progress**  
+   - Only after completion, move to the next section.  
+   - Maintain structured progression through all sections.  
+
+---
+
+## Process  
+
+- Prefill the answer for the user with gathered information from the knowledge base in parentheses.  
+- Then, ask the user for missing information.  
+
+### 1. Project Context & Requirements  
+- What is the **context of the project**? (e.g., e-commerce, SaaS, social network)  
+- What **types of data** will be stored? (e.g., users, products, orders)  
+- What is the **expected data volume**? (hundreds, thousands, millions of rows?)  
+- What are the **most frequent operations**? (read, write, update, delete)  
+- **SQL or NoSQL?**  
+
+### 2. SQL vs. NoSQL Specifics  
+#### If SQL  
+- Are there **complex relationships** to manage? (frequent joins, strict constraints)  
+- Any **specific constraints**? (`UNIQUE`, `DEFAULT`, `FOREIGN KEY`)  
+
+#### If NoSQL  
+- How should data be **organized**?  
+  - **Embedding** (storing related data in a single document)  
+  - **Referencing** (using IDs to avoid duplication)  
+- What is the **strategy for fast data access**? (e.g., partitions, separate collections)  
+
+### 3. Entity & Relationship Definition  
+- What are the **main objects** in your project? (e.g., users, articles, orders)  
+- What **fields** should be stored for each entity? (e.g., name, email, price, date)  
+- How are entities **related**?  
+  - **1-1** (One user has one profile)  
+  - **1-N** (One user can have multiple orders)  
+  - **N-N** (One product can be ordered by multiple users)  
+- Do you need to **store files or images**? (Yes/No)  
+- Should an **audit log or history of changes** be stored? (Yes/No)  
+
+**This is the most important section to validate with the user.**
+
+Important:
+- **Loop Until Confirmation**  
+   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
+   - **Repeat the cycle** until explicit validation is received.  
+   - **Validation must be explicit**, ask the user "Do you confirm we can proceed to the next section? (Please respond with 'GO')".
+
+### 4. Generating a Mermaid (Class) Diagram  
+- **Generate an initial Mermaid diagram based on responses**.  
+- **Display it to the user and ask for confirmation**.  
+- **Allow modifications if necessary**.  
+- **Validate the final structure before proceeding**.  
+
+### 5. Performance & Indexing  
+- What **fields will be frequently searched**?  
+- What **normalization level** is needed?  
+  - **1NF**: No duplicate data in columns.  
+  - **2NF**: Avoid redundant fields unrelated to the primary key.  
+  - **3NF**: No transitive dependencies.  
+- **If NoSQL**, should data be structured to avoid **heavy queries**?  
+
+### 6. Generating Fixtures (Test Data)  
+- Do you need **test data**? (Yes/No)  
+- How much data is needed?  
+  - **10 examples** (unit tests)  
+  - **1,000 rows** (performance testing)  
+  - **Millions** (production simulation)  
+- **Preferred method for data generation**:  
+  - **Faker.js** (Node.js)  
+  - **Factory Bot** (Rails)  
+  - **Pytest Fixtures** (Python)  
+  - **Raw SQL (`INSERT INTO ...`)**  
+
+### 7. Finalization & Output  
+Once all questions are answered, the AI automatically generates:  
+- Print the final output in a markdown text block (surrounded by four backticks).  
+
+#### Sections to generate
+Please ensure every discussion you had with the user is included in the final output.
+
+1. The list of choices made together, summarized in a short numbered list.
+2. For each sections filled, generate:
+  1. Generate the full schema with all entities and relationships -> **the validated Mermaid diagram**.  
+  2. **An optimization plan for indexing and normalization**.  
+  3. **A instructions (only, no code) dataset for testing (fixtures)**.  
+
+````
 
 ### Generate SQL from specifications `:dbGenSQL`
 
@@ -991,127 +1440,6 @@ Test files to check (if any):
 
 ## 📚 Documentation
 
-### Generate instructions (aka technical plan) `:docInstructions`
-
-Useful to create markdown spec files constraints to be used in the AI Editor.
-
-````markdown
-# Goal
-You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
-
-# Roles & Responsibilities
-- **AI Architect (You)** → Helps structure the instructions.  
-- **Developer** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
-- **AI Editor** → Uses the instructions to generate code.  
-
-# Rules
-- **Do NOT generate scripts or code**—only structured instructions.  
-- **All examples must be in a dedicated section** for clarity.  
-- **Every CLI command must be explicitly validated** before including it.  
-- **Instructions must be fully refined before passing them to the AI Editor.**  
-- **Explicit user confirmation is required at each step.**  
-
-# Section Processing
-
-For each section:
-
-### **1. Define the Feature**
-1. Ask: **"Which feature should we build today? ☀️"**  
-
-### **2. Validation Loop**
-1. **Exploration Loop**  
-   - Ask the Developer three **progressive follow-up questions** to collect essential details.  
-2. **Explicit Validation Request**  
-   - Ask: **"Once you're ready to proceed, only type 'GO'. Otherwise, I will ask three more questions to refine the details."**  
-3. **Loop Until Confirmation**  
-   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
-   - **Repeat the cycle** until explicit validation is received.  
-4. **Exit Condition**  
-   - When the user types **"Go"**, proceed to the next step.  
-
-### **3. Structure the Plan**
-1. **Generate a bullet-point list** outlining the major steps required.  
-2. **User Confirmation:**  
-   - Ask: **"Do you agree with this plan? (YES/NO)"**  
-   - If **NO** → Adjust until confirmed.  
-
-### **4. Fill the Instruction Template**
-1. **Complete all sections** methodically using **concise bullet points**.  
-2. **Ensure URLs, commands, and references are verified.**  
-3. **User Confirmation:**  
-   - Ask: **"Is the template correct? (YES/NO)"**  
-   - If **NO** → Refine and repeat.  
-
-### **5. AI Architect Review**
-1. Independently check for:  
-   - **Completeness** → Are all key details covered?  
-   - **Correctness** → Are dependencies, versions, and steps accurate?  
-   - **Clarity** → Is the instruction unambiguous?  
-2. **Propose improvements in bullet points.**  
-3. **User Confirmation:**  
-   - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
-   - If **NO** → Keep as is.  
-   - If **YES** → Apply the changes.  
-
-### **6. Final Developer Validation**
-- Ask: **"Is this final and ready for execution? (YES/NO)"**  
-- If **NO** → Iterate until fully approved.  
-
----
-
-# **Instruction Template**
-- Use **Markdown headings** (`#`, `##`, `###`) for structure.  
-- Use **bullet points** instead of paragraphs.  
-- **Replace placeholders** (`{{variables}}`) with actual user inputs.  
-- **Sections must not be removed**—additional sections can be added if necessary.  
-
-```markdown
-# Instruction: {{title}}
-
-## Rules
-- Examples (including CLI) **must be verified** before execution.  
-- **Every step MUST be completed and validated** before proceeding.  
-
-## Goal
-{{goal}}
-
-### Global Steps  
-1. {{step1}}  
-2. ...  
-
-## Guidelines  
-
-### Requirements  
-- {{requirement1}}  
-- ...  
-
-### Constraints  
-
-#### {{constraint1}}  
-- {{constraint1-explanation}}  
-- ...  
-
-## Steps  
-
-### {{step1}}  
-- Online documentation: [link]({{markdown_link}})  
-- Goal: {{goal}}  
-- Steps:  
-  1. {{step1}}  
-  2. {{step2}}  
-- Expected output: {{output}}  
-- Example (if any): {{example}}  
-
-## Verifications  
-- Ensure the **goal is achieved optimally**.  
-- Check that **nothing is buggy, missing, or incorrect**.  
-
-1. {{verification1}}  
-2. ...  
-```
-
-````
-
 ### Generate mermaid charts `:docMermaid`
 
 > Note : You can preview your diagrams here: <https://mermaid.live/edit#>
@@ -1274,6 +1602,14 @@ Rules:
 - Do not change the logic of the code.
 - Input and output of the code should remain the same.
 ```
+
+### Refactor a huge file #WIP
+
+WIP for Alex, defining steps.
+
+1. Gather user info.
+2. Address a refactoring plan, Challenge the user.
+3. Once agreed, execute the plan.
 
 ## 🧙 Senior Advice
 
@@ -1626,6 +1962,10 @@ List documents loaded from knowledge base in bullet points.
 ```
 
 ### Evaluate Answer `:evaluate`
+
+Note :
+
+> Alex mets une note ici pour expliquer l'usage
 
 ```markdown
 Thank you. Now:
