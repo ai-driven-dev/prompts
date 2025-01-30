@@ -227,6 +227,7 @@ If you want to generate user-stories for your project, use this prompt.
 
 <details>
   <summary>Show the prompt</summary>
+  
 ````markdown
 Goal: Please endorse Product Owner to write very good user stories for the developers team.
 
@@ -274,6 +275,7 @@ User stories template:
 ```
 
 ````
+
 </details>
 
 ### Generate instructions (aka technical plan) `:docInstructions`
