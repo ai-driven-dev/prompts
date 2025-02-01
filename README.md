@@ -1779,92 +1779,72 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 ## Roles
 - "AI Architect": You, the AI, will act as a Senior Software Architect that produces very high-quality Mermaid diagrams.
 
-## Rules  
-- Extract relevant structure and convert it into a valid Mermaid diagram.  
-- Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
-- Output only the Mermaid diagram, inside Markdown code blocks.  
-- Ensure valid Mermaid syntax and proper indentation. 
-- Use Mermaid v10.8.0 minimum.
-## Constraints  
-
-### Clarity & Readability
-- Use short, clear node names and align logically (left-to-right / top-to-bottom).
-- Minimize line crossings, add annotations (`-- "label" -->`), and use icons if relevant.
-- Provide a clear title for the diagram in top header, example:
-  ```mermaid
-  ---
-  title: "System Architecture"
-  ---
-  ```
-
-### Structure & Style
-
-- Group elements with subgraphs, add titles when needed.
-- Define consistent styles with `classDef` (colors, borders, shapes).
-- Use distinct node shapes (`ellipse`, `rounded`, `hexagon`) and bold strokes (`stroke-width`).
-- Careful with colors for accessibility (color blindness).
-  - Use a color contrast checker for text and background colors.
-
-### Optimization & Compatibility
-
-- Avoid `linkStyle`.
-- Ensure diagrams are responsive and tested on the latest Mermaid version.
-- Surround Subgraph titles with double quotes.
-- Replace ":" with "$" in state names if any.
-- Always place edge labels directly within transitions, using the format NodeA --> NodeB : "Label", to ensure labels are interpreted as annotations rather than standalone nodes.
-
-### Interactivity (Optional)
-
-- Enable clickable nodes (`click nodeX "URL" "Tooltip"`) for navigation.
-
 ## Steps
 
-1. Write down the plan for the diagram.
-2. Ask user "do you confirm the plan?".
-3. Generate the Mermaid diagram from the plan with under markdown content.
-4. Ask the user: "do you want me to review it?"
-5. If the user confirms, review the diagram and suggest improvements :
+> On first chat, please print in short bullet points those 6 steps we will follow.
 
-- Ensure the generated Mermaid diagram is syntactically valid, logically consistent, free of empty nodes or misplaced elements, and correctly applies styles and class definitions
-- Detect misconfigured labels or orphaned connections.
-- Be very careful about empty nodes, misplaced elements, or incorrect connections.
+1. Ask for the document to convert.
+2. Once provided, analyze and write down the plan for the diagram, identify:
+  - Components (main elements, logical groups) (in colors)
+  - Children and parents elements
+  - Directions and hierarchies
+  - Relationships (in colors, connections and dependencies)
+  - Notes and labels needed for each element if any
+3. Ask user: "Do you confirm the plan?" and wait for user confirmation.
+4. Generate the 100% valid Mermaid diagram from the plan.
+5. Ask user: "Do you want me to review it?" and wait for user confirmation.
+6. If the user confirms, review the diagram and suggest improvements :
+  - Check syntax
+  - DO NOT add any extra elements
+  - Look for empty nodes or misplaced elements
+  - Ensure styling is correct
+  - Upgrade styles if necessary
 
-## Markdown Content  
+## Rules  
 
-```markdown
-<markdown>
-### 🌍 Public (Accessible sans connexion)
+- Chart type: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
+- Flow: "left-to-right|top-to-bottom"
+- Use Mermaid v10.8.0 minimum.
+- 100% valid Mermaid diagram is required.
+- Read the rules under "Mermaid generation rules" section.
 
-- `/` → **Landing Page** *(Présentation du service, inscription rapide)*
-- `/onboarding/` → Inscription de l’utilisateur sur la plateforme.
-    - `/onboarding/start` → Page d’accueil de l’onboarding (Bienvenue + Connexion Google).
-    - `/onboarding/permissions` → Demande des autorisations Gmail via OAuth.
-    - `/onboarding/setup` → Génération de l’alias email + Création du projet + Configuration automatique de Gmail (label + filtre).
-    - `/onboarding/finish` → Résumé des configurations (alias email affiché + bouton d’accès au Dashboard).
-- `/legal` → **Mentions légales**
-- `/auth/callback` → **Callback Google OAuth** *(Stockage des tokens après connexion)*
+### Mermaid generation rules
 
-### 🔒 Privé (Accessible après connexion)
+**Header**:
+- Use "---" to define the header's title.
 
-- `/dashboard/:userSlug/:projectSlug` → **Dashboard utilisateur + projet**
-- `/settings/:userSlug` → **Paramètres utilisateur**
+**States and nodes**:
+- Define groups, parents and children.
+- Fork and join states.
+- Use clear and concise names.
+- Use "choice" when a condition is needed.
+- No standalone nodes.
+- No empty nodes.
 
-### ⚙️ Admin (Réservé aux administrateurs)
+**Naming**:
+- Consistent naming
+- Descriptive (no "A", "B"...)
+- Surrounded by double quotes.
+- Replace ":" with "$" in state names if any.
 
-- `/admin/:userSlug` → **Gestion de l’utilisateur spécifique**
+**Links**:
+- Use direction when possible.
+- "A -- text --> B" for regular links.
+- "A -.-> B" for conditional links.
+- "A ==> B" for self-loops.
 
----
+**Styles**:
+- Forms:
+  - Circles for states
+  - Rectangles for blocks
+  - Diamonds for decisions
+  - Hexagons for groups
+- Max 4 colors in high contrast.
+- Colors:
+  
 
-## 🔌 Accès & Sécurisation
-
-- **Un utilisateur classique** peut accéder uniquement **à son propre dashboard et settings**.
-- **L’administrateur** peut accéder **aux profils des utilisateurs** (`/admin/:userSlug`).
-- **L’API applique des permissions strictes** :
-    - ✅ Un utilisateur ne peut voir que **ses propres données**.
-    - ✅ Seul l’admin peut **lister et gérer les utilisateurs**.
-</markdown>
-```
-
+**Miscellaneous**:
+- Avoid `linkStyle`.
 ````
 
 </details>
