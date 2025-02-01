@@ -4,76 +4,77 @@
 
 > Une collection de prompts pour les développeurs avec un logiciel intégré pour appeler n'importe quel prompt, depuis n'importe quelle application.
 
-- [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
-  - [🚀 **La bibliothèque de prompts "AI-Driven Dev"**](#-la-bibliothèque-de-prompts-ai-driven-dev)
-    - [1) Installation](#1-installation)
-    - [2) Comment utiliser un prompt ?](#2-comment-utiliser-un-prompt-)
-    - [3) Mise à jour des prompts](#3-mise-à-jour-des-prompts)
-    - [4) Problèmes connus](#4-problèmes-connus)
-  - [**🔥 Contribution**](#-contribution)
-  - [**👌 Bonnes pratiques**](#-bonnes-pratiques)
-    - [Template de prompt "parfait" `:codeTemplate`](#template-de-prompt-parfait-codetemplate)
-    - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
-  - [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
-    - [Liste d'user-stories pour une épique `:featureUserStories` (WIP)](#liste-duser-stories-pour-une-épique-featureuserstories-wip)
-    - [User-story `:featureUserStory`](#user-story-featureuserstory)
-    - [Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` #WIP](#fiche-dinstructions-aka-plan-technique-featureplanconstruction-wip)
-    - [Fiche d'instructions (aka: plan technique) `:docInstructions` #WIP](#fiche-dinstructions-aka-plan-technique-docinstructions-wip)
-    - [Fiche d'instructions (aka: plan technique) `:featureInstructions` #WIP](#fiche-dinstructions-aka-plan-technique-featureinstructions-wip)
-    - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
-    - [Générer du code pour une petite fonctionnalité `:featureCode`](#générer-du-code-pour-une-petite-fonctionnalité-featurecode)
-  - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
-    - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
-    - [Enforcer les bonnes pratiques `:projectEnforce` #WIP](#enforcer-les-bonnes-pratiques-projectenforce-wip)
-    - [Structure des URLs `:projectURL`](#structure-des-urls-projecturl)
-  - [**💽 Base de données**](#-base-de-données)
-    - [Structure et schémas `:dbStructure`](#structure-et-schémas-dbstructure)
-    - [Générer schéma SQL depuis des spécifications `:dbGenSQL`](#générer-schéma-sql-depuis-des-spécifications-dbgensql)
-    - [Générer des entités à partir d'un schéma SQL `:dbGenEntity`](#générer-des-entités-à-partir-dun-schéma-sql-dbgenentity)
-  - [**🚀 Génération de code**](#-génération-de-code)
-    - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
-  - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
-    - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` #WIP](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
-  - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
-    - [Trouver des pistes `:debugIssues` #WIP](#trouver-des-pistes-debugissues-wip)
-    - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
-    - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
-  - [**🧪 Tests**](#-tests)
-    - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
-    - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
-  - [**📚 Documentation**](#-documentation)
-    - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
-    - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
-  - [**🔄 Refactoring**](#-refactoring)
-    - [Ajouter des commentaires au code `:refactComment`](#ajouter-des-commentaires-au-code-refactcomment)
-    - [Créer un nouveau fichier générique `:refactGeneric`](#créer-un-nouveau-fichier-générique-refactgeneric)
-    - [Beautifier un code `:refactOpt`](#beautifier-un-code-refactopt)
-    - [Optimiser les performances d'un code `:refactPerf`](#optimiser-les-performances-dun-code-refactperf)
-    - [Refactor un fichier `:refactHuge`](#refactor-un-fichier-refacthuge)
-  - [**🧙 Revue de code**](#-revue-de-code)
-    - [Faire une revue de code `:adviceReview`](#faire-une-revue-de-code-advicereview)
-    - [Revoir l'architecture d'un projet `:adviceArchitecture`](#revoir-larchitecture-dun-projet-advicearchitecture)
-    - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
-  - [**🧑‍🍳 Gestion de projets**](#-gestion-de-projets)
-    - [Définir les milestones et les épiques `:pmMilestones` #WIP](#définir-les-milestones-et-les-épiques-pmmilestones-wip)
-    - [Écrire un document de spécifications `:pmSpecs`](#écrire-un-document-de-spécifications-pmspecs)
-    - [Choisir une stack technique `:pmTechStack`](#choisir-une-stack-technique-pmtechstack)
-  - [**🗣️ Chat et conversations**](#️-chat-et-conversations)
-    - [Top 3 `:chatTop3`](#top-3-chattop3)
-    - [Résume en une phrase `:chatSummarize`](#résume-en-une-phrase-chatsummarize)
-    - [Rechercher sur internet `:chatOnline`](#rechercher-sur-internet-chatonline)
-    - [Répondre en français `:chatFr`](#répondre-en-français-chatfr)
-    - [Sortie en markdown `:chatOutputMd`](#sortie-en-markdown-chatoutputmd)
-    - [Charger la base de connaissances `:chatKB`](#charger-la-base-de-connaissances-chatkb)
-    - [Évaluer une réponse `:chatEvaluate`](#évaluer-une-réponse-chatevaluate)
-    - [Relancer une nouvelle conversation / chat `:chatRestart`](#relancer-une-nouvelle-conversation--chat-chatrestart)
-  - [**📝 Écriture et contenu**](#-écriture-et-contenu)
-    - [Simplifier un texte `:contentRephrase`](#simplifier-un-texte-contentrephrase)
-    - [Rendre un texte plus concis `:contentFocus`](#rendre-un-texte-plus-concis-contentfocus)
-    - [Focus sur les avantages `:contentFocusBenefits`](#focus-sur-les-avantages-contentfocusbenefits)
-    - [Résumer un texte `:contentSummarize`](#résumer-un-texte-contentsummarize)
-  - [**💻 OSX**](#-osx)
-    - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
+- [🚀 **La bibliothèque de prompts "AI-Driven Dev"**](#-la-bibliothèque-de-prompts-ai-driven-dev)
+  - [1) Installation](#1-installation)
+  - [2) Comment utiliser un prompt ?](#2-comment-utiliser-un-prompt-)
+  - [3) Mise à jour des prompts](#3-mise-à-jour-des-prompts)
+  - [4) Problèmes connus](#4-problèmes-connus)
+- [**🔥 Contribution**](#-contribution)
+- [**👌 Bonnes pratiques de prompt**](#-bonnes-pratiques-de-prompt)
+  - [Template de prompt "parfait" `:promptTemplate`](#template-de-prompt-parfait-prompttemplate)
+    - [Template](#template)
+    - [Exemple d'application du template dans un prompt avec Cursor](#exemple-dapplication-du-template-dans-un-prompt-avec-cursor)
+  - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
+- [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
+  - [Liste d'user-stories pour une épique `:featureUserStories` (WIP)](#liste-duser-stories-pour-une-épique-featureuserstories-wip)
+  - [User-story `:featureUserStory`](#user-story-featureuserstory)
+  - [Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` (WIP)](#fiche-dinstructions-aka-plan-technique-featureplanconstruction-wip)
+  - [Fiche d'instructions (aka: plan technique) `:docInstructions` (WIP)](#fiche-dinstructions-aka-plan-technique-docinstructions-wip)
+  - [Fiche d'instructions (aka: plan technique) `:featureInstructions` (WIP)](#fiche-dinstructions-aka-plan-technique-featureinstructions-wip)
+  - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
+  - [Générer du code pour une petite fonctionnalité `:featureCode`](#générer-du-code-pour-une-petite-fonctionnalité-featurecode)
+- [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
+  - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
+  - [Enforcer les bonnes pratiques `:projectEnforce` (WIP)](#enforcer-les-bonnes-pratiques-projectenforce-wip)
+  - [Structure des URLs `:projectURL`](#structure-des-urls-projecturl)
+- [**💽 Base de données**](#-base-de-données)
+  - [Structure et schémas `:dbStructure`](#structure-et-schémas-dbstructure)
+  - [Générer schéma SQL depuis des spécifications `:dbGenSQL`](#générer-schéma-sql-depuis-des-spécifications-dbgensql)
+  - [Générer des entités à partir d'un schéma SQL `:dbGenEntity`](#générer-des-entités-à-partir-dun-schéma-sql-dbgenentity)
+- [**🚀 Génération de code**](#-génération-de-code)
+  - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
+- [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
+  - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
+- [**🐛 Corriger de bugs**](#-corriger-de-bugs)
+  - [Trouver des pistes `:debugIssues` (WIP)](#trouver-des-pistes-debugissues-wip)
+  - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
+  - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
+- [**🧪 Tests**](#-tests)
+  - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
+  - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
+- [**📚 Documentation**](#-documentation)
+  - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
+  - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
+- [**🔄 Refactoring**](#-refactoring)
+  - [Ajouter des commentaires au code `:refactComment`](#ajouter-des-commentaires-au-code-refactcomment)
+  - [Créer un nouveau fichier générique `:refactGeneric`](#créer-un-nouveau-fichier-générique-refactgeneric)
+  - [Beautifier un code `:refactOpt`](#beautifier-un-code-refactopt)
+  - [Optimiser les performances d'un code `:refactPerf`](#optimiser-les-performances-dun-code-refactperf)
+  - [Refactor un fichier `:refactHuge`](#refactor-un-fichier-refacthuge)
+- [**🧙 Revue de code**](#-revue-de-code)
+  - [Faire une revue de code `:adviceReview`](#faire-une-revue-de-code-advicereview)
+  - [Revoir l'architecture d'un projet `:adviceArchitecture`](#revoir-larchitecture-dun-projet-advicearchitecture)
+  - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
+- [**🧑‍🍳 Gestion de projets**](#-gestion-de-projets)
+  - [Définir les milestones et les épiques `:pmMilestones` (WIP)](#définir-les-milestones-et-les-épiques-pmmilestones-wip)
+  - [Écrire un document de spécifications `:pmSpecs`](#écrire-un-document-de-spécifications-pmspecs)
+  - [Choisir une stack technique `:pmTechStack`](#choisir-une-stack-technique-pmtechstack)
+- [**🗣️ Chat et conversations**](#️-chat-et-conversations)
+  - [Top 3 `:chatTop3`](#top-3-chattop3)
+  - [Résume en une phrase `:chatSummarize`](#résume-en-une-phrase-chatsummarize)
+  - [Rechercher sur internet `:chatOnline`](#rechercher-sur-internet-chatonline)
+  - [Répondre en français `:chatFr`](#répondre-en-français-chatfr)
+  - [Sortie en markdown `:chatOutputMd`](#sortie-en-markdown-chatoutputmd)
+  - [Charger la base de connaissances `:chatKB`](#charger-la-base-de-connaissances-chatkb)
+  - [Évaluer une réponse `:chatEvaluate`](#évaluer-une-réponse-chatevaluate)
+  - [Relancer une nouvelle conversation / chat `:chatRestart`](#relancer-une-nouvelle-conversation--chat-chatrestart)
+- [**📝 Écriture et contenu**](#-écriture-et-contenu)
+  - [Simplifier un texte `:contentRephrase`](#simplifier-un-texte-contentrephrase)
+  - [Rendre un texte plus concis `:contentFocus`](#rendre-un-texte-plus-concis-contentfocus)
+  - [Focus sur les avantages `:contentFocusBenefits`](#focus-sur-les-avantages-contentfocusbenefits)
+  - [Résumer un texte `:contentSummarize`](#résumer-un-texte-contentsummarize)
+- [**💻 OSX**](#-osx)
+  - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -120,7 +121,7 @@ espanso package update ai-driven-dev-prompts
 ```
 
 <details>
-<summary>Màj automatique via .bashrc / .zshrc</summary>
+<summary><small>Màj automatique via .bashrc / .zshrc</small></summary>
 
 Ajoutez cette ligne dans votre fichier de configuration shell (`~/.bashrc` ou `~/.zshrc`) :
 
@@ -131,7 +132,7 @@ espanso package update ai-driven-dev-prompts
 </details>
 
 <details>
-<summary>Màj automatique via cron (Linux)</summary>
+<summary><small>Màj automatique via cron (Linux)</small></summary>
 
 Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 
@@ -142,7 +143,7 @@ Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 </details>
 
 <details>
-<summary>Màj automatique via Launchd (OSX)</summary>
+<summary><small>Màj automatique via Launchd (OSX)</small></summary>
 
 Ajouter cette ligne dans votre fichier de configuration Launchd (`~/Library/LaunchAgents/com.espanso.update-prompts.plist`) :
 
@@ -181,20 +182,14 @@ launchctl load ~/Library/LaunchAgents/com.espanso.update-prompts.plist
 
 ### 4) Problèmes connus
 
-Parfois, Espanso va coller un `v` plutôt que le prompt.
-
-Cela arrive au lancement du logiciel.
-
-Il y a également les améliorations suivantes à faire :
-
-- [ ] Overflow disponible quand les prompts sont trop longs
-
-(Le logiciel est open-source en Rust, si jamais vous vous ennuyez un week-end...)
+Parfois, Espanso va coller un `v` plutôt que le prompt, cela arrive au lancement du logiciel : il suffit de relancer le prompt.
 
 <details>
 <summary>Configurer Espanso pour ne pas coller le "v" </summary>
 
 Cette configuration pourrait vous aider à éviter des problèmes de copie.
+
+(À tester, ne fonctionne pas chez tout le monde)
 
 ```sh
 espanso edit
@@ -215,7 +210,7 @@ backend: clipboard
 
 > Voir [CONTRIBUTION.md](CONTRIBUTION.md) pour plus de détails. 😍
 
-## **👌 Bonnes pratiques**
+## **👌 Bonnes pratiques de prompt**
 
 1. Utilisez ces prompts comme template pour créer vos prompts.
 2. Prompter en anglais pour de meilleures performances.
@@ -223,7 +218,7 @@ backend: clipboard
 4. Utiliser `xml` pour les variables.
 5. Formater le texte en `markdown` pour la lisibilité et la clarté.
 
-### Template de prompt "parfait" `:codeTemplate`
+### Template de prompt "parfait" `:promptTemplate`
 
 Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
 
@@ -237,6 +232,11 @@ Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
    - `Output Example`: Format de sortie attendu (si nécessaire)
 
 > Note: `Context` et `Example` peuvent être un lien vers un fichier, ou un code snippet !
+
+<details>
+<summary>Voir le template</summary>
+
+#### Template
 
 ```markdown
 # Goal
@@ -266,7 +266,11 @@ Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
 </outputExample>
 ```
 
+#### Exemple d'application du template dans un prompt avec Cursor
+
 ![Exemple de prompt avec Cursor](docs/cursor-template-prompt.png)
+
+</details>
 
 ### Optimiser un prompt `:promptOpt`
 
@@ -391,7 +395,7 @@ User stories template:
 
 </details>
 
-### Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` #WIP
+### Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` (WIP)
 
 > En cours...
 
@@ -446,7 +450,7 @@ Template to use:
 
 </details>
 
-### Fiche d'instructions (aka: plan technique) `:docInstructions` #WIP
+### Fiche d'instructions (aka: plan technique) `:docInstructions` (WIP)
 
 > Créer une fiche d'instructions détaillée pour une fonctionnalité précise.
 
@@ -577,7 +581,7 @@ For each section:
 
 </details>
 
-### Fiche d'instructions (aka: plan technique) `:featureInstructions` #WIP
+### Fiche d'instructions (aka: plan technique) `:featureInstructions` (WIP)
 
 > Utilisé lorsque vous discutez avec l'IA d'une fonctionnalité et que vous devez l'exporter dans un éditeur de code (comme Cursor, Windsurf ou autre).
 
@@ -967,7 +971,7 @@ Notes for the "AI Architect":
 
 </details>
 
-### Enforcer les bonnes pratiques `:projectEnforce` #WIP
+### Enforcer les bonnes pratiques `:projectEnforce` (WIP)
 
 > Permet de définir et de générer un document de bonnes pratiques à appliquer à un projet.
 
@@ -1476,7 +1480,7 @@ Rules:
 
 ## **🏞️ Générer du code à partir d'une image**
 
-### Extraire les détails de l'image l'associer les composants `:imageExtractDetails` #WIP
+### Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)
 
 > Analyse une image, récupère les informations, et associe les composants dans le projet pour générer la vue.
 
@@ -1512,7 +1516,7 @@ Context:
 
 ## **🐛 Corriger de bugs**
 
-### Trouver des pistes `:debugIssues` #WIP
+### Trouver des pistes `:debugIssues` (WIP)
 
 > Permet d'analyser un comportement anormal et de trouver les causes probables.
 
@@ -2179,7 +2183,7 @@ For each design pattern, provide:
 
 ## **🧑‍🍳 Gestion de projets**
 
-### Définir les milestones et les épiques `:pmMilestones` #WIP
+### Définir les milestones et les épiques `:pmMilestones` (WIP)
 
 > Pour une fonctionnalité ou un projet dans son ensemble, identifie les grandes étapes (indispensables) de développement.
 
