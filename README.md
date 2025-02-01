@@ -53,7 +53,7 @@
   - [Créer un nouveau fichier générique `:refactGeneric`](#créer-un-nouveau-fichier-générique-refactgeneric)
   - [Beautifier un code `:refactOpt`](#beautifier-un-code-refactopt)
   - [Optimiser les performances d'un code `:refactPerf`](#optimiser-les-performances-dun-code-refactperf)
-  - [Refactor un fichier `:refactHuge`](#refactor-un-fichier-refacthuge)
+  - [Refactor un fichier `:refactFile`](#refactor-un-fichier-refactfile)
 - [**🧙 Revue de code**](#-revue-de-code)
   - [Faire une revue de code `:adviceReview`](#faire-une-revue-de-code-advicereview)
   - [Revoir l'architecture d'un projet `:adviceArchitecture`](#revoir-larchitecture-dun-projet-advicearchitecture)
@@ -341,6 +341,14 @@ Collection de prompts pour générer des fonctionnalités.
 ### Liste d'user-stories pour une épique `:featureUserStories` (WIP)
 
 > En cours...
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
+```
+
+</details>
 
 ### User-story `:featureUserStory`
 
@@ -2047,13 +2055,20 @@ Rules:
 
 </details>
 
-### Refactor un fichier `:refactHuge`
+### Refactor un fichier `:refactFile`
 
 > En cours...
 
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
 1. Gather user info.
 2. Address a refactoring plan, Challenge the user.
 3. Once agreed, execute the plan.
+```
+
+</details>
 
 ## **🧙 Revue de code**
 
