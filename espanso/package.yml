@@ -294,6 +294,54 @@ matches:
     form_fields:
       feature_to_build_be_as_detailed_as_possible:
         multiline: true
+  - trigger: ':featurePlanConstruction'
+    form: |
+      Goal:
+      Create a technical plan for that only feature.
+
+      Rules:
+      - Split the user-story into relevant sections.
+      - Fill the template with the user-story details.
+        - Section: A feature's part grouped together because same goal. 
+        - Tasks: The code implementation to do (using my current tech stack).
+        - Action: The main action to do in 1 sentence.
+      - Only wait for user approval before jumping to next process (see under).
+
+      How to proceed:
+      1. Split the user-story into relevant sections.
+      2. Once agreed,  propose to apply the plan for section 1 only.
+      3. Once agreed, ,propose to apply the plan for section 2.
+      4. Repeat until all sections are done.
+
+      User-Story from specs (delimited by ---):
+      ---
+      [[the_user_story_you_aime_to_build]]
+      ---
+
+      Template to use:
+      ```markdown
+      # User-Story name
+
+      1 sentence summarize of the goal
+
+      ## Section 1's name - a feature part
+
+      ### Tasks (code implementation)
+
+      - [ ] Action
+
+      ### UI - Only in there is UI to build
+
+      - [ ] Action
+
+      ### Testing
+
+      - [ ] Action
+      ...
+      ```
+    form_fields:
+      the_user_story_you_aime_to_build:
+        multiline: true
   - trigger: ':docInstructions'
     form: |+
       # Goal
@@ -866,81 +914,7 @@ matches:
     form: |
       Value error, Too many files, a maximum of 10 is allowed.
   - trigger: ':docMermaid'
-    form: |
-      ## Goal  
-      Generate a HIGH QUALITY Mermaid diagram from Markdown content.
-
-      ## Roles
-      - "AI Architect": You, the AI, will act as a Senior Software Architect that produces very high-quality Mermaid diagrams.
-
-      ## Rules  
-      - Extract relevant structure
-      - Convert it into a valid v11.4.0 + Mermaid diagram.  
-      - Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
-      - Output in Markdown code blocks.
-
-      ### Clarity & Readability
-      - Use short, clear names. Align left → right or top → bottom.  
-      - Minimize crossings. Add annotations (`--> "label"`).  
-      - Include a title in the header.
-
-      ### Consistency & Validity
-      - Ensure correct syntax. No empty or misplaced elements.
-      - No orphaned connections.
-      - Remove unused styles.
-
-      ### Structure & Style
-      - Use subgraphs (subgraph "Name").
-      - Very clear names, no "A, B, C".
-      - Define styles (classDef: colors, shapes).
-      - Differentiate elements (ellipse, rounded, hexagon).
-      - Limit colors. Ensure accessibility.
-      - Add notes and legends if needed.
-
-      ### Optimization & Compatibility
-      - Avoid linkStyle.
-      - Always enclose subgraph titles in quotes (subgraph "Name").
-      - Replace ":" with "$" in state names.
-      - Place labels inside connections.
-
-      ## Steps
-
-      1. Get "markdown content", then write down a very detailed plan, list:
-        - Groups and States
-        - Relationships
-        - Actions, Events
-        - Conditions
-        - Notes, Legends
-        - Styles, Background Colors
-      2. Ask user "do you confirm the plan?".
-      5. Generate the fully detailed Mermaid diagram from the plan imperatively following the "rules".
-      6. Ask the user: "do you want me to review it?"
-      7. If the user confirms, review the diagram and suggest improvements.
-
-      ## Markdown Content  
-      <markdown>
-      [[markdown_content_with_structure_to_convert]]
-      </markdown>
-
-      ## Goal  
-      Generate a Mermaid diagram (v11.4.0 minimum) from Markdown content.
-
-      ## Rules  
-      - Extract relevant structure and convert it into a valid Mermaid diagram.  
-      - Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
-      - Output only the Mermaid diagram, inside Markdown code blocks.  
-      - Ensure valid Mermaid syntax and proper indentation. 
-
-      ## Constraints  
-
-      ### Clarity & Readability
-      - Use short, clear node names and align logically (left-to-right / top-to-bottom).
-      - Minimize line crossings, add annotations (`-- "label" -->`), and use icons if relevant.
-      - Provide a clear title for the diagram in top header, example:
-        ```mermaid
-        ---
-        title: "System Architecture"
-        ---
+    form: "## Goal  \nGenerate a HIGH QUALITY Mermaid diagram from Markdown content.\n\n## Roles\n- \"AI Architect\": You, the AI, will act as a Senior Software Architect that produces very high-quality Mermaid diagrams.\n\n## Rules  \n- Extract relevant structure\n- Convert it into a valid v11.4.0 + Mermaid diagram.  \n- Generate chart in: \"the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline\".  \n- Output in Markdown code blocks.\n\n### Clarity & Readability\n- Use short, clear names. Align left → right or top → bottom.  \n- Minimize crossings. Add annotations (`--> \"label\"`).  \n- Include a title in the header.\n\n### Consistency & Validity\n- Ensure correct syntax. No empty or misplaced elements.\n- No orphaned connections.\n- Remove unused styles.\n\n### Structure & Style\n- Use subgraphs (subgraph \"Name\").\n- Very clear names, no \"A, B, C\".\n- Define styles (classDef: colors, shapes).\n- Differentiate elements (ellipse, rounded, hexagon).\n- Limit colors. Ensure accessibility.\n- Add notes and legends if needed.\n\n### Optimization & Compatibility\n- Avoid linkStyle.\n- Always enclose subgraph titles in quotes (subgraph \"Name\").\n- Replace \":\" with \"$\" in state names.\n- Place labels inside connections.\n\n## Steps\n\n1. Get \"markdown content\", then write down a very detailed plan, list:\n  - Groups and States\n  - Relationships\n  - Actions, Events\n  - Conditions\n  - Notes, Legends\n  - Styles, Background Colors\n2. Ask user \"do you confirm the plan?\".\n5. Generate the fully detailed Mermaid diagram from the plan imperatively following the \"rules\".\n6. Ask the user: \"do you want me to review it?\"\n7. If the user confirms, review the diagram and suggest improvements.\n\n## Markdown Content  \n<markdown>\n[[markdown_content_with_structure_to_convert]]\n</markdown>\n\n## Goal  \nGenerate a Mermaid diagram (v11.4.0 minimum) from Markdown content.\n\n## Rules  \n- Extract relevant structure and convert it into a valid Mermaid diagram.  \n- Generate chart in: \"the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline\".  \n- Output only the Mermaid diagram, inside Markdown code blocks.  \n- Ensure valid Mermaid syntax and proper indentation. \n\n## Constraints  \n\n### Clarity & Readability\n- Use short, clear node names and align logically (left-to-right / top-to-bottom).\n- Minimize line crossings, add annotations (`-- \"label\" -->`), and use icons if relevant.\n- Provide a clear title for the diagram in top header, example:\n  ```mermaid\n  ---\n  title: \"System Architecture\"\n  ---\n  ```\n\n### Structure & Style\n\n- Group elements with subgraphs, add titles when needed.\n- Define consistent styles with `classDef` (colors, borders, shapes).\n- Use distinct node shapes (`ellipse`, `rounded`, `hexagon`) and bold strokes (`stroke-width`).\n- Careful with colors for accessibility (color blindness).\n  - Use a color contrast checker for text and background colors.\n\n### Optimization & Compatibility\n\n- Avoid `linkStyle` if it causes issues.\n- Ensure diagrams are responsive and tested on the latest Mermaid version.\n- Surround Subgraph titles with double quotes.\n- IMPORTANT: Do not use colons (:) inside names, replace with a dollar sign ($).\n- Always place edge labels directly within transitions, using the format NodeA --> NodeB : \"Label\", to ensure labels are interpreted as annotations rather than standalone nodes.\n\n### Interactivity (Optional)\n\n- Enable clickable nodes (`click nodeX \"URL\" \"Tooltip\"`) for navigation.\n\n## Steps\n\n1. Write down the plan for the diagram.\n2. Ask user \"do you confirm the plan?\".\n3. Generate the Mermaid diagram from the plan with under markdown content.\n4. Ask the user: \"do you want me to review it?\"\n5. If the user confirms, review the diagram and suggest improvements :\n\n- Ensure the generated Mermaid diagram is syntactically valid, logically consistent, free of empty nodes or misplaced elements, and correctly applies styles and class definitions\n- Detect misconfigured labels or orphaned connections.\n- Be very careful about empty nodes, misplaced elements, or incorrect connections.\n\n## Markdown Content  \n\n```markdown\n<markdown>\n### \U0001F30D Public (Accessible sans connexion)\n\n- `/` → **Landing Page** *(Présentation du service, inscription rapide)*\n- `/onboarding/` → Inscription de l’utilisateur sur la plateforme.\n    - `/onboarding/start` → Page d’accueil de l’onboarding (Bienvenue + Connexion Google).\n    - `/onboarding/permissions` → Demande des autorisations Gmail via OAuth.\n    - `/onboarding/setup` → Génération de l’alias email + Création du projet + Configuration automatique de Gmail (label + filtre).\n    - `/onboarding/finish` → Résumé des configurations (alias email affiché + bouton d’accès au Dashboard).\n- `/legal` → **Mentions légales**\n- `/auth/callback` → **Callback Google OAuth** *(Stockage des tokens après connexion)*\n\n### \U0001F512 Privé (Accessible après connexion)\n\n- `/dashboard/:userSlug/:projectSlug` → **Dashboard utilisateur + projet**\n- `/settings/:userSlug` → **Paramètres utilisateur**\n\n### ⚙️ Admin (Réservé aux administrateurs)\n\n- `/admin/:userSlug` → **Gestion de l’utilisateur spécifique**\n\n---\n\n## \U0001F50C Accès & Sécurisation\n\n- **Un utilisateur classique** peut accéder uniquement **à son propre dashboard et settings**.\n- **L’administrateur** peut accéder **aux profils des utilisateurs** (`/admin/:userSlug`).\n- **L’API applique des permissions strictes** :\n    - ✅ Un utilisateur ne peut voir que **ses propres données**.\n    - ✅ Seul l’admin peut **lister et gérer les utilisateurs**.\n</markdown>\n```\n\n"
     form_fields:
       markdown_content_with_structure_to_convert:
         multiline: true
@@ -1220,6 +1194,18 @@ matches:
     form_fields:
       please_provide_urls_to_the_developers_resumes_for_reference:
         multiline: true
+  - trigger: ':chatTop3'
+    form: |
+      Goal:
+      Provide the top 3 answers to the question.
+
+      Rules:
+      - Answer in markdown format.
+      - Use bullet points.
+      - Detail each answer.
+  - trigger: ':chatSummarize'
+    form: |
+      Please summarize the last answer in one short concise sentence (but do not lose any information), be more precise and accurate.
   - trigger: ':chatOnline'
     form: |
       Goal:
