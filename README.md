@@ -104,9 +104,9 @@ espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts
 
 Quand vous avez besoin d'un prompt :
 
-- Utiliser le raccourci clavier Mac `⌥ + Space` - (Windows / Linux : `ALT + Space`)
-- Rechercher le nom d'un prompt, ex: `feature`.
-- Choisir le prompt et l'insérer dans votre document.
+1. **Utiliser le raccourci clavier** : Mac `⌥ + Space` - (Windows / Linux : `ALT + Space`)
+2. **Rechercher le nom du prompt**, ex: `feature`.
+3. **Insérer le prompt** dans votre application (pensez à focus sur la zone de saisie).
 
 ![espanso usage](docs/espanso.gif)
 
