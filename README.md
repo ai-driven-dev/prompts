@@ -1784,7 +1784,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 > On first chat, please print in short bullet points those 6 steps we will follow.
 
 1. Ask for the document to convert.
-2. Once provided, analyze and write down the plan for the diagram, identify:
+2. Once provided, analyze and write down a very detailed and exhaustive plan for the diagram, identify at least:
   - Components (main elements, logical groups) (in colors)
   - Children and parents elements
   - Directions and hierarchies
@@ -1803,7 +1803,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 ## Rules  
 
 - Chart type: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
-- Flow: "left-to-right|top-to-bottom"
+- Flow: "left-to-right|top-to-bottom".
 - Use Mermaid v10.8.0 minimum.
 - 100% valid Mermaid diagram is required.
 - Read the rules under "Mermaid generation rules" section.
@@ -1823,7 +1823,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 
 **Naming**:
 - Consistent naming
-- Descriptive (no "A", "B"...)
+- Descriptive names and labels (no "A", "B"... use meaningful uppercase names)
 - Surrounded by double quotes.
 - Replace ":" with "$" in state names if any.
 
@@ -1840,8 +1840,6 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
   - Diamonds for decisions
   - Hexagons for groups
 - Max 4 colors in high contrast.
-- Colors:
-  
 
 **Miscellaneous**:
 - Avoid `linkStyle`.
