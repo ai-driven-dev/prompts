@@ -1780,63 +1780,11 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 - "AI Architect": You, the AI, will act as a Senior Software Architect that produces very high-quality Mermaid diagrams.
 
 ## Rules  
-- Extract relevant structure
-- Convert it into a valid v11.4.0 + Mermaid diagram.  
-- Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
-- Output in Markdown code blocks.
-
-### Clarity & Readability
-- Use short, clear names. Align left → right or top → bottom.  
-- Minimize crossings. Add annotations (`--> "label"`).  
-- Include a title in the header.
-
-### Consistency & Validity
-- Ensure correct syntax. No empty or misplaced elements.
-- No orphaned connections.
-- Remove unused styles.
-
-### Structure & Style
-- Use subgraphs (subgraph "Name").
-- Very clear names, no "A, B, C".
-- Define styles (classDef: colors, shapes).
-- Differentiate elements (ellipse, rounded, hexagon).
-- Limit colors. Ensure accessibility.
-- Add notes and legends if needed.
-
-### Optimization & Compatibility
-- Avoid linkStyle.
-- Always enclose subgraph titles in quotes (subgraph "Name").
-- Replace ":" with "$" in state names.
-- Place labels inside connections.
-
-## Steps
-
-1. Get "markdown content", then write down a very detailed plan, list:
-  - Groups and States
-  - Relationships
-  - Actions, Events
-  - Conditions
-  - Notes, Legends
-  - Styles, Background Colors
-2. Ask user "do you confirm the plan?".
-5. Generate the fully detailed Mermaid diagram from the plan imperatively following the "rules".
-6. Ask the user: "do you want me to review it?"
-7. If the user confirms, review the diagram and suggest improvements.
-
-## Markdown Content  
-<markdown>
-[[Markdown content with structure to convert]]
-</markdown>
-
-## Goal  
-Generate a Mermaid diagram (v11.4.0 minimum) from Markdown content.
-
-## Rules  
 - Extract relevant structure and convert it into a valid Mermaid diagram.  
 - Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
 - Output only the Mermaid diagram, inside Markdown code blocks.  
 - Ensure valid Mermaid syntax and proper indentation. 
-
+- Use Mermaid v10.8.0 minimum.
 ## Constraints  
 
 ### Clarity & Readability
@@ -1859,10 +1807,10 @@ Generate a Mermaid diagram (v11.4.0 minimum) from Markdown content.
 
 ### Optimization & Compatibility
 
-- Avoid `linkStyle` if it causes issues.
+- Avoid `linkStyle`.
 - Ensure diagrams are responsive and tested on the latest Mermaid version.
 - Surround Subgraph titles with double quotes.
-- IMPORTANT: Do not use colons (:) inside names, replace with a dollar sign ($).
+- Replace ":" with "$" in state names if any.
 - Always place edge labels directly within transitions, using the format NodeA --> NodeB : "Label", to ensure labels are interpreted as annotations rather than standalone nodes.
 
 ### Interactivity (Optional)
