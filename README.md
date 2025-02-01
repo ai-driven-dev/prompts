@@ -116,7 +116,7 @@ Quand vous avez besoin d'un prompt :
 
 Les prompts sont mis à jour régulièrement par la communauté AI-Driven Dev.
 
-```sh
+```console
 espanso package update ai-driven-dev-prompts
 ```
 
@@ -125,7 +125,7 @@ espanso package update ai-driven-dev-prompts
 
 Ajoutez cette ligne dans votre fichier de configuration shell (`~/.bashrc` ou `~/.zshrc`) :
 
-```sh
+```console
 espanso package update ai-driven-dev-prompts
 ```
 
@@ -136,7 +136,7 @@ espanso package update ai-driven-dev-prompts
 
 Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 
-```sh
+```console
 @daily espanso package update ai-driven-dev-prompts
 ```
 
@@ -174,7 +174,7 @@ Ajouter cette ligne dans votre fichier de configuration Launchd (`~/Library/Laun
 
 Lancer le service :
 
-```sh
+```console
 launchctl load ~/Library/LaunchAgents/com.espanso.update-prompts.plist
 ```
 
@@ -191,7 +191,7 @@ Cette configuration pourrait vous aider à éviter des problèmes de copie.
 
 (À tester, ne fonctionne pas chez tout le monde)
 
-```sh
+```console
 espanso edit
 ```
 
@@ -2751,7 +2751,7 @@ Output:
 <details>
   <summary>Voir le prompt</summary>
   
-```shell
+```consoleell
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 ```
 
