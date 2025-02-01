@@ -92,7 +92,7 @@ Pour coder plus vite avec l'IA, vous avez besoin de:
 
 2. Récupérer notre package :
 
-```sh
+```console
 espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
 ```
 
