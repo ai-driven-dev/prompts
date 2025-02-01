@@ -8,6 +8,9 @@
   - [1) Installation](#1-installation)
   - [2) Comment utiliser un prompt ?](#2-comment-utiliser-un-prompt-)
   - [3) Mise à jour des prompts](#3-mise-à-jour-des-prompts)
+    - [Màj automatique via .bashrc / .zshrc](#màj-automatique-via-bashrc--zshrc)
+    - [Màj automatique via cron (Linux)](#màj-automatique-via-cron-linux)
+    - [Màj automatique via Launchd (OSX)](#màj-automatique-via-launchd-osx)
   - [4) Problèmes connus](#4-problèmes-connus)
 - [**🔥 Contribution**](#-contribution)
 - [**👌 Bonnes pratiques de prompt**](#-bonnes-pratiques-de-prompt)
@@ -121,7 +124,9 @@ espanso package update ai-driven-dev-prompts
 ```
 
 <details>
-<summary><small><em>Màj automatique via .bashrc / .zshrc</em></small></summary>
+<summary> Màj automatique via .bashrc / .zshrc</summary>
+
+#### Màj automatique via .bashrc / .zshrc
 
 Ajoutez cette ligne dans votre fichier de configuration shell (`~/.bashrc` ou `~/.zshrc`) :
 
@@ -131,9 +136,10 @@ espanso package update ai-driven-dev-prompts
 
 </details>
 
-<small>
 <details>
-<summary>Màj automatique via cron (Linux)</summary>
+<summary> Màj automatique via cron (Linux)</summary>
+
+#### Màj automatique via cron (Linux)
 
 Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 
@@ -142,10 +148,11 @@ Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 ```
 
 </details>
-</small>
 
 <details>
-<summary><small>Màj automatique via Launchd (OSX)</small></summary>
+<summary>Màj automatique via Launchd (OSX)</summary>
+
+#### Màj automatique via Launchd (OSX)
 
 Ajouter cette ligne dans votre fichier de configuration Launchd (`~/Library/LaunchAgents/com.espanso.update-prompts.plist`) :
 
@@ -214,11 +221,11 @@ backend: clipboard
 
 ## **👌 Bonnes pratiques de prompt**
 
-1. Utilisez ces prompts comme template pour créer vos prompts.
-2. Prompter en anglais pour de meilleures performances.
-3. Si vous débutez, commencez à structurer vos prompts avec un template 👇.
-4. Utiliser `xml` pour les variables.
-5. Formater le texte en `markdown` pour la lisibilité et la clarté.
+1. **Utilisez ces prompts comme template** pour créer vos prompts.
+2. **Prompter en anglais** pour de meilleures performances.
+3. **Si vous débutez**, commencez à structurer vos prompts avec un template 👇.
+4. **Utiliser `xml` pour les variables**.
+5. **Formater le texte en `markdown`** pour la lisibilité et la clarté.
 
 ### Template de prompt "parfait" `:promptTemplate`
 
@@ -1729,11 +1736,7 @@ Test files to check (if any):
 ### Fusionner plusieurs fichiers Markdown `:mdMerge`
 
 > Permet de fusionner plusieurs fichiers Markdown en un seul fichier.
-> Évite l'erreur de ChatGPT :
->
-> ```text
-> Value error, Too many files, a maximum of 10 is allowed.
-> ```
+> Évite l'erreur de ChatGPT "Value error, Too many files, a maximum of 10 is allowed."
 
 <details>
   <summary>Voir le prompt</summary>
