@@ -45,8 +45,8 @@ jobs:
           jq --arg version "$new_version" '.version = $version' package.json > tmp.json
           mv tmp.json package.json
           
-          # Update _manifest.yml
-          sed -i "s/version: $current_version/version: $new_version/" espanso/_manifest.yml
+          # Update _manifest.yml - using more precise sed pattern
+          sed -i "s/version: '[0-9]\+\.[0-9]\+\.[0-9]\+'/version: '$new_version'/" espanso/_manifest.yml
           
           # Export for other steps
           echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
