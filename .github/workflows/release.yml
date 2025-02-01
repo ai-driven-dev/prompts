@@ -25,6 +25,9 @@ jobs:
 
       - name: Install dependencies
         run: npm install
+      
+      - name: Generate package.yml with new version
+        run: npm run start
 
       - name: Extract & Increment Version (SemVer)
         shell: bash
@@ -55,19 +58,11 @@ jobs:
           echo "New version in manifest:"
           grep "version:" espanso/_manifest.yml
           
-          # Verify version update
+          # Verify the change was successful
           if ! grep -q "version: '$new_version'" espanso/_manifest.yml; then
             echo "Error: Version update failed"
             exit 1
           fi
-          
-          # Generate package.yml with new version
-          npm run start
-          
-          # Add all changes to commit
-          git add package.json espanso/_manifest.yml espanso/package.yml
-          git commit -m "chore: bump version to $new_version"
-          git tag "v$new_version"
           
           # Export for other steps
           echo "NEW_VERSION=$new_version" >> $GITHUB_ENV
@@ -139,3 +134,4 @@ jobs:
             "prerelease": false
           }
           EOF
+
