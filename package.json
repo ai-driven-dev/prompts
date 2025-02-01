@@ -1,7 +1,7 @@
 {
-  "name": "ai-driven-dev-prompt",
-  "version": "0.0.47",
-  "description": "Prompts collection for AI-driven developers.",
+  "name": "ai-driven-dev-prompts",
+  "version": "2.0.0",
+  "description": "Meilleures collections de prompts communautaires pour les développeurs.",
   "main": "index.js",
   "jest": {
     "testEnvironment": "node"

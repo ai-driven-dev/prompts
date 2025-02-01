@@ -1,175 +1,200 @@
 # AI-Driven Dev {Prompts}
 
-A collection of prompts for software engineers to generate code faster with better quality. ❤️
+Une collection de prompts pour les développeurs avec un logiciel intégré pour appeler n'importe quel prompt, depuis n'importe quelle application. :)
 
-- [AI-Driven Dev {Prompts}](#ai-driven-dev-prompts)
-  - [TODO Alex](#todo-alex)
-  - [🚀 Invoke the prompt from EVERYWHERE](#-invoke-the-prompt-from-everywhere)
-    - [1) Install our prompt library](#1-install-our-prompt-library)
-    - [2) How-to use a prompt?](#2-how-to-use-a-prompt)
-    - [3) Up-to-date prompts with updates](#3-up-to-date-prompts-with-updates)
-  - [✅ General Guidelines](#-general-guidelines)
-    - [Contribution](#contribution)
-    - [Template `:codeTemplate`](#template-codetemplate)
-    - [Optimize your prompts `:promptOpt`](#optimize-your-prompts-promptopt)
-  - [🙋‍♂️ Feature request](#️-feature-request)
-    - [Generate user stories `:featureUS`](#generate-user-stories-featureus)
-    - [Generate instructions (aka technical plan) `:docInstructions`](#generate-instructions-aka-technical-plan-docinstructions)
-    - [Generate coding instructions from a feature `:featureInstructions`](#generate-coding-instructions-from-a-feature-featureinstructions)
-    - [Create a feature `:featureCreate`](#create-a-feature-featurecreate)
-    - [Generate code for a small feature `:featureSmallCode` #WIP](#generate-code-for-a-small-feature-featuresmallcode-wip)
-  - [⚗️ Project Setup / Bootstrap](#️-project-setup--bootstrap)
-    - [Bootstrap a new project `:projectBootstrap`](#bootstrap-a-new-project-projectbootstrap)
-    - [Enforce good practices `:projectEnforce` #WIP](#enforce-good-practices-projectenforce-wip)
-    - [Project URL Structure `:projectURL`](#project-url-structure-projecturl)
-  - [💽 Database](#-database)
-    - [Generate SQL structure from Scratch `:dbStructure`](#generate-sql-structure-from-scratch-dbstructure)
-    - [Generate SQL from specifications `:dbGenSQL`](#generate-sql-from-specifications-dbgensql)
-    - [Create entity from SQL Schema `:dbGenEntity`](#create-entity-from-sql-schema-dbgenentity)
-  - [🚀 Code Generation](#-code-generation)
-    - [Generate fake data `:codeFake`](#generate-fake-data-codefake)
-  - [🏞️ Generate code from image](#️-generate-code-from-image)
-    - [Extract details from image and match components `:imageExtractDetails`](#extract-details-from-image-and-match-components-imageextractdetails)
-  - [💉 Bug Fixing](#-bug-fixing)
-    - [Find the issue `:bugFind`](#find-the-issue-bugfind)
-  - [🐛 Debugging](#-debugging)
-    - [Write log `:debugLog`](#write-log-debuglog)
-    - [Detect inconsistencies `:debugInconsistency`](#detect-inconsistencies-debuginconsistency)
-  - [🧪 Tests](#-tests)
-    - [Generate Gherkin `:testGenGherkin`](#generate-gherkin-testgengherkin)
-    - [List untested functions `:testUntested`](#list-untested-functions-testuntested)
-  - [📚 Documentation](#-documentation)
-    - [Generate mermaid charts `:docMermaid`](#generate-mermaid-charts-docmermaid)
-    - [Search in online documentation `:docSearch`](#search-in-online-documentation-docsearch)
-    - [Upgrade comments `:docComments`](#upgrade-comments-doccomments)
-  - [🔄 Refactoring](#-refactoring)
-    - [Add comments to the selected code `:refactComment`](#add-comments-to-the-selected-code-refactcomment)
-    - [Create new generic file `:refactGeneric`](#create-new-generic-file-refactgeneric)
-    - [Optimize this code snippet `:refactOpt`](#optimize-this-code-snippet-refactopt)
-    - [Optimize code performance `:refactPerf`](#optimize-code-performance-refactperf)
-    - [Refactor a huge file #WIP](#refactor-a-huge-file-wip)
-  - [🧙 Senior Advice](#-senior-advice)
-    - [Code Reviewer `:adviceReview`](#code-reviewer-advicereview)
-    - [Architecture `:adviceArchitecture`](#architecture-advicearchitecture)
-    - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
-  - [🧑‍🍳 Project Management](#-project-management)
-    - [Write specifications document `:pmSpecs`](#write-specifications-document-pmspecs)
-    - [Choose a tech stack `:pmTechStack`](#choose-a-tech-stack-pmtechstack)
-    - [Generate Milestones `:pmGenerateMilestones`](#generate-milestones-pmgeneratemilestones)
-    - [Generate a tech ticket `:pmTicket`](#generate-a-tech-ticket-pmticket)
-  - [⚡️ Zero Shot Prompts](#️-zero-shot-prompts)
-    - [Markdown merge `:mdMerge`](#markdown-merge-mdmerge)
-  - [🗣️ Chat and Conversation](#️-chat-and-conversation)
-    - [Answer in French `:answerFr`](#answer-in-french-answerfr)
-    - [Answer in markdown `:answerMd`](#answer-in-markdown-answermd)
-    - [Load knowledge base `:loadKB`](#load-knowledge-base-loadkb)
-    - [Evaluate Answer `:evaluate`](#evaluate-answer-evaluate)
-    - [Restart a new chat / conversation `:restart`](#restart-a-new-chat--conversation-restart)
-  - [📝 Writing and content](#-writing-and-content)
-    - [Assert text `:quickRephrase`](#assert-text-quickrephrase)
-    - [Rephrase for concision `:rephrase`](#rephrase-for-concision-rephrase)
-    - [Focus on benefits `:focusBenefits`](#focus-on-benefits-focusbenefits)
-      - [Summarize](#summarize)
-    - [OSX](#osx)
-      - [Homebrew updates `:osxBrew`](#homebrew-updates-osxbrew)
+## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
-## TODO Alex
+Pour coder plus vite avec l'IA, vous avez besoin de:
 
-- [ ] Repasser sur les prompts pour les mettre à jour
-- [ ] Revoir process d'installation
-- [ ] Details dans le prompt ?
+1. Prompts de qualité (on les a rédigé pour vous)
+2. Comprendre où les utiliser (on a un [Discord](https://bit.ly/alexsoyes-discord))
+3. Avoir accès à ces prompts partout, depuis ChatGPT à Chrome en passant par VSCode.
 
-## 🚀 Invoke the prompt from EVERYWHERE
+### 1) Installation
 
-To code faster with AI, you need:
+1. Installer le text expander [Espanso](https://espanso.org/install/) (opensource et compatible Mac, Windows, Linux)
 
-1. Good prompts
-2. To be able to user them everywhere, from ChatGPT to Chrome.
-
-### 1) Install our prompt library
-
-> Warning installation V1 remove + reinstall
-
-1. Follow the [Espanso installation guide here](https://espanso.org/install/) for your operating system.
-
-2. Then, install the package:
+2. Récupérer notre package :
 
 ```sh
 espanso install ai-driven-dev-prompts --git git@github.com:ai-driven-dev/prompts.git --external
 ```
 
-3. Launch the app any time you want to use the prompts.
+3. C'est tout !
 
-### 2) How-to use a prompt?
+### 2) Comment utiliser un prompt ?
 
-When you need a prompt, press `⌥ + Space` (Windows / Linux : `ALT + Space`) and search for `prompt's name`.
+Quand vous avez besoin d'un prompt :
+
+- Utiliser le raccourci clavier Mac `⌥ + Space` - (Windows / Linux : `ALT + Space`)
+- Rechercher le nom d'un prompt, ex: `feature`.
+- Choisir le prompt et l'insérer dans votre document.
 
 ![espanso usage](docs/espanso.gif)
 
-### 3) Up-to-date prompts with updates
+### 3) Mise à jour des prompts
 
-> Alex bashrc ou cron pour auto-update
-
-Prompts are updated regularly by the AI-Driven Dev Community, use this command to get the latest upgraded prompts.
+Les prompts sont mis à jour régulièrement par la communauté AI-Driven Dev.
 
 ```sh
 espanso package update ai-driven-dev-prompts
 ```
 
-## ✅ General Guidelines
+<details>
+<summary>Màj automatique via .bashrc / .zshrc</summary>
 
-Those prompts can be used to personalize AI based on your requirements.
+Ajoutez cette ligne dans votre fichier de configuration shell (`~/.bashrc` ou `~/.zshrc`) :
 
-### Contribution
+```sh
+espanso package update ai-driven-dev-prompts
+```
 
-Please share your prompts or fix those here using a pull-request.
+</details>
 
-### Template `:codeTemplate`
+<details>
+<summary>Màj automatique via cron (Linux)</summary>
 
-Most of the time, you just need to structure a prompt - to make it better.
+Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 
-1. Use the `:codeTemplate` template to get started.
-2. **Mandatory** fields:
-   - `Goal`: What you want to achieve
-   - `Rules`: Guidelines and constraints to follow
-   - `Context`: Background information or environment details
-3. *Optional* but recommended:
-   - `Steps`: Detailed procedure to follow
-   - `Input Example`: Sample input to demonstrate usage
-   - `Output Example`: Expected output format
+```sh
+@daily espanso package update ai-driven-dev-prompts
+```
 
-Note: `Context` and `Example` can be a link to a file, or a code snippet.
+</details>
+
+<details>
+<summary>Màj automatique via Launchd (OSX)</summary>
+
+Ajouter cette ligne dans votre fichier de configuration Launchd (`~/Library/LaunchAgents/com.espanso.update-prompts.plist`) :
+
+```xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+    <dict>
+        <key>Label</key>
+        <string>com.espanso.update</string>
+        <key>ProgramArguments</key>
+        <array>
+            <string>/bin/sh</string>
+            <string>-c</string>
+            <string>/usr/local/bin/espanso package update ai-driven-dev-prompts</string>
+        </array>
+        <key>RunAtLoad</key>
+        <true/>
+        <key>StartInterval</key>
+        <integer>86400</integer>  <!-- Exécution toutes les 24h -->
+        <key>StandardOutPath</key>
+        <string>/tmp/espanso_update.log</string>
+        <key>StandardErrorPath</key>
+        <string>/tmp/espanso_update_error.log</string>
+    </dict>
+</plist>
+```
+
+Lancer le service :
+
+```sh
+launchctl load ~/Library/LaunchAgents/com.espanso.update-prompts.plist
+```
+
+</details>
+
+### 4) Problèmes connus
+
+Parfois, Espanso va coller un `v` plutôt que le prompt.
+
+Cela arrive au lancement du logiciel.
+
+Il y a également les améliorations suivantes à faire :
+
+- [ ] Overflow disponible quand les prompts sont trop longs
+
+(Le logiciel est open-source en Rust, si jamais vous vous ennuyez un week-end...)
+
+<details>
+<summary>Configurer Espanso pour ne pas coller le "v" </summary>
+
+Cette configuration pourrait vous aider à éviter des problèmes de copie.
+
+```sh
+espanso edit
+```
+
+```yml
+preserve_clipboard: false
+pre_paste_delay: 1000
+backend: clipboard
+```
+
+</details>
+
+## **🔥 Contribution**
+
+- Vous avez vu une erreur ?
+- Vous souhaitez ajouter un prompt ?
+
+> Voir [CONTRIBUTION.md](CONTRIBUTION.md) pour plus de détails. 😍
+
+## **👌 Bonnes pratiques**
+
+1. Utilisez ces prompts comme template pour créer vos prompts.
+2. Prompter en anglais pour de meilleures performances.
+3. Si vous débutez, commencez à structurer vos prompts avec un template 👇.
+4. Utiliser `xml` pour les variables.
+5. Formater le texte en `markdown` pour la lisibilité et la clarté.
+
+### Template de prompt "parfait" `:codeTemplate`
+
+Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
+
+1. **Champs obligatoires** :
+   - `Goal`: Ce que vous voulez accomplir
+   - `Rules`: Guidelines et contraintes à respecter
+   - `Context`: Informations de contexte ou détails de l'environnement
+2. *Optionnel* mais recommandé :
+   - `Steps`: Détails de la procédure à suivre
+   - `Input Example`: Exemple d'entrée pour illustrer l'utilisation (si nécessaire)
+   - `Output Example`: Format de sortie attendu (si nécessaire)
+
+> Note: `Context` et `Example` peuvent être un lien vers un fichier, ou un code snippet !
 
 ```markdown
-**Goal**: "[[What you want to achieve with this prompt]]"
+# Goal
+"[[What you want to achieve with this prompt]]"
 
-**Rules**:
+# Rules
 - "[[Rule 1]]"
 - "[[Rule 2]]"
 - "[[Rule 3]]"
 
-Steps:
-- "[[Step 1]]"
-- "[[Step 2]]"
-- "[[Step 3]]"
+# Steps
+1. "[[Step 1]]"
+2. "[[Step 2]]"
+3. "[[Step 3]]"
 
-**Context**:
-<context>
+# Context
 [[Describe the context of the prompt]]
-</context>
 
-Input Example:
+# Input Example
 <inputExample>
 [[Example of the input you have]]
 </inputExample>
 
-Output Example:
+# Output Example
 <outputExample>
 [[Example of the output you want to get]]
 </outputExample>
 ```
 
-### Optimize your prompts `:promptOpt`
+![Exemple de prompt avec Cursor](docs/cursor-template-prompt.png)
+
+### Optimiser un prompt `:promptOpt`
+
+> Si vous souhaitez améliorer les performances d'un prompt en une commande, utilisez ce prompt.
+
+<details>
+<summary>Voir le prompt</summary>
 
 ```markdown
 You are an **elite Prompt Engineer**.  
@@ -215,18 +240,26 @@ Your role is to elevate any prompt to its **highest level of clarity and impact*
 </prompt>
 ```
 
-## 🙋‍♂️ Feature request
+</details>
 
-### Generate user stories `:featureUS`
+## **🙋‍♂️ Générer une fonctionnalité**
 
-If you want to generate user-stories for your project, use this prompt.
+Collection de prompts pour générer des fonctionnalités.
 
-**Parameters**:
+### Liste d'user-stories pour une épique `:featureUserStories` (WIP)
 
-- Feature to build, be as detailed as possible
+> En cours...
+
+### User-story `:featureUserStory`
+
+> Si vous souhaitez générer des user-stories pour votre projet.
+
+**Paramètres** :
+
+- "Requirements or Epics": La description de la fonctionnalité à générer
 
 <details>
-  <summary>Show the prompt</summary>
+  <summary>Voir le prompt</summary>
   
 ````markdown
 Goal: Please endorse Product Owner to write very good user stories for the developers team.
@@ -249,8 +282,9 @@ Requirements:
 
 Steps:
 
-1. Ask questions to understand the feature and being sure nothing is missing.
-2. Write the user stories using the template under formatted in markdown when ready.
+1. Break down requirements into an user-stories list.
+2. Ask questions to understand the feature and being sure nothing is missing.
+3. Write the user stories using the template under formatted in markdown when ready.
 
 User stories template:
 
@@ -278,10 +312,68 @@ User stories template:
 
 </details>
 
-### Generate instructions (aka technical plan) `:docInstructions`
+### Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` #WIP
 
-Useful to create markdown spec files constraints to be used in the AI Editor.
+> En cours...
 
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Create a technical plan for that only feature.
+
+Rules:
+- Split the user-story into relevant sections.
+- Fill the template with the user-story details.
+  - Section: A feature's part grouped together because same goal. 
+  - Tasks: The code implementation to do (using my current tech stack).
+  - Action: The main action to do in 1 sentence.
+- Only wait for user approval before jumping to next process (see under).
+
+How to proceed:
+1. Split the user-story into relevant sections.
+2. Once agreed,  propose to apply the plan for section 1 only.
+3. Once agreed, ,propose to apply the plan for section 2.
+4. Repeat until all sections are done.
+
+User-Story from specs (delimited by ---):
+---
+[[The user story you aime to build]]
+---
+
+Template to use:
+```markdown
+# User-Story name
+
+1 sentence summarize of the goal
+
+## Section 1's name - a feature part
+
+### Tasks (code implementation)
+
+- [ ] Action
+
+### UI - Only in there is UI to build
+
+- [ ] Action
+
+### Testing
+
+- [ ] Action
+...
+```
+````
+
+</details>
+
+### Fiche d'instructions (aka: plan technique) `:docInstructions` #WIP
+
+> Créer une fiche d'instructions détaillée pour une fonctionnalité précise.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ````markdown
 # Goal
 You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
@@ -404,10 +496,15 @@ For each section:
 
 ````
 
-### Generate coding instructions from a feature `:featureInstructions`
+</details>
 
-To use when you are discussing a feature with the AI and you need to export it to the coding editor (like Cursor, Windsurf or whatever).
+### Fiche d'instructions (aka: plan technique) `:featureInstructions` #WIP
 
+> Utilisé lorsque vous discutez avec l'IA d'une fonctionnalité et que vous devez l'exporter dans un éditeur de code (comme Cursor, Windsurf ou autre).
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 [[What you want to achieve with this prompt]]
@@ -444,8 +541,15 @@ Important:
 Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
 ```
 
-### Create a feature `:featureCreate`
+</details>
 
+### Créer une fonctionnalité `:featureCreate`
+
+> Générer la fiche d'instructions pour une fonctionnalité.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ````markdown
 Goal:
 Build a new, existing or not, feature in our project.
@@ -574,12 +678,19 @@ When all phases are complete, you will produce a **Markdown document** containin
    - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
 ````
 
-### Generate code for a small feature `:featureSmallCode` #WIP
+</details>
 
-**Parameters**:
+### Générer du code pour une petite fonctionnalité `:featureCode`
 
-- Requirements: Can be the user stories or the technical plan.
+> Utile pour générer rapidement du code pour une petite fonctionnalité à intégrer rapidement.
 
+**Paramètres**:
+
+- `Requirements`: Vos besoins en détails pour la feature.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Generate code for a feature based on existing codebase.
@@ -614,11 +725,18 @@ Sub step 1.1: ...
 </outputExample>
 ```
 
-## ⚗️ Project Setup / Bootstrap
+</details>
 
-### Bootstrap a new project `:projectBootstrap`
+## **📦 Démarrage d'un projet**
 
-````markdown
+### Imaginer un projet (from scratch) `:projectBootstrap`
+
+> Définir les étapes de démarrage d'un projet (besoins, hébergement, back-end, front-end, base de données, etc.)
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
 ## Goal  
 Your objective is to **guide the developer through a structured decision-making process**, validating each step, resolving contradictions, and providing a **final architecture summary** with a **detailed folder structure**.
 
@@ -768,16 +886,21 @@ Notes for the "AI Architect":
 - Do not comments unless asked.
 ````
 
-### Enforce good practices `:projectEnforce` #WIP
+</details>
 
-**Parameters needed** :
+### Enforcer les bonnes pratiques `:projectEnforce` #WIP
 
-- Project structure
-- Tech stack
-- Tech docs (architecture, design patterns, etc.)
+> Permet de définir et de générer un document de bonnes pratiques à appliquer à un projet.
 
-**Prompt** :
+**Paramètres** :
 
+- `project-structure.txt`: La structure du projet.
+- `versions.jsonc`: Le stack technique.
+- `Documentation technique`: Tout ce qui vous semble important à savoir sur le projet.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 ## Goal  
 Assist in setting up best practices for a newly created project through **step-by-step validation** and implementation. Each phase must be validated before proceeding to the next.
@@ -887,8 +1010,15 @@ Each selected enhancement is **fully implemented before moving to another**.
 This ensures a structured, interactive, and high-quality project setup.
 ```
 
-### Project URL Structure `:projectURL`
+</details>
 
+### Structure des URLs `:projectURL`
+
+> Générer la structure des URLs (frontend, backend, api, publiques, privées) pour un projet (nouveau ou existant).
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ````markdown
 ## Goal  
 Your objective is to **help the developer structure the URL and API architecture**, ensuring a **clear, secure, and optimized system**.  
@@ -917,13 +1047,14 @@ The user will provide detailed answers, and you will analyze, refine, and optimi
 
 1. **List documents loaded from the knowledge base**.  
 2. **Provide an overview of the process steps** (only titles).  
-3. **Ask the user if they are ready to start**.  
+3. **Explain that section processing consists of 5 steps**.
+4. **Ask the user if they are ready to start**.  
 
-### Section Processing  
+### Section Processing in 5 steps
 
 This is very **important**, you must follow this process to ensure the best result.  
 
-For each section:  
+For each section, follow these 5 steps:
 
 1. **Pre-fill Information**  
    - Review the knowledge base documents.  
@@ -940,12 +1071,21 @@ For each section:
    - Present a concise summary of decisions.  
    - Review for consistency and completeness.  
    - Explicitly ask: "Do you confirm we can proceed to the next section? (Please respond with 'YES')"  
-   - Wait for explicit "YES" confirmation. Do not proceed without strong confirmation.  
+   - Wait for explicit "YES" confirmation.
+   - **Do not export the section without strong confirmation**.  
 
-4. **Summarization**  
+Important:
+- **Loop Until Confirmation**  
+   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
+   - **Repeat the cycle** until explicit validation is received.  
+   - **Validation must be explicit**, ask the user "Do you confirm we can proceed to the next section? (Please respond with 'GO')".
+
+4. **Summarization just after a section completion and user validation**  
    - Summarize all gathered information in a markdown text block (surrounded by four backticks).  
    - Include all decisions and rationale.  
-   - Format for clarity and future reference.  
+   - Format for clarity and future reference.
+   - Do not skip any details, output in short bullet points.
+   - **Always export the whole section's conversation to avoid forget details.**
    - Ask if this is correct and wait for explicit "YES" confirmation.  
 
 5. **Progress**  
@@ -959,14 +1099,13 @@ For each section:
 - Prefill the answer for the user with gathered information from the knowledge base in parentheses.  
 - Then, ask the user for missing information.  
 
-### 1. Project Context & Objectives  
-- What is the nature of the project and who are the target users?  
+### 🎯 1. Project Context & Objectives  
 - What are the main categories of routes to define (public, private, admin)?  
 - Define the pages that need to be created (e.g., home, about, contact etc.).
 
 ---
 
-### 2. Frontend URL Structure  
+### 🌐 2. Frontend URL Structure  
 - Define **URL naming conventions** (default: Kebab Case, e.g., `/user-profile` instead of `/userProfile`).  
 - Structure **path parameters vs. query parameters**.  
 - Define **public vs. private vs. admin routes**.  
@@ -975,7 +1114,7 @@ For each section:
 
 ---
 
-### 3. Backend API Design  
+### 🔌 3. Backend API Design  
 - Should the API use **REST, GraphQL, or both**?  
 - Define the **URL structure for REST APIs** (e.g., `/api/v1/users/{id}` vs. `/api/v1/user-profile/{id}`).  
 - Establish **conventions for nested resources** (e.g., `/users/{id}/orders`).  
@@ -985,7 +1124,7 @@ For each section:
 
 ---
 
-### 4. Security & Access Management  
+### 🔒 4. Security & Access Management  
 - Define **user roles and permissions** (admin, user, guest).  
 - Ensure **private routes are properly protected**.  
 - Implement **rate limiting and abuse protection**.  
@@ -994,7 +1133,7 @@ For each section:
 
 ---
 
-### 5. Error Handling & HTTP Status Codes  
+### ⚠️ 5. Error Handling & HTTP Status Codes  
 - Define **consistent error responses** (structured JSON).  
 - Implement standard **HTTP status codes**:  
   - `200 OK` – Successful request  
@@ -1008,7 +1147,7 @@ For each section:
 
 ---
 
-### 6. Performance & Caching Strategy  
+### 🚀 6. Performance & Caching Strategy  
 - Define **which routes should be cached on the frontend**.  
 - Implement **backend caching for expensive queries**.  
 - Set **ETag and Cache-Control headers** for optimization.  
@@ -1016,32 +1155,20 @@ For each section:
 
 ---
 
-### 7. Monitoring & Scalability  
+### 📊 7. Monitoring & Scalability  
 - Implement **API request logging and monitoring**.  
 - Ensure **audit logs track API usage and access**.  
 - Define **strategies for API scaling** (load balancing, CDNs).  
 - Implement **error tracking and alerting mechanisms**.  
-
----
-
-### 8. Finalization & Output  
-Once all questions are answered, the AI automatically generates:  
-- **A complete frontend URL structure** for all pages.  
-- **A structured API URL schema** for both REST and GraphQL.  
-- **A security plan for protecting private URLs and API access**.  
-- **An error-handling strategy with standard HTTP codes**.  
-- **Optimization recommendations for caching, SEO, and performance**.  
-
-## Finalization of the Prompt  
-- Ensure all information is validated with the user.  
-- Generate the full URL and API structure.  
-- Print the final output in a markdown text block (surrounded by four backticks).  
-- Do not add comments unless explicitly requested.  
 ````
 
-## 💽 Database
+</details>
 
-### Generate SQL structure from Scratch `:dbStructure`
+## **💽 Base de données**
+
+### Structure et schémas `:dbStructure`
+
+> Permet de générer la structure et les schémas de la base de données.
 
 ````markdown
 # Prompt Structured for Data Schema & Generation
@@ -1099,6 +1226,7 @@ For each section:
 
 4. **Summarization**  
    - Summarize all gathered information in a markdown text block (surrounded by four backticks).  
+   - Only use emoji for the section title.
    - Include all decisions and rationale.  
    - Format for clarity and future reference.  
    - Ask if this is correct and wait for explicit "YES" confirmation.  
@@ -1191,14 +1319,25 @@ Please ensure every discussion you had with the user is included in the final ou
 
 ````
 
-### Generate SQL from specifications `:dbGenSQL`
+</details>
 
+### Générer schéma SQL depuis des spécifications `:dbGenSQL`
+
+> Prendre des spécifications textes et générer le schéma SQL correspondant.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Generate SQL schema from specifications.
 
 Rules:
-- Generate the full SQL schema, with the tables, the columns, the relations between the tables and the constraints.
+- Generate the full SQL schema with :
+  - tables
+  - columns
+  - relations between the tables
+  - constraints
 
 Specifications:
 <specifications>
@@ -1206,8 +1345,15 @@ Specifications:
 </specifications>
 ```
 
-### Create entity from SQL Schema `:dbGenEntity`
+</details>
 
+### Générer des entités à partir d'un schéma SQL `:dbGenEntity`
+
+> Permet de générer des entités à partir d'un schéma SQL.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Create entities from SQL Schema generating "[[objects|types|interfaces]]".
@@ -1218,16 +1364,23 @@ SQL Schema:
 </sqlSchema>
 
 Rules:
-1. For each entity, I want you to generate the corresponding type.
-2. For each relation, I want you to generate the corresponding type.
+1. For each entity, ensure you generate the corresponding type.
+2. For each relation, ensure relation is correctly defined.
 3. No comment in code.
 4. Suffix the type name with "Entity".
 ```
 
-## 🚀 Code Generation
+</details>
 
-### Generate fake data `:codeFake`
+## **🚀 Génération de code**
 
+### Générer des données factices `:codeFake`
+
+> Permet de générer des données factices rapidement pour un mock par exemple.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Generate a new variable filled with fake data.
@@ -1237,10 +1390,17 @@ Rules:
 - Type of the data must be respected.
 ```
 
-## 🏞️ Generate code from image
+</details>
 
-### Extract details from image and match components `:imageExtractDetails`
+## **🏞️ Générer du code à partir d'une image**
 
+### Extraire les détails de l'image l'associer les composants `:imageExtractDetails` #WIP
+
+> Analyse une image, récupère les informations, et associe les composants dans le projet pour générer la vue.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Extract details from image and match components in the codebase.
@@ -1266,10 +1426,17 @@ Context:
 - Image is attached.
 ```
 
-## 💉 Bug Fixing
+</details>
 
-### Find the issue `:bugFind`
+## **🐛 Corriger de bugs**
 
+### Trouver des pistes `:debugIssues` #WIP
+
+> Permet d'analyser un comportement anormal et de trouver les causes probables.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Find the issue in the given code context.
@@ -1287,15 +1454,22 @@ Steps:
 1. Analyze the given code
 2. Then list potentials issues and steps to fix the code
 3. Sort them by relevance
+4. Provide a top 3 root level possible causes
+5. When answering the user, list what you tried so far and the possible next 3 causes
 
 Notes:
 - Issues might be induced by another part of the code, so you might need to check the whole codebase.
 ```
 
-## 🐛 Debugging
+</details>
 
-### Write log `:debugLog`
+### Debugger un code en ajoutant du "logging" `:debugLog`
 
+> Permet de rajouter les étapes par lequel passe le code afin de faciliter le debug.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Add logging messages to the given code at each significant step.
@@ -1314,8 +1488,15 @@ Rules:
 - The focus should be on enhancing clarity without compromising code functionality.
 ```
 
-### Detect inconsistencies `:debugInconsistency`
+</details>
 
+### Détecter des incohérences `:debugInconsistency`
+
+> Permet de détecter des incohérences dans un code.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Review the given code and identify all inconsistencies. 
@@ -1334,11 +1515,18 @@ Rules:
 - If similar inconsistencies occur repeatedly, note that they need to be corrected throughout the code.
 ```
 
-## 🧪 Tests
+</details>
 
-### Generate Gherkin `:testGenGherkin`
+## **🧪 Tests**
 
-````markdown
+### Gherkin `:testGenGherkin`
+
+> Permet de générer des tests Gherkin à partir d'une description de fonctionnalité.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
 Goal:
 Interpret the following feature description to create a Gherkin-style user story.
 
@@ -1418,10 +1606,16 @@ Feature: Feature name
     When I check the permissions
     Then I should see the corresponding access rights
 ```
-````
 
-### List untested functions `:testUntested`
+</details>
 
+### Lister les fonctions non testées `:testUntested`
+
+> Permet de lister les fonctions (et les fonctionnalités) non testées dans un fichier.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 List every untested behaviors.
@@ -1440,70 +1634,203 @@ Test files to check (if any):
 #file
 ```
 
-## 📚 Documentation
+</details>
 
-### Generate mermaid charts `:docMermaid`
+## **📚 Documentation**
 
-> Note : You can preview your diagrams here: <https://mermaid.live/edit#>
+### Fusionner plusieurs fichiers Markdown `:mdMerge`
 
-```markdown
-## **Goal**  
-Generate a **Mermaid diagram** from **Markdown content**, ensuring clarity, structure, and best practices.  
+> Permet de fusionner plusieurs fichiers Markdown en un seul fichier.
+> Évite l'erreur de ChatGPT :
+>
+> ```text
+> Value error, Too many files, a maximum of 10 is allowed.
+> ```
 
-## **Rules**  
+<details>
+  <summary>Voir le prompt</summary>
+  
+```bash
+find . -type f \( \
+    -name "*.md" -o \
+    -name "*.mdx" \
+  \) \
+  -not -name "all.md" \
+  -print0 | \
+  sort -z -r | \
+  while IFS= read -r -d '' file; do 
+    echo -e "\n---\nFile: $file\n---\n"
+    cat "$file"
+  done > all.md
+```
+
+</details>
+
+### Générer des diagrammes Mermaid `:docMermaid`
+
+> Note : Vous pouvez prévisualiser vos diagrammes ici : <https://mermaid.live/edit#>
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+## Goal  
+Generate a HIGH QUALITY Mermaid diagram from Markdown content.
+
+## Roles
+- "AI Architect": You, the AI, will act as a Senior Software Architect that produces very high-quality Mermaid diagrams.
+
+## Rules  
+- Extract relevant structure
+- Convert it into a valid v11.4.0 + Mermaid diagram.  
+- Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
+- Output in Markdown code blocks.
+
+### Clarity & Readability
+- Use short, clear names. Align left → right or top → bottom.  
+- Minimize crossings. Add annotations (`--> "label"`).  
+- Include a title in the header.
+
+### Consistency & Validity
+- Ensure correct syntax. No empty or misplaced elements.
+- No orphaned connections.
+- Remove unused styles.
+
+### Structure & Style
+- Use subgraphs (subgraph "Name").
+- Very clear names, no "A, B, C".
+- Define styles (classDef: colors, shapes).
+- Differentiate elements (ellipse, rounded, hexagon).
+- Limit colors. Ensure accessibility.
+- Add notes and legends if needed.
+
+### Optimization & Compatibility
+- Avoid linkStyle.
+- Always enclose subgraph titles in quotes (subgraph "Name").
+- Replace ":" with "$" in state names.
+- Place labels inside connections.
+
+## Steps
+
+1. Get "markdown content", then write down a very detailed plan, list:
+  - Groups and States
+  - Relationships
+  - Actions, Events
+  - Conditions
+  - Notes, Legends
+  - Styles, Background Colors
+2. Ask user "do you confirm the plan?".
+5. Generate the fully detailed Mermaid diagram from the plan imperatively following the "rules".
+6. Ask the user: "do you want me to review it?"
+7. If the user confirms, review the diagram and suggest improvements.
+
+## Markdown Content  
+<markdown>
+[[Markdown content with structure to convert]]
+</markdown>
+
+## Goal  
+Generate a Mermaid diagram (v11.4.0 minimum) from Markdown content.
+
+## Rules  
 - Extract relevant structure and convert it into a valid Mermaid diagram.  
-- Generate chart in: `"sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline"`.  
-- Output **only the Mermaid diagram**, inside Markdown code blocks.  
-- Ensure **valid Mermaid syntax**, compatible with the latest version.  
+- Generate chart in: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
+- Output only the Mermaid diagram, inside Markdown code blocks.  
+- Ensure valid Mermaid syntax and proper indentation. 
 
-## **Constraints**  
-✅ **Clarity & Readability**  
-- Use **short, clear node names** and align logically (**left-to-right / top-to-bottom**).  
-- Minimize **line crossings**, add **annotations (`-- "label" -->`)**, **and** use **icons/emojis** if relevant.  
+## Constraints  
 
-✅ **Structure & Style**  
-- Group elements with **subgraphs**, add **titles** when needed.  
-- Define **consistent styles** with `classDef` (colors, borders, shapes).  
-- Use **distinct node shapes** (`ellipse`, `rounded`, `hexagon`) and **bold strokes (`stroke-width`)**.  
+### Clarity & Readability
+- Use short, clear node names and align logically (left-to-right / top-to-bottom).
+- Minimize line crossings, add annotations (`-- "label" -->`), and use icons if relevant.
+- Provide a clear title for the diagram in top header, example:
+  ```mermaid
+  ---
+  title: "System Architecture"
+  ---
+  ```
 
-✅ **Optimization & Compatibility**  
-- Avoid `linkStyle` if it causes issues.  
-- Ensure diagrams are **responsive** and tested on the **latest Mermaid version**.  
+### Structure & Style
 
-✅ **Interactivity (Optional)**  
-- Enable **clickable nodes** (`click nodeX "URL" "Tooltip"`) for navigation.  
-```
+- Group elements with subgraphs, add titles when needed.
+- Define consistent styles with `classDef` (colors, borders, shapes).
+- Use distinct node shapes (`ellipse`, `rounded`, `hexagon`) and bold strokes (`stroke-width`).
+- Careful with colors for accessibility (color blindness).
+  - Use a color contrast checker for text and background colors.
 
-### Search in online documentation `:docSearch`
+### Optimization & Compatibility
+
+- Avoid `linkStyle` if it causes issues.
+- Ensure diagrams are responsive and tested on the latest Mermaid version.
+- Surround Subgraph titles with double quotes.
+- IMPORTANT: Do not use colons (:) inside names, replace with a dollar sign ($).
+- Always place edge labels directly within transitions, using the format NodeA --> NodeB : "Label", to ensure labels are interpreted as annotations rather than standalone nodes.
+
+### Interactivity (Optional)
+
+- Enable clickable nodes (`click nodeX "URL" "Tooltip"`) for navigation.
+
+## Steps
+
+1. Write down the plan for the diagram.
+2. Ask user "do you confirm the plan?".
+3. Generate the Mermaid diagram from the plan with under markdown content.
+4. Ask the user: "do you want me to review it?"
+5. If the user confirms, review the diagram and suggest improvements :
+
+- Ensure the generated Mermaid diagram is syntactically valid, logically consistent, free of empty nodes or misplaced elements, and correctly applies styles and class definitions
+- Detect misconfigured labels or orphaned connections.
+- Be very careful about empty nodes, misplaced elements, or incorrect connections.
+
+## Markdown Content  
 
 ```markdown
-Goal:
-Search in online documentation "[[search query]]".
+<markdown>
+### 🌍 Public (Accessible sans connexion)
 
-Rules:
-- Write down what the search query is about.
-- In bullet point, list top 3 results from the search query.
-- If you can't find the answer, say so.
-- If you find the answer, write it in markdown format.
+- `/` → **Landing Page** *(Présentation du service, inscription rapide)*
+- `/onboarding/` → Inscription de l’utilisateur sur la plateforme.
+    - `/onboarding/start` → Page d’accueil de l’onboarding (Bienvenue + Connexion Google).
+    - `/onboarding/permissions` → Demande des autorisations Gmail via OAuth.
+    - `/onboarding/setup` → Génération de l’alias email + Création du projet + Configuration automatique de Gmail (label + filtre).
+    - `/onboarding/finish` → Résumé des configurations (alias email affiché + bouton d’accès au Dashboard).
+- `/legal` → **Mentions légales**
+- `/auth/callback` → **Callback Google OAuth** *(Stockage des tokens après connexion)*
+
+### 🔒 Privé (Accessible après connexion)
+
+- `/dashboard/:userSlug/:projectSlug` → **Dashboard utilisateur + projet**
+- `/settings/:userSlug` → **Paramètres utilisateur**
+
+### ⚙️ Admin (Réservé aux administrateurs)
+
+- `/admin/:userSlug` → **Gestion de l’utilisateur spécifique**
+
+---
+
+## 🔌 Accès & Sécurisation
+
+- **Un utilisateur classique** peut accéder uniquement **à son propre dashboard et settings**.
+- **L’administrateur** peut accéder **aux profils des utilisateurs** (`/admin/:userSlug`).
+- **L’API applique des permissions strictes** :
+    - ✅ Un utilisateur ne peut voir que **ses propres données**.
+    - ✅ Seul l’admin peut **lister et gérer les utilisateurs**.
+</markdown>
 ```
 
-### Upgrade comments `:docComments`
+````
 
-```markdown
-Goal:
-Insert / Update / Beautify comments in the given code.
+</details>
 
-Rules:
-- Add top file documentation to describe what the file is doing only if whole file is provided.
-- Provide a usage example in functions' doc
-- Include input parameters and output in code comments ONLY if code is not type-safe
-- For inline comments, only comment it code is technically complexe
-```
+## **🔄 Refactoring**
 
-## 🔄 Refactoring
+### Ajouter des commentaires au code `:refactComment`
 
-### Add comments to the selected code `:refactComment`
+> Permet d'ajouter ou de mettre à jour des commentaires dans un code.
 
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 # Goal
 Add comments to the code to enhance readability, but only focusing on complex logic or technically challenging parts.
@@ -1533,8 +1860,16 @@ Code with comments added directly above or next to complex logic or technically 
 Suggest improvements and explain your reasoning for each suggestion.
 ```
 
-### Create new generic file `:refactGeneric`
+</details>
 
+### Créer un nouveau fichier générique `:refactGeneric`
+
+> Permet de créer un nouveau fichier générique à partir d'un fichier existant.
+>
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 I want to make this file generic so it can "[[purpose]]".
@@ -1552,8 +1887,15 @@ Rules:
 4. Provide the code to add or modify (do not make unnecessary changes).
 ```
 
-### Optimize this code snippet `:refactOpt`
+</details>
 
+### Beautifier un code `:refactOpt`
+
+> Permet d'optimiser la lisibilité, la clarté et la maintenabilité d'un code.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Beautify, comment and refactor the given code snippet.
@@ -1584,8 +1926,15 @@ Rules:
 - Make sure the code is still readable and maintainable, doing its best to keep the same logic.
 ```
 
-### Optimize code performance `:refactPerf`
+</details>
 
+### Optimiser les performances d'un code `:refactPerf`
+
+> Note : Au delà de 3 essais, on atteint généralement la limite d'optimisation. ("less is more")
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Optimize code for performance and scalability.
@@ -1605,18 +1954,25 @@ Rules:
 - Input and output of the code should remain the same.
 ```
 
-### Refactor a huge file #WIP
+</details>
 
-WIP for Alex, defining steps.
+### Refactor un fichier `:refactHuge`
+
+> En cours...
 
 1. Gather user info.
 2. Address a refactoring plan, Challenge the user.
 3. Once agreed, execute the plan.
 
-## 🧙 Senior Advice
+## **🧙 Revue de code**
 
-### Code Reviewer `:adviceReview`
+### Faire une revue de code `:adviceReview`
 
+> Pour un code donné, faire une revue de code détaillée et itérative.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Role:
 Your task is to make a very good code review, analyze the provided code and suggest improvements to make it cleaner, bug free.
@@ -1634,11 +1990,11 @@ Detection rules:
 - Performance issues
 - Security breaches
 - Optimization (refactoring, simplification)
-- Improve readability.
-- Merge similar functions into one.
-- Remove redundant code.
-- Match comments with code.
-- Missing good practices.
+- Improve readability
+- Merge similar functions into one
+- Remove redundant code
+- Match comments with code
+- Missing good practices
 
 Steps:
 1. Explain what the code is doing in one short sentence.
@@ -1647,9 +2003,17 @@ Steps:
 4. Wait for the user approval before changing any code, just provide suggestions.
 ```
 
-### Architecture `:adviceArchitecture`
+</details>
 
-````markdown
+### Revoir l'architecture d'un projet `:adviceArchitecture`
+
+> Revoie l'architecture, la structure et identifie les problèmes potentiels.
+> Génére un "document" de recommandations.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
 As a software architect, you are tasked with conducting a comprehensive audit of a project structure. 
 
 Brief:
@@ -1677,7 +2041,7 @@ Tasks:
 2. List every potential issue in the project structure.
 3. For each issue, find all affected file or folder because the audit needs to be exhaustive.
 4. Do not provide issue if there is no recommendation to solve it.
-6. Only answer using "Tasks" and "Template" sections.
+5. Only answer using "Tasks" and "Template" sections.
 
 Template:
 """
@@ -1705,8 +2069,15 @@ Final steps at the end of the audit, ask the user to type:
 4) Continue audit, AI will try to find new issues.
 ````
 
+</details>
+
 ### Design Patterns `:adviceDesignPatterns`
 
+> Pour un code donné, identifie les design patterns et propose des améliorations.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 List the existing design patterns in the following code.
@@ -1722,12 +2093,110 @@ For each design pattern, provide:
 - An example of how the design pattern can be implemented in the selected technology.
 ```
 
-## 🧑‍🍳 Project Management
+</details>
 
-### Write specifications document `:pmSpecs`
+## **🧑‍🍳 Gestion de projets**
 
-Create a brand new specification document to help you kickstart your project.
+### Définir les milestones et les épiques `:pmMilestones` #WIP
 
+> Pour une fonctionnalité ou un projet dans son ensemble, identifie les grandes étapes (indispensables) de développement.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
+## Goal  
+Provide an ultra clear very detailed project plan structure including Milestones and Epics
+
+## Roles  
+- "AI Architect" (You): Guide, ask questions, clarify, and generate a structured Markdown plan, acting as an expert in project management and software development.
+- "Developer" (Me, the user): Provides details, validates and confirms.
+
+## Rules
+- Do not focus on technical details, focus on the project's features and goals.
+
+---
+
+## Sections processing
+
+1. Inform the user about the 4 sections' steps we will follow to structure the project.
+2. Never leave a section without explicit "YES" from the user.
+3. Informe user when we enter a new section.
+
+### Section 1: Extract Information 
+
+> Note for you: This steps is primordial for you to understand the project, but we do not need to export it in the final plan.
+
+1. Ask for the document containing the project information.
+2. Extract and format the key details:
+  - Type of project: [Web, mobile, SaaS, etc.]  
+  - Main technologies: [React, Django, etc.]  
+  - Main goal: [Brief explanation]  
+  - Constraints: [Budget, timeline, stack, etc.]  
+  - Key features:  
+    - [Feature 1]  
+    - [Feature 2]  
+  - Estimated MVP duration: [XX weeks]
+3. Ask: "Here is the extracted information. Please validate or correct before proceeding."
+4. Ask user explicitly: "Do you confirm we can proceed to the next step? (Please respond with 'YES')"
+5. If user did not explicitly answer "YES", STOP HERE.
+
+---
+
+### Section 2: Clarification  
+
+> WARNING, THIS IS A VERY IMPORTANT STEP, PLEASE FOLLOW IT STRICTLY AND CAREFULLY.
+> We will loop on this section until the user confirms we have enough information.
+
+Process:
+
+1. **Ask 3 top level questions** to have a clear overview of the project.
+2. **Summarize shortly in concise bullet points** the answers.
+3. **Ask user if everything is correct**
+  - Ask: "Are there any mistakes? Should we go the section 3"
+4. Repeat process until
+
+---
+
+### Section 3: Generate Project Milestones
+
+> WARNING, THIS IS A VERY IMPORTANT STEP, PLEASE FOLLOW IT STRICTLY AND CAREFULLY.
+> You must first generate milestones, then epics, then user stories.
+
+#### Milestones
+
+1. Propose milestones (but no epics) in bullet points based on the user's input.
+2. Ask: "Is this correct?"
+3. Discuss with the user, and always end you question with "Do you confirm we can proceed to the next step?"
+
+#### Epics
+
+1. Take the first milestone and propose epics in bullet points based on the user's input.
+2. Ask: "Is this correct?"
+3. Discuss with the user, and always end you question with "Do you confirm we can proceed to the next step?"
+4. The next step is: take the next milestone and repeat the process until all milestones are done.
+
+### Section 4: Output final document.
+
+> IMPORTANT, DO NOT BE LAZY, DOCUMENT WILL BE HUGE THIS IS NORMAL.
+> FOCUS ON SHORT SENTENCES TO LIMIT TOKENS OUTPUT.
+
+- Use markdown format only.
+- No formatting, bold or italic.
+- Only use titles, subtitles.
+- Follow structure: Milestones → Epics.
+- Use emojis only for Milestones and Epics.
+````
+
+</details>
+
+### Écrire un document de spécifications `:pmSpecs`
+
+> Crée un nouveau document de spécifications complet pour aider à démarrer un projet en structurant ses idées.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ````markdown
 Act as an **interactive project specification assistant**, help me build and refine a complete, well-organized project specification document.  
 
@@ -1764,7 +2233,6 @@ Act as an **interactive project specification assistant**, help me build and ref
 
 ## Markdown Template Overview:
 <template>
-```markdown
 # Project Specification Template
 
 ## 1. 💡 Initial Conceptualization  
@@ -1812,7 +2280,6 @@ Act as an **interactive project specification assistant**, help me build and ref
 ### Communication Channels  
 ### Update Frequency  
 ### Feedback Management  
-```
 </template>
 
 ## Important rules:
@@ -1838,10 +2305,15 @@ Act as an **interactive project specification assistant**, help me build and ref
   - If not, let's begin. Tell me about your project so we can start filling out the first section: Initial Conceptualization.
 ````
 
-### Choose a tech stack `:pmTechStack`
+</details>
 
-Choose the right tech is hard, an AI can help you find the best tech stack for your project, sorting advantages and drawbacks.
+### Choisir une stack technique `:pmTechStack`
 
+> Choisir la bonne stack technique est difficile, l'AI peut vous aider à trouver la meilleure stack pour votre projet, en triant les avantages et les inconvénients.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Regarding the technology project I am planning and specifying, I need guidance on selecting the right tools and frameworks.
 I have a team of developers (which may consist of just one developer) ready to work on this, and they are open to learning new technologies if needed.
@@ -1890,85 +2362,108 @@ Project Needs:
 Afterward, please justify your choices in relation to my project requirements.
 ```
 
-### Generate Milestones `:pmGenerateMilestones`
+</details>
 
-Generate the milestones for your project.
+## **🗣️ Chat et conversations**
 
+### Top 3 `:chatTop3`
+
+> Permet de répondre à une question en donnant les 3 meilleures réponses.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
-Define the key milestones for the project; we aim for short release cycles and sprints to support quick iteration.
-
-Once milestones are defined, estimate the development timeline for each one.
-
-Team composition:
-[[Bullet point list of team members]]
-
-Development is scheduled to start in the "[[Second week of January]]".
-
-Please generate a table with the following columns: Task, Estimated Start Date, Estimated End Date. Use the date format "09 Jan. - 10 Feb.," starting each milestone on a Monday and ending on a Friday.
-```
-
-### Generate a tech ticket `:pmTicket`
-
-A simple ticket template generation from your project's task.
-
-```markdown
-Regarding this task or sub-stack "[[task_or_sub_stack]]".
-
-Create ticket for developer with detailed steps of what to do with checkboxes:
+Goal:
+Provide the top 3 answers to the question.
 
 Rules:
-- Keep only the feature scope and focus only on the sub-steps, do not think about side tasks or parent ones.
-- Add a simple test feature list explanation with checkboxes as well.
-- Do not hesitate to add notes regarding important aspect of what you wrote.
+- Answer in markdown format.
+- Use bullet points.
+- Detail each answer.
 ```
 
-## ⚡️ Zero Shot Prompts
+</details>
 
-### Markdown merge `:mdMerge`
+### Résume en une phrase `:chatSummarize`
 
-```bash
-find . -type f \( \
-    -name "*.md" -o \
-    -name "*.mdx" \
-  \) \
-  -not -name "all.md" \
-  -print0 | \
-  sort -z -r | \
-  while IFS= read -r -d '' file; do 
-    echo -e "\n---\nFile: $file\n---\n"
-    cat "$file"
-  done > all.md
+> Permet de résumer la dernière réponse du chat en une seule phrase.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
+Please summarize the last answer in one short concise sentence (but do not lose any information), be more precise and accurate.
 ```
 
-## 🗣️ Chat and Conversation
+</details>
 
-### Answer in French `:answerFr`
+### Rechercher sur internet `:chatOnline`
 
+> Permet de rechercher sur internet explicitement pour trouver des informations.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
+Goal:
+Search in online documentation "[[search query]]".
+
+Rules:
+- Write down what the search query is about.
+- In bullet point, list top 3 results from the search query.
+- If you can't find the answer, say so.
+- If you find the answer, write it in markdown format.
+```
+
+</details>
+
+### Répondre en français `:chatFr`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 For all answers, answer in French.
 ```
 
-### Answer in markdown `:answerMd`
+</details>
+
+### Sortie en markdown `:chatOutputMd`
+
+<details>
+  <summary>Voir le prompt</summary>
 
 ```markdown
-Answer in markdown format on a text block. 
-For code blocks that contain markdown or other backticks, use 4 backticks. 
+Please output document in markdown formatted on a text block surrounded by 4 backticks.
 ```
 
-### Load knowledge base `:loadKB`
+</details>
 
+### Charger la base de connaissances `:chatKB`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Before proceeding, load the knowledge base to ensure the most accurate and up-to-date information is used in the response.
 
 List documents loaded from knowledge base in bullet points.
 ```
 
-### Evaluate Answer `:evaluate`
+</details>
 
-Note :
+### Évaluer une réponse `:chatEvaluate`
 
-> Alex mets une note ici pour expliquer l'usage
+> Permet d'évaluer UNE réponse précise à UNE demande précise.
+> Exemple:
+>
+> - "Génère moi un ticket de développement pour le projet"
+> - "Écris un post LinkedIn avec mon style d'écriture"
 
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Thank you. Now:
 
@@ -1983,8 +2478,15 @@ Thank you. Now:
 5) Ask me if I want to repeat the process again. We well be doing so until your work is marked 20/20.
 ```
 
-### Restart a new chat / conversation `:restart`
+</details>
 
+### Relancer une nouvelle conversation / chat `:chatRestart`
+
+> Lorsque votre conversation est trop complexe ou que vous avez perdu le fil et que le LLM hallucine, relancer une nouvelle conversation propre AVEC l'historique de l'ancienne.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ````markdown
 Goal:
 Relaunching a Complex Conversation
@@ -2037,20 +2539,35 @@ With this context, help refine the following:
 2. [Second area for improvement].  
 3. [Additional question to explore].  
 ```
+
 ````
 
-## 📝 Writing and content
+</details>
 
-### Assert text `:quickRephrase`
+## **📝 Écriture et contenu**
 
+### Simplifier un texte `:contentRephrase`
+
+> Simplifie un texte en retirant les répétitions et les détails inutiles tout en conservant une structure logique et un sens cohérent.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
 
 Keep original language.
 ```
 
-### Rephrase for concision `:rephrase`
+</details>
 
+### Rendre un texte plus concis `:contentFocus`
+
+> Rendre un texte plus concis en se concentrant sur les points essentiels et en évitant les redondances.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 ## Goal  
 Rephrase the given text in "[[language]]" while maintaining its original meaning and intent.
@@ -2079,8 +2596,15 @@ Rephrase the given text in "[[language]]" while maintaining its original meaning
 </textToRephrase>
 ```
 
-### Focus on benefits `:focusBenefits`
+</details>
 
+### Focus sur les avantages `:contentFocusBenefits`
+
+> Rendre un texte plus convaincant en se concentrant sur les résultats et les avantages au lieu des fonctionnalités.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 ## Goal  
 Rewrite the given text to emphasize **benefits, outcomes, and advantages** using persuasive copywriting techniques.  
@@ -2112,8 +2636,13 @@ Act as a **conversion-focused copywriter**. Use compelling language that capture
 </text>  
 ```
 
-#### Summarize
+</details>
 
+### Résumer un texte `:contentSummarize`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```markdown
 Goal:
 Please summarize everything you just said.
@@ -2127,10 +2656,17 @@ Output:
 - Format output in a markdown text block surrounded by 4 backticks.
 ```
 
-### OSX
+</details>
 
-#### Homebrew updates `:osxBrew`
+## **💻 OSX**
 
+### Mettre à jour Homebrew `:osxBrew`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
 ```shell
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 ```
+
+</details>

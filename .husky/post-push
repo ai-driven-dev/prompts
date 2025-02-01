@@ -1,4 +1,4 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-sleep 30000 && espanso package update ai-driven-dev-prompts 
+espanso package update ai-driven-dev-prompts 

@@ -17,9 +17,9 @@ if (!fs.existsSync(newEspansoPrivateFolder)) {
 
 const PRIVATE_PROMPTS = ['./prompts/private/*'];
 const PUBLIC_PROMPTS = [
-  './../instructions/README*',
-  './resources/agents/*',
+  './../agents/README*',
   './README*',
+  './CONTRIBUTION.md',
 ];
 
 console.log('📝 Writing public prompts...');
