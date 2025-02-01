@@ -121,7 +121,7 @@ espanso package update ai-driven-dev-prompts
 ```
 
 <details>
-<summary><small>*Màj automatique via .bashrc / .zshrc*</small></summary>
+<summary><small><em>Màj automatique via .bashrc / .zshrc</em></small></summary>
 
 Ajoutez cette ligne dans votre fichier de configuration shell (`~/.bashrc` ou `~/.zshrc`) :
 
@@ -131,8 +131,9 @@ espanso package update ai-driven-dev-prompts
 
 </details>
 
+<small>
 <details>
-<summary> *Màj automatique via cron (Linux)*</summary>
+<summary>Màj automatique via cron (Linux)</summary>
 
 Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 
@@ -141,6 +142,7 @@ Ajoutez cette ligne dans votre fichier de configuration cron (`crontab -e`) :
 ```
 
 </details>
+</small>
 
 <details>
 <summary><small>Màj automatique via Launchd (OSX)</small></summary>
