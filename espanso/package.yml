@@ -33,6 +33,74 @@ matches:
         multiline: true
       example_of_the_output_you_want_to_get:
         multiline: true
+  - trigger: ':promptCreate'
+    form: |+
+      # Goal
+      Generate a high quality prompt from scratch.
+
+      # Roles
+      - "AI Architect" (you): Act as the greatest prompt engineer from OpenAI and Anthropics.
+      - "Developer" (me, the "user"): Will give you the requirements and validate the prompt.
+
+      # Rules
+      - Use the template provided.
+      - Fill in all mandatory fields.
+      - Use markdown formatting.
+      - Use XML for variables.
+      - Provide clear and concise instructions.
+      - Keep examples minimal.
+      - Answer in English.
+
+      # Steps
+
+      ## Step 1: Ask for the requirements
+
+      1. Ask the user for the requirements.
+
+      Questions:
+      1. What is the goal of the prompt?
+      2. What specific details should be included? (e.g., tone, structure, length, format)
+      3. Are there any constraints or limitations?
+      4. Should the output follow a specific structure? (e.g., lists, paragraphs, sections)
+      5. Do you need examples in the output? (if yes, specify how detailed they should be)
+      6. Any additional requirements or preferences? (Any special considerations to improve accuracy)
+
+      ## Step 2: Reformulate the user's requirements
+
+      1. Reformulate the user's requirements in a clear and concise manner.
+      2. Validate with the user that the requirements are accurate.
+
+      ## Step 3: Write the prompt
+
+      1. Use the template provided.
+      2. Output the prompt in markdown formatted text block surrounded by 4 backticks.
+      3. Add more data if needed.
+
+      ### Step 4: Review the prompt
+
+      1. Review the prompt for clarity, accuracy, and completeness.
+      2. Analyze strengths and weaknesses.
+      3. Identify areas for improvement.
+      4. Propose enhancements to the user.
+      5. Ask the user if you should integrate the suggestions in a new formatted markdown text block surrounded by 4 backticks.
+
+      # Template
+      <template>
+      ```markdown
+      # Goal
+
+      # Rules
+
+      # Steps
+
+      ## Step 1:
+
+      ## Step 2:
+
+      # Context
+      ```
+      </template>
+
   - trigger: ':promptOpt'
     form: |
       You are an **elite Prompt Engineer**.  
@@ -79,8 +147,14 @@ matches:
     form_fields:
       your_prompt:
         multiline: true
-  - trigger: ':featureUserStories'
-    form: ''
+  - trigger: ':promptStart'
+    form: |
+      - Please follow every steps mentioned.
+      - Do not be lazy.
+      - Always provide the full document.
+      - Do not generate code.
+      - Answer in the shortest way possible, avoid long sentences, go straight to the point.
+      - Confirmation questions: Only ONE question per confirmation.
   - trigger: ':featureUserStory'
     form: |+
       Goal: Please endorse Product Owner to write very good user stories for the developers team.
@@ -132,58 +206,10 @@ matches:
     form_fields:
       feature_to_build_be_as_detailed_as_possible:
         multiline: true
-  - trigger: ':featurePlanConstruction'
-    form: |
-      Goal:
-      Create a technical plan for that only feature.
-
-      Rules:
-      - Split the user-story into relevant sections.
-      - Fill the template with the user-story details.
-        - Section: A feature's part grouped together because same goal. 
-        - Tasks: The code implementation to do (using my current tech stack).
-        - Action: The main action to do in 1 sentence.
-      - Only wait for user approval before jumping to next process (see under).
-
-      How to proceed:
-      1. Split the user-story into relevant sections.
-      2. Once agreed,  propose to apply the plan for section 1 only.
-      3. Once agreed, ,propose to apply the plan for section 2.
-      4. Repeat until all sections are done.
-
-      User-Story from specs (delimited by ---):
-      ---
-      [[the_user_story_you_aime_to_build]]
-      ---
-
-      Template to use:
-      ```markdown
-      # User-Story name
-
-      1 sentence summarize of the goal
-
-      ## Section 1's name - a feature part
-
-      ### Tasks (code implementation)
-
-      - [ ] Action
-
-      ### UI - Only in there is UI to build
-
-      - [ ] Action
-
-      ### Testing
-
-      - [ ] Action
-      ...
-      ```
-    form_fields:
-      the_user_story_you_aime_to_build:
-        multiline: true
-  - trigger: ':docInstructions'
+  - trigger: ':featureInstructions'
     form: |+
       # Goal
-      You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
+      Structuring precise coding instructions for the **AI Editor**.
 
       # Roles & Responsibilities
       - **AI Architect (You)** → Helps structure the instructions.  
@@ -202,7 +228,8 @@ matches:
       For each section:
 
       ### **1. Define the Feature**
-      1. Ask: **"Which feature should we build today? ☀️"**  
+      1. Ask: **"Which feature should we build today? ☀️"** 
+      2. **Load all documents from the knowledge base** and inform the user of existing files that you read.
 
       ### **2. Validation Loop**
       1. **Exploration Loop**  
@@ -227,9 +254,14 @@ matches:
       3. The second part is for the AI Editor (for setup and code execution).
 
       ### **4. Fill the Instruction Template**
-      1. **Complete all sections** methodically using **concise bullet points**.  
-      2. **Ensure URLs, commands, and references are verified.**  
-      3. **User Confirmation:**  
+      1. **Complete all sections** methodically using **concise bullet points**. 
+      2. **Use english only**, be concise.
+      3. **Minimal words**, brevity is key for clarity and accuracy. 
+      4. **Ensure URLs, commands, and references are verified.**  
+      5. **Output template in markdown formatted text block** surrounded by 4 backticks.
+      6. Code blocks inside are surrounded by 3 backticks.
+      7. Display in Canvas if possible.
+      8. **User Confirmation:**  
          - Ask: **"Is the template correct? (YES/NO)"**  
          - If **NO** → Refine and repeat.  
 
@@ -252,7 +284,9 @@ matches:
 
       # **Instruction Template**
       - Use **Markdown headings** (`#`, `##`, `###`) for structure.  
-      - Use **bullet points** instead of paragraphs.  
+      - Use **bullet points** instead of paragraphs (numbered if necessary). 
+      - Do not use emojis, special characters, text styles like bold or italics.
+      - Focus on very short and focused instructions.
       - **Replace placeholders** (`{{variables}}`) with actual user inputs.  
       - **Sections must not be removed**—additional sections can be added if necessary.  
 
@@ -301,44 +335,6 @@ matches:
       2. ...  
       ```
 
-  - trigger: ':featureInstructions'
-    form: |
-      Goal:
-      [[what_you_want_to_achieve_with_this_prompt]]
-
-      Context:
-      You (the "AI Architect") have already gathered all user requirements and must produce a single, detailed plan for the "AI Editor".
-      This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
-      The Developer (human) will copy/paste these instructions into the "AI Editor"'s prompt.
-
-      Roles:  
-      - AI Architect: Generates the technical plan only (no code).  
-      - AI Editor: Implements the plan by generating or modifying code.  
-      - Developer (me): Validates the plan and coordinates both IAs.
-
-      What to Include:  
-      - Detailed breakdown of each file, folder, or feature required.  
-      - Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
-      - Step-by-step explanations so the AI Editor knows precisely what to create or modify.  
-      - Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
-
-      Prompt for the "AI Architect“ (write a "technical plan" only, no code):
-      1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
-      2. Immediately produce a step-by-step plan describing what code the AI Editor must generate or modify:  
-         - Outline file names and folder structure.  
-         - Explain the purpose of each file or component.  
-         - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
-         - Highlight any dependencies or environment variables.  
-         - Provide instructions for building or testing if applicable.  
-         - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
-      3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
-      4. Conclude by reminding the Developer to validate the instructions before passing them on to the AI Editor.
-
-      Important:
-      Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
-    form_fields:
-      what_you_want_to_achieve_with_this_prompt:
-        multiline: true
   - trigger: ':featureCreate'
     form: "Goal:\nBuild a new, existing or not, feature in our project.\n\nRules:\n- We proceed in **4 phases** (Specifications, Architecture, Action Plan, Final Export).\n- On 1st prompt, print 4 main phases with this one single line formatted as: \"Phase's title : Objective\".\n- Start directly with Phase 1.  \n\n---\n\n## Process Overview\n\n### Phase 1: \U0001F9E0 Gather Specifications\n- **Objective**: Obtain project requirements and clarify purpose, features, constraints, and environment needs.\n- **Actions**:\n  - All questions must be a concise, single line.\n  - Ask targeted questions to confirm:\n    - Functional requirements.\n    - Chosen technologies, tools, or libraries (including **versions**).\n    - When discussing tech, assert that used versions match the requirements.\n    - Constraints (modularity, scalability, guidelines).\n    - Environment setups (API tokens, configuration files).\n    - Testing, Documentation, and CI/CD requirements.\n- **Output**:\n  - A validated list of specifications.\n\n**Important**: Do not move to Phase 2 until the explicitly user confirms Phase 1.\n\n---\n\n### Phase 2: \U0001F9F1 Define or Refine Architecture\n- **Objective**: Collaboratively create or adjust the project's architecture.\n- **Actions**:\n  - Specify folder structures, naming conventions, and core components (e.g., commands, utilities, events).\n  - Define environment variables (with placeholder values).\n  - Ensure modularity, scalability, and maintainability.\n  - Check in the knowledge base if an architecture already exists. Then:\n   - If you do have one, confirm with the user, confirm first it is up-to-date.\n   - If you don't know it, ask the user to provide it.  \n   - If it doesn't exist, the user will let you know.  \n  - An updated (or newly created) architecture plan, ready for Markdown export.\n  - If architecture already exists, only print affected files/folders (already existing or to be created).\n\n**Important**: Do not move to Phase 3 until the user confirms Phase 2.\n\n---\n\n### Phase 3: \U0001F5C2️ Develop a Detailed Plan of Actions\n- **Objective**: Outline each step to implement and configure the architecture.\n- **Rules**:\n  - Not git actions, only technical steps.\n  - No code generation, only setup instructions.\n  - No assumptions, no \"not needed\" steps.\n  - concentrate exclusively on the feature to be implemented, eg: do not mention naming conventions or code style.\n  - Follow only the precise instructions and never install additional libraries unless explicitly requested.\n  - Do not give code or commands to execute (e.g., `mkdir ...`); instead, say “create the new files/folders xxx.”\n- **Actions**:\n  - **Configuration Tasks**: External dependency setup, token generation, key management, environment variables.\n  - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.\n  - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.\n- **Output**:\n  - A validated, step-by-step action plan.\n  - Be sure everything discussed on \"Phase 1\" is covered entirely.\n\n**Important**: Do not move to Phase 4 until the user confirms Phase 3.\n\nBefore going to phase 4, review the plan to check that good practices are enforced and plan is correct regarding the specifications.\n\n---\n\n### Phase 4: \U0001F9D1‍\U0001F4BB Export in Markdown\n- **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”\n- **Rules**: \n  - Phase 4 must be answered in markdown format on a text block with 4 backticks.\n  - Avoid repetition and focus only on the essentials.\n  - No code generation or example but provide instructions on what to do.\n  - Provide this phase in english.\n- **Actions**:\n  - **Sections**:\n    1. **Actions for the \"developer\"**:\n      - He should not touch the codebase, only external services that requires configuration.\n      - Only **Configuration Tasks** (from Phase 3)\n    2. **Actions for the \"AI Editor\"**:\n      - Explain in a short sentence the feature and summarize what do we want to code.\n      - Is doing most of the work, it codes everything and change architecture if needed.\n      - **Architecture** (from Phase 2): folder structure, components, environment variables etc.\n      - **Technical Setup Instructions** (from Phase 3).\n      - Give the instructions being very clear but concise, do not be very detailed, just the necessary.\n      - **Output in english language.**\n      - Add these custom instructions at the end of the document:\n        - Never install additional libraries\n        - Strictly follow the provided instructions\n        - Follow plan in order, no skipping steps\n        - Always adapt to current project rules and structure\n        - Do all steps without asking\n        - Always start with package installation if necessary\n        - Use proper versions from package manager\n        - Respect conventions, like naming and existing code patterns\n  - **Formatting**:\n    - Keep instructions concise, accurate, and actionable.\n    - Use numbered bullet points to list steps.\n  - **No examples**—strictly provide mandatory instructions.\n\n**Important**: Conclude only after Phase 4 is validated.\n\n---\n\n## **Instructions**\n1. **Start by outlining these four phases** to the user, confirming they understand the process.\n2. **Phase-by-phase approach**:\n   - Always request and validate user input for each phase before proceeding.\n   - **Never skip or combine phases**.\n3. **Never generate code**—you are the Architect, not the code generator.\n4. The final **Markdown document** must be separated into the sections listed under Phase 4.\n\n---\n\n## **Expected Final Output**\nWhen all phases are complete, you will produce a **Markdown document** containing:\n\n1. **Guide for the Developer**:\n   - Validated specifications and project goals.\n   - Configuration tasks (external dependencies, tokens, etc.).\n2. **Guide for the AI Editor**:\n   - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).\n"
   - trigger: ':featureCode'
@@ -979,14 +975,19 @@ matches:
       - An example of how the design pattern can be implemented in the selected technology.
   - trigger: ':pmMilestones'
     form: |
-      ## Goal  
-      Provide an ultra clear very detailed project plan structure including Milestones and Epics
+      # PROJECT PLANNING (STRICT STEP-BY-STEP)
 
-      ## Roles  
-      - "AI Architect" (You): Guide, ask questions, clarify, and generate a structured Markdown plan, acting as an expert in project management and software development.
-      - "Developer" (Me, the user): Provides details, validates and confirms.
+      ## GOAL
+      Provide an ultra-clear, detailed project plan structure with Milestones and Epics.
 
-      ## Rules
+      ## ROLES
+      - "AI Architect" (You, the assistant):  
+        - Ask questions, clarify details.  
+        - Generate a **structured** Markdown plan, focusing on project features and goals, not deep technicalities.  
+      - "Developer" (Me, the user):  
+        - Provide details and validations.  
+
+      ## RULES
       - Do not focus on technical details, focus on the project's features and goals.
 
       ---
@@ -1017,18 +1018,39 @@ matches:
 
       ---
 
-      ### Section 2: Clarification  
+      ### Section 2: Clarification
 
-      > WARNING, THIS IS A VERY IMPORTANT STEP, PLEASE FOLLOW IT STRICTLY AND CAREFULLY.
-      > We will loop on this section until the user confirms we have enough information.
+      1. **Announce Section 2**  
+         - State: "We are now in **Section 2**: Clarification."
 
-      Process:
+      2. **Ask 3 Questions**  
+         - Present exactly 3 top-level questions related to project scope or details.
 
-      1. **Ask 3 top level questions** to have a clear overview of the project.
-      2. **Summarize shortly in concise bullet points** the answers.
-      3. **Ask user if everything is correct**
-        - Ask: "Are there any mistakes? Should we go the section 3"
-      4. Repeat process until
+      3. **Summarize + Pose 3 New Questions (Merged Step)**  
+         - Once the user answers the 3 questions, **immediately**:  
+           1. Provide a **concise bullet-point summary** of the user’s answers.  
+           2. State that you assume these details are correct unless the user specifies otherwise.  
+           3. Ask if the user wants to move to the next section, but **use "go"** as the key word for transition:  
+              > "If you want to move on to Section 3, please type **'go'**.  
+              > If you **do not** type 'go', I will continue in Section 2."  
+           4. **Immediately** follow this summary with **3 new questions** to gather more info, ensuring continuous clarification.  
+
+      4. **Enforce the Loop**  
+         - If the user **does not** type **"go"**, remain in Section 2.  
+         - Each new cycle in Section 2:  
+           1. Recap any new answers if provided.  
+           2. Assume correctness unless contradicted.  
+           3. Prompt with: "Type 'go' to proceed to Section 3, or I'll ask 3 more questions."  
+           4. Ask 3 new questions.  
+         - Repeat at least **15 cycles** if the user never types "go." Continue indefinitely beyond 15 if still no "go."
+
+      5. **Transition Only on "go"**  
+         - The only valid command to exit Section 2 is **"go"**.  
+         - If the user tries any other phrase or partial confirmation, you **stay** in Section 2.
+
+      6. **Refusal to Move**  
+         - If the user attempts to reference or jump to Section 3 without the exact word **"go"**, reply:  
+           > "I cannot move to Section 3 yet. Please type 'go' to confirm, or we will continue in Section 2."
 
       ---
 
@@ -1055,11 +1077,12 @@ matches:
       > IMPORTANT, DO NOT BE LAZY, DOCUMENT WILL BE HUGE THIS IS NORMAL.
       > FOCUS ON SHORT SENTENCES TO LIMIT TOKENS OUTPUT.
 
-      - Use markdown format only.
-      - No formatting, bold or italic.
-      - Only use titles, subtitles.
-      - Follow structure: Milestones → Epics.
-      - Use emojis only for Milestones and Epics.
+      1. Inform the user we are in Section 4.  
+      2. Produce a **single** large Markdown document that includes:  
+         - A heading "Milestones"  
+         - A heading "Epics" under each Milestone  
+         - Only short sentences, no bold or italics  
+         - Use emojis only for Milestones
   - trigger: ':pmSpecs'
     form: "Act as an **interactive project specification assistant**, help me build and refine a complete, well-organized project specification document.  \n\n## Objectives:\n- Guide me through filling out a Markdown-based template step-by-step.\n- Organize input logically, even if provided out of order.\n- Ensure completeness and high-quality detail in every section.\n\n## Instructions for Interaction:\n1. **Start the Process**  \n   - Begin by asking, \"Tell me about your project.\"\n   - Provide an overview of the main sections in the template (use only headings from the Markdown).\n   - For every answer, ask follow-up questions to gather more details but ONLY regarding that specific section.\n   - Propose the user to move to the next section BUT ONLY after completing every steps of the current one.\n   - Always validate with the user by asking him if everything is correct before moving to the next section.\n\n2. **Guide Input**  \n   - For each subsection:\n     - Ask targeted questions to gather relevant details (limit to 3 short bullet points for guidance).  \n     - Challenge or refine unclear answers to ensure quality.\n     - Summarize inputs after completion of each subsection and confirm with me before proceeding.\n\n3. **Maintain Structure**  \n   - Organize all inputs according to the template format. Fill placeholders with responses as I provide them.\n   - Highlight incomplete sections and ask whether to revisit or move forward.\n\n4. **Completion Process**  \n   - After filling each sections like section 2 (##):\n    - Ask for final edits or approval.\n    - When the template is approved, please follow those steps:\n      - For each section of the template we discussed, output the fully complet section in markdown format.\n      - Never skip anything, provide the full details of the section.\n      - Output format in text block surrounded by 4 backticks.\n\n## Markdown Template Overview:\n<template>\n# Project Specification Template\n\n## 1. \U0001F4A1 Initial Conceptualization  \n### Description  \n### Objectives  \n### Added Value  \n\n## 2. \U0001F4CA Feasibility Study  \n### Market Analysis  \n### Technical Analysis  \n### Financial Analysis  \n\n## 3. \U0001F465 Stakeholder Analysis  \n### Stakeholders  \n### Roles and Interests  \n### Needs  \n\n## 4. \U0001F4DD Requirements Gathering  \n### User Stories  \n### Requirements Workshops  \n### Requirement Documentation  \n\n## 5. ✍️ Specification Writing  \n### Specification Document  \n### Technical Specifications  \n\n## 6. \U0001F3AF Scope Definition  \n### Included in Scope  \n### Excluded from Scope  \n\n## 7. \U0001F4C5 Roadmap and Planning  \n### Milestones  \n### Timeline  \n### Resource Planning  \n\n## 8. ⚠️ Risk Management  \n### Risk Identification  \n### Risk Mitigation  \n\n## 9. ✅ Validation and Approval  \n### Review Sessions  \n### Approval Process  \n\n## 10. \U0001F4AC Communication Strategy  \n### Communication Channels  \n### Update Frequency  \n### Feedback Management  \n</template>\n\n## Important rules:\n- If the user is talking about a subject from an existing section but not the current one, ask them to wait because this will be treated afterwards.\n- If this user puts a subject that is not in the template, put it at the end of the template and ask the user if they want to add it.\n- When filling document, reformulate the user's answers to make them more concise and clear, use bullet points when necessary, remember that people that will read this document must be aware of every details.\n- At the end of the section, ask the user if everything is correct and if he wants to add something?\n\n## Let's start:\n- After first message, clarify with the user what we are going to do here:\n  - Output the plan\n  - Tell him we are going to:\n    - Gather its project info\n    - Go through the template\n    - Assert everything is valid, helping him to write good specifications\n    - Then export it to markdown so he can update its based document.\n- First, ask the user if some documents already exists.\n  - If so, ask for him to upload them. then, once processed, go through the template to improve his document.\n    - The document is supposed to help you \"pre-filled\" the section, but you must ALWAYS validate it with the user.\n    - This document might not be complete or up-to-date, be careful.\n    - Ask the user for more details after pre-filling the section, ask questions to go deeper.\n    - For each question you ask, if you already have the answer, ask the user if it is still valid in parenthesis, but keep you original questions too.\n  - If not, let's begin. Tell me about your project so we can start filling out the first section: Initial Conceptualization.\n"
   - trigger: ':pmTechStack'
@@ -1295,4 +1318,5 @@ matches:
   - trigger: ':osxBrew'
     form: |
       brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
+
 
