@@ -28,7 +28,7 @@
   - [Générer du code pour une petite fonctionnalité `:featureCode`](#générer-du-code-pour-une-petite-fonctionnalité-featurecode)
 - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
   - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
-  - [Assurer les bonnes pratiques `:projectEnforce` (WIP)](#assurer-les-bonnes-pratiques-projectenforce-wip)
+  - [Assurer les bonnes pratiques `:projectEnforce`](#assurer-les-bonnes-pratiques-projectenforce)
   - [Structure des URLs `:projectURL`](#structure-des-urls-projecturl)
 - [**💽 Base de données**](#-base-de-données)
   - [Structure et schémas `:dbStructure`](#structure-et-schémas-dbstructure)
@@ -993,7 +993,7 @@ Notes for the "AI Architect":
 
 </details>
 
-### Assurer les bonnes pratiques `:projectEnforce` (WIP)
+### Assurer les bonnes pratiques `:projectEnforce`
 
 > Permet de définir et de générer un document de bonnes pratiques à appliquer à un projet.
 
