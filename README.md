@@ -17,18 +17,18 @@
   - [Template de prompt "parfait" `:promptTemplate`](#template-de-prompt-parfait-prompttemplate)
     - [Template](#template)
     - [Exemple d'application du template dans un prompt avec Cursor](#exemple-dapplication-du-template-dans-un-prompt-avec-cursor)
+  - [Créer un prompt `:promptCreate`](#créer-un-prompt-promptcreate)
   - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
+  - [Corriger les faiblesses de l'IA `:promptStart`](#corriger-les-faiblesses-de-lia-promptstart)
 - [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
-  - [Liste d'user-stories pour une épique `:featureUserStories` (WIP)](#liste-duser-stories-pour-une-épique-featureuserstories-wip)
+  - [Liste d'user-stories pour une épique `WIP`](#liste-duser-stories-pour-une-épique-wip)
   - [User-story `:featureUserStory`](#user-story-featureuserstory)
-  - [Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` (WIP)](#fiche-dinstructions-aka-plan-technique-featureplanconstruction-wip)
-  - [Fiche d'instructions (aka: plan technique) `:docInstructions` (WIP)](#fiche-dinstructions-aka-plan-technique-docinstructions-wip)
-  - [Fiche d'instructions (aka: plan technique) `:featureInstructions` (WIP)](#fiche-dinstructions-aka-plan-technique-featureinstructions-wip)
+  - [Fiche d'instructions (aka: plan technique) `:featureInstructions`](#fiche-dinstructions-aka-plan-technique-featureinstructions)
   - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
   - [Générer du code pour une petite fonctionnalité `:featureCode`](#générer-du-code-pour-une-petite-fonctionnalité-featurecode)
 - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
   - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
-  - [Enforcer les bonnes pratiques `:projectEnforce` (WIP)](#enforcer-les-bonnes-pratiques-projectenforce-wip)
+  - [Assurer les bonnes pratiques `:projectEnforce` (WIP)](#assurer-les-bonnes-pratiques-projectenforce-wip)
   - [Structure des URLs `:projectURL`](#structure-des-urls-projecturl)
 - [**💽 Base de données**](#-base-de-données)
   - [Structure et schémas `:dbStructure`](#structure-et-schémas-dbstructure)
@@ -281,6 +281,84 @@ Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
 
 </details>
 
+### Créer un prompt `:promptCreate`
+
+> Utilisez ce prompt pour créer un prompt à partir de zéro (avec un template).
+
+<details>
+<summary>Voir le prompt</summary>
+
+````markdown
+# Goal
+Generate a high quality prompt from scratch.
+
+# Roles
+- "AI Architect" (you): Act as the greatest prompt engineer from OpenAI and Anthropics.
+- "Developer" (me, the "user"): Will give you the requirements and validate the prompt.
+
+# Rules
+- Use the template provided.
+- Fill in all mandatory fields.
+- Use markdown formatting.
+- Use XML for variables.
+- Provide clear and concise instructions.
+- Keep examples minimal.
+- Answer in English.
+
+# Steps
+
+## Step 1: Ask for the requirements
+
+1. Ask the user for the requirements.
+
+Questions:
+1. What is the goal of the prompt?
+2. What specific details should be included? (e.g., tone, structure, length, format)
+3. Are there any constraints or limitations?
+4. Should the output follow a specific structure? (e.g., lists, paragraphs, sections)
+5. Do you need examples in the output? (if yes, specify how detailed they should be)
+6. Any additional requirements or preferences? (Any special considerations to improve accuracy)
+
+## Step 2: Reformulate the user's requirements
+
+1. Reformulate the user's requirements in a clear and concise manner.
+2. Validate with the user that the requirements are accurate.
+
+## Step 3: Write the prompt
+
+1. Use the template provided.
+2. Output the prompt in markdown formatted text block surrounded by 4 backticks.
+3. Add more data if needed.
+
+### Step 4: Review the prompt
+
+1. Review the prompt for clarity, accuracy, and completeness.
+2. Analyze strengths and weaknesses.
+3. Identify areas for improvement.
+4. Propose enhancements to the user.
+5. Ask the user if you should integrate the suggestions in a new formatted markdown text block surrounded by 4 backticks.
+
+# Template
+<template>
+```markdown
+# Goal
+
+# Rules
+
+# Steps
+
+## Step 1:
+
+## Step 2:
+
+# Context
+```
+</template>
+
+````
+
+</details>
+
 ### Optimiser un prompt `:promptOpt`
 
 > Si vous souhaitez améliorer les performances d'un prompt en une commande, utilisez ce prompt.
@@ -334,11 +412,29 @@ Your role is to elevate any prompt to its **highest level of clarity and impact*
 
 </details>
 
+### Corriger les faiblesses de l'IA `:promptStart`
+
+> L'IA a déjà subit un "pre-prompt" qui va influencer votre conversation, voici comment contourner les limites imposées.
+
+<details>
+<summary>Voir le prompt</summary>
+
+```markdown
+- Please follow every steps mentioned.
+- Do not be lazy.
+- Always provide the full document.
+- Do not generate code.
+- Answer in the shortest way possible, avoid long sentences, go straight to the point.
+- Confirmation questions: Only ONE question per confirmation.
+````
+
+</details>
+
 ## **🙋‍♂️ Générer une fonctionnalité**
 
 Collection de prompts pour générer des fonctionnalités.
 
-### Liste d'user-stories pour une épique `:featureUserStories` (WIP)
+### Liste d'user-stories pour une épique `WIP`
 
 > En cours...
 
@@ -346,6 +442,7 @@ Collection de prompts pour générer des fonctionnalités.
   <summary>Voir le prompt</summary>
   
 ```markdown
+In progress...
 ```
 
 </details>
@@ -412,71 +509,16 @@ User stories template:
 
 </details>
 
-### Fiche d'instructions (aka: plan technique) `:featurePlanConstruction` (WIP)
+### Fiche d'instructions (aka: plan technique) `:featureInstructions`
 
-> En cours...
-
-<details>
-  <summary>Voir le prompt</summary>
-  
-````markdown
-Goal:
-Create a technical plan for that only feature.
-
-Rules:
-- Split the user-story into relevant sections.
-- Fill the template with the user-story details.
-  - Section: A feature's part grouped together because same goal. 
-  - Tasks: The code implementation to do (using my current tech stack).
-  - Action: The main action to do in 1 sentence.
-- Only wait for user approval before jumping to next process (see under).
-
-How to proceed:
-1. Split the user-story into relevant sections.
-2. Once agreed,  propose to apply the plan for section 1 only.
-3. Once agreed, ,propose to apply the plan for section 2.
-4. Repeat until all sections are done.
-
-User-Story from specs (delimited by ---):
----
-[[The user story you aime to build]]
----
-
-Template to use:
-```markdown
-# User-Story name
-
-1 sentence summarize of the goal
-
-## Section 1's name - a feature part
-
-### Tasks (code implementation)
-
-- [ ] Action
-
-### UI - Only in there is UI to build
-
-- [ ] Action
-
-### Testing
-
-- [ ] Action
-...
-```
-````
-
-</details>
-
-### Fiche d'instructions (aka: plan technique) `:docInstructions` (WIP)
-
-> Créer une fiche d'instructions détaillée pour une fonctionnalité précise.
+> Créer une fiche d'instructions détaillée pour une fonctionnalité précise, **relativement simple**.
 
 <details>
   <summary>Voir le prompt</summary>
   
 ````markdown
 # Goal
-You are the **AI Architect**, responsible for guiding the **Developer** in structuring precise instructions for the **AI Editor**. The **AI Editor** will use these instructions to generate code, and the **Developer** will review and refine everything before execution.
+Structuring precise coding instructions for the **AI Editor**.
 
 # Roles & Responsibilities
 - **AI Architect (You)** → Helps structure the instructions.  
@@ -495,7 +537,8 @@ You are the **AI Architect**, responsible for guiding the **Developer** in struc
 For each section:
 
 ### **1. Define the Feature**
-1. Ask: **"Which feature should we build today? ☀️"**  
+1. Ask: **"Which feature should we build today? ☀️"** 
+2. **Load all documents from the knowledge base** and inform the user of existing files that you read.
 
 ### **2. Validation Loop**
 1. **Exploration Loop**  
@@ -520,9 +563,14 @@ For each section:
 3. The second part is for the AI Editor (for setup and code execution).
 
 ### **4. Fill the Instruction Template**
-1. **Complete all sections** methodically using **concise bullet points**.  
-2. **Ensure URLs, commands, and references are verified.**  
-3. **User Confirmation:**  
+1. **Complete all sections** methodically using **concise bullet points**. 
+2. **Use english only**, be concise.
+3. **Minimal words**, brevity is key for clarity and accuracy. 
+4. **Ensure URLs, commands, and references are verified.**  
+5. **Output template in markdown formatted text block** surrounded by 4 backticks.
+6. Code blocks inside are surrounded by 3 backticks.
+7. Display in Canvas if possible.
+8. **User Confirmation:**  
    - Ask: **"Is the template correct? (YES/NO)"**  
    - If **NO** → Refine and repeat.  
 
@@ -545,7 +593,9 @@ For each section:
 
 # **Instruction Template**
 - Use **Markdown headings** (`#`, `##`, `###`) for structure.  
-- Use **bullet points** instead of paragraphs.  
+- Use **bullet points** instead of paragraphs (numbered if necessary). 
+- Do not use emojis, special characters, text styles like bold or italics.
+- Focus on very short and focused instructions.
 - **Replace placeholders** (`{{variables}}`) with actual user inputs.  
 - **Sections must not be removed**—additional sections can be added if necessary.  
 
@@ -598,54 +648,9 @@ For each section:
 
 </details>
 
-### Fiche d'instructions (aka: plan technique) `:featureInstructions` (WIP)
-
-> Utilisé lorsque vous discutez avec l'IA d'une fonctionnalité et que vous devez l'exporter dans un éditeur de code (comme Cursor, Windsurf ou autre).
-
-<details>
-  <summary>Voir le prompt</summary>
-  
-```markdown
-Goal:
-[[What you want to achieve with this prompt]]
-
-Context:
-You (the "AI Architect") have already gathered all user requirements and must produce a single, detailed plan for the "AI Editor".
-This plan explains exactly which code to generate or modify (for instance, to create a VS Code extension, add a new feature, or fix a bug).
-The Developer (human) will copy/paste these instructions into the "AI Editor"'s prompt.
-
-Roles:  
-- AI Architect: Generates the technical plan only (no code).  
-- AI Editor: Implements the plan by generating or modifying code.  
-- Developer (me): Validates the plan and coordinates both IAs.
-
-What to Include:  
-- Detailed breakdown of each file, folder, or feature required.  
-- Exact file/folder names, function or class stubs, relevant data structures, placeholders for environment variables.  
-- Step-by-step explanations so the AI Editor knows precisely what to create or modify.  
-- Markdown formatting (for the generated prompt) with quadruple backticks (````) for clarity—no code, just instructions.
-
-Prompt for the "AI Architect“ (write a "technical plan" only, no code):
-1. Greet the user, english only, acknowledging all requirements have been finalized. No further specification gathering is needed.  
-2. Immediately produce a step-by-step plan describing what code the AI Editor must generate or modify:  
-   - Outline file names and folder structure.  
-   - Explain the purpose of each file or component.  
-   - Indicate which lines or blocks of code to add or modify (in a generalized, descriptive way).  
-   - Highlight any dependencies or environment variables.  
-   - Provide instructions for building or testing if applicable.  
-   - Provide discussions choices to ensure the "AI Editor" will NOT go the wrong way.
-3. Output the entire plan in a single Markdown block surrounded by quadruple backticks (````).  
-4. Conclude by reminding the Developer to validate the instructions before passing them on to the AI Editor.
-
-Important:
-Before answering the user, make sure the plan is doable. If not, ask the user to clarify or adjust the requirements.
-```
-
-</details>
-
 ### Créer une fonctionnalité `:featureCreate`
 
-> Générer la fiche d'instructions pour une fonctionnalité.
+> Génère toutes les étapes d'une **grosse fonctionnalité à brainstorm** pour avoir une overview globale, complète et extrêmement détaillée d'une fonctionnalité.
 
 <details>
   <summary>Voir le prompt</summary>
@@ -988,7 +993,7 @@ Notes for the "AI Architect":
 
 </details>
 
-### Enforcer les bonnes pratiques `:projectEnforce` (WIP)
+### Assurer les bonnes pratiques `:projectEnforce` (WIP)
 
 > Permet de définir et de générer un document de bonnes pratiques à appliquer à un projet.
 
@@ -2137,14 +2142,19 @@ For each design pattern, provide:
   <summary>Voir le prompt</summary>
   
 ```markdown
-## Goal  
-Provide an ultra clear very detailed project plan structure including Milestones and Epics
+# PROJECT PLANNING (STRICT STEP-BY-STEP)
 
-## Roles  
-- "AI Architect" (You): Guide, ask questions, clarify, and generate a structured Markdown plan, acting as an expert in project management and software development.
-- "Developer" (Me, the user): Provides details, validates and confirms.
+## GOAL
+Provide an ultra-clear, detailed project plan structure with Milestones and Epics.
 
-## Rules
+## ROLES
+- "AI Architect" (You, the assistant):  
+  - Ask questions, clarify details.  
+  - Generate a **structured** Markdown plan, focusing on project features and goals, not deep technicalities.  
+- "Developer" (Me, the user):  
+  - Provide details and validations.  
+
+## RULES
 - Do not focus on technical details, focus on the project's features and goals.
 
 ---
@@ -2175,18 +2185,39 @@ Provide an ultra clear very detailed project plan structure including Milestones
 
 ---
 
-### Section 2: Clarification  
+### Section 2: Clarification
 
-> WARNING, THIS IS A VERY IMPORTANT STEP, PLEASE FOLLOW IT STRICTLY AND CAREFULLY.
-> We will loop on this section until the user confirms we have enough information.
+1. **Announce Section 2**  
+   - State: "We are now in **Section 2**: Clarification."
 
-Process:
+2. **Ask 3 Questions**  
+   - Present exactly 3 top-level questions related to project scope or details.
 
-1. **Ask 3 top level questions** to have a clear overview of the project.
-2. **Summarize shortly in concise bullet points** the answers.
-3. **Ask user if everything is correct**
-  - Ask: "Are there any mistakes? Should we go the section 3"
-4. Repeat process until
+3. **Summarize + Pose 3 New Questions (Merged Step)**  
+   - Once the user answers the 3 questions, **immediately**:  
+     1. Provide a **concise bullet-point summary** of the user’s answers.  
+     2. State that you assume these details are correct unless the user specifies otherwise.  
+     3. Ask if the user wants to move to the next section, but **use "go"** as the key word for transition:  
+        > "If you want to move on to Section 3, please type **'go'**.  
+        > If you **do not** type 'go', I will continue in Section 2."  
+     4. **Immediately** follow this summary with **3 new questions** to gather more info, ensuring continuous clarification.  
+
+4. **Enforce the Loop**  
+   - If the user **does not** type **"go"**, remain in Section 2.  
+   - Each new cycle in Section 2:  
+     1. Recap any new answers if provided.  
+     2. Assume correctness unless contradicted.  
+     3. Prompt with: "Type 'go' to proceed to Section 3, or I'll ask 3 more questions."  
+     4. Ask 3 new questions.  
+   - Repeat at least **15 cycles** if the user never types "go." Continue indefinitely beyond 15 if still no "go."
+
+5. **Transition Only on "go"**  
+   - The only valid command to exit Section 2 is **"go"**.  
+   - If the user tries any other phrase or partial confirmation, you **stay** in Section 2.
+
+6. **Refusal to Move**  
+   - If the user attempts to reference or jump to Section 3 without the exact word **"go"**, reply:  
+     > "I cannot move to Section 3 yet. Please type 'go' to confirm, or we will continue in Section 2."
 
 ---
 
@@ -2213,11 +2244,12 @@ Process:
 > IMPORTANT, DO NOT BE LAZY, DOCUMENT WILL BE HUGE THIS IS NORMAL.
 > FOCUS ON SHORT SENTENCES TO LIMIT TOKENS OUTPUT.
 
-- Use markdown format only.
-- No formatting, bold or italic.
-- Only use titles, subtitles.
-- Follow structure: Milestones → Epics.
-- Use emojis only for Milestones and Epics.
+1. Inform the user we are in Section 4.  
+2. Produce a **single** large Markdown document that includes:  
+   - A heading "Milestones"  
+   - A heading "Epics" under each Milestone  
+   - Only short sentences, no bold or italics  
+   - Use emojis only for Milestones
 ````
 
 </details>
