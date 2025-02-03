@@ -997,12 +997,6 @@ Notes for the "AI Architect":
 
 > Permet de définir et de générer un document de bonnes pratiques à appliquer à un projet.
 
-**Paramètres** :
-
-- `project-structure.txt`: La structure du projet.
-- `versions.jsonc`: Le stack technique.
-- `Documentation technique`: Tout ce qui vous semble important à savoir sur le projet.
-
 <details>
   <summary>Voir le prompt</summary>
   
