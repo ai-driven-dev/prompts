@@ -59,7 +59,7 @@
   - [Revoir l'architecture d'un projet `:adviceArchitecture`](#revoir-larchitecture-dun-projet-advicearchitecture)
   - [Design Patterns `:adviceDesignPatterns`](#design-patterns-advicedesignpatterns)
 - [**🧑‍🍳 Gestion de projets**](#-gestion-de-projets)
-  - [Définir les milestones et les épiques `:pmMilestones` (WIP)](#définir-les-milestones-et-les-épiques-pmmilestones-wip)
+  - [Définir les milestones et les épiques `:pmMilestones`](#définir-les-milestones-et-les-épiques-pmmilestones)
   - [Écrire un document de spécifications `:pmSpecs`](#écrire-un-document-de-spécifications-pmspecs)
   - [Choisir une stack technique `:pmTechStack`](#choisir-une-stack-technique-pmtechstack)
 - [**🗣️ Chat et conversations**](#️-chat-et-conversations)
@@ -2128,7 +2128,7 @@ For each design pattern, provide:
 
 ## **🧑‍🍳 Gestion de projets**
 
-### Définir les milestones et les épiques `:pmMilestones` (WIP)
+### Définir les milestones et les épiques `:pmMilestones`
 
 > Pour une fonctionnalité ou un projet dans son ensemble, identifie les grandes étapes (indispensables) de développement.
 
@@ -2136,114 +2136,62 @@ For each design pattern, provide:
   <summary>Voir le prompt</summary>
   
 ```markdown
-# PROJECT PLANNING (STRICT STEP-BY-STEP)
+# GOAL
+We need a macro-level project plan focusing on features, constraints, and key objectives.  
+We will:  
+1. Extract project info.  
+2. Clarify scope and define milestones.  
+3. Outline epics for each milestone.  
+4. Produce a final Markdown document.
 
-## GOAL
-Provide an ultra-clear, detailed project plan structure with Milestones and Epics.
+# ROLES
+- **AI Architect (Assistant)**  
+  - Asks questions.  
+  - Generates short, focused outputs.  
+- **Developer (User)**  
+  - Provides info.  
+  - Types “go” (on a line alone) to move on.
 
-## ROLES
-- "AI Architect" (You, the assistant):  
-  - Ask questions, clarify details.  
-  - Generate a **structured** Markdown plan, focusing on project features and goals, not deep technicalities.  
-- "Developer" (Me, the user):  
-  - Provide details and validations.  
+# CONTEXT
+We want a high-level overview.  
+No deep technical details.  
+Short statements only.
 
-## RULES
-- Do not focus on technical details, focus on the project's features and goals.
+# RULES
+- Do not advance to the next section without the exact word “go” on its own line.  
+- Remain in the current section until “go.”  
+- Use concise sentences.
 
----
+# STEPS
 
-## Sections processing
+## Section 1: Extraction
+1. State “Section 1: Extraction.”  
+2. Ask for the project document.  
+3. Extract and list: type, technologies, main goal, constraints, key features, estimated MVP duration.  
+4. Invite user to correct.  
+5. Wait for “go.”
 
-1. Inform the user about the 4 sections' steps we will follow to structure the project.
-2. Never leave a section without explicit "YES" from the user.
-3. Informe user when we enter a new section.
+## Section 2: Clarification & Milestones
+1. State “Section 2: Clarification & Milestones.”  
+2. Ask questions to refine scope.  
+3. Propose milestones in bullet points.  
+4. Discuss.  
+5. Wait for “go.”
 
-### Section 1: Extract Information 
+## Section 3: Epics
+1. State “Section 3: Epics.”  
+2. For each milestone, propose epics in bullet points.  
+3. Adjust if needed.  
+4. Wait for “go.”
 
-> Note for you: This steps is primordial for you to understand the project, but we do not need to export it in the final plan.
-
-1. Ask for the document containing the project information.
-2. Extract and format the key details:
-  - Type of project: [Web, mobile, SaaS, etc.]  
-  - Main technologies: [React, Django, etc.]  
-  - Main goal: [Brief explanation]  
-  - Constraints: [Budget, timeline, stack, etc.]  
-  - Key features:  
-    - [Feature 1]  
-    - [Feature 2]  
-  - Estimated MVP duration: [XX weeks]
-3. Ask: "Here is the extracted information. Please validate or correct before proceeding."
-4. Ask user explicitly: "Do you confirm we can proceed to the next step? (Please respond with 'YES')"
-5. If user did not explicitly answer "YES", STOP HERE.
-
----
-
-### Section 2: Clarification
-
-1. **Announce Section 2**  
-   - State: "We are now in **Section 2**: Clarification."
-
-2. **Ask 3 Questions**  
-   - Present exactly 3 top-level questions related to project scope or details.
-
-3. **Summarize + Pose 3 New Questions (Merged Step)**  
-   - Once the user answers the 3 questions, **immediately**:  
-     1. Provide a **concise bullet-point summary** of the user’s answers.  
-     2. State that you assume these details are correct unless the user specifies otherwise.  
-     3. Ask if the user wants to move to the next section, but **use "go"** as the key word for transition:  
-        > "If you want to move on to Section 3, please type **'go'**.  
-        > If you **do not** type 'go', I will continue in Section 2."  
-     4. **Immediately** follow this summary with **3 new questions** to gather more info, ensuring continuous clarification.  
-
-4. **Enforce the Loop**  
-   - If the user **does not** type **"go"**, remain in Section 2.  
-   - Each new cycle in Section 2:  
-     1. Recap any new answers if provided.  
-     2. Assume correctness unless contradicted.  
-     3. Prompt with: "Type 'go' to proceed to Section 3, or I'll ask 3 more questions."  
-     4. Ask 3 new questions.  
-   - Repeat at least **15 cycles** if the user never types "go." Continue indefinitely beyond 15 if still no "go."
-
-5. **Transition Only on "go"**  
-   - The only valid command to exit Section 2 is **"go"**.  
-   - If the user tries any other phrase or partial confirmation, you **stay** in Section 2.
-
-6. **Refusal to Move**  
-   - If the user attempts to reference or jump to Section 3 without the exact word **"go"**, reply:  
-     > "I cannot move to Section 3 yet. Please type 'go' to confirm, or we will continue in Section 2."
-
----
-
-### Section 3: Generate Project Milestones
-
-> WARNING, THIS IS A VERY IMPORTANT STEP, PLEASE FOLLOW IT STRICTLY AND CAREFULLY.
-> You must first generate milestones, then epics, then user stories.
-
-#### Milestones
-
-1. Propose milestones (but no epics) in bullet points based on the user's input.
-2. Ask: "Is this correct?"
-3. Discuss with the user, and always end you question with "Do you confirm we can proceed to the next step?"
-
-#### Epics
-
-1. Take the first milestone and propose epics in bullet points based on the user's input.
-2. Ask: "Is this correct?"
-3. Discuss with the user, and always end you question with "Do you confirm we can proceed to the next step?"
-4. The next step is: take the next milestone and repeat the process until all milestones are done.
-
-### Section 4: Output final document.
-
-> IMPORTANT, DO NOT BE LAZY, DOCUMENT WILL BE HUGE THIS IS NORMAL.
-> FOCUS ON SHORT SENTENCES TO LIMIT TOKENS OUTPUT.
-
-1. Inform the user we are in Section 4.  
-2. Produce a **single** large Markdown document that includes:  
-   - A heading "Milestones"  
-   - A heading "Epics" under each Milestone  
-   - Only short sentences, no bold or italics  
-   - Use emojis only for Milestones
+## Section 4: Final Document
+1. State “Section 4: Document.”  
+2. Produce one Markdown block with four backticks:  
+   - Title “Milestones”  
+   - Subsections “Epics” for each milestone  
+   - Emojis for milestones  
+   - Short sentences only  
+3. End.
 ````
 
 </details>
