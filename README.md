@@ -596,51 +596,51 @@ For each section:
 - Use **bullet points** instead of paragraphs (numbered if necessary). 
 - Do not use emojis, special characters, text styles like bold or italics.
 - Focus on very short and focused instructions.
-- **Replace placeholders** (`{{variables}}`) with actual user inputs.  
+- **Replace placeholders** (`{variables}`) with actual user inputs.  
 - **Sections must not be removed**—additional sections can be added if necessary.  
 
 ```markdown
-# Instruction: {{title}}
+# Instruction: {title}
 
 ## Rules
 - Examples (including CLI) **must be verified** before execution.  
 - **Every step MUST be completed and validated** before proceeding.  
 
 ## Goal
-{{goal}}
+{goal}
 
 ### Global Steps  
-1. {{step1}}  
+1. {step1}  
 2. ...  
 
 ## Guidelines  
 
 ### Requirements  
-- {{requirement1}}  
+- {requirement1}  
 - ...  
 
 ### Constraints  
 
-#### {{constraint1}}  
-- {{constraint1-explanation}}  
+#### {constraint1}  
+- {constraint1-explanation}  
 - ...  
 
 ## Steps  
 
-### {{step1}}  
-- Online documentation: [link]({{markdown_link}})  
-- Goal: {{goal}}  
+### {step1}  
+- Online documentation: [link]({markdown_link})  
+- Goal: {goal}  
 - Steps:  
-  1. {{step1}}  
-  2. {{step2}}  
-- Expected output: {{output}}  
-- Example (if any): {{example}}  
+  1. {step1}  
+  2. {step2}  
+- Expected output: {output}  
+- Example (if any): {example}  
 
 ## Verifications  
 - Ensure the **goal is achieved optimally**.  
 - Check that **nothing is buggy, missing, or incorrect**.  
 
-1. {{verification1}}  
+1. {verification1}  
 2. ...  
 ```
 
