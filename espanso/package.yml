@@ -746,17 +746,18 @@ matches:
       #file
   - trigger: ':mdMerge'
     form: |
-      find . -type f \( \
-          -name "*.md" -o \
-          -name "*.mdx" \
-        \) \
-        -not -name "all.md" \
-        -print0 | \
-        sort -z -r | \
-        while IFS= read -r -d '' file; do 
-          echo -e "\n---\nFile: $file\n---\n"
-          cat "$file"
-        done > all.md
+      find . -type f -print0 | \
+        grep -zE '\.(md|mdx)$' | \
+        grep -vzZ 'all.md' | \
+        sort -zV | \
+        while IFS= read -r -d '' file; do
+          echo "$file"  # Affiche uniquement le chemin du fichier
+          {
+            echo -e "\n---\nFile: $file\n---\n"
+            cat "$file"
+            echo ""  # Ajoute une ligne vide après chaque fichier
+          } >> all.md
+        done
   - trigger: ':docMermaid'
     form: |
       ## Goal  
