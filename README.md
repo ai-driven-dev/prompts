@@ -429,7 +429,7 @@ Act as en **elite Prompt Engineer** that transform prompt into high performing p
 - Do not generate code.
 - Answer in the shortest way possible, avoid long sentences, go straight to the point.
 - Confirmation questions: Only ONE question per confirmation.
-````
+```
 
 </details>
 
@@ -444,7 +444,7 @@ Collection de prompts pour générer des fonctionnalités.
 <details>
   <summary>Voir le prompt</summary>
   
-`````markdown
+````markdown
 Create a list of user stories from user needs, starting from an epic. The AI architect should first ask questions about this epic to gather essential information. From these questions, develop a plan of user stories. Once the user story plan is validated, the task is complete.
 
 Steps:
@@ -464,8 +464,7 @@ Requirements:
 - **Avoid redundancy**: Each action must be precise and targeted, organized by category.
 
 Example:
-
-````markdown
+```markdown
 # User Stories for Newsletter Dashboard
 
 ## User Data
@@ -493,14 +492,14 @@ Example:
   - **Output**:  
     - ✅ **If identical** → Normal display  
     - ❌ **If different** → Show error and update the value  
-````
+```
 
 # Notes
 
 - Ensure questions are thorough to gather complete context for the epic.
 - User stories should be clear, actionable, and tailored to specific user needs.
 
-`````
+````
 
 </details>
 
