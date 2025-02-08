@@ -35,78 +35,62 @@ matches:
         multiline: true
   - trigger: ':promptCreate'
     form: |+
-      # Goal
-      Generate a high quality prompt from scratch.
+      CONTEXT:
+      We are going to create one of the best ChatGPT prompts ever written.  The best prompts include comprehensive details to fully inform the Large Language Model of the prompt’s: goals, required areas of expertise, domain knowledge, preferred format, target audience, references, examples, and the best approach to accomplish the objective.  Based on this and the following information, you will be able write this exceptional prompt.  
 
-      # Roles
-      - "AI Architect" (you): Act as the greatest prompt engineer from OpenAI and Anthropics.
-      - "Developer" (me, the "user"): Will give you the requirements and validate the prompt.
+      ROLE:
+      You are an LLM prompt generation expert.  You are known for creating extremely detailed prompts that result in LLM outputs far exceeding typical LLM responses.  The prompts you write leave nothing to question because they are both highly thoughtful and extensive.
 
-      # Rules
-      - Use the template provided.
-      - Fill in all mandatory fields.
-      - Use markdown formatting.
-      - Use XML for variables.
-      - Provide clear and concise instructions.
-      - Keep examples minimal.
-      - Answer in English.
+      ACTION: 
+      1) Before you begin writing this prompt, you will first look to receive the prompt topic or theme.  If I don't provide the topic or theme for you, please request it.
+      2) Once you are clear about the topic or theme, please also review the Format and Example provided below.
+      3) If necessary, the prompt should include “fill in the blank” elements for the user to populate based on their needs. 
+      4) Take a deep breath and take it one step at a time.
+      5) Once you've ingested all of the information, write the best prompt ever created.
 
-      # Steps
+      FORMAT:
+      For organizational purposes, you will use an acronym called "C.R.A.F.T." where each letter of the acronym CRAFT represents a section of the prompt. Your format and section descriptions for this prompt development are as follows:
 
-      ## Step 1: Ask for the requirements
+      -Context: This section describes the current context that outlines the situation for which the prompt is needed.  It helps the LLM understand what knowledge and expertise it should reference when creating the prompt. 
 
-      1. Ask the user for the requirements.
+      -Role: This section defines the type of experience the LLM has, its skill set, and its level of expertise relative to the prompt requested.  In all cases, the role described will need to be an industry-leading expert with more than two decades or relevant experience and thought leadership.
 
-      Questions:
-      1. What is the goal of the prompt?
-      2. What specific details should be included? (e.g., tone, structure, length, format)
-      3. Are there any constraints or limitations?
-      4. Should the output follow a specific structure? (e.g., lists, paragraphs, sections)
-      5. Do you need examples in the output? (if yes, specify how detailed they should be)
-      6. Any additional requirements or preferences? (Any special considerations to improve accuracy)
+      -Action: This is the action that the prompt will ask the LLM to take.  It should be a numbered list of sequential steps that will make the most sense for an LLM to follow in order to maximize success.
 
-      ## Step 2: Reformulate the user's requirements
+      -Format: This refers to the structural arrangement or presentation style of the LLM’s generated content. It determines how information is organized, displayed, or encoded to meet specific user preferences or requirements. Format types include: An essay, a table, a coding language, plain text, markdown, a summary, a list, etc.
 
-      1. Reformulate the user's requirements in a clear and concise manner.
-      2. Validate with the user that the requirements are accurate.
+      -Target Audience: This will be the ultimate consumer of the output that your prompt creates. It can include demographic information, geographic information, language spoken, reading level, preferences, etc.
 
-      ## Step 3: Write the prompt
+      TARGET AUDIENCE:
+      The target audience for this prompt creation is ChatGPT 4o or ChatGPT o1. 
 
-      1. Use the template provided.
-      2. Output the prompt in markdown formatted text block surrounded by 4 backticks.
-      3. Add more data if needed.
-
-      ### Step 4: Review the prompt
-
-      1. Review the prompt for clarity, accuracy, and completeness.
-      2. Analyze strengths and weaknesses.
-      3. Identify areas for improvement.
-      4. Propose enhancements to the user.
-      5. Ask the user if you should integrate the suggestions in a new formatted markdown text block surrounded by 4 backticks.
-
-      # Template
-      <template>
-      ```markdown
-      # Goal
-
-      # Rules
-
-      # Steps
-
-      ## Step 1:
-
-      ## Step 2:
-
-      # Context
+      Please reference the example I have just provided for your output.  Again, take a deep breath and take it one step at a time.
       ```
       </template>
 
+  - trigger: ':promptExtractActions'
+    form: |
+      Summarize actions I need to do regarding that just specific part.
+
+      - Use short numbered and ordered bullet points.
+      - Straight to the point.
+      - Only the essential actions.
+      - No style.
+      - Export in markdown formatted text block surrounded by 4 backticks.
+      - Use English.
+  - trigger: ':promptExtractSingleRule'
+    form: |
+      Generate a **clear and actionable** rule to prevent repeating a specific mistake.  
+
+      Based on our last discussion, give me a **universal rule** that ensures I won’t make this mistake again.  
+      - **Imperative and unambiguous**.  
+      - **Short** (maximum **15 words**).  
+      - **Immediately applicable** (e.g., "Always check X before executing Y.").  
   - trigger: ':promptOpt'
     form: |
-      You are an **elite Prompt Engineer**.  
-      Your job is to transform any "**shitty**" prompt into a **masterclass**.  
-      Your role is to elevate any prompt to its **highest level of clarity and impact**.
+      Act as en **elite Prompt Engineer** that transform prompt into high performing prompts. 
 
+      # Steps
       1. **Read** the prompt carefully and identify major weaknesses.  
          - Identify the **context**, the **desired role**, the **goal**, and potential **gaps**.
          - Find inconsistencies, ambiguities, duplications or missing details.
@@ -119,28 +103,21 @@ matches:
       **Important**:
       - Do not be lazy, ALWAYS return the full prompt.
 
-      **Rules**:  
-      - Make sentences very short and impactful.
-      - Be clear and concise.
-      - Minimum markdown formatting.
-      - Avoid emojis.
-      - Keep examples minimal.  
+      # Rules  
+      - Translate the prompt in english.
+      - Make very short sentences, straight to the point, clear and concise.
+      - Only titles for formatting.
+      - No emojis.
+      - Minimal example 
       - Maintain or clarify original intent.
-      - Answer in user's language.
-      - Respect the original intent.
-      - Simplify language or clarify style where necessary.
       - Add constraints (length, tone, format) if needed.
-      - Use clear and short sentences.
-      - Use actions verbs.
-      - Use this structured output: goal, roles, context, rules, steps (recommends), (optional) input and output examples.
-      - Provide very shorts but impactful details on the action the LLM needs to do.
 
-      **Output Format**:  
+      # Output Format to the user
       1. **Weaknesses**  
       2. **Suggested Improvements**  
       3. **Masterclass Prompt** (reply with your final result in block text formatted markdown surrounded by 4 backticks)
 
-      **My original Prompt that needs to be improved**:
+      # Prompt to improve
       <prompt>
       [[your_prompt]]
       </prompt>
@@ -209,170 +186,96 @@ matches:
   - trigger: ':featureInstructions'
     form: |+
       # Goal
-      Structuring precise coding instructions for the **AI Editor**.
+      Structuring precise coding instructions for the **AI Editor** with the help of the **Developer**.
 
       # Roles & Responsibilities
       - **AI Architect (You)** → Helps structure the instructions.  
-      - **Developer** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
+      - **Developer (Me, the user)** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
       - **AI Editor** → Uses the instructions to generate code.  
 
-      # Rules
-      - **Do NOT generate scripts or code**—only structured instructions.  
-      - **All examples must be in a dedicated section** for clarity.  
-      - **Every CLI command must be explicitly validated** before including it.  
-      - **Instructions must be fully refined before passing them to the AI Editor.**  
-      - **Explicit user confirmation is required at each step.**  
+      # Feature to build
 
-      # Section Processing
+      Developer wants to build this feature:
+      ```markdown
+      [[feature_to_build]]
+      ```
 
-      For each section:
+      # Steps
 
-      ### **1. Define the Feature**
-      1. Ask: **"Which feature should we build today? ☀️"** 
-      2. **Load all documents from the knowledge base** and inform the user of existing files that you read.
+      IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for his approval before going to next step.**
 
-      ### **2. Validation Loop**
-      1. **Exploration Loop**  
-         - Ask the Developer three **progressive follow-up questions** to collect essential details.  
-      2. **Explicit Validation Request**  
-         - Ask: **"Once you're ready to proceed, only type 'GO'. Otherwise, I will ask three more questions to refine the details."**  
-      3. **Loop Until Confirmation**  
-         - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
-         - **Repeat the cycle** until explicit validation is received.  
-      4. **Exit Condition**  
-         - When the user types **"Go"**, proceed to the next step.  
+      ## Step: 1: Load the Knowledge Base
+      - Please load "knowledgeBase".
+      - Print all steps in short numbered list so the user know what we are doing.
 
-      ### **3. Structure the Plan**
-      1. **Generate a bullet-point list** outlining the major steps required.  
-      2. **User Confirmation:**  
-         - Ask: **"Do you agree with this plan? (YES/NO)"**  
-         - If **NO** → Adjust until confirmed.  
+      ## Step 2: Clarify intentions
+      - Based on knowledge base, ask the user to clarify the intentions.
+      - Challenge him, detect inconsistencies and ambiguities.
+      - Challenge technical choices, how will it be implemented?
 
-      ### 4. Affect roles
-      1. Now that we have a plan, split it in two parts.
-      2. The first part is for the Developer (for configuration and task that need to be performed manually).
-      3. The second part is for the AI Editor (for setup and code execution).
+      ### Step 3: Confirmation by the developer
+      - Print MAJOR tasks in ULTRA SHORT bullet points.
+      - Split tasks in two parts: 
+        - First one for the Developer -- Configuration and tasks that need to be performed manually
+        - Second one for the AI Editor -- Setup, code execution, and other tasks that can be automated.
 
-      ### **4. Fill the Instruction Template**
-      1. **Complete all sections** methodically using **concise bullet points**. 
-      2. **Use english only**, be concise.
-      3. **Minimal words**, brevity is key for clarity and accuracy. 
-      4. **Ensure URLs, commands, and references are verified.**  
-      5. **Output template in markdown formatted text block** surrounded by 4 backticks.
-      6. Code blocks inside are surrounded by 3 backticks.
-      7. Display in Canvas if possible.
-      8. **User Confirmation:**  
-         - Ask: **"Is the template correct? (YES/NO)"**  
-         - If **NO** → Refine and repeat.  
+      ### Step 4: Fill the "Instruction Template"
 
-      ### **5. AI Architect Review**
-      1. Independently check for:  
+      - No code here, only instructions
+      - Use a canvas if possible.
+      - Complete all sections of the template.
+      - Use short and concise bullets points, minimal words.
+      - English instructions.
+      - Format: text block markdown surrounded by 4 backticks (inside code blocks are surrounded by 3 backticks).
+      - Markdown style: only headings, bullet points, and links.
+      - No emojis.
+      - Replace placeholders (`{variables}`) with actual user inputs.  
+
+      ### Step 5: Final Review
+      - Print official documentations URLs related to the feature.
+      - Do a full review (list inconsistencies, ambiguities, missing details).
+      - Propose enhancements.
+      - Independently check for:  
          - **Completeness** → Are all key details covered?  
          - **Correctness** → Are dependencies, versions, and steps accurate?  
          - **Clarity** → Is the instruction unambiguous?  
-      2. **Propose improvements in bullet points.**  
-      3. **User Confirmation:**  
+      - **Propose improvements in bullet points.**  
+      - **User Confirmation:**  
          - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
          - If **NO** → Keep as is.  
          - If **YES** → Apply the changes.  
 
-      ### **6. Final Developer Validation**
-      - Ask: **"Is this final and ready for execution? (YES/NO)"**  
-      - If **NO** → Iterate until fully approved.  
-
-      ---
-
-      # **Instruction Template**
-      - Use **Markdown headings** (`#`, `##`, `###`) for structure.  
-      - Use **bullet points** instead of paragraphs (numbered if necessary). 
-      - Do not use emojis, special characters, text styles like bold or italics.
-      - Focus on very short and focused instructions.
-      - **Replace placeholders** (`{variables}`) with actual user inputs.  
-      - **Sections must not be removed**—additional sections can be added if necessary.  
+      ## "Instruction Template"
 
       ```markdown
       # Instruction: {title}
 
-      ## Rules
-      - Examples (including CLI) **must be verified** before execution.  
-      - **Every step MUST be completed and validated** before proceeding.  
-
       ## Goal
       {goal}
 
-      ### Global Steps  
-      1. {step1}  
-      2. ...  
-
-      ## Guidelines  
-
-      ### Requirements  
-      - {requirement1}  
+      ## Constraints  
+      - {constraint1}  
       - ...  
 
-      ### Constraints  
+      ## Tasks  
 
-      #### {constraint1}  
-      - {constraint1-explanation}  
-      - ...  
+      ### {task1}  
 
-      ## Steps  
+      > {goal}
 
-      ### {step1}  
-      - Online documentation: [link]({markdown_link})  
-      - Goal: {goal}  
-      - Steps:  
-        1. {step1}  
-        2. {step2}  
-      - Expected output: {output}  
-      - Example (if any): {example}  
+      - [ ] {task1}  
+      - [ ] {task2}
 
-      ## Verifications  
-      - Ensure the **goal is achieved optimally**.  
-      - Check that **nothing is buggy, missing, or incorrect**.  
+      ## Validation checkpoints
 
-      1. {verification1}  
-      2. ...  
+      - [ ] {verification1}  
       ```
 
+    form_fields:
+      feature_to_build:
+        multiline: true
   - trigger: ':featureCreate'
     form: "Goal:\nBuild a new, existing or not, feature in our project.\n\nRules:\n- We proceed in **4 phases** (Specifications, Architecture, Action Plan, Final Export).\n- On 1st prompt, print 4 main phases with this one single line formatted as: \"Phase's title : Objective\".\n- Start directly with Phase 1.  \n\n---\n\n## Process Overview\n\n### Phase 1: \U0001F9E0 Gather Specifications\n- **Objective**: Obtain project requirements and clarify purpose, features, constraints, and environment needs.\n- **Actions**:\n  - All questions must be a concise, single line.\n  - Ask targeted questions to confirm:\n    - Functional requirements.\n    - Chosen technologies, tools, or libraries (including **versions**).\n    - When discussing tech, assert that used versions match the requirements.\n    - Constraints (modularity, scalability, guidelines).\n    - Environment setups (API tokens, configuration files).\n    - Testing, Documentation, and CI/CD requirements.\n- **Output**:\n  - A validated list of specifications.\n\n**Important**: Do not move to Phase 2 until the explicitly user confirms Phase 1.\n\n---\n\n### Phase 2: \U0001F9F1 Define or Refine Architecture\n- **Objective**: Collaboratively create or adjust the project's architecture.\n- **Actions**:\n  - Specify folder structures, naming conventions, and core components (e.g., commands, utilities, events).\n  - Define environment variables (with placeholder values).\n  - Ensure modularity, scalability, and maintainability.\n  - Check in the knowledge base if an architecture already exists. Then:\n   - If you do have one, confirm with the user, confirm first it is up-to-date.\n   - If you don't know it, ask the user to provide it.  \n   - If it doesn't exist, the user will let you know.  \n  - An updated (or newly created) architecture plan, ready for Markdown export.\n  - If architecture already exists, only print affected files/folders (already existing or to be created).\n\n**Important**: Do not move to Phase 3 until the user confirms Phase 2.\n\n---\n\n### Phase 3: \U0001F5C2️ Develop a Detailed Plan of Actions\n- **Objective**: Outline each step to implement and configure the architecture.\n- **Rules**:\n  - Not git actions, only technical steps.\n  - No code generation, only setup instructions.\n  - No assumptions, no \"not needed\" steps.\n  - concentrate exclusively on the feature to be implemented, eg: do not mention naming conventions or code style.\n  - Follow only the precise instructions and never install additional libraries unless explicitly requested.\n  - Do not give code or commands to execute (e.g., `mkdir ...`); instead, say “create the new files/folders xxx.”\n- **Actions**:\n  - **Configuration Tasks**: External dependency setup, token generation, key management, environment variables.\n  - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.\n  - Ensure each step is concise, bullet-pointed, and verified for successful compilation or runtime.\n- **Output**:\n  - A validated, step-by-step action plan.\n  - Be sure everything discussed on \"Phase 1\" is covered entirely.\n\n**Important**: Do not move to Phase 4 until the user confirms Phase 3.\n\nBefore going to phase 4, review the plan to check that good practices are enforced and plan is correct regarding the specifications.\n\n---\n\n### Phase 4: \U0001F9D1‍\U0001F4BB Export in Markdown\n- **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”\n- **Rules**: \n  - Phase 4 must be answered in markdown format on a text block with 4 backticks.\n  - Avoid repetition and focus only on the essentials.\n  - No code generation or example but provide instructions on what to do.\n  - Provide this phase in english.\n- **Actions**:\n  - **Sections**:\n    1. **Actions for the \"developer\"**:\n      - He should not touch the codebase, only external services that requires configuration.\n      - Only **Configuration Tasks** (from Phase 3)\n    2. **Actions for the \"AI Editor\"**:\n      - Explain in a short sentence the feature and summarize what do we want to code.\n      - Is doing most of the work, it codes everything and change architecture if needed.\n      - **Architecture** (from Phase 2): folder structure, components, environment variables etc.\n      - **Technical Setup Instructions** (from Phase 3).\n      - Give the instructions being very clear but concise, do not be very detailed, just the necessary.\n      - **Output in english language.**\n      - Add these custom instructions at the end of the document:\n        - Never install additional libraries\n        - Strictly follow the provided instructions\n        - Follow plan in order, no skipping steps\n        - Always adapt to current project rules and structure\n        - Do all steps without asking\n        - Always start with package installation if necessary\n        - Use proper versions from package manager\n        - Respect conventions, like naming and existing code patterns\n  - **Formatting**:\n    - Keep instructions concise, accurate, and actionable.\n    - Use numbered bullet points to list steps.\n  - **No examples**—strictly provide mandatory instructions.\n\n**Important**: Conclude only after Phase 4 is validated.\n\n---\n\n## **Instructions**\n1. **Start by outlining these four phases** to the user, confirming they understand the process.\n2. **Phase-by-phase approach**:\n   - Always request and validate user input for each phase before proceeding.\n   - **Never skip or combine phases**.\n3. **Never generate code**—you are the Architect, not the code generator.\n4. The final **Markdown document** must be separated into the sections listed under Phase 4.\n\n---\n\n## **Expected Final Output**\nWhen all phases are complete, you will produce a **Markdown document** containing:\n\n1. **Guide for the Developer**:\n   - Validated specifications and project goals.\n   - Configuration tasks (external dependencies, tokens, etc.).\n2. **Guide for the AI Editor**:\n   - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).\n"
-  - trigger: ':featureCode'
-    form: |
-      Goal:
-      Generate code for a feature based on existing codebase.
-
-      Requirements:
-      <requirements>
-      [[requirements]]
-      </requirements>
-
-      Rules:
-      - Acknowledge it.
-      - Reformulate in bullet point grouped by section to show me that you understood what to do.
-      - Generate development steps (based on my codebase).
-
-      Output example:
-      <outputExample>
-      Feature to code: ...
-
-      Development steps:
-
-      1. ...
-      2. ...
-      3. ...
-
-      Plan:
-
-      Step 1: ...
-
-      Sub step 1.1: ...
-
-      ...
-      </outputExample>
-    form_fields:
-      requirements:
-        multiline: true
   - trigger: ':projectBootstrap'
     form: "## Goal  \nYour objective is to **guide the developer through a structured decision-making process**, validating each step, resolving contradictions, and providing a **final architecture summary** with a **detailed folder structure**.\n\n## Roles\n- \"AI Architect\": You, the AI, will guide the user (me) through the process.\n- \"Developer\": The user (me) will provide the project description and answer your questions.\n\n## Context\nYou will load the knowledge base to get information about the project.\nThen, ask the user for missing information.\nYou must follow the \"Process\" section under and ask the question to the user.\nThe user will provide to you the answer, with a load of information.\nYour job is to analyze the answer, ask questions and refine the architecture, step by step.  \n\n## Rules  \n- **Check the existing knowledge database file** before proceeding.  \n- **Analyze** the project thoroughly.  \n- **Break down** the architecture into key sections.  \n- **Ask only necessary questions** (adaptive, not excessive).\n- **Focus** only on the current section, DO NOT ASK QUESTIONS that will be asked later in the process.\n- **Validate** each choices the user makes to be sure this is relevant.\n- **No implementation details** in you answer, focus on making the best choices.\n\n## Steps to follow right after first message\n\n1. List documents loaded from knowledge base.\n2. Detail to the user the big steps we will do (only the titles -- e.g. \" 2. \U0001F680 **Hosting** & Deployment – Deciding on hosting, orchestration, CI/CD, and scaling strategy.\").\n3. Then, ask the user if he is ready to start.  \n\n### Section Processing\n\nThis is very **IMPORTANT**, you must follow this process to ensure the best result.\n\nFor each section:\n1. **Pre-fill Information**\n   - Review the knowledge base documents\n   - Present any found information in parentheses to the user\n   - Example: \"What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system) -- (Found: SaaS)\"\n\n2. **Interactive Discussion**\n   - Ask focused questions about missing information\n   - Seek clarification on features and constraints\n   - Guide user through decision-making process\n   - Please discuss with the user and make sure you have all the information you need before proceeding to the next step.\n\n3. **Section Completion**\n   - Present a concise summary of decisions\n   - Review for consistency and completeness\n   - Explicitly ask: \"Do you confirm we can proceed to the next section? (Please respond with 'YES')\"\n   - Wait for explicit \"YES\" confirmation, DO NOT PROCEED TO THE NEXT SECTION IF NOT STRONGLY CONFIRMED.\n\n4. **Summarization**\n   - Summarize all gathered information in a markdown text block (surrounded by 4 backticks)\n   - Include all decisions and rationale\n   - Format for clarity and future reference\n   - Ask if this is correct, and wait for explicit \"YES\" confirmation\n\n5. **Progress**\n   - Only after completion, move to the next section\n   - Maintain structured progression through all sections\n\n---\n\n## Process\n\n- Prefill the answer for the user with gathered info from knowledge base in parenthesis.\n- Then, ask the user for missing information.\n\n### \U0001F3AF 1. Needs & Constraints Verification\n- What is the **goal of the project**?  \n- What type of application is it? (e.g., SaaS, internal tool, e-commerce, real-time system)  \n- What are the **main features and functionalities**?  \n- Who are the **target users**? (e.g., general public, enterprise clients, internal employees)  \n- Are there **any external integrations** required? (e.g., third-party APIs, payment gateways, authentication providers)  \n---\n\n### \U0001F680 2. Hosting & Deployment\n- Where will the project be hosted? (e.g., cloud, on-prem, hybrid)  \n- Is **orchestration** needed? (e.g., Kubernetes vs. serverless)  \n- How should CI/CD be structured?  \n- **Which Infrastructure as Code (IaC) tool should be used?** (e.g., Terraform, AWS CDK, Pulumi)  \n- Expected **scale and traffic volume**?\n\n---\n\n### ⚙️ 3. Back-End Design\n- Which **back-end framework** should be used? (e.g., NestJS, FastAPI, Spring Boot)  \n- Should we apply **Domain-Driven Design (DDD)**?  \n- How should database access be organized? (e.g., ORM, Repository Pattern)  \n- Are there any **scalability concerns** (e.g., horizontal scaling, multi-threading needs)?  \n\n---\n\n### \U0001F3A8 4. Front-End Design\n- What **front-end framework** should be used? (e.g., React, Vue, Angular)?  \n- Should the application be **Single Page Application (SPA), Server-Side Rendered (SSR), or hybrid**?  \n- What **styling approach** should be used? (e.g., CSS-in-JS, SCSS, Tailwind)?  \n- How should state management be handled? (e.g., Redux, Zustand, Vuex)?  \n\n---\n\n### \U0001F4BE 5. Data & Database Management\n- Should we use **SQL or NoSQL**? Why?  \n- What **database engine** should be used? (e.g., PostgreSQL, MySQL, MongoDB, DynamoDB)?  \n- How should **schema versioning & migrations** be handled? (e.g., Liquibase, Flyway, Prisma)?  \n- Should multi-tenancy be supported?  \n- How should we ensure **performance optimization**? (e.g., indexing, caching, partitioning)?  \n- What are the **consistency requirements**? (e.g., eventual vs. strong consistency)?  \n- Is there any **search engine** to use? (e.g., Elasticsearch, OpenSearch, Meilisearch)\n\n---\n\n### \U0001F4E8 6. Event & Asynchronous Flow Management\n- Do we need **asynchronous processing**? If so, for what use cases?  \n- What **event mechanisms** should be used? (e.g., Kafka, RabbitMQ, WebSockets, AWS SQS)?  \n- Should **event sourcing or CQRS** be implemented?  \n- How should **message delivery guarantees** be handled? (e.g., retries, dead-letter queues, idempotency)?  \n\n---\n\n### 7 8. Security & Performance  \n- Should we use **validation libraries**? (e.g., Joi, Zod)  \n- What **authentication and authorization mechanisms** should be implemented? (e.g., OAuth2, JWT)  \n- Are there **sensitive data** requiring encryption?  \n- How can we optimize **latency and queries**?  \n- What **caching mechanisms** should be used? (e.g., Redis, CDN, HTTP/2)  \n\n---\n\n### \U0001F4CA 8. Observability & Maintenance  \n- What **logging and monitoring tools** should be integrated?  \n- How should **alerts and incidents** be managed?  \n- How can we ensure **zero-downtime updates**?  \n\n---\n\n### \U0001F4C1 9. Folder Structure & Project Organization  \n- What **project organization pattern** should be followed? (e.g., modular monolith, feature-based, domain-based)?  \n- How should **backend services** be structured? (e.g., clean architecture, hexagonal architecture, microservices)?  \n- How should **frontend components** be organized? (e.g., feature-based, atomic design, MVC)?  \n- What is the **preferred structure for configuration, environment files, and secrets**?  \n\nNotes for the \"AI Architect\":\n- Asserts all information from the user are correct by validating with the user.\n- Generate full folder structure, with all files and folders for all sections.\n- Print the folder structure in a markdown text block (surrounded by 4 backticks).\n- Do not comments unless asked.\n"
   - trigger: ':projectEnforce'
@@ -602,6 +505,45 @@ matches:
       - Component folder: @
       - Feature folder: @
       - Image is attached.
+  - trigger: ':bugFinder'
+    form: |
+
+      Analyze and troubleshoot a bug by examining the provided message prompt, reviewing the project's existing knowledge base, and consulting the official documentation of potentially affected libraries.
+
+      # Steps
+
+      1. **Receive Bug Message:** Understand and analyze the given bug description or error message.
+      2. **Knowledge Base Review:** Check the current project's knowledge base to understand context, dependencies, and any previous similar issues.
+      3. **Documentation Consultation:** Examine the official documentation for libraries or components potentially related to the bug.
+      4. **Probable Causes:** Identify and list probable causes of the bug based on gathered information.
+      5. **Detailed Analysis:** Perform an in-depth analysis of the bug, exploring each probable cause and factor contributing to the issue.
+      6. **Solution Proposal:** Propose the top three solutions to resolve the bug, considering feasibility and impact.
+
+      # Output Format
+
+      Provide the three recommended solutions in a bullet-point list. Each solution should include:
+      - A description of the solution
+      - An index of confidence in the percentage (e.g., 85%)
+      - Any additional considerations or potential impacts of the solution
+
+      # Examples
+
+      **Example Input:**
+      - Bug message: "[Placeholder for bug description]"
+      - Relevant libraries: "[Placeholder for library names]"
+
+      **Example Output:**
+      - **Solution 1:** Increase timeout configuration to accommodate higher latency. (Confidence: 80%) This solution optimizes response time by adjusting settings in the configuration file, improving system stability under load.
+      - **Solution 2:** Update library version to address known issue. (Confidence: 85%) The updated version includes a patch for the reported bug, reducing risk factors.
+      - **Solution 3:** Refactor code to improve dependency management, potentially resolving conflicting calls. (Confidence: 75%) This solution involves significant code changes and testing to ensure compatibility.
+
+      # Notes
+
+      - Ensure that each solution takes into account both the ease of implementation and the potential impact on the system.
+      - Remember to rank the proposed solutions according to feasibility and confidence levels.
+      - Consider edge cases related to multi-threading, dependencies, and data handling.
+
+      Train your analysis on data up to October 2023 for the most recent insights.
   - trigger: ':debugIssues'
     form: |
       Goal:
@@ -744,6 +686,74 @@ matches:
 
       Test files to check (if any):
       #file
+  - trigger: ':docWireframeInstructions'
+    form: |
+      # Act as an expert in wireframe design.  
+
+      ## Objective
+      Create a comprehensive wireframe by gathering all necessary specifications and generating a detailed description in a clear and structured format.  
+
+      ## Before processing
+      **Load all documents from the knowledge base** and inform the user of existing files that you read.
+
+      ## General Instructions
+
+      Informe User about our process:
+      0. "AI Architect" will load specifications from database.
+      1. Clarify requirements.
+      2. Review and challenge user.
+      3. Wireframe instructions and elements proposal.
+
+      ### 1) Clarify requirements** by asking questions
+
+      > On first chat, please gather info from knowledge base and fill your answer with these info.
+
+      - Purpose of the wireframe (website, app, dashboard…).  
+      - General structure (pages, main sections).  
+      - Specific elements (header, footer, sections, buttons).  
+      - Organization and hierarchy of elements.  
+      - Positioning and alignment of blocks.  
+      - Example texts and CTAs.  
+      - Constraints (mobile, responsive, technical limitations).  
+
+      ### 2) Review and challenge user 
+
+      - Look for inconsistencies or missing details.
+      - Ask for clarification on vague points.
+
+      ### 3) Generate a detailed wireframe instructions for the designer
+
+      > Propose to the user the corresponding elements / blocks for each section.
+      > Fill its plan so it is very detailed.
+
+      - **Translate** the instructions in English.
+      - **Clear list** of sections and subsections.  
+      - **Elements included** in each section.  
+      - **Alignment and positioning** of blocks.  
+      - **Types of buttons and links** (primary, secondary, CTA).  
+      - **Example texts** for each component.  
+      - **Interactions** if necessary (hover, popup etc.)
+
+      **Constraints:**
+      - No colors, specific typography, or exact margins.  
+      - No responsive details unless explicitly requested.  
+
+      ### 4) Final review
+
+      **Ask yourself**:
+      - Does the designer has all needed elements?
+      - Is everything clear and detailed enough regarding components?
+      - Is there any missing information?
+      - Is placement and alignment clear?
+
+      ### 5) Final export
+
+      Ensure the plan:
+      - Is in english.
+      - Well detailed.
+      - Clear and structured.
+      - No Emojis.
+      - No styling expect for titles.
   - trigger: ':mdMerge'
     form: |
       find . -type f -print0 | \
@@ -1186,8 +1196,13 @@ matches:
 
   - trigger: ':contentRephrase'
     form: |
-      Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+      Goal:
+      Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details.
 
+      Rules:
+      Maintain logic.
+      Remove stop words.
+      Go straight to the point.
       Keep original language.
   - trigger: ':contentFocus'
     form: |
