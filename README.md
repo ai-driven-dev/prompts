@@ -24,6 +24,8 @@
   - [Corriger les faiblesses de l'IA `:promptStart`](#corriger-les-faiblesses-de-lia-promptstart)
 - [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
   - [Liste d'user-stories pour une épique `WIP`](#liste-duser-stories-pour-une-épique-wip)
+  - [User-story `:featureUserStory`](#user-story-featureuserstory)
+  - [Fiche d'instructions (aka: plan technique) `:featureInstructions`](#fiche-dinstructions-aka-plan-technique-featureinstructions)
   - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
 - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
   - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
@@ -442,7 +444,7 @@ Collection de prompts pour générer des fonctionnalités.
 <details>
   <summary>Voir le prompt</summary>
   
-```markdown
+`````markdown
 Create a list of user stories from user needs, starting from an epic. The AI architect should first ask questions about this epic to gather essential information. From these questions, develop a plan of user stories. Once the user story plan is validated, the task is complete.
 
 Steps:
@@ -462,7 +464,8 @@ Requirements:
 - **Avoid redundancy**: Each action must be precise and targeted, organized by category.
 
 Example:
-```markdown
+
+````markdown
 # User Stories for Newsletter Dashboard
 
 ## User Data
@@ -490,14 +493,14 @@ Example:
   - **Output**:  
     - ✅ **If identical** → Normal display  
     - ❌ **If different** → Show error and update the value  
-```
+````
 
 # Notes
 
 - Ensure questions are thorough to gather complete context for the epic.
 - User stories should be clear, actionable, and tailored to specific user needs.
 
-```
+`````
 
 </details>
 
