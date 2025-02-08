@@ -17,15 +17,14 @@
   - [Template de prompt "parfait" `:promptTemplate`](#template-de-prompt-parfait-prompttemplate)
     - [Template](#template)
     - [Exemple d'application du template dans un prompt avec Cursor](#exemple-dapplication-du-template-dans-un-prompt-avec-cursor)
-  - [Créer un prompt `:promptCreate`](#créer-un-prompt-promptcreate)
+  - [Créer un prompt (méthode CRAFT) `:promptCreate`](#créer-un-prompt-méthode-craft-promptcreate)
+  - [Extraire une liste d'actions d'un conversation `:promptExtractActions`](#extraire-une-liste-dactions-dun-conversation-promptextractactions)
+  - [Extraire une règle d'une conversation `:promptExtractSingleRule`](#extraire-une-règle-dune-conversation-promptextractsinglerule)
   - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
   - [Corriger les faiblesses de l'IA `:promptStart`](#corriger-les-faiblesses-de-lia-promptstart)
 - [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
   - [Liste d'user-stories pour une épique `WIP`](#liste-duser-stories-pour-une-épique-wip)
-  - [User-story `:featureUserStory`](#user-story-featureuserstory)
-  - [Fiche d'instructions (aka: plan technique) `:featureInstructions`](#fiche-dinstructions-aka-plan-technique-featureinstructions)
   - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
-  - [Générer du code pour une petite fonctionnalité `:featureCode`](#générer-du-code-pour-une-petite-fonctionnalité-featurecode)
 - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
   - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
   - [Assurer les bonnes pratiques `:projectEnforce`](#assurer-les-bonnes-pratiques-projectenforce)
@@ -39,6 +38,7 @@
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
   - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
 - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
+  - [Find bugs `:bugFinder`](#find-bugs-bugfinder)
   - [Trouver des pistes `:debugIssues` (WIP)](#trouver-des-pistes-debugissues-wip)
   - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
   - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
@@ -46,6 +46,7 @@
   - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
 - [**📚 Documentation**](#-documentation)
+  - [Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`](#instructions-de-wireframe-à-partir-dune-spec-docwireframeinstructions)
   - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
   - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
 - [**🔄 Refactoring**](#-refactoring)
@@ -281,81 +282,89 @@ Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
 
 </details>
 
-### Créer un prompt `:promptCreate`
+### Créer un prompt (méthode CRAFT) `:promptCreate`
 
 > Utilisez ce prompt pour créer un prompt à partir de zéro (avec un template).
+
+[Source du prompt](https://www.youtube.com/watch?v=ABCqfaTjNd4)
 
 <details>
 <summary>Voir le prompt</summary>
 
 ````markdown
-# Goal
-Generate a high quality prompt from scratch.
+CONTEXT:
+We are going to create one of the best ChatGPT prompts ever written.  The best prompts include comprehensive details to fully inform the Large Language Model of the prompt’s: goals, required areas of expertise, domain knowledge, preferred format, target audience, references, examples, and the best approach to accomplish the objective.  Based on this and the following information, you will be able write this exceptional prompt.  
 
-# Roles
-- "AI Architect" (you): Act as the greatest prompt engineer from OpenAI and Anthropics.
-- "Developer" (me, the "user"): Will give you the requirements and validate the prompt.
+ROLE:
+You are an LLM prompt generation expert.  You are known for creating extremely detailed prompts that result in LLM outputs far exceeding typical LLM responses.  The prompts you write leave nothing to question because they are both highly thoughtful and extensive.
 
-# Rules
-- Use the template provided.
-- Fill in all mandatory fields.
-- Use markdown formatting.
-- Use XML for variables.
-- Provide clear and concise instructions.
-- Keep examples minimal.
-- Answer in English.
+ACTION: 
+1) Before you begin writing this prompt, you will first look to receive the prompt topic or theme.  If I don't provide the topic or theme for you, please request it.
+2) Once you are clear about the topic or theme, please also review the Format and Example provided below.
+3) If necessary, the prompt should include “fill in the blank” elements for the user to populate based on their needs. 
+4) Take a deep breath and take it one step at a time.
+5) Once you've ingested all of the information, write the best prompt ever created.
 
-# Steps
+FORMAT:
+For organizational purposes, you will use an acronym called "C.R.A.F.T." where each letter of the acronym CRAFT represents a section of the prompt. Your format and section descriptions for this prompt development are as follows:
 
-## Step 1: Ask for the requirements
+-Context: This section describes the current context that outlines the situation for which the prompt is needed.  It helps the LLM understand what knowledge and expertise it should reference when creating the prompt. 
 
-1. Ask the user for the requirements.
+-Role: This section defines the type of experience the LLM has, its skill set, and its level of expertise relative to the prompt requested.  In all cases, the role described will need to be an industry-leading expert with more than two decades or relevant experience and thought leadership.
 
-Questions:
-1. What is the goal of the prompt?
-2. What specific details should be included? (e.g., tone, structure, length, format)
-3. Are there any constraints or limitations?
-4. Should the output follow a specific structure? (e.g., lists, paragraphs, sections)
-5. Do you need examples in the output? (if yes, specify how detailed they should be)
-6. Any additional requirements or preferences? (Any special considerations to improve accuracy)
+-Action: This is the action that the prompt will ask the LLM to take.  It should be a numbered list of sequential steps that will make the most sense for an LLM to follow in order to maximize success.
 
-## Step 2: Reformulate the user's requirements
+-Format: This refers to the structural arrangement or presentation style of the LLM’s generated content. It determines how information is organized, displayed, or encoded to meet specific user preferences or requirements. Format types include: An essay, a table, a coding language, plain text, markdown, a summary, a list, etc.
 
-1. Reformulate the user's requirements in a clear and concise manner.
-2. Validate with the user that the requirements are accurate.
+-Target Audience: This will be the ultimate consumer of the output that your prompt creates. It can include demographic information, geographic information, language spoken, reading level, preferences, etc.
 
-## Step 3: Write the prompt
+TARGET AUDIENCE:
+The target audience for this prompt creation is ChatGPT 4o or ChatGPT o1. 
 
-1. Use the template provided.
-2. Output the prompt in markdown formatted text block surrounded by 4 backticks.
-3. Add more data if needed.
-
-### Step 4: Review the prompt
-
-1. Review the prompt for clarity, accuracy, and completeness.
-2. Analyze strengths and weaknesses.
-3. Identify areas for improvement.
-4. Propose enhancements to the user.
-5. Ask the user if you should integrate the suggestions in a new formatted markdown text block surrounded by 4 backticks.
-
-# Template
-<template>
-```markdown
-# Goal
-
-# Rules
-
-# Steps
-
-## Step 1:
-
-## Step 2:
-
-# Context
+Please reference the example I have just provided for your output.  Again, take a deep breath and take it one step at a time.
 ```
 </template>
 
 ````
+
+</details>
+
+### Extraire une liste d'actions d'un conversation `:promptExtractActions`
+
+> Résumé rapide de ce que vous devez faire.
+
+<details>
+<summary>Voir le prompt</summary>
+
+```markdown
+Summarize actions I need to do regarding that just specific part.
+
+- Use short numbered and ordered bullet points.
+- Straight to the point.
+- Only the essential actions.
+- No style.
+- Export in markdown formatted text block surrounded by 4 backticks.
+- Use English.
+```
+
+</details>
+
+### Extraire une règle d'une conversation `:promptExtractSingleRule`
+
+> Dans une conversation, extraire "la" phrase, règle, qui résume ce que l'on doit faire.
+> Très utile lorsque vous corrigez un bug avec l'IA et que vous avez besoin d'extraire une règle.
+
+<details>
+<summary>Voir le prompt</summary>
+
+```markdown
+Generate a **clear and actionable** rule to prevent repeating a specific mistake.  
+
+Based on our last discussion, give me a **universal rule** that ensures I won’t make this mistake again.  
+- **Imperative and unambiguous**.  
+- **Short** (maximum **15 words**).  
+- **Immediately applicable** (e.g., "Always check X before executing Y.").  
+```
 
 </details>
 
@@ -367,10 +376,9 @@ Questions:
 <summary>Voir le prompt</summary>
 
 ```markdown
-You are an **elite Prompt Engineer**.  
-Your job is to transform any "**shitty**" prompt into a **masterclass**.  
-Your role is to elevate any prompt to its **highest level of clarity and impact**.
+Act as en **elite Prompt Engineer** that transform prompt into high performing prompts. 
 
+# Steps
 1. **Read** the prompt carefully and identify major weaknesses.  
    - Identify the **context**, the **desired role**, the **goal**, and potential **gaps**.
    - Find inconsistencies, ambiguities, duplications or missing details.
@@ -383,28 +391,21 @@ Your role is to elevate any prompt to its **highest level of clarity and impact*
 **Important**:
 - Do not be lazy, ALWAYS return the full prompt.
 
-**Rules**:  
-- Make sentences very short and impactful.
-- Be clear and concise.
-- Minimum markdown formatting.
-- Avoid emojis.
-- Keep examples minimal.  
+# Rules  
+- Translate the prompt in english.
+- Make very short sentences, straight to the point, clear and concise.
+- Only titles for formatting.
+- No emojis.
+- Minimal example 
 - Maintain or clarify original intent.
-- Answer in user's language.
-- Respect the original intent.
-- Simplify language or clarify style where necessary.
 - Add constraints (length, tone, format) if needed.
-- Use clear and short sentences.
-- Use actions verbs.
-- Use this structured output: goal, roles, context, rules, steps (recommends), (optional) input and output examples.
-- Provide very shorts but impactful details on the action the LLM needs to do.
 
-**Output Format**:  
+# Output Format to the user
 1. **Weaknesses**  
 2. **Suggested Improvements**  
 3. **Masterclass Prompt** (reply with your final result in block text formatted markdown surrounded by 4 backticks)
 
-**My original Prompt that needs to be improved**:
+# Prompt to improve
 <prompt>
 [[Your prompt]]
 </prompt>
@@ -442,7 +443,60 @@ Collection de prompts pour générer des fonctionnalités.
   <summary>Voir le prompt</summary>
   
 ```markdown
-In progress...
+Create a list of user stories from user needs, starting from an epic. The AI architect should first ask questions about this epic to gather essential information. From these questions, develop a plan of user stories. Once the user story plan is validated, the task is complete.
+
+Steps:
+1. **Gather Information**: Ask relevant, comprehensive questions to understand the epic.
+2. **Develop User Stories Plan**: Based on gathered information, articulate a concise plan of user stories.
+3. **Validate Plan**: Ensure the user stories plan aligns with user needs and objectives.
+
+Requirements:
+- **Clear and concise format**: Each user story must be **short but complete**.  
+- **Distinguish between user actions and system actions**:  
+   - `(User)` → Actions triggered by the user (clicks, input, interactions...).  
+   - `(System)` → Actions triggered automatically (data loading, API requests...).  
+- **Use inputs and outputs**:  
+   - **Trigger**: When the action occurs.  
+   - **Input**: Data required for the action.  
+   - **Output**: Data returned by the action.  
+- **Avoid redundancy**: Each action must be precise and targeted, organized by category.
+
+Example:
+```markdown
+# User Stories for Newsletter Dashboard
+
+## User Data
+
+### The dashboard retrieves the user profile** (System)
+  - **Trigger**: On dashboard load  
+  - **Input**: `userId: string`  
+  - **Output**: `{ id, firstName, lastName, avatarUrl }`  
+
+## The dashboard retrieves the user's email alias (System)
+  - **Trigger**: On dashboard load  
+  - **Input**: `projectId: string`  
+  - **Output**: `newsletterAlias: string`  
+
+## AI Personalization
+
+### The user configures a message for the AI (User)
+  - **Trigger**: When modifying the input field  
+  - **Input**: `customMessage: string`  
+  - **Output**: Stored in `UserProfile.prompt_instruction`  
+
+### The dashboard verifies that the sent message matches the stored one (System)
+  - **Trigger**: When receiving the API response  
+  - **Input**: `customMessage: string`  
+  - **Output**:  
+    - ✅ **If identical** → Normal display  
+    - ❌ **If different** → Show error and update the value  
+```
+
+# Notes
+
+- Ensure questions are thorough to gather complete context for the epic.
+- User stories should be clear, actionable, and tailored to specific user needs.
+
 ```
 
 </details>
@@ -518,130 +572,89 @@ User stories template:
   
 ````markdown
 # Goal
-Structuring precise coding instructions for the **AI Editor**.
+Structuring precise coding instructions for the **AI Editor** with the help of the **Developer**.
 
 # Roles & Responsibilities
 - **AI Architect (You)** → Helps structure the instructions.  
-- **Developer** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
+- **Developer (Me, the user)** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
 - **AI Editor** → Uses the instructions to generate code.  
 
-# Rules
-- **Do NOT generate scripts or code**—only structured instructions.  
-- **All examples must be in a dedicated section** for clarity.  
-- **Every CLI command must be explicitly validated** before including it.  
-- **Instructions must be fully refined before passing them to the AI Editor.**  
-- **Explicit user confirmation is required at each step.**  
+# Feature to build
 
-# Section Processing
+Developer wants to build this feature:
+```markdown
+[[feature to build]]
+```
 
-For each section:
+# Steps
 
-### **1. Define the Feature**
-1. Ask: **"Which feature should we build today? ☀️"** 
-2. **Load all documents from the knowledge base** and inform the user of existing files that you read.
+IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for his approval before going to next step.**
 
-### **2. Validation Loop**
-1. **Exploration Loop**  
-   - Ask the Developer three **progressive follow-up questions** to collect essential details.  
-2. **Explicit Validation Request**  
-   - Ask: **"Once you're ready to proceed, only type 'GO'. Otherwise, I will ask three more questions to refine the details."**  
-3. **Loop Until Confirmation**  
-   - **If the user does NOT Explicitly type 'GO'**, generate three **new** refining questions based on previous answers.  
-   - **Repeat the cycle** until explicit validation is received.  
-4. **Exit Condition**  
-   - When the user types **"Go"**, proceed to the next step.  
+## Step: 1: Load the Knowledge Base
+- Please load "knowledgeBase".
+- Print all steps in short numbered list so the user know what we are doing.
 
-### **3. Structure the Plan**
-1. **Generate a bullet-point list** outlining the major steps required.  
-2. **User Confirmation:**  
-   - Ask: **"Do you agree with this plan? (YES/NO)"**  
-   - If **NO** → Adjust until confirmed.  
+## Step 2: Clarify intentions
+- Based on knowledge base, ask the user to clarify the intentions.
+- Challenge him, detect inconsistencies and ambiguities.
+- Challenge technical choices, how will it be implemented?
 
-### 4. Affect roles
-1. Now that we have a plan, split it in two parts.
-2. The first part is for the Developer (for configuration and task that need to be performed manually).
-3. The second part is for the AI Editor (for setup and code execution).
+### Step 3: Confirmation by the developer
+- Print MAJOR tasks in ULTRA SHORT bullet points.
+- Split tasks in two parts: 
+  - First one for the Developer -- Configuration and tasks that need to be performed manually
+  - Second one for the AI Editor -- Setup, code execution, and other tasks that can be automated.
 
-### **4. Fill the Instruction Template**
-1. **Complete all sections** methodically using **concise bullet points**. 
-2. **Use english only**, be concise.
-3. **Minimal words**, brevity is key for clarity and accuracy. 
-4. **Ensure URLs, commands, and references are verified.**  
-5. **Output template in markdown formatted text block** surrounded by 4 backticks.
-6. Code blocks inside are surrounded by 3 backticks.
-7. Display in Canvas if possible.
-8. **User Confirmation:**  
-   - Ask: **"Is the template correct? (YES/NO)"**  
-   - If **NO** → Refine and repeat.  
+### Step 4: Fill the "Instruction Template"
 
-### **5. AI Architect Review**
-1. Independently check for:  
+- No code here, only instructions
+- Use a canvas if possible.
+- Complete all sections of the template.
+- Use short and concise bullets points, minimal words.
+- English instructions.
+- Format: text block markdown surrounded by 4 backticks (inside code blocks are surrounded by 3 backticks).
+- Markdown style: only headings, bullet points, and links.
+- No emojis.
+- Replace placeholders (`{variables}`) with actual user inputs.  
+
+### Step 5: Final Review
+- Print official documentations URLs related to the feature.
+- Do a full review (list inconsistencies, ambiguities, missing details).
+- Propose enhancements.
+- Independently check for:  
    - **Completeness** → Are all key details covered?  
    - **Correctness** → Are dependencies, versions, and steps accurate?  
    - **Clarity** → Is the instruction unambiguous?  
-2. **Propose improvements in bullet points.**  
-3. **User Confirmation:**  
+- **Propose improvements in bullet points.**  
+- **User Confirmation:**  
    - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
    - If **NO** → Keep as is.  
    - If **YES** → Apply the changes.  
 
-### **6. Final Developer Validation**
-- Ask: **"Is this final and ready for execution? (YES/NO)"**  
-- If **NO** → Iterate until fully approved.  
-
----
-
-# **Instruction Template**
-- Use **Markdown headings** (`#`, `##`, `###`) for structure.  
-- Use **bullet points** instead of paragraphs (numbered if necessary). 
-- Do not use emojis, special characters, text styles like bold or italics.
-- Focus on very short and focused instructions.
-- **Replace placeholders** (`{variables}`) with actual user inputs.  
-- **Sections must not be removed**—additional sections can be added if necessary.  
+## "Instruction Template"
 
 ```markdown
 # Instruction: {title}
 
-## Rules
-- Examples (including CLI) **must be verified** before execution.  
-- **Every step MUST be completed and validated** before proceeding.  
-
 ## Goal
 {goal}
 
-### Global Steps  
-1. {step1}  
-2. ...  
-
-## Guidelines  
-
-### Requirements  
-- {requirement1}  
+## Constraints  
+- {constraint1}  
 - ...  
 
-### Constraints  
+## Tasks  
 
-#### {constraint1}  
-- {constraint1-explanation}  
-- ...  
+### {task1}  
 
-## Steps  
+> {goal}
 
-### {step1}  
-- Online documentation: [link]({markdown_link})  
-- Goal: {goal}  
-- Steps:  
-  1. {step1}  
-  2. {step2}  
-- Expected output: {output}  
-- Example (if any): {example}  
+- [ ] {task1}  
+- [ ] {task2}
 
-## Verifications  
-- Ensure the **goal is achieved optimally**.  
-- Check that **nothing is buggy, missing, or incorrect**.  
+## Validation checkpoints
 
-1. {verification1}  
-2. ...  
+- [ ] {verification1}  
 ```
 
 ````
@@ -782,53 +795,6 @@ When all phases are complete, you will produce a **Markdown document** containin
 2. **Guide for the AI Editor**:
    - A strictly defined technical plan and instructions (folder structure, environment variables, setup steps).
 ````
-
-</details>
-
-### Générer du code pour une petite fonctionnalité `:featureCode`
-
-> Utile pour générer rapidement du code pour une petite fonctionnalité à intégrer rapidement.
-
-**Paramètres**:
-
-- `Requirements`: Vos besoins en détails pour la feature.
-
-<details>
-  <summary>Voir le prompt</summary>
-  
-```markdown
-Goal:
-Generate code for a feature based on existing codebase.
-
-Requirements:
-<requirements>
-[[Requirements]]
-</requirements>
-
-Rules:
-- Acknowledge it.
-- Reformulate in bullet point grouped by section to show me that you understood what to do.
-- Generate development steps (based on my codebase).
-
-Output example:
-<outputExample>
-Feature to code: ...
-
-Development steps:
-
-1. ...
-2. ...
-3. ...
-
-Plan:
-
-Step 1: ...
-
-Sub step 1.1: ...
-
-...
-</outputExample>
-```
 
 </details>
 
@@ -1532,6 +1498,55 @@ Context:
 
 ## **🐛 Corriger de bugs**
 
+### Find bugs `:bugFinder`
+
+> Analyze the code and find potential bugs.
+
+<details>
+  <summary>View Prompt</summary>
+  
+````markdown
+
+Analyze and troubleshoot a bug by examining the provided message prompt, reviewing the project's existing knowledge base, and consulting the official documentation of potentially affected libraries.
+
+# Steps
+
+1. **Receive Bug Message:** Understand and analyze the given bug description or error message.
+2. **Knowledge Base Review:** Check the current project's knowledge base to understand context, dependencies, and any previous similar issues.
+3. **Documentation Consultation:** Examine the official documentation for libraries or components potentially related to the bug.
+4. **Probable Causes:** Identify and list probable causes of the bug based on gathered information.
+5. **Detailed Analysis:** Perform an in-depth analysis of the bug, exploring each probable cause and factor contributing to the issue.
+6. **Solution Proposal:** Propose the top three solutions to resolve the bug, considering feasibility and impact.
+
+# Output Format
+
+Provide the three recommended solutions in a bullet-point list. Each solution should include:
+- A description of the solution
+- An index of confidence in the percentage (e.g., 85%)
+- Any additional considerations or potential impacts of the solution
+
+# Examples
+
+**Example Input:**
+- Bug message: "[Placeholder for bug description]"
+- Relevant libraries: "[Placeholder for library names]"
+
+**Example Output:**
+- **Solution 1:** Increase timeout configuration to accommodate higher latency. (Confidence: 80%) This solution optimizes response time by adjusting settings in the configuration file, improving system stability under load.
+- **Solution 2:** Update library version to address known issue. (Confidence: 85%) The updated version includes a patch for the reported bug, reducing risk factors.
+- **Solution 3:** Refactor code to improve dependency management, potentially resolving conflicting calls. (Confidence: 75%) This solution involves significant code changes and testing to ensure compatibility.
+
+# Notes
+
+- Ensure that each solution takes into account both the ease of implementation and the potential impact on the system.
+- Remember to rank the proposed solutions according to feasibility and confidence levels.
+- Consider edge cases related to multi-threading, dependencies, and data handling.
+
+Train your analysis on data up to October 2023 for the most recent insights.
+````
+
+</details>
+
 ### Trouver des pistes `:debugIssues` (WIP)
 
 > Permet d'analyser un comportement anormal et de trouver les causes probables.
@@ -1739,6 +1754,84 @@ Test files to check (if any):
 </details>
 
 ## **📚 Documentation**
+
+### Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`
+
+> Permet de générer un prompts avec des instructions qui permettront à une IA de générer un WireFrame.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+# Act as an expert in wireframe design.  
+
+## Objective
+Create a comprehensive wireframe by gathering all necessary specifications and generating a detailed description in a clear and structured format.  
+
+## Before processing
+**Load all documents from the knowledge base** and inform the user of existing files that you read.
+
+## General Instructions
+
+Informe User about our process:
+0. "AI Architect" will load specifications from database.
+1. Clarify requirements.
+2. Review and challenge user.
+3. Wireframe instructions and elements proposal.
+
+### 1) Clarify requirements** by asking questions
+
+> On first chat, please gather info from knowledge base and fill your answer with these info.
+
+- Purpose of the wireframe (website, app, dashboard…).  
+- General structure (pages, main sections).  
+- Specific elements (header, footer, sections, buttons).  
+- Organization and hierarchy of elements.  
+- Positioning and alignment of blocks.  
+- Example texts and CTAs.  
+- Constraints (mobile, responsive, technical limitations).  
+
+### 2) Review and challenge user 
+
+- Look for inconsistencies or missing details.
+- Ask for clarification on vague points.
+
+### 3) Generate a detailed wireframe instructions for the designer
+
+> Propose to the user the corresponding elements / blocks for each section.
+> Fill its plan so it is very detailed.
+
+- **Translate** the instructions in English.
+- **Clear list** of sections and subsections.  
+- **Elements included** in each section.  
+- **Alignment and positioning** of blocks.  
+- **Types of buttons and links** (primary, secondary, CTA).  
+- **Example texts** for each component.  
+- **Interactions** if necessary (hover, popup etc.)
+
+**Constraints:**
+- No colors, specific typography, or exact margins.  
+- No responsive details unless explicitly requested.  
+
+### 4) Final review
+
+**Ask yourself**:
+- Does the designer has all needed elements?
+- Is everything clear and detailed enough regarding components?
+- Is there any missing information?
+- Is placement and alignment clear?
+
+### 5) Final export
+
+Ensure the plan:
+- Is in english.
+- Well detailed.
+- Clear and structured.
+- No Emojis.
+- No styling expect for titles.
+````
+
+</details>
 
 ### Fusionner plusieurs fichiers Markdown `:mdMerge`
 
@@ -2561,8 +2654,13 @@ With this context, help refine the following:
   <summary>Voir le prompt</summary>
   
 ```markdown
-Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details, while maintaining a logical structure, coherent meaning, and avoiding any inconsistencies.
+Goal:
+Rewrite this text to make it shorter and clearer by removing repetitions and unnecessary details.
 
+Rules:
+Maintain logic.
+Remove stop words.
+Go straight to the point.
 Keep original language.
 ```
 
