@@ -1892,7 +1892,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 ## Rules  
 
 - Chart type: "[[the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline]]".  
-- Flow: "left-to-right|top-to-bottom".
+- Flow: "[[left-to-right|top-to-bottom]]".
 - Use Mermaid v10.8.0 minimum.
 - 100% valid Mermaid diagram is required.
 - Read the rules under "Mermaid generation rules" section.
