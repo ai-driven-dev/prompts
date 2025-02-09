@@ -23,7 +23,7 @@
   - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
   - [Corriger les faiblesses de l'IA `:promptStart`](#corriger-les-faiblesses-de-lia-promptstart)
 - [**🙋‍♂️ Générer une fonctionnalité**](#️-générer-une-fonctionnalité)
-  - [Liste d'user-stories pour une épique `WIP`](#liste-duser-stories-pour-une-épique-wip)
+  - [Liste d'user-stories pour une épique `:featureUserStories`](#liste-duser-stories-pour-une-épique-featureuserstories)
   - [User-story `:featureUserStory`](#user-story-featureuserstory)
   - [Fiche d'instructions (aka: plan technique) `:featureInstructions`](#fiche-dinstructions-aka-plan-technique-featureinstructions)
   - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
@@ -437,7 +437,7 @@ Act as en **elite Prompt Engineer** that transform prompt into high performing p
 
 Collection de prompts pour générer des fonctionnalités.
 
-### Liste d'user-stories pour une épique `WIP`
+### Liste d'user-stories pour une épique `:featureUserStories`
 
 > En cours...
 
