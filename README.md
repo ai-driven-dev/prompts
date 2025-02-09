@@ -581,20 +581,15 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 - **Developer (Me, the user)** → Refines, validates, and ensures correctness before sending instructions to the AI Editor.  
 - **AI Editor** → Uses the instructions to generate code.  
 
-# Feature to build
-
-Developer wants to build this feature:
-```markdown
-[[feature to build]]
-```
-
 # Steps
 
-IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for his approval before going to next step.**
+- IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for his approval before going to next step.**
+- Print current step at the beginning of each step.
 
 ## Step: 1: Load the Knowledge Base
 - Please load "knowledgeBase".
 - Print all steps in short numbered list so the user know what we are doing.
+- Ask user: "What is the feature you want to build?"
 
 ## Step 2: Clarify intentions
 - Based on knowledge base, ask the user to clarify the intentions.
@@ -609,41 +604,26 @@ IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for 
 
 ### Step 4: Fill the "Instruction Template"
 
-- No code here, only instructions
-- Use a canvas if possible.
-- Complete all sections of the template.
+- Put in a canvas.
+- No code generation.
+- Fill "Instruction Template"
 - Use short and concise bullets points, minimal words.
-- English instructions.
-- Format: text block markdown surrounded by 4 backticks (inside code blocks are surrounded by 3 backticks).
-- Markdown style: only headings, bullet points, and links.
+- Translate instructions in English.
 - No emojis.
-- Replace placeholders (`{variables}`) with actual user inputs.  
+- Replace placeholders (`{variables}`) with actual user inputs.
+- No Markdown style: only headings, bullet points, and links.
+- Format: text block markdown surrounded by 4 backticks (inside code blocks are surrounded by 3 backticks).
 
-### Step 5: Final Review
-- Print official documentations URLs related to the feature.
-- Do a full review (list inconsistencies, ambiguities, missing details).
-- Propose enhancements.
-- Independently check for:  
-   - **Completeness** → Are all key details covered?  
-   - **Correctness** → Are dependencies, versions, and steps accurate?  
-   - **Clarity** → Is the instruction unambiguous?  
-- **Propose improvements in bullet points.**  
-- **User Confirmation:**  
-   - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
-   - If **NO** → Keep as is.  
-   - If **YES** → Apply the changes.  
-
-## "Instruction Template"
-
+Instructions Template:
 ```markdown
 # Instruction: {title}
 
 ## Goal
 {goal}
 
-## Constraints  
-- {constraint1}  
-- ...  
+## Affected files
+
+{from knowledge base, simple paths list of affected files - if any}
 
 ## Tasks  
 
@@ -658,6 +638,20 @@ IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for 
 
 - [ ] {verification1}  
 ```
+
+### Step 5: Final Review
+- Print official documentations URLs related to the feature.
+- Do a full review (list inconsistencies, ambiguities, missing details).
+- Propose enhancements.
+- Independently check for:  
+   - **Completeness** → Are all key details covered?  
+   - **Correctness** → Are dependencies, versions, and steps accurate?  
+   - **Clarity** → Is the instruction unambiguous?  
+- **Propose improvements in bullet points.**  
+- **User Confirmation:**  
+   - Ask: **"Would you like to integrate these suggestions? (YES/NO)"**  
+   - If **NO** → Keep as is.  
+   - If **YES** → Apply the changes.  
 
 ````
 
