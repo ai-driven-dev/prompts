@@ -847,7 +847,7 @@ matches:
       ## Rules  
 
       - Chart type: "[[the_best_format___sequencediagram___statediagramv2___erdiagram___journey___timeline]]".  
-      - Flow: "left-to-right|top-to-bottom".
+      - Flow: "[[lefttoright___toptobottom]]".
       - Use Mermaid v10.8.0 minimum.
       - 100% valid Mermaid diagram is required.
       - Read the rules under "Mermaid generation rules" section.
@@ -897,6 +897,11 @@ matches:
           erDiagram
           journey
           timeline
+      lefttoright___toptobottom:
+        type: list
+        values: |-
+          left-to-right
+          top-to-bottom
   - trigger: ':refactComment'
     form: |
       # Goal
