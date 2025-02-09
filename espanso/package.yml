@@ -846,7 +846,7 @@ matches:
 
       ## Rules  
 
-      - Chart type: "the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline".  
+      - Chart type: "[[the_best_format___sequencediagram___statediagramv2___erdiagram___journey___timeline]]".  
       - Flow: "left-to-right|top-to-bottom".
       - Use Mermaid v10.8.0 minimum.
       - 100% valid Mermaid diagram is required.
@@ -887,6 +887,16 @@ matches:
 
       **Miscellaneous**:
       - Avoid `linkStyle`.
+    form_fields:
+      the_best_format___sequencediagram___statediagramv2___erdiagram___journey___timeline:
+        type: list
+        values: |-
+          the best format
+          sequenceDiagram
+          stateDiagram-v2
+          erDiagram
+          journey
+          timeline
   - trigger: ':refactComment'
     form: |
       # Goal
