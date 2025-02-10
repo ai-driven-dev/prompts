@@ -26,6 +26,7 @@
   - [Liste d'user-stories pour une épique `:featureUserStories`](#liste-duser-stories-pour-une-épique-featureuserstories)
   - [User-story `:featureUserStory`](#user-story-featureuserstory)
   - [Fiche d'instructions (aka: plan technique) `:featureInstructions`](#fiche-dinstructions-aka-plan-technique-featureinstructions)
+  - [Créer le chemin de dev d'une feature `:featurePath`](#créer-le-chemin-de-dev-dune-feature-featurepath)
   - [Créer une fonctionnalité `:featureCreate`](#créer-une-fonctionnalité-featurecreate)
 - [**📦 Démarrage d'un projet**](#-démarrage-dun-projet)
   - [Imaginer un projet (from scratch) `:projectBootstrap`](#imaginer-un-projet-from-scratch-projectbootstrap)
@@ -40,8 +41,8 @@
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
   - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
 - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
-  - [Find bugs `:bugFinder`](#find-bugs-bugfinder)
-  - [Trouver des pistes `:debugIssues` (WIP)](#trouver-des-pistes-debugissues-wip)
+  - [Corriger un bug technique (avec message d'erreur) `:bugFinder`](#corriger-un-bug-technique-avec-message-derreur-bugfinder)
+  - [Corriger un bug fonctionnel (on ne sait où ce qui le cause) `:bugReveal`](#corriger-un-bug-fonctionnel-on-ne-sait-où-ce-qui-le-cause-bugreveal)
   - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
   - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
 - [**🧪 Tests**](#-tests)
@@ -79,8 +80,12 @@
   - [Rendre un texte plus concis `:contentFocus`](#rendre-un-texte-plus-concis-contentfocus)
   - [Focus sur les avantages `:contentFocusBenefits`](#focus-sur-les-avantages-contentfocusbenefits)
   - [Résumer un texte `:contentSummarize`](#résumer-un-texte-contentsummarize)
-- [**💻 OSX**](#-osx)
-  - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
+- [**💻 Commandes**](#-commandes)
+  - [Supprimer les dossiers vide `:cmdEmptyFolders`](#supprimer-les-dossiers-vide-cmdemptyfolders)
+  - [OSX](#osx)
+    - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
+- [🏄‍♂️ Prompts de raisonnement](#️-prompts-de-raisonnement)
+  - [Audit du code `:reasonCodeAudit`](#audit-du-code-reasoncodeaudit)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -653,6 +658,27 @@ Instructions Template:
    - If **NO** → Keep as is.  
    - If **YES** → Apply the changes.  
 
+````
+
+</details>
+
+### Créer le chemin de dev d'une feature `:featurePath`
+
+> Utile pour demander à l'IA "comment faire" une feature avant de lui demander de le faire ; pour augmenter la précision et la qualité.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal: Create a detailed path to implement a feature before asking the AI to generate the code.
+
+Feature: "[[Feature to build]]"
+
+Rules:
+- Based on requirements, look for online documentation to verify the feasibility.
+- List top 3 ways to do it.
+- Evaluate confidence level for each of the proposed ways.
+- Ask the user to choose the best way.
 ````
 
 </details>
@@ -1494,7 +1520,7 @@ Context:
 
 ## **🐛 Corriger de bugs**
 
-### Find bugs `:bugFinder`
+### Corriger un bug technique (avec message d'erreur) `:bugFinder`
 
 > Analyze the code and find potential bugs.
 
@@ -1543,7 +1569,7 @@ Train your analysis on data up to October 2023 for the most recent insights.
 
 </details>
 
-### Trouver des pistes `:debugIssues` (WIP)
+### Corriger un bug fonctionnel (on ne sait où ce qui le cause) `:bugReveal`
 
 > Permet d'analyser un comportement anormal et de trouver les causes probables.
 
@@ -1551,27 +1577,21 @@ Train your analysis on data up to October 2023 for the most recent insights.
   <summary>Voir le prompt</summary>
   
 ```markdown
-Goal:
-Find the issue in the given code context.
+Goal: Find the bug in my codebase based on the issue description.
 
-Given: "[[State]]".
-When: "[[Action]]".
-Then: "[[Expected result]]".
+Issue: "[Issue description]".
 
-Instead, I get the following:
-<error>
-[[Result, behavior, error logs... or your analysis]]
-</error>
+Expected behavior: "[Expected behavior]".
 
-Steps:
-1. Analyze the given code
-2. Then list potentials issues and steps to fix the code
-3. Sort them by relevance
-4. Provide a top 3 root level possible causes
-5. When answering the user, list what you tried so far and the possible next 3 causes
-
-Notes:
-- Issues might be induced by another part of the code, so you might need to check the whole codebase.
+Ordered Steps:
+- Summarize the issue with you own words.
+- List action paths between files (e.g. user clicks button -> calls function in file1 -> updates state in file2...).
+- Find relevant files to find bug in codebase based on issue description.
+- If necessary, put logging messages in the code to trace the issue.
+- List 3 best potential causes with small description + confidence level.
+- Wait for user's confirmation before proceeding.
+- Once confirmed, provide the 3 best steps to fix the issue.
+- Ask for confirmation before proceeding.
 ```
 
 </details>
@@ -1891,7 +1911,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 
 ## Rules  
 
-- Chart type: "[[the best format|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline]]".  
+- Chart type: "[[best-format|classDiagram|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline]]".  
 - Flow: "[[left-to-right|top-to-bottom]]".
 - Use Mermaid v10.8.0 minimum.
 - 100% valid Mermaid diagram is required.
@@ -2759,15 +2779,86 @@ Output:
 
 </details>
 
-## **💻 OSX**
+## **💻 Commandes**
 
-### Mettre à jour Homebrew `:osxBrew`
+### Supprimer les dossiers vide `:cmdEmptyFolders`
+
+> Permet de supprimer les dossiers vides dans le répertoire courant.
 
 <details>
   <summary>Voir le prompt</summary>
   
-```consoleell
+```shell
+find . -type d -empty -exec rm -i -d {} +
+```
+
+### OSX
+
+#### Mettre à jour Homebrew `:osxBrew`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```shell
 brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
 ```
+
+</details>
+
+## 🏄‍♂️ Prompts de raisonnement
+
+> Ces prompts utilisent un système de raisonnement avec un long contexte, utilisez-les pour faire réfléchir l'IA sur de "gros sujets".
+
+### Audit du code `:reasonCodeAudit`
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Act as a globally recognized developer specialized in Domain-Driven Design (DDD).  
+Perform a thorough **code audit**.  
+Use the **functional documentation** to verify business intentions.  
+Use the **technical documentation** to confirm technical implementation.  
+Identify gaps, coding issues, and **DDD** misalignments.  
+Provide a **concise audit report** with clear findings and actionable recommendations.  
+
+# Scope
+- Analyze all relevant modules or files.  
+- Focus on DDD patterns, code quality, and alignment with business intentions.  
+
+# Steps
+1. **Check Business Intent**  
+   - Compare code to functional requirements.  
+   - Highlight any discrepancies.  
+2. **Check Technical Implementation**  
+   - Compare code to technical specs.  
+   - Note bad practices or optimization needs.  
+3. **Identify Improvements**  
+   - Evaluate code against DDD principles.  
+   - Recommend structural, performance, or domain-driven adjustments.  
+4. **Audit Report**  
+   - Provide findings in short, bullet-point form.  
+   - Suggest concrete actions for each issue.  
+
+# Constraints
+- Write in **English**.  
+- Be **concise**, direct, and clear.  
+- Use **bullet points** and simple headings.  
+- Include code examples **only if necessary**.  
+
+# Project requirements, documentations and specifications
+
+<knowledgeBase>
+ONE_FILE_KNOWLEDGE_BASE_HERE
+</knowledgeBase>
+```
+
+# Codebase
+
+<codebase>
+REPOPROMPT_YOUR_CODE_HERE
+</codebase>
+```
+````
 
 </details>
