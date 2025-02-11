@@ -18,6 +18,7 @@
     - [Template](#template)
     - [Exemple d'application du template dans un prompt avec Cursor](#exemple-dapplication-du-template-dans-un-prompt-avec-cursor)
   - [Créer un prompt (méthode CRAFT) `:promptCreate`](#créer-un-prompt-méthode-craft-promptcreate)
+  - [Lister les bonnes pratiques `:promptBestPractices`](#lister-les-bonnes-pratiques-promptbestpractices)
   - [Extraire une liste d'actions d'un conversation `:promptExtractActions`](#extraire-une-liste-dactions-dun-conversation-promptextractactions)
   - [Extraire une règle d'une conversation `:promptExtractSingleRule`](#extraire-une-règle-dune-conversation-promptextractsinglerule)
   - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
@@ -48,6 +49,7 @@
 - [**🧪 Tests**](#-tests)
   - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
+  - [Générer un test pour un use-case `:testUseCase`](#générer-un-test-pour-un-use-case-testusecase)
 - [**📚 Documentation**](#-documentation)
   - [Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`](#instructions-de-wireframe-à-partir-dune-spec-docwireframeinstructions)
   - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
@@ -310,7 +312,7 @@ ACTION:
 2) Once you are clear about the topic or theme, please also review the Format and Example provided below.
 3) If necessary, the prompt should include “fill in the blank” elements for the user to populate based on their needs. 
 4) Take a deep breath and take it one step at a time.
-5) Once you've ingested all of the information, write the best prompt ever created.
+5) Once you've ingested all of the information, write the best prompt ever created in english.
 
 FORMAT:
 For organizational purposes, you will use an acronym called "C.R.A.F.T." where each letter of the acronym CRAFT represents a section of the prompt. Your format and section descriptions for this prompt development are as follows:
@@ -322,16 +324,29 @@ For organizational purposes, you will use an acronym called "C.R.A.F.T." where e
 -Action: This is the action that the prompt will ask the LLM to take.  It should be a numbered list of sequential steps that will make the most sense for an LLM to follow in order to maximize success.
 
 -Format: This refers to the structural arrangement or presentation style of the LLM’s generated content. It determines how information is organized, displayed, or encoded to meet specific user preferences or requirements. Format types include: An essay, a table, a coding language, plain text, markdown, a summary, a list, etc.
+````
 
--Target Audience: This will be the ultimate consumer of the output that your prompt creates. It can include demographic information, geographic information, language spoken, reading level, preferences, etc.
+</details>
 
-TARGET AUDIENCE:
-The target audience for this prompt creation is ChatGPT 4o or ChatGPT o1. 
+### Lister les bonnes pratiques `:promptBestPractices`
 
-Please reference the example I have just provided for your output.  Again, take a deep breath and take it one step at a time.
-```
-</template>
+> Liste les bonnes pratiques d'un élément donné sous forme de liste.
 
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+Goal: List all the best practices for a given element.
+
+Element: "[[element]]"
+
+Rules:
+- Use bullet points.
+- Be concise and clear.
+- At least 5 best practices.
+- Look for the most relevant practices.
+- No need to explain, just list them.
 ````
 
 </details>
@@ -423,6 +438,8 @@ Act as en **elite Prompt Engineer** that transform prompt into high performing p
 ### Corriger les faiblesses de l'IA `:promptStart`
 
 > L'IA a déjà subit un "pre-prompt" qui va influencer votre conversation, voici comment contourner les limites imposées.
+>
+> À utiliser lorsque l'IA vous répond à côté ou ne rend pas l'ensemble du code !
 
 <details>
 <summary>Voir le prompt</summary>
@@ -594,7 +611,8 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 ## Step: 1: Load the Knowledge Base
 - Please load "knowledgeBase".
 - Print all steps in short numbered list so the user know what we are doing.
-- Ask user: "What is the feature you want to build?"
+- If conversation is empty: Ask user "What is the feature you want to build?"
+- If conversation is not empty, go to next step.
 
 ## Step 2: Clarify intentions
 - Based on knowledge base, ask the user to clarify the intentions.
@@ -623,6 +641,8 @@ Instructions Template:
 ```markdown
 # Instruction: {title}
 
+> Please follow this plan using proper rules.
+
 ## Goal
 {goal}
 
@@ -636,12 +656,12 @@ Instructions Template:
 
 > {goal}
 
-- [ ] {task1}  
-- [ ] {task2}
+- {task1}  
+- {task2}
 
 ## Validation checkpoints
 
-- [ ] {verification1}  
+- {verification1}  
 ```
 
 ### Step 5: Final Review
@@ -1766,6 +1786,59 @@ Implementation files to check:
 Test files to check (if any):
 #file
 ```
+
+</details>
+
+### Générer un test pour un use-case `:testUseCase`
+
+> Permet de générer un test pour un cas d'utilisation donné, orienté métier.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+**C.R.A.F.T. Prompt: Functional Test Generation for a Use Case**
+
+---
+
+**Context**  
+Generate a robust functional test for a specific use case. The test must follow best practices, validate real user actions, and handle both normal and error scenarios. It should focus on business functionality rather than technical aspects and adapt to the tools and frameworks available in the project.
+
+**Role**  
+Act as a software testing expert with 20+ years of experience in user-centric functional testing. You apply best practices and ensure tests reflect real-world user interactions within the business domain.
+
+**Action**  
+1. **Identify user actions to test** :
+   - Analyze the provided "[[use-case]]".
+   - List all relevant user inputs and interactions.
+   - Cover both normal and erroneous user behaviors.
+   - Identify edge cases and unusual but possible user actions.
+
+2. **Validate with the user** :
+   - Confirm the list of expected user actions and system responses.
+
+3. **Generate test data** :
+   - Provide realistic user input scenarios (valid and invalid).
+   - Include cases where a user might make mistakes or unexpected actions.
+   - Ensure full coverage of business-critical situations.
+
+4. **Adapt to project tools** :
+   - Detect and use the appropriate testing framework.
+   - Integrate with existing tools in project.
+
+5. **Generate the user-centric functional test** :
+   - Produce a structured test script focusing on business logic.
+   - Write tests as if a user were interacting with the system.
+   - Validate expected behaviors from a business perspective.
+   - Ensure meaningful error handling and feedback to users.
+
+6. **Verify and finalize** :
+   - Request user validation of the generated test.
+   - Suggest optimizations if needed.
+
+**Format**  
+The test will be generated as a code file in the project’s language. A structured summary of real-world test cases and business assumptions will also be provided.
+````
 
 </details>
 
