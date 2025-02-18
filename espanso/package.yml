@@ -65,11 +65,43 @@ matches:
       Element: "[[element]]"
 
       Rules:
-      - Use bullet points.
+      - List top 10 best practices in 2025.
+      - Sort best most popular practices first.
       - Be concise and clear.
-      - At least 5 best practices.
-      - Look for the most relevant practices.
-      - No need to explain, just list them.
+      - Use bullet points with short sentences focus on delivery.
+  - trigger: ':promptExtractRules'
+    form: |+
+      Goal: Extract rules for our developer team based on our conversation.
+
+      Rules:
+      - List main rules to extract with the most value for the developer team.
+      - Use bullet points with short sentences.
+      - Output in expect format (replace `{placeholders}`)
+      - Be accurate and concise.
+
+      Expected format:
+      ````mdc
+      ---
+      file: {file-name-with.mdc}
+      description: {when to apply the rule}
+      globs: {which paths}
+      ---
+
+      > {When }
+
+      ## {Main rule}
+      - {rule 1}
+      - {rule 2}
+      - {rule 3}
+      ...
+
+      ## {Rule} : Example
+      ```
+      ...
+      ```
+
+      ````
+
   - trigger: ':promptExtractActions'
     form: |
       Summarize actions I need to do regarding that just specific part.
@@ -537,6 +569,15 @@ matches:
           objects
           types
           interfaces
+  - trigger: ':codeDeepResearch'
+    form: |
+      "I want you to write up-to-date, fantastic code that will run on the first try. Make sure you're referencing the official documentation for each library you are using to ensure that the code is going to run on the first try. Make sure everything is triple-checked.
+
+      <code_to_write>
+      $describe_code_here
+      </code_to_write>
+
+      Research and figure out how to do this. Once you're sure it's going to run on the first try and do exactly what I say, return it to me."
   - trigger: ':codeFake'
     form: |
       Goal:
@@ -612,9 +653,9 @@ matches:
     form: |
       Goal: Find the bug in my codebase based on the issue description.
 
-      Issue: "[Issue description]".
+      Issue: "[[issue_description]]".
 
-      Expected behavior: "[Expected behavior]".
+      Expected behavior: "[[expected_behavior]]".
 
       Ordered Steps:
       - Summarize the issue with you own words.
@@ -625,6 +666,9 @@ matches:
       - Wait for user's confirmation before proceeding.
       - Once confirmed, provide the 3 best steps to fix the issue.
       - Ask for confirmation before proceeding.
+  - trigger: ':bugRethink'
+    form: |
+      Reflect on 5-7 different possible source of the problem, distill those down to 1-2 most likely sources, and the add logs to validate your assumptions before we move onto the implementing the actual code fix
   - trigger: ':debugLog'
     form: "Goal:\nAdd logging messages to the given code at each significant step.\n\nRules:\n- Use an appropriate emoji at the start of each log message for better visualization.\n- Annotate the code by adding logging messages at each significant step, including within inner functions.\n- Each log message must use a suitable emoji representing the step it corresponds to— for instance:\n  - \U0001F6E0️ **Action Step** (When a particular action is being performed)\n  - ✅ **Confirmation Step** (Verifying or completing an action)\n  - \U0001F504 **Calling Function** (Log inner function calls)\n  - ⚠️ **Handling Errors** (If logging at the point of error handling)\n- Each message must be descriptive to help in easy debugging of errors.\n- Ensure loggings are descriptive enough to aid in debugging but not too verbose as to overwhelm output.\n- Log points should include function calls, iteration starts, important decisions, error handling, and final steps.\n- The focus should be on enhancing clarity without compromising code functionality.\n"
   - trigger: ':debugInconsistency'
@@ -954,6 +998,10 @@ matches:
         values: |-
           left-to-right
           top-to-bottom
+  - trigger: ':refactFeature'
+    form: |+
+
+
   - trigger: ':refactComment'
     form: |
       # Goal
