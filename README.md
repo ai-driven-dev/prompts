@@ -19,6 +19,7 @@
     - [Exemple d'application du template dans un prompt avec Cursor](#exemple-dapplication-du-template-dans-un-prompt-avec-cursor)
   - [Créer un prompt (méthode CRAFT) `:promptCreate`](#créer-un-prompt-méthode-craft-promptcreate)
   - [Lister les bonnes pratiques `:promptBestPractices`](#lister-les-bonnes-pratiques-promptbestpractices)
+  - [Extraire une liste de règles `:promptExtractRules`](#extraire-une-liste-de-règles-promptextractrules)
   - [Extraire une liste d'actions d'un conversation `:promptExtractActions`](#extraire-une-liste-dactions-dun-conversation-promptextractactions)
   - [Extraire une règle d'une conversation `:promptExtractSingleRule`](#extraire-une-règle-dune-conversation-promptextractsinglerule)
   - [Optimiser un prompt `:promptOpt`](#optimiser-un-prompt-promptopt)
@@ -38,12 +39,14 @@
   - [Générer schéma SQL depuis des spécifications `:dbGenSQL`](#générer-schéma-sql-depuis-des-spécifications-dbgensql)
   - [Générer des entités à partir d'un schéma SQL `:dbGenEntity`](#générer-des-entités-à-partir-dun-schéma-sql-dbgenentity)
 - [**🚀 Génération de code**](#-génération-de-code)
+  - [Écrire du code depuis une Deep Research `:codeDeepResearch`](#écrire-du-code-depuis-une-deep-research-codedeepresearch)
   - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
   - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
 - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
   - [Corriger un bug technique (avec message d'erreur) `:bugFinder`](#corriger-un-bug-technique-avec-message-derreur-bugfinder)
   - [Corriger un bug fonctionnel (on ne sait où ce qui le cause) `:bugReveal`](#corriger-un-bug-fonctionnel-on-ne-sait-où-ce-qui-le-cause-bugreveal)
+  - [Empêcher l'IA Editor de tourner en rond sur un bug `:bugRethink`](#empêcher-lia-editor-de-tourner-en-rond-sur-un-bug-bugrethink)
   - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
   - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
 - [**🧪 Tests**](#-tests)
@@ -55,6 +58,7 @@
   - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
   - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
 - [**🔄 Refactoring**](#-refactoring)
+  - [Changer le scope d'une feature `:refactFeature`](#changer-le-scope-dune-feature-refactfeature)
   - [Ajouter des commentaires au code `:refactComment`](#ajouter-des-commentaires-au-code-refactcomment)
   - [Créer un nouveau fichier générique `:refactGeneric`](#créer-un-nouveau-fichier-générique-refactgeneric)
   - [Beautifier un code `:refactOpt`](#beautifier-un-code-refactopt)
@@ -88,6 +92,8 @@
     - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
 - [🏄‍♂️ Prompts de raisonnement](#️-prompts-de-raisonnement)
   - [Audit du code `:reasonCodeAudit`](#audit-du-code-reasoncodeaudit)
+- [🕵 Agents](#-agents)
+  - [Refactoring Agent](#refactoring-agent)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -342,12 +348,54 @@ Goal: List all the best practices for a given element.
 Element: "[[element]]"
 
 Rules:
-- Use bullet points.
+- List top 10 best practices in 2025.
+- Sort best most popular practices first.
 - Be concise and clear.
-- At least 5 best practices.
-- Look for the most relevant practices.
-- No need to explain, just list them.
+- Use bullet points with short sentences focus on delivery.
 ````
+
+</details>
+
+### Extraire une liste de règles `:promptExtractRules`
+
+> Vous avez discuté avec l'IA et vous êtes ok sur la manière de faire ? On sort les règles dans des `rules` !
+
+<details>
+<summary>Voir le prompt</summary>
+
+`````markdown
+Goal: Extract rules for our developer team based on our conversation.
+
+Rules:
+- List main rules to extract with the most value for the developer team.
+- Use bullet points with short sentences.
+- Output in expect format (replace `{placeholders}`)
+- Be accurate and concise.
+
+Expected format:
+````mdc
+---
+file: {file-name-with.mdc}
+description: {when to apply the rule}
+globs: {which paths}
+---
+
+> {When }
+
+## {Main rule}
+- {rule 1}
+- {rule 2}
+- {rule 3}
+...
+
+## {Rule} : Example
+```
+...
+```
+
+````
+
+`````
 
 </details>
 
@@ -1485,6 +1533,25 @@ Rules:
 
 ## **🚀 Génération de code**
 
+### Écrire du code depuis une Deep Research `:codeDeepResearch`
+
+> Aller rechercher et écrire du code à jour depuis internet en utilisant Deep Research.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+"I want you to write up-to-date, fantastic code that will run on the first try. Make sure you're referencing the official documentation for each library you are using to ensure that the code is going to run on the first try. Make sure everything is triple-checked.
+
+<code_to_write>
+$describe_code_here
+</code_to_write>
+
+Research and figure out how to do this. Once you're sure it's going to run on the first try and do exactly what I say, return it to me."
+````
+
+</details>
+
 ### Générer des données factices `:codeFake`
 
 > Permet de générer des données factices rapidement pour un mock par exemple.
@@ -1600,9 +1667,9 @@ Train your analysis on data up to October 2023 for the most recent insights.
 ```markdown
 Goal: Find the bug in my codebase based on the issue description.
 
-Issue: "[Issue description]".
+Issue: "[[Issue description]]".
 
-Expected behavior: "[Expected behavior]".
+Expected behavior: "[[Expected behavior]]".
 
 Ordered Steps:
 - Summarize the issue with you own words.
@@ -1613,6 +1680,17 @@ Ordered Steps:
 - Wait for user's confirmation before proceeding.
 - Once confirmed, provide the 3 best steps to fix the issue.
 - Ask for confirmation before proceeding.
+```
+
+### Empêcher l'IA Editor de tourner en rond sur un bug `:bugRethink`
+
+> Lorsque l'IA tourne en boucle sur une même correction de bug.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+```markdown
+Reflect on 5-7 different possible source of the problem, distill those down to 1-2 most likely sources, and the add logs to validate your assumptions before we move onto the implementing the actual code fix
 ```
 
 </details>
@@ -2031,6 +2109,24 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 </details>
 
 ## **🔄 Refactoring**
+
+### Changer le scope d'une feature `:refactFeature`
+
+> Change le scope d'une feature vers un autre besoin ou une autre technique.
+
+Exemple :
+
+- Changer de lib d'Authentification `passport-google-oauth20` vers une autre `google-apis` en gardant l'auth JWT.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+
+
+````
+
+</details>
 
 ### Ajouter des commentaires au code `:refactComment`
 
@@ -2933,6 +3029,29 @@ ONE_FILE_KNOWLEDGE_BASE_HERE
 REPOPROMPT_YOUR_CODE_HERE
 </codebase>
 ```
+````
+
+</details>
+
+## 🕵 Agents
+
+### Refactoring Agent
+
+> Cet agent est spécialisé dans la refonte de grosses features, de projets ou de codebases.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Act as a senior software engineer architect, specializing in refactoring and complex features. Your task is to guide a developer in implementing a complex feature with precision and accuracy. Your guidance must ensure the highest quality solution, as the developer's job depends on successful implementation.
+
+To effectively assist, adhere to the following:
+
+- Use the latest libraries and technologies.
+- Ask clarifying questions to fully understand the developer's requirements and constraints.
+- Provide step-by-step guidance tailored to the task at hand.
+- Ensure your solutions are thorough and consider edge cases.
+- Demonstrate best practices and modern design patterns.
 ````
 
 </details>
