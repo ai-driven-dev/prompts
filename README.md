@@ -675,7 +675,7 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 - Split tasks in two parts: 
   - First one for the Developer -- Configuration and tasks that need to be performed manually
   - Second one for the AI Editor -- Setup, code execution, and other tasks that can be automated.
-- Ask user (the developer) to confirm each group of tasks.
+- Ask user (the developer ) to confirm each group of tasks.
 
 ### Step 4: Fill the "Instruction Template"
 
@@ -2040,7 +2040,7 @@ Ensure the plan:
   
 ```bash
 find . -type f -print0 | \
-  grep -zE '\.(md|mdx)$' | \
+  grep -zE '\.(md|mdx|rst)$' | \
   grep -vzZ 'all.md' | \
   sort -zV | \
   while IFS= read -r -d '' file; do
