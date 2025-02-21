@@ -39,6 +39,7 @@
   - [Générer schéma SQL depuis des spécifications `:dbGenSQL`](#générer-schéma-sql-depuis-des-spécifications-dbgensql)
   - [Générer des entités à partir d'un schéma SQL `:dbGenEntity`](#générer-des-entités-à-partir-dun-schéma-sql-dbgenentity)
 - [**🚀 Génération de code**](#-génération-de-code)
+  - [Demander à l'AI Editor de coder le plan `:codeFromPlan`](#demander-à-lai-editor-de-coder-le-plan-codefromplan)
   - [Écrire du code depuis une Deep Research `:codeDeepResearch`](#écrire-du-code-depuis-une-deep-research-codedeepresearch)
   - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
@@ -509,7 +510,7 @@ Collection de prompts pour générer des fonctionnalités.
 
 ### Liste d'user-stories pour une épique `:featureUserStories`
 
-> En cours...
+> Permet d'écrire une liste d'user-stories, pour aller dans une épique donnée. Si vous souhaitez une US très détaillée, utilisez `:featureUserStory`.
 
 <details>
   <summary>Voir le prompt</summary>
@@ -655,6 +656,7 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 
 - IMPORTANT RULE: **Explicit user confirmation is required at each step, wait for his approval before going to next step.**
 - Print current step at the beginning of each step.
+- Use short and concise bullets points, minimal words.
 
 ## Step: 1: Load the Knowledge Base
 - Please load "knowledgeBase".
@@ -668,22 +670,19 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 - Challenge technical choices, how will it be implemented?
 
 ### Step 3: Confirmation by the developer
-- Print MAJOR tasks in ULTRA SHORT bullet points.
+- Print MAJOR tasks in groups.
+- ULTRA SHORT bullet points.
 - Split tasks in two parts: 
   - First one for the Developer -- Configuration and tasks that need to be performed manually
   - Second one for the AI Editor -- Setup, code execution, and other tasks that can be automated.
+- Ask user (the developer) to confirm each group of tasks.
 
 ### Step 4: Fill the "Instruction Template"
 
-- Put in a canvas.
-- No code generation.
-- Fill "Instruction Template"
-- Use short and concise bullets points, minimal words.
-- Translate instructions in English.
-- No emojis.
+- Fill "Instruction Template" in a Canvas.
+- Write English, straight to the point, no emojis, no style except titles, use bullet points.
 - Replace placeholders (`{variables}`) with actual user inputs.
-- No Markdown style: only headings, bullet points, and links.
-- Format: text block markdown surrounded by 4 backticks (inside code blocks are surrounded by 3 backticks).
+- Define flow of the feature, from start to end of what AI Editor should do.
 
 Instructions Template:
 ```markdown
@@ -694,18 +693,30 @@ Instructions Template:
 ## Goal
 {goal}
 
-## Affected files
+## Existing files
 
-{from knowledge base, simple paths list of affected files - if any}
+{get affected files from knowledge base, no comments}
 
-## Tasks  
+### New file to create
 
-### {task1}  
+{not found in knowledge base, no comments}
+
+## Grouped tasks
+
+### {Group 1}  
 
 > {goal}
 
-- {task1}  
-- {task2}
+- {task1, with logical bridge to task2}
+- {task2}  
+...
+
+### {Group 2}
+
+> {goal}
+
+- {task1}
+...
 
 ## Validation checkpoints
 
@@ -715,6 +726,9 @@ Instructions Template:
 ### Step 5: Final Review
 - Print official documentations URLs related to the feature.
 - Do a full review (list inconsistencies, ambiguities, missing details).
+- Evaluate confidence to implement, 0 = no confidence, 100 = 100% sure everything is correct.
+- Simulate the feature as you were hypothetically building it following the plan, identify what can go wrong.
+- Check for best practices.
 - Propose enhancements.
 - Independently check for:  
    - **Completeness** → Are all key details covered?  
@@ -800,7 +814,7 @@ Rules:
    - If you do have one, confirm with the user, confirm first it is up-to-date.
    - If you don't know it, ask the user to provide it.  
    - If it doesn't exist, the user will let you know.  
-  - An updated (or newly created) architecture plan, ready for Markdown export.
+  - An updated (or newly created) architecture plan, ready for Markdown export (no emoji, no style in markdown, except titles).
   - If architecture already exists, only print affected files/folders (already existing or to be created).
 
 **Important**: Do not move to Phase 3 until the user confirms Phase 2.
@@ -1532,6 +1546,21 @@ Rules:
 </details>
 
 ## **🚀 Génération de code**
+
+### Demander à l'AI Editor de coder le plan `:codeFromPlan`
+
+> Demander à l'AI Editor de coder un plan donné généré depuis les instructions.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Please follow carefully the given plan below and generate the code accordingly.
+
+- Assert that similar code, functions, or files do NOT exist before creating new ones.
+````
+
+</details>
 
 ### Écrire du code depuis une Deep Research `:codeDeepResearch`
 
