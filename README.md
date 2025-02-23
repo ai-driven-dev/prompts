@@ -1711,6 +1711,8 @@ Ordered Steps:
 - Ask for confirmation before proceeding.
 ```
 
+</details>
+
 ### Empêcher l'IA Editor de tourner en rond sur un bug `:bugRethink`
 
 > Lorsque l'IA tourne en boucle sur une même correction de bug.
