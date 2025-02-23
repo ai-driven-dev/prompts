@@ -2993,6 +2993,8 @@ Output:
 find . -type d -empty -exec rm -i -d {} +
 ```
 
+</details>
+
 ### OSX
 
 #### Mettre à jour Homebrew `:osxBrew`
