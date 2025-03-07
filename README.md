@@ -53,15 +53,18 @@
 - [**🧪 Tests**](#-tests)
   - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
-  - [Générer un test pour un use-case `:testUseCase`](#générer-un-test-pour-un-use-case-testusecase)
+  - [Générer un test unitaire pour un fichier `:testUnit`](#générer-un-test-unitaire-pour-un-fichier-testunit)
 - [**📚 Documentation**](#-documentation)
   - [Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`](#instructions-de-wireframe-à-partir-dune-spec-docwireframeinstructions)
   - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
   - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
+- [**🙏 Maintenance**](#-maintenance)
+  - [Montée de version `:maintenanceUpdateDeps`](#montée-de-version-maintenanceupdatedeps)
 - [**🔄 Refactoring**](#-refactoring)
-  - [Changer le scope d'une feature `:refactFeature`](#changer-le-scope-dune-feature-refactfeature)
+  - [Suggestion de refactoring : `:refactSuggest`](#suggestion-de-refactoring--refactsuggest)
   - [Ajouter des commentaires au code `:refactComment`](#ajouter-des-commentaires-au-code-refactcomment)
   - [Créer un nouveau fichier générique `:refactGeneric`](#créer-un-nouveau-fichier-générique-refactgeneric)
+  - [SRP - Single Responsibility Principle `:refactSRP`](#srp---single-responsibility-principle-refactsrp)
   - [Beautifier un code `:refactOpt`](#beautifier-un-code-refactopt)
   - [Optimiser les performances d'un code `:refactPerf`](#optimiser-les-performances-dun-code-refactperf)
   - [Refactor un fichier `:refactFile`](#refactor-un-fichier-refactfile)
@@ -679,7 +682,7 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 
 ### Step 4: Fill the "Instruction Template"
 
-- Fill "Instruction Template" in a Canvas.
+- Fill "Instruction Template".
 - Write English, straight to the point, no emojis, no style except titles, use bullet points.
 - Replace placeholders (`{variables}`) with actual user inputs.
 - Define flow of the feature, from start to end of what AI Editor should do.
@@ -724,6 +727,7 @@ Instructions Template:
 ```
 
 ### Step 5: Final Review
+- Export in a Canvas.
 - Print official documentations URLs related to the feature.
 - Do a full review (list inconsistencies, ambiguities, missing details).
 - Evaluate confidence to implement, 0 = no confidence, 100 = 100% sure everything is correct.
@@ -1899,27 +1903,26 @@ Test files to check (if any):
 
 </details>
 
-### Générer un test pour un use-case `:testUseCase`
+### Générer un test unitaire pour un fichier `:testUnit`
 
-> Permet de générer un test pour un cas d'utilisation donné, orienté métier.
+> Permet de générer un test unitaire pour un cas d'utilisation donné, orienté métier, depuis un fichier.
 
 <details>
   <summary>Voir le prompt</summary>
   
 ````markdown
-**C.R.A.F.T. Prompt: Functional Test Generation for a Use Case**
-
----
-
 **Context**  
-Generate a robust functional test for a specific use case. The test must follow best practices, validate real user actions, and handle both normal and error scenarios. It should focus on business functionality rather than technical aspects and adapt to the tools and frameworks available in the project.
+Generate a robust functional test for a specific use case.
+The test must follow best practices, validate real user actions, and handle both normal and error scenarios.
+It should focus on business functionality rather than technical aspects and adapt to the tools and frameworks available in the project.
 
 **Role**  
-Act as a software testing expert with 20+ years of experience in user-centric functional testing. You apply best practices and ensure tests reflect real-world user interactions within the business domain.
+Act as a software testing expert with 20+ years of experience in user-centric functional testing
+ You apply best practices and ensure tests reflect real-world user interactions within the business domain.
 
 **Action**  
 1. **Identify user actions to test** :
-   - Analyze the provided "[[use-case]]".
+   - Analyze the provided domain logic in file.
    - List all relevant user inputs and interactions.
    - Cover both normal and erroneous user behaviors.
    - Identify edge cases and unusual but possible user actions.
@@ -2139,22 +2142,68 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 
 </details>
 
-## **🔄 Refactoring**
+## **🙏 Maintenance**
 
-### Changer le scope d'une feature `:refactFeature`
+### Montée de version `:maintenanceUpdateDeps`
 
-> Change le scope d'une feature vers un autre besoin ou une autre technique.
+> Permet de mettre à jour les dépendances d'un projet vers une nouvelle version.
 
-Exemple :
+Paramètres :
 
-- Changer de lib d'Authentification `passport-google-oauth20` vers une autre `google-apis` en gardant l'auth JWT.
+- Les fichiers de configuration.
+- Les URLs des guides de mise à jour.
+- Fichiers à changer globalement.
 
 <details>
   <summary>Voir le prompt</summary>
   
 ````markdown
+Goal:
+Update the dependencies of the project to the latest versions.
 
+Rules:
+- Follow provided upgrade instructions.
+- Information in your knowledge base might be wrong, always check the official documentation.
 
+Steps:
+- List essentials steps for the upgrade.
+- Check the provided configuration files.
+- Update the dependencies.
+- Update the configuration files.
+- Check upgrades match the upgrade guides.
+
+Update Instructions URLs:
+- [[Upgrade guide URL]]
+- [[Changelog URL]]
+
+Configuration files:
+
+````
+
+</details>
+
+## **🔄 Refactoring**
+
+### Suggestion de refactoring : `:refactSuggest`
+
+> Permet de suggérer des améliorations de code.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal: Refactor the code to improve readability, maintainability, and performance.
+
+Steps:
+- List stack that is used.
+- List existing design patterns or specifications.
+- Analyze the code and identify areas for improvement.
+- Suggest refactoring techniques to enhance the code.
+- Provide a detailed explanation for each suggestion.
+- Ensure the code remains functional and efficient after refactoring.
+
+Constraints:
+- Wait for developer to approve the plan, do not apply it until confirmation
 ````
 
 </details>
@@ -2221,6 +2270,27 @@ Rules:
 3. List the steps to achieve the refactoring.
 4. Provide the code to add or modify (do not make unnecessary changes).
 ```
+
+</details>
+
+### SRP - Single Responsibility Principle `:refactSRP`
+
+> Permet de refactoriser un code pour respecter le principe de responsabilité unique (sur un fichier).
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Analyze the provided code and outline a refactoring plan SRP-compliant.
+
+Steps:
+- Identify the main responsibilities of the code.
+- Split the code into separate functions or classes based on responsibilities.
+- Ensure each function, component or class has a single responsibility.
+- Provide a detailed explanation for each refactoring step.
+- Ensure the code remains functional and efficient after refactoring.
+````
 
 </details>
 
