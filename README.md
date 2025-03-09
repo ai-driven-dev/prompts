@@ -98,6 +98,10 @@
   - [Audit du code `:reasonCodeAudit`](#audit-du-code-reasoncodeaudit)
 - [🕵 Agents](#-agents)
   - [Refactoring Agent](#refactoring-agent)
+- [Cours](#cours)
+  - [Créer un nouveau programme de cours `:courseCreate`](#créer-un-nouveau-programme-de-cours-coursecreate)
+  - [Développer un chapitre `:courseExpandChapter`](#développer-un-chapitre-courseexpandchapter)
+  - [Convertir un chapitre Sli.dev `:courseConvertSlidev`](#convertir-un-chapitre-slidev-courseconvertslidev)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -3155,6 +3159,50 @@ To effectively assist, adhere to the following:
 - Provide step-by-step guidance tailored to the task at hand.
 - Ensure your solutions are thorough and consider edge cases.
 - Demonstrate best practices and modern design patterns.
+````
+
+</details>
+
+## Cours
+
+### Créer un nouveau programme de cours `:courseCreate`
+
+> Permet de créer un nouveau programme de cours complet, de A à Z.
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+
+````
+
+</details>
+
+### Développer un chapitre `:courseExpandChapter`
+
+> Permet de développer un chapitre de cours de manière exhaustive.
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+
+````
+
+</details>
+
+### Convertir un chapitre Sli.dev `:courseConvertSlidev`
+
+> Permet de convertir un chapitre de cours markdown en Slides Sli.dev.
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+
 ````
 
 </details>
