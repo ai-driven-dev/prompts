@@ -697,7 +697,7 @@ Structuring precise coding instructions for the **AI Editor** with the help of t
 - Replace placeholders (`{variables}`) with actual user inputs.
 - Define flow of the feature, from start to end of what AI Editor should do.
 
-Instructions Template:
+Instructions Template in English:
 ```markdown
 # Instruction: {title}
 
