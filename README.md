@@ -13,6 +13,7 @@
     - [Màj automatique via Launchd (OSX)](#màj-automatique-via-launchd-osx)
   - [4) Problèmes connus](#4-problèmes-connus)
 - [**🔥 Contribution**](#-contribution)
+  - [Ressources supplémentaires](#ressources-supplémentaires)
 - [**👌 Bonnes pratiques de prompt**](#-bonnes-pratiques-de-prompt)
   - [Template de prompt "parfait" `:promptTemplate`](#template-de-prompt-parfait-prompttemplate)
     - [Template](#template)
@@ -242,6 +243,11 @@ backend: clipboard
 - Vous souhaitez ajouter un prompt ?
 
 > Voir [CONTRIBUTION.md](CONTRIBUTION.md) pour plus de détails. 😍
+
+### Ressources supplémentaires
+
+- [Bolt](https://github.com/stackblitz/bolt.new/blob/main/app/lib/.server/llm/prompts.ts) - Prompts pour StackBlitz
+- [Supabase](https://github.com/supabase/supabase/tree/master/examples/prompts) - Prompts pour Supabase
 
 ## **👌 Bonnes pratiques de prompt**
 
