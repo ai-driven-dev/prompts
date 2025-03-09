@@ -99,10 +99,10 @@
   - [Audit du code `:reasonCodeAudit`](#audit-du-code-reasoncodeaudit)
 - [🕵 Agents](#-agents)
   - [Refactoring Agent](#refactoring-agent)
-- [Cours](#cours)
-  - [Créer un nouveau programme de cours `:courseCreate`](#créer-un-nouveau-programme-de-cours-coursecreate)
-  - [Développer un chapitre `:courseExpandChapter`](#développer-un-chapitre-courseexpandchapter)
-  - [Convertir un chapitre Sli.dev `:courseConvertSlidev`](#convertir-un-chapitre-slidev-courseconvertslidev)
+- [🎬 Présentation](#-présentation)
+  - [Créer un programme / plan `:presentationCreate`](#créer-un-programme--plan-presentationcreate)
+  - [Développer une sous-partie du programme  `:presentationExpand`](#développer-une-sous-partie-du-programme--presentationexpand)
+  - [Convertir une sous-partie vers des slides `:presentationConvert`](#convertir-une-sous-partie-vers-des-slides-presentationconvert)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -3169,11 +3169,131 @@ To effectively assist, adhere to the following:
 
 </details>
 
-## Cours
+## 🎬 Présentation
 
-### Créer un nouveau programme de cours `:courseCreate`
+### Créer un programme / plan `:presentationCreate`
 
-> Permet de créer un nouveau programme de cours complet, de A à Z.
+> Créer un nouveau programme complet concernant un sujet en rédigeant un plan de A à Z.
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+**Context:**
+You are creating a comprehensive outline for a course or presentation, aiming to clearly organize content into structured, logical groupings from high-level topics to detailed granular points. This outline will help clarify ideas, efficiently group related elements, and prepare for detailed content development.
+
+**Role:**
+You are an expert educational curriculum designer and professional presenter with over 20 years of experience. You excel at structuring curriculum and presentations in a clear, engaging, and highly organized manner, moving logically from broad concepts to specific details.
+
+**Process:**
+1. **Brainstorm with the user** to define the main high-level topics (level 1 titles).
+2. Identify logical **sub-sections** within these topics (level 2 titles).
+3. Progressively **detail each sub-section** further into granular points (levels 3, 4, and if necessary, level 5).
+4. Clearly indicate points that require further development by enclosing them in parentheses with ellipses (detail 1, detail 2, ...).
+5. **Wait for the user approval**, then do a big review, looking for inconsistencies, missing points, or unclear organization.
+6. Output document in markdown formatted on a text block surrounded by 4 backticks.
+
+**Format (strictly markdown numbered list):**
+1. Main Topic
+   1.1. Sub-section
+      1.1.1. Detailed Point (detail 1, detail 2, ...)
+         1.1.1.1. Further Detailed Point (example, note, ...)
+            1.1.1.1.1. Highly Specific Point (additional info, further explanation, ...)
+
+**Example (Introduction to Artificial Intelligence for Developers):**
+1. Introduction to Artificial Intelligence
+   1.1. AI Fundamentals
+      1.1.1. Definition of AI (AI basics, core concepts, ...)
+      1.1.2. Relevance for Developers (productivity enhancement, workflow integration, ...)
+   1.2. Practical AI Applications
+      1.2.1. Common Use Cases (automation, analysis, prediction, ...)
+      1.2.2. Tools and Resources (frameworks, APIs, platforms, ...)
+
+**Assessments:**
+- Suggest assessment methods to gauge understanding (quizzes, practical tasks, projects, ...).
+
+**Implementation Guidance:**
+- Provide concise suggestions on effectively structuring and delivering content to optimize learner engagement and retention.
+- Recommend methods to incrementally introduce complexity while maintaining clarity and coherence throughout the program.
+````
+
+</details>
+
+<details>
+
+<summary>Exemple</summary>
+
+````markdown
+# Plan du cours : Introduction à l’IA pour développeurs (2h)
+
+## 1. Introduction (10 min)
+1.1. Objectifs pédagogiques
+- 1.1.1. Découvrir l’intérêt pratique de l’IA pour les développeurs (automatisation, gain de temps, précision)
+- 1.1.2. Présentation rapide du déroulement (démo manuelle → IA automatisée → atelier pratique GPT/Copilot)
+
+# 1. Démonstration initiale manuelle (20 min)
+   1.1. Présentation rapide de la fonctionnalité (système d'émargement simple : nom, prénom, validation présence)
+      1.1.1. Objectif concret de l’émargement (saisie rapide des données utilisateur, stockage en base)
+      1.1.2. Stack technique utilisée :
+         - Docker (pour rapidité et simplicité d'environnement)
+         - PHP dernière version
+         - MySQL (base de données légère et rapide)
+         - Laravel avec Lucene (pour recherche plein-texte performante)
+         - Vue.js (frontend simple via API REST)
+   1.2. Mise en place rapide du projet
+      1.2.1. Installation Docker rapide
+      1.2.2. Configuration basique Laravel avec Lucene (routes, controllers, modèles SQL simplifiés)
+      1.2.2. Création rapide d’une API REST simple pour l'émargement
+      1.2.3. Développement frontend minimaliste avec Vue.js (interface utilisateur basique)
+
+# 2. Démonstration d'IA avec Claude Code (15 min)
+   2.1. Introduction rapide à Claude Code (assistant autonome qui code via IA)
+      2.1.1. Objectif : comparer au développement manuel précédent
+   2.2. Démonstration de Claude Code reproduisant la fonctionnalité précédente automatiquement
+      2.2.1. Critères comparatifs explicites :
+         - Temps de réalisation
+         - Qualité du code
+         - Facilité d’utilisation du résultat final
+   2.3. Questions-réponses pendant l’exécution (fonctionnement de l’IA, limites pratiques, avantages réels, cas d’usage simples)
+
+# 3. Installation et configuration des outils GPT/Copilot (30 min)
+   3.1. Installation rapide des outils
+      3.1.1. ChatGPT : meilleures pratiques pour développeurs (prompts, contexte minimal efficace, ...)
+      3.1.2. Copilot : configuration efficace et rapide (environnement IDE, prompts optimisés, gestion du contexte)
+   3.2. Prérequis techniques (rappel rapide au début pour s'assurer que tout le monde suit)
+      - Git
+      - Docker
+      - IDE recommandé : VSCode (avec extensions nécessaires)
+   3.2. Pièges courants à éviter dans la configuration (clarifier le contexte, éviter prompts vagues, limites techniques des outils IA)
+
+# 4. Atelier pratique : reproduire la fonctionnalité avec GPT/Copilot (40 min)
+   4.1. Objectif pratique précis :
+      - Refaire rapidement la même fonctionnalité d’émargement avec les assistants IA
+      - Se focaliser sur la rapidité et précision grâce à l’usage optimal des outils
+   4.2. Développement pas à pas guidé (avec suggestions pratiques d'utilisation des outils)
+      - Backend Laravel rapide via GPT/Copilot (création rapide API CRUD)
+      - Frontend Vue.js rapide (interface simple, appels Ajax, rafraîchissement auto)
+   4.3. Validation rapide finale (tests fonctionnels simplifiés, comparaison rapide avec les versions précédentes)
+
+# 5. Conclusion et évaluation rapide (10 min)
+   5.1. Synthèse rapide du cours :
+      - Apports pratiques immédiats de l’IA en développement
+      - Points clés d'utilisation efficace des outils IA (GPT, Copilot, Claude Code)
+   5.2. Quiz rapide (3-4 questions essentielles pour évaluer la compréhension immédiate)
+      - Exemples de questions rapides :
+         1. Quel intérêt concret apporte Docker dans ce contexte ?
+         2. Pourquoi utiliser Lucene avec Laravel ?
+         3. Citez un avantage principal de GPT/Copilot pour un développeur.
+   5.3. Ressources complémentaires (liens rapides vers Laravel, Lucene, Docker, GPT, Copilot, documentation officielle, repos GitHub, etc.)
+
+````
+
+</details>
+
+### Développer une sous-partie du programme  `:presentationExpand`
+
+> Permet de développer une sous-partie du plan de manière exhaustive.
 
 <details>
 
@@ -3185,23 +3305,9 @@ To effectively assist, adhere to the following:
 
 </details>
 
-### Développer un chapitre `:courseExpandChapter`
+### Convertir une sous-partie vers des slides `:presentationConvert`
 
-> Permet de développer un chapitre de cours de manière exhaustive.
-
-<details>
-
-<summary>Voir le prompt</summary>
-
-````markdown
-
-````
-
-</details>
-
-### Convertir un chapitre Sli.dev `:courseConvertSlidev`
-
-> Permet de convertir un chapitre de cours markdown en Slides Sli.dev.
+> Permet de convertir une sous-partie du programme depuis markdown vers <https://sli.dev>.
 
 <details>
 
