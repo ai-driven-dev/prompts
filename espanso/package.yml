@@ -1559,5 +1559,14 @@ matches:
       REPOPROMPT_YOUR_CODE_HERE
       </codebase>
       ```
+  - trigger: ':courseCreate'
+    form: |+
+
+  - trigger: ':courseExpandChapter'
+    form: |+
+
+  - trigger: ':courseConvertSlidev'
+    form: |+
+
 
 
