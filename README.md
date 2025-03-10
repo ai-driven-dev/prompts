@@ -95,11 +95,12 @@
   - [Supprimer les dossiers vide `:cmdEmptyFolders`](#supprimer-les-dossiers-vide-cmdemptyfolders)
   - [OSX](#osx)
     - [Mettre à jour Homebrew `:osxBrew`](#mettre-à-jour-homebrew-osxbrew)
-- [🏄‍♂️ Prompts de raisonnement](#️-prompts-de-raisonnement)
+- [**🏄‍♂️ Prompts de raisonnement**](#️-prompts-de-raisonnement)
+  - [Planification d'une feature `reasonFeaturePlan`](#planification-dune-feature-reasonfeatureplan)
   - [Audit du code `:reasonCodeAudit`](#audit-du-code-reasoncodeaudit)
-- [🕵 Agents](#-agents)
+- [**🕵 Agents**](#-agents)
   - [Refactoring Agent](#refactoring-agent)
-- [🎬 Présentation](#-présentation)
+- [**🎬 Présentation**](#-présentation)
   - [Créer un programme / plan `:presentationCreate`](#créer-un-programme--plan-presentationcreate)
   - [Développer une sous-partie du programme  `:presentationExpand`](#développer-une-sous-partie-du-programme--presentationexpand)
   - [Convertir une sous-partie vers des slides `:presentationConvert`](#convertir-une-sous-partie-vers-des-slides-presentationconvert)
@@ -3088,9 +3089,22 @@ brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup &
 
 </details>
 
-## 🏄‍♂️ Prompts de raisonnement
+## **🏄‍♂️ Prompts de raisonnement**
 
 > Ces prompts utilisent un système de raisonnement avec un long contexte, utilisez-les pour faire réfléchir l'IA sur de "gros sujets".
+
+### Planification d'une feature `reasonFeaturePlan`
+
+> Permet de planifier une feature en détail (sans la coder).
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+write out step by step the exact plan in details, then cross check your logic and DO NOT WRITE ANY CODE
+````
+
+</details>
 
 ### Audit du code `:reasonCodeAudit`
 
@@ -3146,7 +3160,7 @@ REPOPROMPT_YOUR_CODE_HERE
 
 </details>
 
-## 🕵 Agents
+## **🕵 Agents**
 
 ### Refactoring Agent
 
@@ -3169,7 +3183,7 @@ To effectively assist, adhere to the following:
 
 </details>
 
-## 🎬 Présentation
+## **🎬 Présentation**
 
 ### Créer un programme / plan `:presentationCreate`
 
