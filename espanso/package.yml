@@ -355,6 +355,7 @@ matches:
       ```
 
       ### Step 5: Final Review
+      - Translate in English.
       - Export in a Canvas.
       - Print official documentations URLs related to the feature.
       - Do a full review (list inconsistencies, ambiguities, missing details).
@@ -959,7 +960,7 @@ matches:
 
       ## Rules  
 
-      - Chart type: "[[bestformat___classdiagram___sequencediagram___statediagramv2___erdiagram___journey___timeline]]".  
+      - Chart type: "[[bestformat___flowchart___classdiagram___sequencediagram___statediagramv2___erdiagram___journey___timeline]]".  
       - Flow: "[[lefttoright___toptobottom]]".
       - Use Mermaid v10.8.0 minimum.
       - 100% valid Mermaid diagram is required.
@@ -1001,10 +1002,11 @@ matches:
       **Miscellaneous**:
       - Avoid `linkStyle`.
     form_fields:
-      bestformat___classdiagram___sequencediagram___statediagramv2___erdiagram___journey___timeline:
+      bestformat___flowchart___classdiagram___sequencediagram___statediagramv2___erdiagram___journey___timeline:
         type: list
         values: |-
           best-format
+          flowchart
           classDiagram
           sequenceDiagram
           stateDiagram-v2
@@ -1358,6 +1360,8 @@ matches:
   - trigger: ':chatEvaluate'
     form: |
       Thank you. Now:
+
+      0) Output text in user's preferred language.
 
       1) Evaluate your own work. List all its strength and flaws.
 
