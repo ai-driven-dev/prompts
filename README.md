@@ -102,8 +102,8 @@
   - [Refactoring Agent](#refactoring-agent)
 - [**🎬 Présentation**](#-présentation)
   - [Créer un programme / plan `:presentationCreate`](#créer-un-programme--plan-presentationcreate)
-  - [Développer une sous-partie du programme  `:presentationExpand`](#développer-une-sous-partie-du-programme--presentationexpand)
-  - [Convertir une sous-partie vers des slides `:presentationConvert`](#convertir-une-sous-partie-vers-des-slides-presentationconvert)
+  - [Développer une sous-partie du programme  `:presentationExpand` #WIP](#développer-une-sous-partie-du-programme--presentationexpand-wip)
+  - [Convertir une sous-partie vers des slides `:presentationConvert` #WIP](#convertir-une-sous-partie-vers-des-slides-presentationconvert-wip)
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -738,6 +738,7 @@ Instructions Template in English:
 ```
 
 ### Step 5: Final Review
+- Translate in English.
 - Export in a Canvas.
 - Print official documentations URLs related to the feature.
 - Do a full review (list inconsistencies, ambiguities, missing details).
@@ -2108,7 +2109,7 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 
 ## Rules  
 
-- Chart type: "[[best-format|classDiagram|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline]]".  
+- Chart type: "[[best-format|flowchart|classDiagram|sequenceDiagram|stateDiagram-v2|erDiagram|journey|timeline]]".  
 - Flow: "[[left-to-right|top-to-bottom]]".
 - Use Mermaid v10.8.0 minimum.
 - 100% valid Mermaid diagram is required.
@@ -2865,6 +2866,8 @@ List documents loaded from knowledge base in bullet points.
 ```markdown
 Thank you. Now:
 
+0) Output text in user's preferred language.
+
 1) Evaluate your own work. List all its strength and flaws.
 
 2) Give it a mark between 0 and 20. Justify your mark with an argumentative paragraph.
@@ -3305,7 +3308,7 @@ You are an expert educational curriculum designer and professional presenter wit
 
 </details>
 
-### Développer une sous-partie du programme  `:presentationExpand`
+### Développer une sous-partie du programme  `:presentationExpand` #WIP
 
 > Permet de développer une sous-partie du plan de manière exhaustive.
 
@@ -3319,7 +3322,7 @@ You are an expert educational curriculum designer and professional presenter wit
 
 </details>
 
-### Convertir une sous-partie vers des slides `:presentationConvert`
+### Convertir une sous-partie vers des slides `:presentationConvert` #WIP
 
 > Permet de convertir une sous-partie du programme depuis markdown vers <https://sli.dev>.
 
