@@ -2131,7 +2131,8 @@ Generate a HIGH QUALITY Mermaid diagram from Markdown content.
 **Naming**:
 - Consistent naming
 - Descriptive names and labels (no "A", "B"... use meaningful uppercase names)
-- Surrounded by double quotes.
+- Escape quotes.
+- NEVER use "\n".
 - Replace ":" with "$" in state names if any.
 
 **Links**:
