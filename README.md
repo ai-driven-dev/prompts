@@ -104,6 +104,9 @@
   - [Créer un programme / plan `:presentationCreate`](#créer-un-programme--plan-presentationcreate)
   - [Développer une sous-partie du programme  `:presentationExpand` #WIP](#développer-une-sous-partie-du-programme--presentationexpand-wip)
   - [Convertir une sous-partie vers des slides `:presentationConvert` #WIP](#convertir-une-sous-partie-vers-des-slides-presentationconvert-wip)
+  - [Améliorer des slides `:presentationUpdate` #WIP](#ameliorer-des-slides-presentationupdate-wip)
+  - [Convertir une sous-partie vers un QCM en Markdown `:presentationQcm` #WIP](#convertir-une-sous-partie-vers-un-qcm-en-markdown-presentationqcm-wip)
+
 
 ## 🚀 **La bibliothèque de prompts "AI-Driven Dev"**
 
@@ -3332,7 +3335,92 @@ You are an expert educational curriculum designer and professional presenter wit
 <summary>Voir le prompt</summary>
 
 ````markdown
+À partir du plan détaillé fourni dans le fichier Markdown, génère un cours structuré en suivant les règles ci-dessous :
 
+# Structure claire et progressive
+- Respecter l’organisation du fichier Markdown.
+- Introduire chaque chapitre avec un contexte expliquant son importance.
+- Assurer une transition fluide entre les chapitres et sous-chapitres.
+
+# Approche axée sur la pratique
+- Intégrer des exemples concrets et des extraits de code bien formatés.
+- Ajouter des démonstrations de cas d’usage en entreprise.
+- Proposer des exercices progressifs avec corrections possibles.
+
+# Slides interactifs et engageants
+- Chaque slide doit contenir **une seule idée principale**.
+- Favoriser des **illustrations, schémas et animations** pour expliquer les concepts complexes.
+
+# Code propre et lisible
+- Utiliser une indentation et un highlighting clair.
+- Expliquer le code juste après son affichage.
+- Ajouter des alternatives ou bonnes pratiques liées au sujet.
+
+# Favoriser l'autonomie
+- Proposer des liens vers des ressources externes officielles.
+- Ajouter une section **"Pour aller plus loin"** avec des sujets avancés ou connexes.
+
+# Format de sortie
+- Contenu adapté à **Slidev**, en utilisant du **Markdown** structuré.
+- Séparation des slides avec --- entouré de lignes vides.
+- Ajout de **notes pour le présentateur** avec <!-- Commentaire pour le présentateur-->. à la fin de chaque slides, entouré de saut de lignes.
+- Ne mets pas de gras sur les titres.
+- Ne numérote pas les slides.
+- Ecris chaque titre de slide en titre de niveau 2.
+- Après chaque titre de niveau 2 ajoute un retour à la ligne et une balise <p></p>
+- Ne traduit pas les termes techniques.
+- N'écris pas tout le chapitre dans un bloc de code markdown.
+- Les informations doivent être utiles pour des étudiants en **2025**.
+- Ce support de cours doit servir de révision aux étudiants : privilégie les phrases courtes et les bullets points.
+- Utilise des emoticones pour illustrer le cours, sans excès.
+- N'ajoute pas de texte avant et après le cours.
+- Chaque slide ne doit contenir qu'un seul sujet et ne doit pas faire plus de 12 lignes.
+
+
+Génère uniquement le cours **chapitre par chapitre**, en respectant l’ordre et le contenu du fichier Markdown fourni.
+````
+
+</details>
+
+### Améliorer des slides `:presentationUpdate` #WIP
+
+> Après chaque chapitre généré, utiliser ce prompt pour demander à l'IA des améliorations :
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+Réécris uniquement les slides, avec les notes pour le présentateur, en apportant les modifications suivantes :
+- [[Ajoute autant de modifications que nécessaire, une par ligne]]
+
+````
+
+Après chaque chapitre généré, utiliser ce prompt pour demander à l'IA des améliorations :
+
+</details>
+
+
+### Convertir une sous-partie vers un QCM en Markdown `:presentationQcm` #WIP
+
+> Permet de convertir une, ou plusieurs, sous-partie du programme depuis markdown vers un QCM simplifié facilement exportable dans votre outil de questionnaire.
+
+<details>
+
+<summary>Voir le prompt</summary>
+
+````markdown
+# Goal 
+Par rapport aux chapitres que tu as écrits, crée 30 questions de QCM pertinentes sur les chapitres : "[Insérer les noms des chapitres à couvrir]".
+
+# Rule
+- Ne rajoute aucun texte.
+- Les questions et réponses doivent permettre de valider les connaissances acquises lors des chapitres.
+- Les questions peuvent avoir de 1 à 4 bonnes réponses.
+- Indique les bonnes réponses dans une ligne après les réponses.
+- Ne préfixe pas les réponses avec une lettre ou un chiffre.
+- Ne sépare pas les parties.
+- Mets les bonnes réponses en premier.
 ````
 
 </details>
