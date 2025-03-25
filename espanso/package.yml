@@ -584,6 +584,9 @@ matches:
           objects
           types
           interfaces
+  - trigger: ':codePreview'
+    form: |
+      as a user in when implementing more complex features, I want to review the code first before clicking apply. In this instance, I would like to use the command D to select a function and see how that function is used throughout the code in the preview mode in the chat
   - trigger: ':codeFromPlan'
     form: |
       Please follow carefully the given plan below and generate the code accordingly.
@@ -606,30 +609,244 @@ matches:
       Rules:
       - Fill all fields with valid values.
       - Type of the data must be respected.
-  - trigger: ':imageExtractDetails'
+  - trigger: ':imageExtractCode'
+    form: |
+      function extractHtmlWithEssentialCss(selector) {
+          const el = document.querySelector(selector);
+          if (!el) {
+              alert(`❌ Aucun élément trouvé pour "${selector}"`);
+              return;
+          }
+
+          // Récupère les styles essentiels définis explicitement
+          function getExplicitCss(element) {
+              const matchedStyles = {};
+              [...document.styleSheets].forEach(sheet => {
+                  let rules;
+                  try { rules = sheet.cssRules; } catch { return; }
+                  [...rules].forEach(rule => {
+                      if (rule.type === CSSRule.STYLE_RULE && element.matches(rule.selectorText)) {
+                          [...rule.style].forEach(prop => {
+                              matchedStyles[prop] = rule.style.getPropertyValue(prop);
+                          });
+                      }
+                  });
+              });
+
+              // Inclure les styles inline
+              if (element.style.length) {
+                  [...element.style].forEach(prop => {
+                      matchedStyles[prop] = element.style.getPropertyValue(prop);
+                  });
+              }
+
+              return matchedStyles;
+          }
+
+          // Génère un sélecteur CSS précis
+          function buildCssSelector(element) {
+              let selector = element.tagName.toLowerCase();
+              if (element.id) selector += `#${element.id}`;
+              if (element.className) selector += '.' + [...element.classList].join('.');
+              return selector;
+          }
+
+          // Extrait les styles essentiels pour l'élément et ses enfants
+          function extractEssentialCss(element) {
+              let css = '';
+              const elements = [element, ...element.querySelectorAll('*')];
+
+              elements.forEach(el => {
+                  const explicitStyles = getExplicitCss(el);
+                  if (Object.keys(explicitStyles).length) {
+                      const selector = buildCssSelector(el);
+                      css += `${selector} {\n`;
+                      for (const prop in explicitStyles) {
+                          css += `  ${prop}: ${explicitStyles[prop]};\n`;
+                      }
+                      css += `}\n\n`;
+                  }
+              });
+
+              return css;
+          }
+
+          const essentialCss = extractEssentialCss(el);
+          const fullHtml = el.outerHTML;
+
+          const result = `
+      <!-- HTML -->
+      ${fullHtml}
+
+      <!-- Essential CSS -->
+      <style>
+      ${essentialCss}
+      </style>
+      `;
+
+          console.log('✅ Résultat HTML + CSS essentiel prêt à copier :\n', result);
+      }
+  - trigger: ':imageRepro1ExtractDetails'
+    form: "You will receive an image representing a user interface (UI).  \nYour task is to **visually analyze** the image and extract **every possible detail** a developer would need to **precisely recreate it in code**, even without seeing the image.\n\nYou are a pixel-perfect front-end interface analyst with 20+ years of experience translating HTML/CSS into highly accurate design documentation. You specialize in identifying exact visual structures, layouts, and interaction states from real code.\n\n\U0001F3AF Guidelines:\n- Break down the UI **by all visible components** (including page layout)\n- For each component, use the structured template below\n- Only display the **attributes that are visible or inferable**\n- Omit empty fields\n- Use **exact CSS property names** whenever possible\n- Make reasonable assumptions if a detail is likely but not 100% visible, and **mark them clearly** as such\n- Be **pixel-accurate**, **developer-oriented**, and **detail-obsessed**\n\n\U0001F4E6 Output Format: **Markdown**  text format surrounded by 4 backticks.\n\U0001F9E9 One section per UI component  \n\U0001F4C1 Use this refined template below (IN ENGLISH):\n\n<template>\n## [Component Name] *(e.g. Navigation Bar)*\n\n**Description of the whole component being very detailed.**\n\n### \U0001F4D0 Structure & Layout\n- Type: [container / grid / flex / etc.]\n- Layout behavior: [row / column / center / space-between / etc.]\n- Width / Height: [e.g. 100%, 1440px, auto, etc.]\n- Positioning: [static / relative / absolute / fixed / sticky]\n- Layering: `z-index: X` (if applicable)\n- Overflow: [visible / hidden / scroll]\n\n### \U0001F3A8 Visual Style\n- Background: `#xxxxxx`, gradients, images, or transparency\n- Border: `[e.g. 1px solid #ccc]`\n- Border Radius: `[e.g. 12px]`\n- Box Shadow / Inner Shadow: `[full CSS value]`\n- Effects: [blur, overlay, glassmorphism, etc.]\n- Cursor: [pointer / default / text / not-allowed]\n\n### \U0001F524 Typography (for text elements)\n- Font family: `'FontName', sans-serif`\n- Font weight: `400 | 600 | 700`\n- Font size: `e.g. 24px`\n- Line height: `e.g. 1.5`\n- Letter spacing: `e.g. 0.5px`\n- Text transform: [uppercase / none / etc.]\n- Text align: [left / center / right]\n- Text color: `#xxxxxx`\n\n### \U0001F4CF Spacing\n- Padding: `[individual or shorthand values]`\n- Margin: `[individual or shorthand values]`\n- Gap between child elements: `[e.g. gap: 1.5rem]`\n- Alignment within parent: [start / center / stretch / baseline]\n\n### \U0001F9E9 Nested Elements\n_For each nested element (e.g., button, icon, image, label):_\n#### \U0001F518 [Element Type] *(e.g. Primary Button)*\n- Text: “[Label]”\n- Dimensions: `[e.g. 120x44px]`\n- Background: `[color / gradient]`\n- Border / Radius: `[details]`\n- Text style: `[font, size, weight]`\n- Hover / Focus / Active state: [description]\n- Icon presence: [left/right, size, type]\n- Animation on interaction: [scale / shadow / transition]\n\n### \U0001F9E0 Accessibility & Semantics *(if visible/inferable)*\n- ARIA roles: `[e.g. aria-label=\"Search\"]`\n- Keyboard focusable: [yes/no]\n- Visibility hints: [visually hidden, screen-reader only]\n\n### \U0001F4F1 Responsiveness *(if deducible)*\n- Mobile behavior: [stacking / resizing / menu collapse]\n- Breakpoints observed: `[e.g. switch layout at 768px]`\n</template>\n"
+  - trigger: ':imageRepro2Refine'
+    form: |
+      This is a continuation of a previous UI description based on a mockup.
+
+      You are now provided with the actual HTML and CSS of the interface.
+      The goal is to verify and **correct the existing description** using this real code as the **single source of truth**.
+
+      1. Analyze the provided HTML and CSS code.  
+      2. Update the **structure** section of the UI description to match the real layout and elements.  
+      3. Identify and describe **all interaction states** (hover, focus, active, disabled, etc.).  
+      4. Ensure that **visual styles** (spacing, colors, sizes, borders, etc.) are described clearly.  
+      5. ⚠️ **Do not mention class names** – only describe visual properties.  
+      6. Aim for **pixel-perfect accuracy** based on the actual code.
+      7. Update the previous generated document with 100% accurate details.
+      8. Add new sections "responsive" and "state" for each element that you deduct from the code.
+
+      Rules:
+      - Do not care about CSS variables, only use the real values.
+  - trigger: ':imageRepro3Implementation'
     form: |
       Goal:
-      Extract details from image and match components in the codebase.
+      Implement the following design in our codebase, matching our components.
+
+      Rules:
+      - Do not change our fonts.
+      - Use our existing components.
+      - Do not use external library, use existing codebase.
+      - Respect frontend coding rules.
+      - Use existing icons, do not create new ones.
 
       Steps:
-      1. Analyze the image, then extract information about the image.
-        - Match the information with the components in the codebase.
-        - From every extracted info (eg: button name), match the components' parameters (eg: name from button.tsx)
-      2. Identify: changing state and actions that must be handled by functions.
-        - If you are not sure about what you identified, ask me the relevant questions.
-        - Then, continue with the next step.
-      3. Bind actions from the image with existing functions in the codebase.
-        - Use feature folder.
-      4. Generate code from the information extracted.
-        - Extract positions and sizes for each UI elements in the image (padding, margin, alignment, font size, etc.)
-        - Generate code to implement the design from the image
-        - Do not use external library, use existing codebase.
-        - Create local components if necessary.
+      1. Analyze and list components used in the design with their nested components.
+      2. Identify the components to be used in our codebase, and those whose to be created.
+      3. Split design into components the more you can.
+      4. List re-usable parts of the design to extract them into components.
+      5. Wait for the user approval before implementing.
+      6. Once discussed and approved, implement the design in the codebase splitting the code into multiple components in a clean modular way.
 
       Context:
-      - Component folder: @
-      - Feature folder: @
-      - Image is attached.
+      - Where to implement:
+      - Components to use: 
+      - Implementation guide:
+      <guide>
+      [[guide]]
+      </guide>
+    form_fields:
+      guide:
+        multiline: true
+  - trigger: ':imageMCPAutoCorrection'
+    form: |+
+      Goal:
+      Make the UI pixel perfect by comparing it with the attached mockup.
+
+      Steps:
+      1. Use MCP to take a screenshot of the current UI.
+      2. Compare it pixel-by-pixel with the attached mockup.
+      3. Check every positions of every element in the mockup and compare it with the current UI.
+      4. List ALL elements in page that are different from the mockup, you must spot every single difference.
+      5. For each element, list all differences in extreme detail (e.g. spacing, alignment, size, color, content etc).
+      6. Provide a detailed plan to fix each difference.
+      7. Implement plan in the codebase, update the code to make the UI pixel perfect.
+      8. Ask user, "do you want to repeat this process again?".
+      9. If user says "yes", repeat from step 1.
+
+      Rules:
+      - Do not focus on content changes, text is expected to be different.
+      - Do not focus on functionality, only on the visual aspect.
+      - Do not focus on logo or image content: you cannot reproduce them, focus instead on their position, size etc.
+
+      Minimum checking list:
+      - padding, margin, size, position
+      - color, background, border, shadow
+      - font, size, weight, style
+
+      Template to use:
+
+      ```markdown
+      # Round [x]
+
+      ## [Element Name] *(e.g. Navigation Bar)*
+
+      **Description of the whole component being very detailed.**
+
+      - Difference 1: [e.g. size] (current: 100px, expected: 120px)
+      - Difference 2: [e.g. color] (current: #000000, expected: #FFFFFF)
+      ...
+      ```
+
+  - trigger: ':imageAdvancedImplementation'
+    form: |
+      Goal:
+      Reproduce advanced and complexe design integration in my codebase by matching user explanation with the extracted code.
+
+      The idea is to fill an amazing template for the developer who will implements those requirements in the codebase.
+
+      **Your unique task is to explain in a very detailed way how the requirements is implemented in the extracted code, in a structure template.**
+
+      User explanation (requirements):
+      <requirements>
+      [[user_explanation]]
+      </requirements>
+
+      Steps: 
+      1. Gather requirements from the user.
+      2. Fill the template with the information, do not omit any details.
+      3. Do a review to ensure you forgot nothing.
+
+      Developer Template to fill:
+      - IMPORTANT: This is a minimal template, you can add any other information you want.
+      - You must fill the template with EXACT VALUES extracted form the code.
+      - Output the template in a markdown text block (surrounded by four backticks).
+
+      ```markdown
+      # Design Implementation
+
+      **Description of the design and its purpose.**
+
+      ## Animations
+
+      ### Animation 1
+      - **Trigger:** [e.g. on hover, on click]
+      - **Duration:** [e.g. 0.3s]
+      - **Easing:** [e.g. ease-in-out]
+      - **Properties affected:** [e.g. opacity, transform]
+
+
+      ## States
+
+      ### State 1
+      - **Trigger:** [e.g. on hover, on click]
+      - **Properties affected:** [e.g. background color, border color]
+      - **Implementation:** [e.g. CSS class, JavaScript function]
+
+      ## Responsive Design
+
+      ### Desktop
+
+      -
+
+      ### Tablet
+
+      -
+
+      ### Mobile
+
+      -
+
+      ```
+
+
+      Extracted code from webpage that need to be implemented in our codebase:
+      <code>
+      [[code]]
+      </code>
+    form_fields:
+      user_explanation:
+        multiline: true
+      code:
+        multiline: true
   - trigger: ':bugFinder'
     form: |
 
@@ -708,6 +925,15 @@ matches:
       - Address conflicting logic or discrepancies that might hinder the intended output of the program.
       - Avoid unnecessary complexity in suggestions; stick with simple and effective solutions that enhance consistency.
       - If similar inconsistencies occur repeatedly, note that they need to be corrected throughout the code.
+  - trigger: ':testFirst'
+    form: |
+      Goal:
+      Generate a unit test first, then write the implementation code.
+
+      Steps:
+      1. Write tests first.
+      2. Generate implementation code.
+      3. Run tests until all pass.
   - trigger: ':testGenGherkin'
     form: |
       Goal:
@@ -1171,34 +1397,7 @@ matches:
       2. Address a refactoring plan, Challenge the user.
       3. Once agreed, execute the plan.
   - trigger: ':adviceReview'
-    form: |
-      Role:
-      Your task is to make a very good code review, analyze the provided code and suggest improvements to make it cleaner, bug free.
-
-      Goal:
-      Identify areas where the code can be made more efficient, faster, less buggy or less resource-intensive.
-
-      Constraints:
-      - The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
-      - When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
-      - Ensure that your suggestions are clear and well-explained.
-      - Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance.
-
-      Detection rules:
-      - Performance issues
-      - Security breaches
-      - Optimization (refactoring, simplification)
-      - Improve readability
-      - Merge similar functions into one
-      - Remove redundant code
-      - Match comments with code
-      - Missing good practices
-
-      Steps:
-      1. Explain what the code is doing in one short sentence.
-      2. Analyze the code and use detection rules to find issues (print those in short bullet points)
-      3. Propose improvements to the code.
-      4. Wait for the user approval before changing any code, just provide suggestions.
+    form: "You are a senior principal software engineer reviewing AI-generated code for integration into a production project.\n\nYour task is to conduct a deep technical review and return actionable feedback in the format below.\n\nYou must ensure the code:\n- Is placed in the correct file, with clear responsibility\n- Follows all project conventions and architecture rules\n- Follows clean code principles (DRY, KISS, SOLID, etc.)\n- Is readable, maintainable, modular\n- Avoids unnecessary complexity or duplication\n- Handles edge cases and avoids potential bugs\n- Is type-safe and testable\n- Avoids performance issues and security vulnerabilities\n- Is optimized and refactored where appropriate\n- Has no redundant logic\n- Aligns code with any provided comments\n- Applies missing best practices if needed\n\nRespond using the following structure (do not focus on already existing good practices):\n\n\U0001F4C2 File Placement & Responsibility  \n\U0001F9F1 Style & Architecture Compliance  \n\U0001F9FC Clean Code Issues  \n\U0001F441️ Readability & Maintainability  \n\U0001F44C Type Safety  \n\U0001F41E Bug Risks & Edge Cases  \n⚡ Performance & Security Concerns  \n\U0001F6E0️ Optimization & Refactoring Suggestions  \n\U0001F9E9 Redundancy & Duplication  \n\U0001F4DD Comments vs Code  \n"
   - trigger: ':adviceArchitecture'
     form: "As a software architect, you are tasked with conducting a comprehensive audit of a project structure. \n\nBrief:\nYou are required to review, criticize the project structure and identify potential issues that could impact the project's maintainability, scalability, and overall efficiency.\n\nGoal:\nPropose improvements to the project structure to enhance its quality and ensure that it aligns with best practices.\nFeat every issue regarding the \"Project\" info and its tech stack.\n\nRules:\n- Empty files or folders.\n- Duplicate files.\n- Large files.\n- Overly nested folders.\n- Overloaded folders.\n- Inefficient project structure.\n- Inconsistent naming conventions, generic names, or unclear file organisation.\n- Files in the wrong directory.\n- Use architecture best practices.\n- Find inconsistencies and risks.\n- Propose actions to improve existing architecture.\n\nTasks:\n1. List rules to check in bullet points, then add more relevant ones regarding the project stack (suffix those by \U0001F195 emoji to identify them) that can be detected using project structure and package manager file.\n2. List every potential issue in the project structure.\n3. For each issue, find all affected file or folder because the audit needs to be exhaustive.\n4. Do not provide issue if there is no recommendation to solve it.\n5. Only answer using \"Tasks\" and \"Template\" sections.\n\nTemplate:\n\"\"\"\n# Architecture Audit\n\n* Main technologies used in list.\n* Description of the project.\n\n## (emoji) Title of the issue\n\nVery short explanation of the issue and why it is problematic.\n\n* List of every affected files or folders.\n  * ...\n* Explanation of the issue.\n* Short explanation of recommendations to solve the issue, provide tools or methods if necessary.\n  * ...\n* Example of how the issue can be fixed.\n\"\"\"\n\nFinal steps at the end of the audit, ask the user to type:\n1) Continue audit and ask user to specify more rules of your own.\n2) Re-audit the project dismissing correct points.\n3) Reupload new project structure and Re-audit.\n4) Continue audit, AI will try to find new issues.\n"
   - trigger: ':adviceDesignPatterns'
