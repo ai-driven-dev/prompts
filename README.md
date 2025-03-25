@@ -40,11 +40,18 @@
   - [Générer schéma SQL depuis des spécifications `:dbGenSQL`](#générer-schéma-sql-depuis-des-spécifications-dbgensql)
   - [Générer des entités à partir d'un schéma SQL `:dbGenEntity`](#générer-des-entités-à-partir-dun-schéma-sql-dbgenentity)
 - [**🚀 Génération de code**](#-génération-de-code)
+  - [Prévisualiser le code `:codePreview`](#prévisualiser-le-code-codepreview)
   - [Demander à l'AI Editor de coder le plan `:codeFromPlan`](#demander-à-lai-editor-de-coder-le-plan-codefromplan)
   - [Écrire du code depuis une Deep Research `:codeDeepResearch`](#écrire-du-code-depuis-une-deep-research-codedeepresearch)
   - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
-  - [Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)](#extraire-les-détails-de-limage-lassocier-les-composants-imageextractdetails-wip)
+  - [Extraire le HTML + CSS d'un élément `:imageExtractCode`](#extraire-le-html--css-dun-élément-imageextractcode)
+  - [Reproduire une maquette](#reproduire-une-maquette)
+    - [Extraire les détails de l'image `:imageRepro1ExtractDetails`](#extraire-les-détails-de-limage-imagerepro1extractdetails)
+    - [Affiner le design `:imageRepro2Refine`](#affiner-le-design-imagerepro2refine)
+    - [Implémenter le design `:imageRepro3Implementation`](#implémenter-le-design-imagerepro3implementation)
+  - [Auto-corriger le design `:imageMCPAutoCorrection`](#auto-corriger-le-design-imagemcpautocorrection)
+  - [Design avancée (avec animations/états) `:imageAdvancedImplementation`](#design-avancée-avec-animationsétats-imageadvancedimplementation)
 - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
   - [Corriger un bug technique (avec message d'erreur) `:bugFinder`](#corriger-un-bug-technique-avec-message-derreur-bugfinder)
   - [Corriger un bug fonctionnel (on ne sait où ce qui le cause) `:bugReveal`](#corriger-un-bug-fonctionnel-on-ne-sait-où-ce-qui-le-cause-bugreveal)
@@ -52,6 +59,7 @@
   - [Debugger un code en ajoutant du "logging" `:debugLog`](#debugger-un-code-en-ajoutant-du-logging-debuglog)
   - [Détecter des incohérences `:debugInconsistency`](#détecter-des-incohérences-debuginconsistency)
 - [**🧪 Tests**](#-tests)
+  - [Test first `:testFirst`](#test-first-testfirst)
   - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
   - [Générer un test unitaire pour un fichier `:testUnit`](#générer-un-test-unitaire-pour-un-fichier-testunit)
@@ -1563,6 +1571,21 @@ Rules:
 
 ## **🚀 Génération de code**
 
+### Prévisualiser le code `:codePreview`
+
+> Permet de prévisualiser le code qui sera modifié avant de faire les changements réels !
+>
+> [Source](https://forum.cursor.com/t/better-reviewing-of-generated-code-before-adding-it-to-the-actual-codebase/63506)
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+as a user in when implementing more complex features, I want to review the code first before clicking apply. In this instance, I would like to use the command D to select a function and see how that function is used throughout the code in the preview mode in the chat
+````
+
+</details>
+
 ### Demander à l'AI Editor de coder le plan `:codeFromPlan`
 
 > Demander à l'AI Editor de coder un plan donné généré depuis les instructions.
@@ -1617,37 +1640,370 @@ Rules:
 
 ## **🏞️ Générer du code à partir d'une image**
 
-### Extraire les détails de l'image l'associer les composants `:imageExtractDetails` (WIP)
+### Extraire le HTML + CSS d'un élément `:imageExtractCode`
 
-> Analyse une image, récupère les informations, et associe les composants dans le projet pour générer la vue.
+> Permet d'extraire le HTML + CSS d'un élément HTML d'une page.
 
 <details>
   <summary>Voir le prompt</summary>
   
-```markdown
+````javascript
+function extractHtmlWithEssentialCss(selector) {
+    const el = document.querySelector(selector);
+    if (!el) {
+        alert(`❌ Aucun élément trouvé pour "${selector}"`);
+        return;
+    }
+
+    // Récupère les styles essentiels définis explicitement
+    function getExplicitCss(element) {
+        const matchedStyles = {};
+        [...document.styleSheets].forEach(sheet => {
+            let rules;
+            try { rules = sheet.cssRules; } catch { return; }
+            [...rules].forEach(rule => {
+                if (rule.type === CSSRule.STYLE_RULE && element.matches(rule.selectorText)) {
+                    [...rule.style].forEach(prop => {
+                        matchedStyles[prop] = rule.style.getPropertyValue(prop);
+                    });
+                }
+            });
+        });
+
+        // Inclure les styles inline
+        if (element.style.length) {
+            [...element.style].forEach(prop => {
+                matchedStyles[prop] = element.style.getPropertyValue(prop);
+            });
+        }
+
+        return matchedStyles;
+    }
+
+    // Génère un sélecteur CSS précis
+    function buildCssSelector(element) {
+        let selector = element.tagName.toLowerCase();
+        if (element.id) selector += `#${element.id}`;
+        if (element.className) selector += '.' + [...element.classList].join('.');
+        return selector;
+    }
+
+    // Extrait les styles essentiels pour l'élément et ses enfants
+    function extractEssentialCss(element) {
+        let css = '';
+        const elements = [element, ...element.querySelectorAll('*')];
+
+        elements.forEach(el => {
+            const explicitStyles = getExplicitCss(el);
+            if (Object.keys(explicitStyles).length) {
+                const selector = buildCssSelector(el);
+                css += `${selector} {\n`;
+                for (const prop in explicitStyles) {
+                    css += `  ${prop}: ${explicitStyles[prop]};\n`;
+                }
+                css += `}\n\n`;
+            }
+        });
+
+        return css;
+    }
+
+    const essentialCss = extractEssentialCss(el);
+    const fullHtml = el.outerHTML;
+
+    const result = `
+<!-- HTML -->
+${fullHtml}
+
+<!-- Essential CSS -->
+<style>
+${essentialCss}
+</style>
+`;
+
+    console.log('✅ Résultat HTML + CSS essentiel prêt à copier :\n', result);
+}
+````
+
+</details>
+
+### Reproduire une maquette
+
+#### Extraire les détails de l'image `:imageRepro1ExtractDetails`
+
+> Analyse une image, récupère les informations de manière ultra précise.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+You will receive an image representing a user interface (UI).  
+Your task is to **visually analyze** the image and extract **every possible detail** a developer would need to **precisely recreate it in code**, even without seeing the image.
+
+You are a pixel-perfect front-end interface analyst with 20+ years of experience translating HTML/CSS into highly accurate design documentation. You specialize in identifying exact visual structures, layouts, and interaction states from real code.
+
+🎯 Guidelines:
+- Break down the UI **by all visible components** (including page layout)
+- For each component, use the structured template below
+- Only display the **attributes that are visible or inferable**
+- Omit empty fields
+- Use **exact CSS property names** whenever possible
+- Make reasonable assumptions if a detail is likely but not 100% visible, and **mark them clearly** as such
+- Be **pixel-accurate**, **developer-oriented**, and **detail-obsessed**
+
+📦 Output Format: **Markdown**  text format surrounded by 4 backticks.
+🧩 One section per UI component  
+📁 Use this refined template below (IN ENGLISH):
+
+<template>
+## [Component Name] *(e.g. Navigation Bar)*
+
+**Description of the whole component being very detailed.**
+
+### 📐 Structure & Layout
+- Type: [container / grid / flex / etc.]
+- Layout behavior: [row / column / center / space-between / etc.]
+- Width / Height: [e.g. 100%, 1440px, auto, etc.]
+- Positioning: [static / relative / absolute / fixed / sticky]
+- Layering: `z-index: X` (if applicable)
+- Overflow: [visible / hidden / scroll]
+
+### 🎨 Visual Style
+- Background: `#xxxxxx`, gradients, images, or transparency
+- Border: `[e.g. 1px solid #ccc]`
+- Border Radius: `[e.g. 12px]`
+- Box Shadow / Inner Shadow: `[full CSS value]`
+- Effects: [blur, overlay, glassmorphism, etc.]
+- Cursor: [pointer / default / text / not-allowed]
+
+### 🔤 Typography (for text elements)
+- Font family: `'FontName', sans-serif`
+- Font weight: `400 | 600 | 700`
+- Font size: `e.g. 24px`
+- Line height: `e.g. 1.5`
+- Letter spacing: `e.g. 0.5px`
+- Text transform: [uppercase / none / etc.]
+- Text align: [left / center / right]
+- Text color: `#xxxxxx`
+
+### 📏 Spacing
+- Padding: `[individual or shorthand values]`
+- Margin: `[individual or shorthand values]`
+- Gap between child elements: `[e.g. gap: 1.5rem]`
+- Alignment within parent: [start / center / stretch / baseline]
+
+### 🧩 Nested Elements
+_For each nested element (e.g., button, icon, image, label):_
+#### 🔘 [Element Type] *(e.g. Primary Button)*
+- Text: “[Label]”
+- Dimensions: `[e.g. 120x44px]`
+- Background: `[color / gradient]`
+- Border / Radius: `[details]`
+- Text style: `[font, size, weight]`
+- Hover / Focus / Active state: [description]
+- Icon presence: [left/right, size, type]
+- Animation on interaction: [scale / shadow / transition]
+
+### 🧠 Accessibility & Semantics *(if visible/inferable)*
+- ARIA roles: `[e.g. aria-label="Search"]`
+- Keyboard focusable: [yes/no]
+- Visibility hints: [visually hidden, screen-reader only]
+
+### 📱 Responsiveness *(if deducible)*
+- Mobile behavior: [stacking / resizing / menu collapse]
+- Breakpoints observed: `[e.g. switch layout at 768px]`
+</template>
+````
+
+</details>
+
+#### Affiner le design `:imageRepro2Refine`
+
+> Affine le design d'une image pour en faire un design plus précis grâce au code de la page.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+This is a continuation of a previous UI description based on a mockup.
+
+You are now provided with the actual HTML and CSS of the interface.
+The goal is to verify and **correct the existing description** using this real code as the **single source of truth**.
+
+1. Analyze the provided HTML and CSS code.  
+2. Update the **structure** section of the UI description to match the real layout and elements.  
+3. Identify and describe **all interaction states** (hover, focus, active, disabled, etc.).  
+4. Ensure that **visual styles** (spacing, colors, sizes, borders, etc.) are described clearly.  
+5. ⚠️ **Do not mention class names** – only describe visual properties.  
+6. Aim for **pixel-perfect accuracy** based on the actual code.
+7. Update the previous generated document with 100% accurate details.
+8. Add new sections "responsive" and "state" for each element that you deduct from the code.
+
+Rules:
+- Do not care about CSS variables, only use the real values.
+````
+
+</details>
+
+#### Implémenter le design `:imageRepro3Implementation`
+
+> Une fois les informations sur l'image obtenue, écrire le code correspondant en utilisant la code-base actuelle.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
 Goal:
-Extract details from image and match components in the codebase.
+Implement the following design in our codebase, matching our components.
+
+Rules:
+- Do not change our fonts.
+- Use our existing components.
+- Do not use external library, use existing codebase.
+- Respect frontend coding rules.
+- Use existing icons, do not create new ones.
 
 Steps:
-1. Analyze the image, then extract information about the image.
-  - Match the information with the components in the codebase.
-  - From every extracted info (eg: button name), match the components' parameters (eg: name from button.tsx)
-2. Identify: changing state and actions that must be handled by functions.
-  - If you are not sure about what you identified, ask me the relevant questions.
-  - Then, continue with the next step.
-3. Bind actions from the image with existing functions in the codebase.
-  - Use feature folder.
-4. Generate code from the information extracted.
-  - Extract positions and sizes for each UI elements in the image (padding, margin, alignment, font size, etc.)
-  - Generate code to implement the design from the image
-  - Do not use external library, use existing codebase.
-  - Create local components if necessary.
+1. Analyze and list components used in the design with their nested components.
+2. Identify the components to be used in our codebase, and those whose to be created.
+3. Split design into components the more you can.
+4. List re-usable parts of the design to extract them into components.
+5. Wait for the user approval before implementing.
+6. Once discussed and approved, implement the design in the codebase splitting the code into multiple components in a clean modular way.
 
 Context:
-- Component folder: @
-- Feature folder: @
-- Image is attached.
+- Where to implement:
+- Components to use: 
+- Implementation guide:
+<guide>
+[[guide]]
+</guide>
+````
+
+</details>
+
+### Auto-corriger le design `:imageMCPAutoCorrection`
+
+> Corriger le design généré par l'AI Editor en utilisant un MCP afin qu'il s'auto-corrige.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Make the UI pixel perfect by comparing it with the attached mockup.
+
+Steps:
+1. Use MCP to take a screenshot of the current UI.
+2. Compare it pixel-by-pixel with the attached mockup.
+3. Check every positions of every element in the mockup and compare it with the current UI.
+4. List ALL elements in page that are different from the mockup, you must spot every single difference.
+5. For each element, list all differences in extreme detail (e.g. spacing, alignment, size, color, content etc).
+6. Provide a detailed plan to fix each difference.
+7. Implement plan in the codebase, update the code to make the UI pixel perfect.
+8. Ask user, "do you want to repeat this process again?".
+9. If user says "yes", repeat from step 1.
+
+Rules:
+- Do not focus on content changes, text is expected to be different.
+- Do not focus on functionality, only on the visual aspect.
+- Do not focus on logo or image content: you cannot reproduce them, focus instead on their position, size etc.
+
+Minimum checking list:
+- padding, margin, size, position
+- color, background, border, shadow
+- font, size, weight, style
+
+Template to use:
+
+```markdown
+# Round [x]
+
+## [Element Name] *(e.g. Navigation Bar)*
+
+**Description of the whole component being very detailed.**
+
+- Difference 1: [e.g. size] (current: 100px, expected: 120px)
+- Difference 2: [e.g. color] (current: #000000, expected: #FFFFFF)
+...
 ```
+
+````
+
+</details>
+
+### Design avancée (avec animations/états) `:imageAdvancedImplementation`
+
+> Implémenter un design avancé depuis une maquette avec des animations, états, etc.
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Reproduce advanced and complexe design integration in my codebase by matching user explanation with the extracted code.
+
+The idea is to fill an amazing template for the developer who will implements those requirements in the codebase.
+
+**Your unique task is to explain in a very detailed way how the requirements is implemented in the extracted code, in a structure template.**
+
+User explanation (requirements):
+<requirements>
+[[user explanation]]
+</requirements>
+
+Steps: 
+1. Gather requirements from the user.
+2. Fill the template with the information, do not omit any details.
+3. Do a review to ensure you forgot nothing.
+
+Developer Template to fill:
+- IMPORTANT: This is a minimal template, you can add any other information you want.
+- You must fill the template with EXACT VALUES extracted form the code.
+- Output the template in a markdown text block (surrounded by four backticks).
+
+```markdown
+# Design Implementation
+
+**Description of the design and its purpose.**
+
+## Animations
+
+### Animation 1
+- **Trigger:** [e.g. on hover, on click]
+- **Duration:** [e.g. 0.3s]
+- **Easing:** [e.g. ease-in-out]
+- **Properties affected:** [e.g. opacity, transform]
+
+
+## States
+
+### State 1
+- **Trigger:** [e.g. on hover, on click]
+- **Properties affected:** [e.g. background color, border color]
+- **Implementation:** [e.g. CSS class, JavaScript function]
+
+## Responsive Design
+
+### Desktop
+
+-
+
+### Tablet
+
+-
+
+### Mobile
+
+-
+
+```
+
+
+Extracted code from webpage that need to be implemented in our codebase:
+<code>
+[[code]]
+</code>
+````
 
 </details>
 
@@ -1797,6 +2153,25 @@ Rules:
 </details>
 
 ## **🧪 Tests**
+
+### Test first `:testFirst`
+
+> Permet de générer un test unitaire d'abord puis d'écrire le code de l'implémentation ensuite.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Generate a unit test first, then write the implementation code.
+
+Steps:
+1. Write tests first.
+2. Generate implementation code.
+3. Run tests until all pass.
+````
+
+<markdown>
 
 ### Gherkin `:testGenGherkin`
 
@@ -2399,33 +2774,36 @@ Rules:
   <summary>Voir le prompt</summary>
   
 ```markdown
-Role:
-Your task is to make a very good code review, analyze the provided code and suggest improvements to make it cleaner, bug free.
+You are a senior principal software engineer reviewing AI-generated code for integration into a production project.
 
-Goal:
-Identify areas where the code can be made more efficient, faster, less buggy or less resource-intensive.
+Your task is to conduct a deep technical review and return actionable feedback in the format below.
 
-Constraints:
-- The optimized code should maintain the same functionality as the original code while demonstrating improved efficiency.
-- When providing your recommendations, consider factors such as algorithm complexity, data structures, and code organization.
-- Ensure that your suggestions are clear and well-explained.
-- Provide specific suggestions for optimization, along with explanations of how these changes can enhance the code's performance.
+You must ensure the code:
+- Is placed in the correct file, with clear responsibility
+- Follows all project conventions and architecture rules
+- Follows clean code principles (DRY, KISS, SOLID, etc.)
+- Is readable, maintainable, modular
+- Avoids unnecessary complexity or duplication
+- Handles edge cases and avoids potential bugs
+- Is type-safe and testable
+- Avoids performance issues and security vulnerabilities
+- Is optimized and refactored where appropriate
+- Has no redundant logic
+- Aligns code with any provided comments
+- Applies missing best practices if needed
 
-Detection rules:
-- Performance issues
-- Security breaches
-- Optimization (refactoring, simplification)
-- Improve readability
-- Merge similar functions into one
-- Remove redundant code
-- Match comments with code
-- Missing good practices
+Respond using the following structure (do not focus on already existing good practices):
 
-Steps:
-1. Explain what the code is doing in one short sentence.
-2. Analyze the code and use detection rules to find issues (print those in short bullet points)
-3. Propose improvements to the code.
-4. Wait for the user approval before changing any code, just provide suggestions.
+📂 File Placement & Responsibility  
+🧱 Style & Architecture Compliance  
+🧼 Clean Code Issues  
+👁️ Readability & Maintainability  
+👌 Type Safety  
+🐞 Bug Risks & Edge Cases  
+⚡ Performance & Security Concerns  
+🛠️ Optimization & Refactoring Suggestions  
+🧩 Redundancy & Duplication  
+📝 Comments vs Code  
 ```
 
 </details>
