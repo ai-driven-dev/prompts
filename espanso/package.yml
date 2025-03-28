@@ -709,17 +709,19 @@ matches:
   - trigger: ':imageRepro3Implementation'
     form: |
       Goal:
-      Implement the following design in our codebase, matching our components.
+      Implement the following implement guide (could be design or code) in our codebase, matching our components.
 
       Rules:
+      - ONLY CHANGE DESIGN, DO NOT CHANGE FUNCTIONALITY.
       - Do not change our fonts.
       - Use our existing components.
+      - Keep current design choices.
       - Do not use external library, use existing codebase.
       - Respect frontend coding rules.
       - Use existing icons, do not create new ones.
 
       Steps:
-      1. Analyze and list components used in the design with their nested components.
+      1. Analyze and list components used in the implementation guide provided with their nested components.
       2. Identify the components to be used in our codebase, and those whose to be created.
       3. Split design into components the more you can.
       4. List re-usable parts of the design to extract them into components.
@@ -1272,6 +1274,17 @@ matches:
         multiline: true
       changelog_url:
         multiline: true
+  - trigger: ':maintenanceUpdateFramework'
+    form: |
+      Goal:
+      Upgrade the framework to the latest version.
+
+      Steps:
+      1. Load knowledge base
+      2. Scrape the migration guide from this URL: "[[url]]"
+      3. Draw a full plan of the upgrade.
+      4. Compare with existing project structure to identify necessary changes.
+      5. List all files to be changed.
   - trigger: ':refactSuggest'
     form: |
       Goal: Refactor the code to improve readability, maintainability, and performance.
