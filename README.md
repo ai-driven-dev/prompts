@@ -69,6 +69,7 @@
   - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
 - [**🙏 Maintenance**](#-maintenance)
   - [Montée de version `:maintenanceUpdateDeps`](#montée-de-version-maintenanceupdatedeps)
+    - [Upgrade framework `:maintenanceUpdateFramework`](#upgrade-framework-maintenanceupdateframework)
 - [**🔄 Refactoring**](#-refactoring)
   - [Suggestion de refactoring : `:refactSuggest`](#suggestion-de-refactoring--refactsuggest)
   - [Ajouter des commentaires au code `:refactComment`](#ajouter-des-commentaires-au-code-refactcomment)
@@ -1854,17 +1855,19 @@ Rules:
   
 ````markdown
 Goal:
-Implement the following design in our codebase, matching our components.
+Implement the following implement guide (could be design or code) in our codebase, matching our components.
 
 Rules:
+- ONLY CHANGE DESIGN, DO NOT CHANGE FUNCTIONALITY.
 - Do not change our fonts.
 - Use our existing components.
+- Keep current design choices.
 - Do not use external library, use existing codebase.
 - Respect frontend coding rules.
 - Use existing icons, do not create new ones.
 
 Steps:
-1. Analyze and list components used in the design with their nested components.
+1. Analyze and list components used in the implementation guide provided with their nested components.
 2. Identify the components to be used in our codebase, and those whose to be created.
 3. Split design into components the more you can.
 4. List re-usable parts of the design to extract them into components.
@@ -2566,6 +2569,25 @@ Update Instructions URLs:
 
 Configuration files:
 
+````
+
+#### Upgrade framework `:maintenanceUpdateFramework`
+
+> Permet de mettre à jour un framework vers une nouvelle version majeure.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+Goal:
+Upgrade the framework to the latest version.
+
+Steps:
+1. Load knowledge base
+2. Scrape the migration guide from this URL: "[[url]]"
+3. Draw a full plan of the upgrade.
+4. Compare with existing project structure to identify necessary changes.
+5. List all files to be changed.
 ````
 
 </details>
