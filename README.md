@@ -64,6 +64,7 @@
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
   - [Générer un test unitaire pour un fichier `:testUnit`](#générer-un-test-unitaire-pour-un-fichier-testunit)
 - [**📚 Documentation**](#-documentation)
+  - [Générer un README `:docReadMe`](#générer-un-readme-docreadme)
   - [Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`](#instructions-de-wireframe-à-partir-dune-spec-docwireframeinstructions)
   - [Fusionner plusieurs fichiers Markdown `:mdMerge`](#fusionner-plusieurs-fichiers-markdown-mdmerge)
   - [Générer des diagrammes Mermaid `:docMermaid`](#générer-des-diagrammes-mermaid-docmermaid)
@@ -1738,82 +1739,76 @@ ${essentialCss}
   <summary>Voir le prompt</summary>
   
 ````markdown
-You will receive an image representing a user interface (UI).  
-Your task is to **visually analyze** the image and extract **every possible detail** a developer would need to **precisely recreate it in code**, even without seeing the image.
+# Goal
+Analyze the provided image to identify and extract the main components.
+Ensure to distinguish primary component groups and all sub-components on the page. 
+Some components might be duplicated -> only extract unique components.
 
-You are a pixel-perfect front-end interface analyst with 20+ years of experience translating HTML/CSS into highly accurate design documentation. You specialize in identifying exact visual structures, layouts, and interaction states from real code.
+# Steps
+1. Identify all reusable component, group them by type.
+2. Extract variants, merge closer variants.
+3. Remove duplicates.
+4. Hierarchical Organization.
 
-🎯 Guidelines:
-- Break down the UI **by all visible components** (including page layout)
-- For each component, use the structured template below
-- Only display the **attributes that are visible or inferable**
-- Omit empty fields
-- Use **exact CSS property names** whenever possible
-- Make reasonable assumptions if a detail is likely but not 100% visible, and **mark them clearly** as such
-- Be **pixel-accurate**, **developer-oriented**, and **detail-obsessed**
+# Rules
+- Emoji are not components.
+- Do not extract image content.
 
-📦 Output Format: **Markdown**  text format surrounded by 4 backticks.
-🧩 One section per UI component  
-📁 Use this refined template below (IN ENGLISH):
+# Output Format Example
+```yml
+main_reusable_components_with_variants:
+  - name: "Card"
+    variants:
+      - name: "simple"
+      - style: "shadow, rounded corners"
+  - name: "Button"
+    variants:
+      - name: "primary"
+        style: "dark background, white text"
+      - name: "secondary"
+        style: "light background, dark text"
+  - name: "Image Gallery"
+    variants:
+      - name: "landscape"
+        style: "horizontal images, no padding"
+      - name: "portrait"
+        style: "vertical images, no padding"
+  ...
 
-<template>
-## [Component Name] *(e.g. Navigation Bar)*
+main_display_components:
+  - component_name: Feature Card
+    layouts:
+      - type: Container
+        style: "Rounded corners, card-like appearance, white background"
+        position_and_display: "Encompasses entire page content, full-width"
+      - type: Grid Layout
+        style: "Layout organizing text on left, images on right"
+        position_and_display: "Left side: text content (~60% width), right side: image gallery (~40% width)"
 
-**Description of the whole component being very detailed.**
+        components:
+          - component_name: Content section
+            position_and_display: "Left side, vertically centered."
+            sub_components:
+              - type: Heading
+                content: "Neural Vision 3.5"
+                variant: "large"
+              - type: Paragraph
+                content: "Unlock the future of creativity with Neural Vision 3.5. Featuring cutting-edge enhancements and versatile options like the powerful 3.5 Large variant"
+                variant: "regular"
+              - type: Button
+                content: "Get started"
+                variant: "dark"
 
-### 📐 Structure & Layout
-- Type: [container / grid / flex / etc.]
-- Layout behavior: [row / column / center / space-between / etc.]
-- Width / Height: [e.g. 100%, 1440px, auto, etc.]
-- Positioning: [static / relative / absolute / fixed / sticky]
-- Layering: `z-index: X` (if applicable)
-- Overflow: [visible / hidden / scroll]
+          - component_name: Image Gallery
+            position_and_display: "Right side of the page"
+            sub_components:
+              - type: Left Column
+                content: "Collection of landscape-oriented images"
+              - type: Right Column
+                content: "Collection of portrait-oriented images"
 
-### 🎨 Visual Style
-- Background: `#xxxxxx`, gradients, images, or transparency
-- Border: `[e.g. 1px solid #ccc]`
-- Border Radius: `[e.g. 12px]`
-- Box Shadow / Inner Shadow: `[full CSS value]`
-- Effects: [blur, overlay, glassmorphism, etc.]
-- Cursor: [pointer / default / text / not-allowed]
+```
 
-### 🔤 Typography (for text elements)
-- Font family: `'FontName', sans-serif`
-- Font weight: `400 | 600 | 700`
-- Font size: `e.g. 24px`
-- Line height: `e.g. 1.5`
-- Letter spacing: `e.g. 0.5px`
-- Text transform: [uppercase / none / etc.]
-- Text align: [left / center / right]
-- Text color: `#xxxxxx`
-
-### 📏 Spacing
-- Padding: `[individual or shorthand values]`
-- Margin: `[individual or shorthand values]`
-- Gap between child elements: `[e.g. gap: 1.5rem]`
-- Alignment within parent: [start / center / stretch / baseline]
-
-### 🧩 Nested Elements
-_For each nested element (e.g., button, icon, image, label):_
-#### 🔘 [Element Type] *(e.g. Primary Button)*
-- Text: “[Label]”
-- Dimensions: `[e.g. 120x44px]`
-- Background: `[color / gradient]`
-- Border / Radius: `[details]`
-- Text style: `[font, size, weight]`
-- Hover / Focus / Active state: [description]
-- Icon presence: [left/right, size, type]
-- Animation on interaction: [scale / shadow / transition]
-
-### 🧠 Accessibility & Semantics *(if visible/inferable)*
-- ARIA roles: `[e.g. aria-label="Search"]`
-- Keyboard focusable: [yes/no]
-- Visibility hints: [visually hidden, screen-reader only]
-
-### 📱 Responsiveness *(if deducible)*
-- Mobile behavior: [stacking / resizing / menu collapse]
-- Breakpoints observed: `[e.g. switch layout at 768px]`
-</template>
 ````
 
 </details>
@@ -1828,9 +1823,11 @@ _For each nested element (e.g., button, icon, image, label):_
 ````markdown
 This is a continuation of a previous UI description based on a mockup.
 
+# Goal
 You are now provided with the actual HTML and CSS of the interface.
 The goal is to verify and **correct the existing description** using this real code as the **single source of truth**.
 
+# Steps
 1. Analyze the provided HTML and CSS code.  
 2. Update the **structure** section of the UI description to match the real layout and elements.  
 3. Identify and describe **all interaction states** (hover, focus, active, disabled, etc.).  
@@ -1840,8 +1837,15 @@ The goal is to verify and **correct the existing description** using this real c
 7. Update the previous generated document with 100% accurate details.
 8. Add new sections "responsive" and "state" for each element that you deduct from the code.
 
-Rules:
+# Rules
 - Do not care about CSS variables, only use the real values.
+
+# Code
+```html
+<code>
+[[HTML code]]
+</code>
+```
 ````
 
 </details>
@@ -1854,32 +1858,112 @@ Rules:
   <summary>Voir le prompt</summary>
   
 ````markdown
-Goal:
+# Goal
 Implement the following implement guide (could be design or code) in our codebase, matching our components.
 
-Rules:
-- ONLY CHANGE DESIGN, DO NOT CHANGE FUNCTIONALITY.
-- Do not change our fonts.
-- Use our existing components.
-- Keep current design choices.
-- Do not use external library, use existing codebase.
-- Respect frontend coding rules.
-- Use existing icons, do not create new ones.
+# Rules
+- Integration of design only.
+- Use existing fonts, colors and libs.
 
-Steps:
-1. Analyze and list components used in the implementation guide provided with their nested components.
-2. Identify the components to be used in our codebase, and those whose to be created.
-3. Split design into components the more you can.
-4. List re-usable parts of the design to extract them into components.
-5. Wait for the user approval before implementing.
-6. Once discussed and approved, implement the design in the codebase splitting the code into multiple components in a clean modular way.
+# Steps
+1. List components / sub-components used in implementation guide.
+2. Foreach: check existing component with variant.
+3. List:
+  - component name
+  - codebase component
+  - existing variant / to create
+4. Ask user for approval to implement the design in the codebase. 
 
-Context:
-- Where to implement:
+# Context
 - Components to use: 
 - Implementation guide:
 <guide>
-[[guide]]
+main_components:
+  - name: Hero Section
+    position: "Left side of page, occupying approximately 30% of page width"
+    style:
+      background: "White (#FFFFFF)"
+      border-radius: "12px"
+      padding: "80px"
+    states:
+      responsive: "Flex-grow with min-content height, maintains padding on smaller screens"
+    sub_components:
+      - type: Heading
+        content: "Neural Vision 3.5"
+        style: "Satoshi font, 36px, 700 weight, dark text (#1A1D21), 1.2em line height"
+        position: "Top of content area, left-aligned"
+      - type: Paragraph
+        content: "Unlock the future of creativity with Neural Vision 3.5. Featuring cutting-edge enhancements and versatile options like the powerful 3.5 Large variant"
+        style: "Satoshi font, 16px, 400 weight, dark text (#1A1D21), 1.4em line height"
+        position: "16px below heading, left-aligned"
+      - type: Button
+        content: "Get started"
+        style: 
+          background: "Dark (#1A1D21)"
+          text: "White (#FFFFFF)"
+          padding: "10px 14px"
+          border-radius: "8px"
+          icon: "Lightning bolt icon on right side"
+        position: "16px below paragraph, left-aligned"
+        states:
+          hover: "May have hover effect (implied by will-change property)"
+          interactive: "Appears to be a clickable link with noopener attribute"
+
+  - name: Image Gallery
+    position: "Right side of page, occupying approximately 70% of page width"
+    style:
+      display: "Flex layout with 6px gap between columns"
+      overflow: "Hidden"
+    states:
+      responsive: "Uses flex-grow with proportional sizing (1.2 vs 1 ratio between columns)"
+      interactive: "Images scroll vertically with transform translate property"
+    sub_components:
+      - type: Left Column
+        content: "Collection of landscape-oriented images"
+        style: 
+          border-radius: "12px"
+          height: "180px per image"
+          gap: "24px between images"
+        position: "Left side of gallery section, flex-grow factor of 1.2"
+        states:
+          scroll: "Vertical smooth scrolling animation"
+      - type: Right Column
+        content: "Collection of portrait-oriented images"
+        style: 
+          border-radius: "12px"
+          height: "153px per image"
+          gap: "24px between images"
+        position: "Right side of gallery section, flex-grow factor of 1"
+        states:
+          scroll: "Vertical smooth scrolling animation, offset positioning (top: -1062px)"
+      - type: Image Container
+        content: "Individual image wrapper"
+        style: 
+          border-radius: "12px"
+          overflow: "Hidden"
+          object-fit: "Cover (maintains aspect ratio)"
+        position: "Full width of parent column"
+        states:
+          loading: "Images use decoding=async and srcset for responsive loading"
+
+  - name: Layout Structure
+    position: "Full page container"
+    style:
+      display: "Flex row with 62px gap"
+      background: "White (#FFFFFF)"
+      border-radius: "12px"
+      overflow: "Hidden"
+    states:
+      responsive: "Flex layout adapts to screen size, maintains proportions"
+    sub_components:
+      - type: Content Container
+        content: "Text content wrapper"
+        style: "Flex column with 16px gap, padding 80px"
+        position: "Left side (~30% width), vertically centered"
+      - type: Gallery Container
+        content: "Image gallery wrapper"
+        style: "Flex row with 6px gap"
+        position: "Right side (~70% width), full height of parent"
 </guide>
 ````
 
@@ -2346,6 +2430,62 @@ The test will be generated as a code file in the project’s language. A structu
 </details>
 
 ## **📚 Documentation**
+
+### Générer un README `:docReadMe`
+>
+> Permet de générer un README à partir d'une description de projet.
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+You are an industry-leading Technical Documentation Expert with over 20 years of experience in writing world-class README files for software projects. Your job is to help me write a perfect, professional, and complete `README.md` file for my project through a structured, step-by-step collaboration.
+
+Follow this exact process:
+
+1. Load knowledge base.
+
+2. Based on that input, extract and display a short bullet list of key project facts:
+   - Project name
+   - Purpose / what it does
+   - Tech stack
+   - Target audience
+   - Any other key info you can infer
+
+3. Ask me to confirm or correct that list before continuing.
+
+4. Ask me a series of essential questions to fill in the rest of the README content. Include things like:
+   - What problem does this solve?
+   - Who is it for?
+   - How do users install it?
+   - Prerequisites or dependencies?
+   - Key features?
+   - Any usage examples?
+   - Contribution guidelines?
+   - Licensing?
+   - Links to demo/live version? 
+   - Etc.
+
+5. Once enough info is gathered, start building the README section by section. For each one:
+   - Generate a draft
+   - Ask me if I want to revise it or validate it
+   - Offer improvement suggestions based on best practices
+
+6. Once every section is complete and approved, present a clean, **numbered bullet-point outline** of the entire README structure for final validation.
+
+7. When I confirm the plan, generate the complete final `README.md` in **Markdown text format** surrounded by 4 backticks, **IN ENGLISH**.
+
+8. At the end, ask me if I want:
+   - A translated version
+   - Extra badges or visuals
+   - Export options
+
+Use clear markdown, concise language, and developer-friendly formatting.
+This README should be production-ready and follow industry standards.
+
+Let’s begin.
+````
+
+</details>
 
 ### Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`
 
