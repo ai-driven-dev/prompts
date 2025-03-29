@@ -2258,7 +2258,7 @@ Steps:
 3. Run tests until all pass.
 ````
 
-<markdown>
+</details>
 
 ### Gherkin `:testGenGherkin`
 
@@ -2432,8 +2432,9 @@ The test will be generated as a code file in the project’s language. A structu
 ## **📚 Documentation**
 
 ### Générer un README `:docReadMe`
->
+
 > Permet de générer un README à partir d'une description de projet.
+
 <details>
   <summary>Voir le prompt</summary>
   
@@ -2710,6 +2711,8 @@ Update Instructions URLs:
 Configuration files:
 
 ````
+
+</details>
 
 #### Upgrade framework `:maintenanceUpdateFramework`
 
