@@ -45,11 +45,9 @@
   - [Écrire du code depuis une Deep Research `:codeDeepResearch`](#écrire-du-code-depuis-une-deep-research-codedeepresearch)
   - [Générer des données factices `:codeFake`](#générer-des-données-factices-codefake)
 - [**🏞️ Générer du code à partir d'une image**](#️-générer-du-code-à-partir-dune-image)
-  - [Extraire le HTML + CSS d'un élément `:imageExtractCode`](#extraire-le-html--css-dun-élément-imageextractcode)
-  - [Reproduire une maquette](#reproduire-une-maquette)
-    - [Extraire les détails de l'image `:imageRepro1ExtractDetails`](#extraire-les-détails-de-limage-imagerepro1extractdetails)
-    - [Affiner le design `:imageRepro2Refine`](#affiner-le-design-imagerepro2refine)
-    - [Implémenter le design `:imageRepro3Implementation`](#implémenter-le-design-imagerepro3implementation)
+  - [Extraire les détails de l'image `:imageRepro1ExtractDetails`](#extraire-les-détails-de-limage-imagerepro1extractdetails)
+  - [Affiner le design `:imageRepro2Refine`](#affiner-le-design-imagerepro2refine)
+  - [Implémenter le design `:imageRepro3Implementation`](#implémenter-le-design-imagerepro3implementation)
   - [Auto-corriger le design `:imageMCPAutoCorrection`](#auto-corriger-le-design-imagemcpautocorrection)
   - [Design avancée (avec animations/états) `:imageAdvancedImplementation`](#design-avancée-avec-animationsétats-imageadvancedimplementation)
 - [**🐛 Corriger de bugs**](#-corriger-de-bugs)
@@ -1642,96 +1640,7 @@ Rules:
 
 ## **🏞️ Générer du code à partir d'une image**
 
-### Extraire le HTML + CSS d'un élément `:imageExtractCode`
-
-> Permet d'extraire le HTML + CSS d'un élément HTML d'une page.
-
-<details>
-  <summary>Voir le prompt</summary>
-  
-````javascript
-function extractHtmlWithEssentialCss(selector) {
-    const el = document.querySelector(selector);
-    if (!el) {
-        alert(`❌ Aucun élément trouvé pour "${selector}"`);
-        return;
-    }
-
-    // Récupère les styles essentiels définis explicitement
-    function getExplicitCss(element) {
-        const matchedStyles = {};
-        [...document.styleSheets].forEach(sheet => {
-            let rules;
-            try { rules = sheet.cssRules; } catch { return; }
-            [...rules].forEach(rule => {
-                if (rule.type === CSSRule.STYLE_RULE && element.matches(rule.selectorText)) {
-                    [...rule.style].forEach(prop => {
-                        matchedStyles[prop] = rule.style.getPropertyValue(prop);
-                    });
-                }
-            });
-        });
-
-        // Inclure les styles inline
-        if (element.style.length) {
-            [...element.style].forEach(prop => {
-                matchedStyles[prop] = element.style.getPropertyValue(prop);
-            });
-        }
-
-        return matchedStyles;
-    }
-
-    // Génère un sélecteur CSS précis
-    function buildCssSelector(element) {
-        let selector = element.tagName.toLowerCase();
-        if (element.id) selector += `#${element.id}`;
-        if (element.className) selector += '.' + [...element.classList].join('.');
-        return selector;
-    }
-
-    // Extrait les styles essentiels pour l'élément et ses enfants
-    function extractEssentialCss(element) {
-        let css = '';
-        const elements = [element, ...element.querySelectorAll('*')];
-
-        elements.forEach(el => {
-            const explicitStyles = getExplicitCss(el);
-            if (Object.keys(explicitStyles).length) {
-                const selector = buildCssSelector(el);
-                css += `${selector} {\n`;
-                for (const prop in explicitStyles) {
-                    css += `  ${prop}: ${explicitStyles[prop]};\n`;
-                }
-                css += `}\n\n`;
-            }
-        });
-
-        return css;
-    }
-
-    const essentialCss = extractEssentialCss(el);
-    const fullHtml = el.outerHTML;
-
-    const result = `
-<!-- HTML -->
-${fullHtml}
-
-<!-- Essential CSS -->
-<style>
-${essentialCss}
-</style>
-`;
-
-    console.log('✅ Résultat HTML + CSS essentiel prêt à copier :\n', result);
-}
-````
-
-</details>
-
-### Reproduire une maquette
-
-#### Extraire les détails de l'image `:imageRepro1ExtractDetails`
+### Extraire les détails de l'image `:imageRepro1ExtractDetails`
 
 > Analyse une image, récupère les informations de manière ultra précise.
 
@@ -1757,63 +1666,69 @@ Some components might be duplicated -> only extract unique components.
 # Output Format Example
 ```yml
 main_reusable_components_with_variants:
-  - name: "Card"
+  - name: "Chip"
     variants:
-      - name: "simple"
-      - style: "shadow, rounded corners"
-  - name: "Button"
-    variants:
-      - name: "primary"
-        style: "dark background, white text"
-      - name: "secondary"
-        style: "light background, dark text"
-  - name: "Image Gallery"
-    variants:
-      - name: "landscape"
-        style: "horizontal images, no padding"
-      - name: "portrait"
-        style: "vertical images, no padding"
+      - name: "Generate"
+        style: "Purple text, rounded pill shape, small sparkle icon"
+      ...
+
   ...
 
 main_display_components:
-  - component_name: Feature Card
+  - component_name: Hero Section
     layouts:
-      - type: Container
-        style: "Rounded corners, card-like appearance, white background"
-        position_and_display: "Encompasses entire page content, full-width"
-      - type: Grid Layout
-        style: "Layout organizing text on left, images on right"
-        position_and_display: "Left side: text content (~60% width), right side: image gallery (~40% width)"
+      - type: Vertical Stack
+        style: "Centered alignment, full-width layout"
+        position_and_display: "Top of page"
 
         components:
-          - component_name: Content section
-            position_and_display: "Left side, vertically centered."
-            sub_components:
-              - type: Heading
-                content: "Neural Vision 3.5"
-                variant: "large"
-              - type: Paragraph
-                content: "Unlock the future of creativity with Neural Vision 3.5. Featuring cutting-edge enhancements and versatile options like the powerful 3.5 Large variant"
-                variant: "regular"
-              - type: Button
-                content: "Get started"
-                variant: "dark"
+          - type: Text Block
+            content: "For individuals, independent creators and tech companies"
+            variant: "Heading"
 
-          - component_name: Image Gallery
-            position_and_display: "Right side of the page"
-            sub_components:
-              - type: Left Column
-                content: "Collection of landscape-oriented images"
-              - type: Right Column
-                content: "Collection of portrait-oriented images"
+          - type: Text Block
+            content: "Empowering individuals, creators, and tech innovators with cutting-edge AI solutions."
+            variant: "Subheading"
 
+  - component_name: Feature Grid
+    layouts:
+      - type: Two-Column Layout
+        style: "Even 2-column grid, responsive layout"
+        position_and_display: "Below hero section"
+
+        components:
+
+          - component_name: Right Feature Card
+            position_and_display: "Right column"
+            layout: "Vertical stack"
+
+            sub_components:
+              - type: Text Block
+                content: "Don’t write by yourself, it’s boring. Instead, let AI"
+                variant: "Paragraph"
+
+              - type: Chip
+                content: "Enhance"
+                variant: "Enhance"
+
+              - type: Text Block
+                content: "Your prompts"
+                variant: "Paragraph"
+
+              - type: BrowserWindowMockup
+                variant: "Prompt Display Mockup"
+                sub_components:
+                  - component_name: PromptCard
+                    layout: "Stacked content with prompt + tags"
+
+                    ...
 ```
 
 ````
 
 </details>
 
-#### Affiner le design `:imageRepro2Refine`
+### Affiner le design `:imageRepro2Refine`
 
 > Affine le design d'une image pour en faire un design plus précis grâce au code de la page.
 
@@ -1822,14 +1737,15 @@ main_display_components:
   
 ````markdown
 # Goal
-Verify and correct our components design based on mockup source code.
+Update our components design based on mockup source code.
 
 # Steps
 1. Analyze provided source code.
-2. Match components.
-3. List minimum top 10 miss-matches.
-4. Update content + styles.
+2. Match elements.
+3. Match source code style and params with our config.
+4. Update styles (and content, if any).
 5. Aim for **pixel-perfect accuracy**.
+6. Ensure no missing details.
 
 # Rules
 - No CSS variables, match real values or our config.
@@ -1843,7 +1759,7 @@ Verify and correct our components design based on mockup source code.
 
 </details>
 
-#### Implémenter le design `:imageRepro3Implementation`
+### Implémenter le design `:imageRepro3Implementation`
 
 > Une fois les informations sur l'image obtenue, écrire le code correspondant en utilisant la code-base actuelle.
 
@@ -1884,13 +1800,13 @@ Goal:
 Make the UI pixel perfect by comparing it with the attached mockup.
 
 Steps:
-1. Use MCP to take a screenshot of the current UI.
-2. Compare it pixel-by-pixel with the attached mockup.
-3. Check every positions of every element in the mockup and compare it with the current UI.
-4. List ALL elements in page that are different from the mockup, you must spot every single difference.
-5. For each element, list all differences in extreme detail (e.g. spacing, alignment, size, color, content etc).
-6. Provide a detailed plan to fix each difference.
-7. Implement plan in the codebase, update the code to make the UI pixel perfect.
+1. Use MCP to screenshot current UI.
+2. Compare it with attached mockup.
+3. Identify and list matching components.
+4. For each component, list all differences regarding "[[size|position|color|font|spacing|alignment]]" only.
+5. Fix them.
+6. Take a new screenshot of the current UI.
+7. List all differences again.
 8. Ask user, "do you want to repeat this process again?".
 9. If user says "yes", repeat from step 1.
 
@@ -1898,11 +1814,7 @@ Rules:
 - Do not focus on content changes, text is expected to be different.
 - Do not focus on functionality, only on the visual aspect.
 - Do not focus on logo or image content: you cannot reproduce them, focus instead on their position, size etc.
-
-Minimum checking list:
-- padding, margin, size, position
-- color, background, border, shadow
-- font, size, weight, style
+- Log changes to not loop on the same differences.
 
 Template to use:
 
