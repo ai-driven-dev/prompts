@@ -1752,7 +1752,7 @@ Some components might be duplicated -> only extract unique components.
 
 # Rules
 - Emoji are not components.
-- Do not extract image content.
+- No need to detail photography.
 
 # Output Format Example
 ```yml
@@ -1821,30 +1821,23 @@ main_display_components:
   <summary>Voir le prompt</summary>
   
 ````markdown
-This is a continuation of a previous UI description based on a mockup.
-
 # Goal
-You are now provided with the actual HTML and CSS of the interface.
-The goal is to verify and **correct the existing description** using this real code as the **single source of truth**.
+Verify and correct our components design based on mockup source code.
 
 # Steps
-1. Analyze the provided HTML and CSS code.  
-2. Update the **structure** section of the UI description to match the real layout and elements.  
-3. Identify and describe **all interaction states** (hover, focus, active, disabled, etc.).  
-4. Ensure that **visual styles** (spacing, colors, sizes, borders, etc.) are described clearly.  
-5. ⚠️ **Do not mention class names** – only describe visual properties.  
-6. Aim for **pixel-perfect accuracy** based on the actual code.
-7. Update the previous generated document with 100% accurate details.
-8. Add new sections "responsive" and "state" for each element that you deduct from the code.
+1. Analyze provided source code.
+2. Match components.
+3. List minimum top 10 miss-matches.
+4. Update content + styles.
+5. Aim for **pixel-perfect accuracy**.
 
 # Rules
-- Do not care about CSS variables, only use the real values.
+- No CSS variables, match real values or our config.
+- No relative values, match closer codebase values.
 
-# Code
+# Source code
 ```html
-<code>
 [[HTML code]]
-</code>
 ```
 ````
 
@@ -1859,111 +1852,21 @@ The goal is to verify and **correct the existing description** using this real c
   
 ````markdown
 # Goal
-Implement the following implement guide (could be design or code) in our codebase, matching our components.
+Implement this implement guide in our codebase with our components.
 
 # Rules
 - Integration of design only.
-- Use existing fonts, colors and libs.
+- Use existing config: fonts, colors, lib etc.
 
 # Steps
 1. List components / sub-components used in implementation guide.
 2. Foreach: check existing component with variant.
-3. List:
-  - component name
-  - codebase component
-  - existing variant / to create
+3. List in table: component (exist?), variant (exist?), action.
 4. Ask user for approval to implement the design in the codebase. 
 
 # Context
-- Components to use: 
-- Implementation guide:
 <guide>
-main_components:
-  - name: Hero Section
-    position: "Left side of page, occupying approximately 30% of page width"
-    style:
-      background: "White (#FFFFFF)"
-      border-radius: "12px"
-      padding: "80px"
-    states:
-      responsive: "Flex-grow with min-content height, maintains padding on smaller screens"
-    sub_components:
-      - type: Heading
-        content: "Neural Vision 3.5"
-        style: "Satoshi font, 36px, 700 weight, dark text (#1A1D21), 1.2em line height"
-        position: "Top of content area, left-aligned"
-      - type: Paragraph
-        content: "Unlock the future of creativity with Neural Vision 3.5. Featuring cutting-edge enhancements and versatile options like the powerful 3.5 Large variant"
-        style: "Satoshi font, 16px, 400 weight, dark text (#1A1D21), 1.4em line height"
-        position: "16px below heading, left-aligned"
-      - type: Button
-        content: "Get started"
-        style: 
-          background: "Dark (#1A1D21)"
-          text: "White (#FFFFFF)"
-          padding: "10px 14px"
-          border-radius: "8px"
-          icon: "Lightning bolt icon on right side"
-        position: "16px below paragraph, left-aligned"
-        states:
-          hover: "May have hover effect (implied by will-change property)"
-          interactive: "Appears to be a clickable link with noopener attribute"
-
-  - name: Image Gallery
-    position: "Right side of page, occupying approximately 70% of page width"
-    style:
-      display: "Flex layout with 6px gap between columns"
-      overflow: "Hidden"
-    states:
-      responsive: "Uses flex-grow with proportional sizing (1.2 vs 1 ratio between columns)"
-      interactive: "Images scroll vertically with transform translate property"
-    sub_components:
-      - type: Left Column
-        content: "Collection of landscape-oriented images"
-        style: 
-          border-radius: "12px"
-          height: "180px per image"
-          gap: "24px between images"
-        position: "Left side of gallery section, flex-grow factor of 1.2"
-        states:
-          scroll: "Vertical smooth scrolling animation"
-      - type: Right Column
-        content: "Collection of portrait-oriented images"
-        style: 
-          border-radius: "12px"
-          height: "153px per image"
-          gap: "24px between images"
-        position: "Right side of gallery section, flex-grow factor of 1"
-        states:
-          scroll: "Vertical smooth scrolling animation, offset positioning (top: -1062px)"
-      - type: Image Container
-        content: "Individual image wrapper"
-        style: 
-          border-radius: "12px"
-          overflow: "Hidden"
-          object-fit: "Cover (maintains aspect ratio)"
-        position: "Full width of parent column"
-        states:
-          loading: "Images use decoding=async and srcset for responsive loading"
-
-  - name: Layout Structure
-    position: "Full page container"
-    style:
-      display: "Flex row with 62px gap"
-      background: "White (#FFFFFF)"
-      border-radius: "12px"
-      overflow: "Hidden"
-    states:
-      responsive: "Flex layout adapts to screen size, maintains proportions"
-    sub_components:
-      - type: Content Container
-        content: "Text content wrapper"
-        style: "Flex column with 16px gap, padding 80px"
-        position: "Left side (~30% width), vertically centered"
-      - type: Gallery Container
-        content: "Image gallery wrapper"
-        style: "Flex row with 6px gap"
-        position: "Right side (~70% width), full height of parent"
+[[Implementation guide]]
 </guide>
 ````
 
