@@ -1,6 +1,6 @@
 {
   "name": "ai-driven-dev-prompts",
-  "version": "2.0.48",
+  "version": "2.0.49",
   "description": "Meilleures collections de prompts communautaires pour les développeurs.",
   "main": "index.js",
   "jest": {
