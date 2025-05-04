@@ -6,3 +6,4 @@ resources/private
 !resources/private/.gitkeep
 
 **/.DS_Store
+/.idea/
