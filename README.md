@@ -3433,7 +3433,7 @@ Output:
   <summary>Voir le prompt</summary>
   
 ```shell
-find . -type d -empty -exec rm -i -d {} +
+find . -type d -empty -delete
 ```
 
 </details>
