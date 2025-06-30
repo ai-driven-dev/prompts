@@ -1774,7 +1774,7 @@ matches:
       - Format output in a markdown text block surrounded by 4 backticks.
   - trigger: ':cmdEmptyFolders'
     form: |
-      find . -type d -empty -exec rm -i -d {} +
+      find . -type d -empty -delete
   - trigger: ':osxBrew'
     form: |
       brew update && brew outdated --greedy && brew upgrade --greedy && brew cleanup && brew doctor
