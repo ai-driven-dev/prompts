@@ -61,6 +61,7 @@
   - [Gherkin `:testGenGherkin`](#gherkin-testgengherkin)
   - [Lister les fonctions non testées `:testUntested`](#lister-les-fonctions-non-testées-testuntested)
   - [Générer un test unitaire pour un fichier `:testUnit`](#générer-un-test-unitaire-pour-un-fichier-testunit)
+  - [Mettre à jour un fichier de test unitaire suite à une modification sur un ou plusieurs fichiers `:updateTestUnit`](#mettre-à-jour-un-fichier-de-test-unitaire-suite-à-une-modification-sur-un-ou-plusieurs-fichiers-updatetestunit)
 - [**📚 Documentation**](#-documentation)
   - [Générer un README `:docReadMe`](#générer-un-readme-docreadme)
   - [Instructions de Wireframe à partir d'une spec `:docWireframeInstructions`](#instructions-de-wireframe-à-partir-dune-spec-docwireframeinstructions)
@@ -331,7 +332,7 @@ Pour faire un bon prompt, vous avez surtout besoin d'une bonne structure.
 
 ````markdown
 CONTEXT:
-We are going to create one of the best ChatGPT prompts ever written.  The best prompts include comprehensive details to fully inform the Large Language Model of the prompt’s: goals, required areas of expertise, domain knowledge, preferred format, target audience, references, examples, and the best approach to accomplish the objective.  Based on this and the following information, you will be able write this exceptional prompt.  
+We are going to create one of the best ChatGPT prompts ever written.  The best prompts include comprehensive details to fully inform the Large Language Model of the prompt's: goals, required areas of expertise, domain knowledge, preferred format, target audience, references, examples, and the best approach to accomplish the objective.  Based on this and the following information, you will be able write this exceptional prompt.  
 
 ROLE:
 You are an LLM prompt generation expert.  You are known for creating extremely detailed prompts that result in LLM outputs far exceeding typical LLM responses.  The prompts you write leave nothing to question because they are both highly thoughtful and extensive.
@@ -339,7 +340,7 @@ You are an LLM prompt generation expert.  You are known for creating extremely d
 ACTION: 
 1) Before you begin writing this prompt, you will first look to receive the prompt topic or theme.  If I don't provide the topic or theme for you, please request it.
 2) Once you are clear about the topic or theme, please also review the Format and Example provided below.
-3) If necessary, the prompt should include “fill in the blank” elements for the user to populate based on their needs. 
+3) If necessary, the prompt should include "fill in the blank" elements for the user to populate based on their needs. 
 4) Take a deep breath and take it one step at a time.
 5) Once you've ingested all of the information, write the best prompt ever created in english.
 
@@ -352,7 +353,7 @@ For organizational purposes, you will use an acronym called "C.R.A.F.T." where e
 
 -Action: This is the action that the prompt will ask the LLM to take.  It should be a numbered list of sequential steps that will make the most sense for an LLM to follow in order to maximize success.
 
--Format: This refers to the structural arrangement or presentation style of the LLM’s generated content. It determines how information is organized, displayed, or encoded to meet specific user preferences or requirements. Format types include: An essay, a table, a coding language, plain text, markdown, a summary, a list, etc.
+-Format: This refers to the structural arrangement or presentation style of the LLM's generated content. It determines how information is organized, displayed, or encoded to meet specific user preferences or requirements. Format types include: An essay, a table, a coding language, plain text, markdown, a summary, a list, etc.
 ````
 
 </details>
@@ -453,7 +454,7 @@ Summarize actions I need to do regarding that just specific part.
 ```markdown
 Generate a **clear and actionable** rule to prevent repeating a specific mistake.  
 
-Based on our last discussion, give me a **universal rule** that ensures I won’t make this mistake again.  
+Based on our last discussion, give me a **universal rule** that ensures I won't make this mistake again.  
 - **Imperative and unambiguous**.  
 - **Short** (maximum **15 words**).  
 - **Immediately applicable** (e.g., "Always check X before executing Y.").  
@@ -853,7 +854,7 @@ Rules:
   - No assumptions, no "not needed" steps.
   - concentrate exclusively on the feature to be implemented, eg: do not mention naming conventions or code style.
   - Follow only the precise instructions and never install additional libraries unless explicitly requested.
-  - Do not give code or commands to execute (e.g., `mkdir ...`); instead, say “create the new files/folders xxx.”
+  - Do not give code or commands to execute (e.g., `mkdir ...`); instead, say "create the new files/folders xxx."
 - **Actions**:
   - **Configuration Tasks**: External dependency setup, token generation, key management, environment variables.
   - **Technical Setup**: Initializing the project, installing dependencies, creating files/folders.
@@ -869,7 +870,7 @@ Before going to phase 4, review the plan to check that good practices are enforc
 ---
 
 ### Phase 4: 🧑‍💻 Export in Markdown
-- **Objective**: Produce a final Markdown document suitable for the “developer” and the “AI Editor.”
+- **Objective**: Produce a final Markdown document suitable for the "developer" and the "AI Editor."
 - **Rules**: 
   - Phase 4 must be answered in markdown format on a text block with 4 backticks.
   - Avoid repetition and focus only on the essentials.
@@ -1704,7 +1705,7 @@ main_display_components:
 
             sub_components:
               - type: Text Block
-                content: "Don’t write by yourself, it’s boring. Instead, let AI"
+                content: "Don't write by yourself, it's boring. Instead, let AI"
                 variant: "Paragraph"
 
               - type: Chip
@@ -2239,7 +2240,76 @@ Act as a software testing expert with 20+ years of experience in user-centric fu
    - Suggest optimizations if needed.
 
 **Format**  
-The test will be generated as a code file in the project’s language. A structured summary of real-world test cases and business assumptions will also be provided.
+The test will be generated as a code file in the project's language. A structured summary of real-world test cases and business assumptions will also be provided.
+````
+
+</details>
+
+### Mettre à jour un fichier de test unitaire suite à une modification sur un ou plusieurs fichiers `:updateTestUnit`
+
+> Permet de mettre à jour un fichier de test unitaire existant suite à des modifications apportées au code source, en conservant la couverture de test et en adaptant les cas de test aux nouvelles fonctionnalités.
+
+<details>
+  <summary>Voir le prompt</summary>
+  
+````markdown
+**Context**  
+Update an existing unit test file to reflect changes made to the source code.
+The update must maintain test coverage, adapt to new functionality, and ensure all business scenarios are still properly validated.
+The updated tests should continue to follow best practices and reflect real user interactions within the business domain.
+
+**Role**  
+Act as a software testing expert with 20+ years of experience in maintaining and evolving test suites
+You ensure test files remain synchronized with code changes while preserving business logic validation and user-centric testing approaches.
+
+**Action**
+1. **Analyze the changes**
+   - Review source code modifications
+   - Identify new functionality, removed features, or changed behaviors
+   - Determine which existing tests are affected
+   - Assess if new test cases are needed
+
+2. **Validate with the user**
+   - Confirm understanding of changes and their impact
+   - Identify specific business scenarios needing attention
+
+3. **Update existing test cases**
+   - Modify broken tests due to code changes
+   - Update test data and expected results for new functionality
+   - Preserve business logic validation while adapting to technical changes
+   - Ensure error handling tests remain comprehensive
+
+4. **Add new test cases**
+   - Create tests for new functionality
+   - Cover edge cases and error scenarios for new code paths
+   - Maintain consistency with existing test patterns
+   - Follow user-centric testing approach
+
+5. **Remove obsolete tests**
+   - Remove tests for functionality that no longer exists
+   - Clean up irrelevant test data and setup code
+
+6. **Verify test coverage**
+   - Ensure all business-critical scenarios are covered
+   - Validate normal and error user interactions are tested
+   - Confirm edge cases are handled
+
+7. **Finalize and validate**
+   - Request user validation of updated test file
+   - Suggest additional beneficial test cases
+   - Ensure adherence to project conventions
+
+**Format**
+  1. **Updated test file** (complete code)
+  2. **Modification summary** (changes made, tests added/removed)
+  3. **Coverage analysis** (scenarios tested, gaps identified)
+  4. **Recommendations** (suggested additional tests)
+
+**Constraints**
+- Maintain existing test structure where possible
+- Follow project testing conventions
+- Preserve or improve current test coverage
+- Keep tests maintainable and focused
 ````
 
 </details>
@@ -2298,7 +2368,7 @@ Follow this exact process:
 Use clear markdown, concise language, and developer-friendly formatting.
 This README should be production-ready and follow industry standards.
 
-Let’s begin.
+Let's begin.
 ````
 
 </details>
@@ -2902,7 +2972,7 @@ We will:
   - Generates short, focused outputs.  
 - **Developer (User)**  
   - Provides info.  
-  - Types “go” (on a line alone) to move on.
+  - Types "go" (on a line alone) to move on.
 
 # CONTEXT
 We want a high-level overview.  
@@ -2910,37 +2980,37 @@ No deep technical details.
 Short statements only.
 
 # RULES
-- Do not advance to the next section without the exact word “go” on its own line.  
-- Remain in the current section until “go.”  
+- Do not advance to the next section without the exact word "go" on its own line.  
+- Remain in the current section until "go."  
 - Use concise sentences.
 
 # STEPS
 
 ## Section 1: Extraction
-1. State “Section 1: Extraction.”  
+1. State "Section 1: Extraction."  
 2. Ask for the project document.  
 3. Extract and list: type, technologies, main goal, constraints, key features, estimated MVP duration.  
 4. Invite user to correct.  
-5. Wait for “go.”
+5. Wait for "go."
 
 ## Section 2: Clarification & Milestones
-1. State “Section 2: Clarification & Milestones.”  
+1. State "Section 2: Clarification & Milestones."  
 2. Ask questions to refine scope.  
 3. Propose milestones in bullet points.  
 4. Discuss.  
-5. Wait for “go.”
+5. Wait for "go."
 
 ## Section 3: Epics
-1. State “Section 3: Epics.”  
+1. State "Section 3: Epics."  
 2. For each milestone, propose epics in bullet points.  
 3. Adjust if needed.  
-4. Wait for “go.”
+4. Wait for "go."
 
 ## Section 4: Final Document
-1. State “Section 4: Document.”  
+1. State "Section 4: Document."  
 2. Produce one Markdown block with four backticks:  
-   - Title “Milestones”  
-   - Subsections “Epics” for each milestone  
+   - Title "Milestones"  
+   - Subsections "Epics" for each milestone  
    - Emojis for milestones  
    - Short sentences only  
 3. End.
@@ -3389,7 +3459,7 @@ Act as a **conversion-focused copywriter**. Use compelling language that capture
 - Make sentences smaller and more readable.
 
 ## Steps  
-1. Extract Key Benefits : Identify how the product or service improves the user’s life.  
+1. Extract Key Benefits : Identify how the product or service improves the user's life.  
 2. Reframe for Impact : Rewrite the text with a stronger benefit-first focus.  
 3. Use Persuasive Wording : Make the benefits clear, urgent, and emotionally compelling.  
 4. Ensure Readability : Keep sentences short and structured for easy scanning.  
@@ -3601,16 +3671,16 @@ You are an expert educational curriculum designer and professional presenter wit
 <summary>Exemple</summary>
 
 ````markdown
-# Plan du cours : Introduction à l’IA pour développeurs (2h)
+# Plan du cours : Introduction à l'IA pour développeurs (2h)
 
 ## 1. Introduction (10 min)
 1.1. Objectifs pédagogiques
-- 1.1.1. Découvrir l’intérêt pratique de l’IA pour les développeurs (automatisation, gain de temps, précision)
+- 1.1.1. Découvrir l'intérêt pratique de l'IA pour les développeurs (automatisation, gain de temps, précision)
 - 1.1.2. Présentation rapide du déroulement (démo manuelle → IA automatisée → atelier pratique GPT/Copilot)
 
 # 1. Démonstration initiale manuelle (20 min)
    1.1. Présentation rapide de la fonctionnalité (système d'émargement simple : nom, prénom, validation présence)
-      1.1.1. Objectif concret de l’émargement (saisie rapide des données utilisateur, stockage en base)
+      1.1.1. Objectif concret de l'émargement (saisie rapide des données utilisateur, stockage en base)
       1.1.2. Stack technique utilisée :
          - Docker (pour rapidité et simplicité d'environnement)
          - PHP dernière version
@@ -3620,7 +3690,7 @@ You are an expert educational curriculum designer and professional presenter wit
    1.2. Mise en place rapide du projet
       1.2.1. Installation Docker rapide
       1.2.2. Configuration basique Laravel avec Lucene (routes, controllers, modèles SQL simplifiés)
-      1.2.2. Création rapide d’une API REST simple pour l'émargement
+      1.2.2. Création rapide d'une API REST simple pour l'émargement
       1.2.3. Développement frontend minimaliste avec Vue.js (interface utilisateur basique)
 
 # 2. Démonstration d'IA avec Claude Code (15 min)
@@ -3630,8 +3700,8 @@ You are an expert educational curriculum designer and professional presenter wit
       2.2.1. Critères comparatifs explicites :
          - Temps de réalisation
          - Qualité du code
-         - Facilité d’utilisation du résultat final
-   2.3. Questions-réponses pendant l’exécution (fonctionnement de l’IA, limites pratiques, avantages réels, cas d’usage simples)
+         - Facilité d'utilisation du résultat final
+   2.3. Questions-réponses pendant l'exécution (fonctionnement de l'IA, limites pratiques, avantages réels, cas d'usage simples)
 
 # 3. Installation et configuration des outils GPT/Copilot (30 min)
    3.1. Installation rapide des outils
@@ -3645,8 +3715,8 @@ You are an expert educational curriculum designer and professional presenter wit
 
 # 4. Atelier pratique : reproduire la fonctionnalité avec GPT/Copilot (40 min)
    4.1. Objectif pratique précis :
-      - Refaire rapidement la même fonctionnalité d’émargement avec les assistants IA
-      - Se focaliser sur la rapidité et précision grâce à l’usage optimal des outils
+      - Refaire rapidement la même fonctionnalité d'émargement avec les assistants IA
+      - Se focaliser sur la rapidité et précision grâce à l'usage optimal des outils
    4.2. Développement pas à pas guidé (avec suggestions pratiques d'utilisation des outils)
       - Backend Laravel rapide via GPT/Copilot (création rapide API CRUD)
       - Frontend Vue.js rapide (interface simple, appels Ajax, rafraîchissement auto)
@@ -3654,7 +3724,7 @@ You are an expert educational curriculum designer and professional presenter wit
 
 # 5. Conclusion et évaluation rapide (10 min)
    5.1. Synthèse rapide du cours :
-      - Apports pratiques immédiats de l’IA en développement
+      - Apports pratiques immédiats de l'IA en développement
       - Points clés d'utilisation efficace des outils IA (GPT, Copilot, Claude Code)
    5.2. Quiz rapide (3-4 questions essentielles pour évaluer la compréhension immédiate)
       - Exemples de questions rapides :
